@@ -1,4 +1,6 @@
-/* BACKGROUND */
+/*
+   GLOBAL RESET & BASE
+*/
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +15,49 @@ body {
   color: #000;
 }
 
-/* BASE WIDTH SETTINGS FIXED */
+/*
+   TYPOGRAPHY BASE
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  color: #000;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 50px;
+  line-height: 145%;
+  letter-spacing: -0.25px;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 145%;
+  letter-spacing: -0.125px;
+}
+
+p, li {
+  font-family: "Cardo", serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 145%;
+  letter-spacing: -0.09px;
+  color: #000;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+button, input {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+/*
+   CONTAINER WIDTH CONTROL
+*/
 .header,
 .first_header,
 .nav_bar,
@@ -27,10 +71,11 @@ body {
   margin: 0 auto;
 }
 
-/* FIRST HEADER */
+/*
+   HEADER
+*/
 .first_header {
   height: 120px;
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -42,36 +87,36 @@ body {
 .logo {
   position: absolute;
   left: 80px;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 65px;
-  font-style: normal;
-  font-weight: 700;
   line-height: 110%;
   letter-spacing: -1.95px;
-  color: #000;
 }
 
+/* 
+  HEADER SUB ELEMENTS 
+*/
 .first_header a {
-  color: #000;
   text-align: center;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 300;
   line-height: 145%;
   letter-spacing: -0.12px;
   text-transform: capitalize;
-  text-decoration: none;
 }
 
-/* MAIN NAV BAR */
+.first_header a:hover {
+  font-weight: 700;
+}
+
+/*
+   NAVIGATION
+*/
 nav {
   height: 80px;
   padding: 18px 611px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
 }
 
 .nav_bar {
@@ -81,16 +126,11 @@ nav {
 }
 
 .nav_bar a {
-  color: #000;
-  text-align: center;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 25px;
-  font-style: normal;
   font-weight: 300;
   line-height: 145%;
   letter-spacing: -0.15px;
   text-transform: capitalize;
-  text-decoration: none;
   transition: 0.2s;
 }
 
@@ -99,34 +139,30 @@ nav {
   font-weight: 700;
 }
 
-/* SUB NAV: SEARCH*/
+/*
+   SUB NAV: SEARCH
+*/
 .sub_nav {
   display: flex;
-  padding: 0 40px 0 1540px;
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
+  padding: 0 40px 0 1540px;
 }
 
 .search_bar input {
   width: 200px;
   height: 30px;
-  flex-shrink: 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0 8px;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
 .search_btn {
   background: none;
   border: none;
   cursor: pointer;
-  color: #000;
-  text-align: center;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 12px;
-  font-style: normal;
   font-weight: 400;
   line-height: 145%;
   letter-spacing: -0.125px;
@@ -138,29 +174,23 @@ nav {
   font-weight: 700;
 }
 
-/* SLOGAN SECTION */
+/*
+   SLOGAN SECTION
+*/
 .slogan {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-shrink: 0;
   padding: 60px 80px;
 }
 
 .maintext {
   flex: 1;
   text-align: center;
-  color: #000;
 }
 
 .maintext h2 {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-size: 50px;
-  font-style: normal;
   font-weight: 600;
-  line-height: 145%;
-  letter-spacing: -0.25px;
-  text-transform: capitalize;
 }
 
 .maintext h2 .italic_part {
@@ -169,19 +199,16 @@ nav {
 }
 
 .subtext {
-  color: #000;
   text-align: center;
-  font-family: "Cardo",serif;
+  font-family: "Cardo", serif;
   font-size: 25px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 145%;
-  letter-spacing: -0.125px;
-  text-transform: capitalize;
   margin-top: 16px;
 }
 
-/* Action buttons */
+/* 
+  BUTTONS 
+*/
 .default_home_buttons {
   margin-top: 32px;
   display: flex;
@@ -196,7 +223,6 @@ nav {
   align-items: center;
   gap: 8px;
   border-radius: 12px;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: 20px;
   cursor: pointer;
 }
@@ -213,9 +239,10 @@ nav {
   color: #000;
 }
 
-/* INTRODUCTION */
+/* 
+   INTRODUCTION SECTION
+*/
 .introduction {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -223,24 +250,10 @@ nav {
 
 .our_goals h3 {
   width: 160px;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 145%;
-  letter-spacing: -0.125px;
-  color: #000;
 }
 
 .our_goals p {
   width: 706px;
-  color: #000;
-  font-family: "Cardo", serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 145%;
-  letter-spacing: -0.09px;
   margin-top: 10px;
 }
 
@@ -249,49 +262,26 @@ nav {
   margin-right: 50px;
 }
 
-
 .abilities h3 {
-  display: block;
-  margin: 0;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 145%;
-  letter-spacing: -0.125px;
-  color: #000;
   text-align: right;
+  margin: 0;
 }
 
 .abilities ul {
-  direction: rtl;
-  margin-top: 10px;
-  margin-left: 20px;
-  list-style-position: outside;
   list-style: none;
+  margin-top: 10px;
+  padding-right: 0;
 }
 
 .abilities li {
-  color: #000;
-  font-family: "Cardo", serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 145%;
-  letter-spacing: -0.09px;
+  margin-bottom: 6px;
 }
 
-/* MOST READ */
+/*
+   MOST READ SECTION
+*/
 .most_read {
-  color: #000;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 145%; 
-  letter-spacing: -0.2px;
-
   padding: 60px;
-  background: #FFF;
 }
 
 .most_read h3 {
@@ -300,12 +290,11 @@ nav {
 
 .most_read_grid {
   display: flex;
-  overflow-x: auto; 
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 0; 
+  gap: 0;
   padding-left: 60px;
   height: 468px;
-  background: #FFF;
   scrollbar-width: none;
 }
 
@@ -334,4 +323,3 @@ nav {
   object-fit: cover;
   display: block;
 }
-
