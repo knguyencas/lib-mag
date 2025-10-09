@@ -49,6 +49,7 @@ p, li {
 a {
   color: #000;
   text-decoration: none;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
 button, input {
@@ -64,8 +65,8 @@ button, input {
 .sub_nav,
 .slogan,
 .introduction,
-.most-read,
-.most-read-grid {
+.most_read,
+.most_read_grid {
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
@@ -75,8 +76,8 @@ button, input {
    HEADER
 */
 .first_header {
-  height: 120px;
   display: flex;
+  height: 120px;
   align-items: center;
   justify-content: flex-end;
   gap: 22px;
@@ -90,6 +91,7 @@ button, input {
   font-size: 65px;
   line-height: 110%;
   letter-spacing: -1.95px;
+  white-space: nowrap;
 }
 
 /* 
@@ -109,7 +111,7 @@ button, input {
 }
 
 /*
-   NAVIGATION
+  NAVIGATION
 */
 nav {
   height: 80px;
@@ -140,7 +142,7 @@ nav {
 }
 
 /*
-   SUB NAV: SEARCH
+  SUB NAV: SEARCH
 */
 .sub_nav {
   display: flex;
@@ -175,17 +177,27 @@ nav {
 }
 
 /*
-   SLOGAN SECTION
+  WRAPPED FIRST IMPRESSION
+*/
+.first_impression_wrapped{
+  display: flex;
+  width: 100%;
+}
+.slogan, .introduction{
+  flex: 1;
+  width: 50%;
+}
+/*
+  SLOGAN SECTION
 */
 .slogan {
-  display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 60px 80px;
+  margin-left: 50px;
 }
 
 .maintext {
-  flex: 1;
   text-align: center;
 }
 
@@ -245,6 +257,8 @@ nav {
 .introduction {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 15px;
   gap: 40px;
 }
 
@@ -257,9 +271,15 @@ nav {
   margin-top: 10px;
 }
 
+.our_goals{
+  flex: 1;
+  padding-right: 15px;
+}
+
 .abilities {
   text-align: right;
-  margin-right: 50px;
+  flex: 1;
+  padding-left: 15px;
 }
 
 .abilities h3 {
