@@ -1,7 +1,5 @@
-// Navigation and Page Routing
 document.addEventListener('DOMContentLoaded', function() {
-  
-  // Logo click handler
+  // Logo click
   const logo = document.querySelector('.logo');
   if (logo) {
     logo.style.cursor = 'pointer';
@@ -10,34 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Header links routing
-  const contactLinks = document.querySelectorAll('a[href="#"]');
-  contactLinks.forEach(link => {
-    if (link.textContent.trim() === 'Contact') {
-      link.href = 'contact.html';
-    } else if (link.textContent.trim() === 'Login') {
-      link.href = 'login.html';
-    }
-  });
-
-  // Navigation bar links
-  const navLinks = document.querySelectorAll('.nav_bar a');
-  navLinks.forEach(link => {
-    const text = link.textContent.trim().toLowerCase();
-    if (text === 'home') {
-      link.href = 'index.html';
-    } else if (text === 'library') {
-      link.href = 'library.html';
-    } else if (text === 'themes') {
-      link.href = 'themes.html';
-    } else if (text === 'perspective') {
-      link.href = 'perspective.html';
-    } else if (text === 'about') {
-      link.href = 'about.html';
-    }
-  });
-
-  // Button handlers
+  // Buttons
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(btn => {
     if (btn.textContent.trim() === 'Login') {
@@ -51,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Search functionality
+  // Search
   const searchBtn = document.querySelector('.search_btn');
   const searchInput = document.querySelector('.search_bar input');
   let searchError = document.querySelector('.search_error');
@@ -184,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mouse leave grid - return to default state
     mostReadGrid.addEventListener('mouseleave', function() {
       isHovering = false;
-      setDefaultState();
     });
 
     // Scroll handler
