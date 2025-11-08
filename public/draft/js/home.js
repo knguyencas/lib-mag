@@ -152,11 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
       updateBookPositions();
     });
 
-    // Mouse leave grid - return to default state
-    mostReadGrid.addEventListener('mouseleave', function() {
-      isHovering = false;
-    });
-
     // Scroll handler
     mostReadGrid.addEventListener('wheel', function(e) {
       if (!isHovering) return;
