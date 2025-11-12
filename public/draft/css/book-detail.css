@@ -6,60 +6,51 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5;
-    color: #000;
-}
-
-.container {
+    background-color: #FFFFFF;
+    color: #000000;
     max-width: 1920px;
     margin: 0 auto;
-    padding: 0 52px;
 }
 
-.sticky-header {
-    position: fixed;
+.header {
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.top-header {
-    border-bottom: 1px solid #e5e5e5;
-    padding: 20px 0;
-}
-
-.top-header .container {
+.first_header {
     display: flex;
-    justify-content: space-between;
+    height: 100px;
     align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+    padding-right: 52px;
+    position: relative;
+    border: none;
+    border-bottom: none;
 }
 
 .logo {
-    color: #000;
-    font-family: 'Poppins', sans-serif;
-    font-size: 65px;
-    font-style: normal;
+    position: absolute;
+    left: 52px;
+    font-size: 24px;
     font-weight: 700;
-    line-height: 110%;
-    letter-spacing: -1.95px;
+    letter-spacing: -0.5px;
     cursor: pointer;
+    transition: opacity 0.3s ease;
 }
 
-.top-nav {
-    display: flex;
-    gap: 44px;
+.logo:hover {
+    opacity: 0.7;
 }
 
-.top-link {
+.first_header a {
     color: #000;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    font-style: normal;
     font-weight: 300;
     line-height: 145%;
     letter-spacing: -0.075px;
@@ -68,72 +59,112 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.top-link:hover {
-    opacity: 0.7;
+.first_header a:hover {
+    opacity: 0.5;
 }
 
-.searchbar {
-    background-color: #fff;
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.searchbar .container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.navbar {
-    background-color: #fff;
-    padding: 15px 0;
-}
-
-.navbar .container {
+nav {
+    height: 80px;
+    padding: 0px 611px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    border-top: none;
+    border-bottom: none;
 }
 
-.nav-menu {
+.nav_bar {
     display: flex;
     list-style: none;
-    gap: 60px;
-    justify-content: center;
+    gap: 51px;
 }
 
-.nav-link {
+.nav_bar a {
     color: #000;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 300 !important;
     line-height: 145%;
-    letter-spacing: -0.1px;
+    letter-spacing: -0.08px;
     text-transform: capitalize;
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
-.nav-link:hover {
-    opacity: 0.7;
+.nav_bar a:hover {
+    opacity: 0.5;
 }
 
-.search-container {
+.nav_bar a.active {
+    font-weight: 300 !important; 
+}
+
+.nav_bar li a {
+    font-weight: 300 !important;
+}
+
+.sub_nav {
     display: flex;
-    padding: 8px 52px 8px 0;
     justify-content: flex-end;
     align-items: center;
+    padding: 8px 52px;
+    border: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.search_bar {
+    display: flex;
+    align-items: center;
+}
+
+.search_input_group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     position: relative;
 }
 
-.search-btn {
+.search_input_container {
+    width: 0;
+    height: 44px;
+    background: #EEE;
+    overflow: hidden;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.search_input_container.active {
+    width: 255px;
+    opacity: 1;
+    padding: 0 16px;
+}
+
+.search_input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #000;
+}
+
+.search_input::placeholder {
+    color: #999;
+}
+
+.search_btn {
     color: #000;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    font-style: normal;
     font-weight: 300;
     line-height: 145%;
     letter-spacing: -0.075px;
@@ -142,174 +173,136 @@ body {
     border: none;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    white-space: nowrap;
 }
 
-.search-btn:hover {
-    opacity: 0.7;
-}
-
-.search-input-container {
-    position: absolute;
-    right: 52px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 0;
-    padding: 5px 15px;
-    width: 255px;
-    height: 44px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.search-input-container.active {
-    display: flex;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    padding: 5px;
-}
-
-.search-submit {
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 0;
-    padding: 5px 15px;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    transition: opacity 0.3s ease;
-}
-
-.search-submit:hover {
-    opacity: 0.8;
+.search_btn:hover {
+    opacity: 0.5;
 }
 
 .main-content {
-    margin-top: 240px;
-    padding: 40px 0;
+    padding: 60px 0 0 0;
 }
 
-.book-detail-container {
-    display: flex;
-    gap: 60px;
+.container {
     max-width: 1920px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 52px;
 }
 
-.book-cover-section {
-    flex: 0 0 auto;
-    width: 652px;
+.book-detail-wrapper {
+    margin-bottom: 80px;
+}
+
+.book-detail-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
+    padding: 0 52px;
+}
+
+.book-cover-column {
+    position: relative;
 }
 
 .book-cover {
     width: 100%;
-    background: #fff;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #F5F5F5;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.book-cover-design {
-    padding: 40px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.abstract-design {
+.cover-design {
     width: 100%;
-    max-width: 400px;
     height: auto;
 }
 
-.book-title-cover {
+.cover-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     fill: #000;
 }
 
-.book-author-cover {
+.cover-author {
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 300;
     fill: #666;
 }
 
-.book-details-section {
-    flex: 1;
-    padding-left: 0;
+.book-info-column {
+    position: relative;
 }
 
 .categories {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .category-tag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 15px;
-    background-color: #f0f0f0;
-    border-radius: 0;
+    display: inline-block;
+    padding: 6px 16px;
+    background: #E5E5E5;
+    border-radius: 4px;
     color: #000;
-    text-align: justify;
-    font-family: "Neue Haas Grotesk Display Pro", sans-serif;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 110%;
-    letter-spacing: -0.45px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.26px;
+    text-transform: capitalize;
     transition: background-color 0.3s ease;
 }
 
 .category-tag:hover {
-    background-color: #e0e0e0;
+    background-color: #d0d0d0;
 }
 
 .book-title {
     font-family: 'Poppins', sans-serif;
     font-size: 48px;
     font-weight: 700;
-    line-height: 110%;
-    letter-spacing: -1.44px;
-    margin-bottom: 10px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
 }
 
 .book-author {
     font-family: 'Poppins', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 120%;
-    letter-spacing: -0.48px;
+    line-height: 1.2;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+}
+
+.bookmark-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.bookmark-btn:hover {
+    opacity: 0.6;
 }
 
 .star-rating {
     display: flex;
-    gap: 5px;
-    margin-bottom: 30px;
+    gap: 4px;
+    margin-bottom: 32px;
 }
 
 .star {
-    font-size: 24px;
-    color: #ddd;
+    font-size: 20px;
+    color: #DDD;
 }
 
 .star.filled {
@@ -322,90 +315,82 @@ body {
 
 .book-description p {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-    line-height: 160%;
-    letter-spacing: -0.32px;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.28px;
+    margin-bottom: 16px;
+    color: #333;
 }
 
 .book-description .quote {
     font-style: italic;
     font-weight: 400;
-    color: #333;
-    border-left: 4px solid #000;
-    padding-left: 20px;
+    color: #000;
     margin-bottom: 20px;
 }
 
 .action-buttons {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     justify-content: flex-end;
 }
 
 .btn-primary,
 .btn-secondary {
-    padding: 12px 30px;
+    padding: 12px 24px;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    border-radius: 0;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background-color: #000;
-    color: #fff;
+    background: #000;
+    color: #FFF;
 }
 
 .btn-primary:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #333;
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background: transparent;
     color: #000;
-    border: 2px solid #000;
+    border: 1px solid #000;
 }
 
 .btn-secondary:hover {
-    background-color: #000;
-    color: #fff;
-    transform: translateY(-2px);
+    background: #000;
+    color: #FFF;
 }
 
 .contents-section {
-    margin-top: 80px;
-    padding: 60px 0;
-    background-color: #fff;
+    background: #FAFAFA;
+    padding: 60px 52px;
 }
 
 .section-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
 }
 
 .contents-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 60px;
-    max-width: 800px;
+    max-width: 600px;
 }
 
 .part-title {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #000;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
 }
 
 .chapter-list {
@@ -413,100 +398,104 @@ body {
 }
 
 .chapter-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 8px;
 }
 
 .chapter-list a {
     color: #000;
-    text-decoration: none;
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
 }
 
 .chapter-list a:hover {
-    color: #666;
+    opacity: 0.6;
 }
 
 .bottom-section {
-    padding: 60px 0;
-    background-color: #f5f5f5;
+    padding: 60px 52px;
 }
 
 .two-column-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 400px;
     gap: 60px;
 }
 
-.comments-section {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 0;
+.comments-column {
 }
 
 .comment-form {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-.comment-input {
+.comment-textarea {
     width: 100%;
     min-height: 120px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 0;
+    padding: 16px;
+    background: #F5F5F5;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     resize: vertical;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    outline: none;
 }
 
-.comment-submit {
-    padding: 10px 30px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 0;
+.comment-textarea:focus {
+    border-color: #999;
+}
+
+.comment-submit-btn {
+    padding: 10px 24px;
+    background: #FFF;
+    border: 1px solid #000;
+    color: #000;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    float: right;
 }
 
-.comment-submit:hover {
-    background-color: #333;
+.comment-submit-btn:hover {
+    background: #000;
+    color: #FFF;
 }
 
-.comment {
-    padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
+.comment-item {
+    padding: 24px 0;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .comment-header {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 12px;
 }
 
 .comment-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 15px;
+    flex-shrink: 0;
 }
 
 .comment-meta {
     flex: 1;
 }
 
-.comment-user {
+.comment-username {
+    display: block;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    display: block;
+    margin-bottom: 4px;
 }
 
 .comment-date {
@@ -515,7 +504,7 @@ body {
     color: #999;
 }
 
-.comment-like {
+.comment-like-btn {
     background: none;
     border: none;
     font-size: 20px;
@@ -523,41 +512,45 @@ body {
     transition: color 0.3s ease;
 }
 
-.comment-like:hover {
-    color: #ff0000;
+.comment-like-btn:hover {
+    color: #FF0000;
 }
 
 .comment-body {
-    margin-bottom: 10px;
-    padding-left: 55px;
+    padding-left: 52px;
+    margin-bottom: 12px;
 }
 
 .comment-body p {
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.6;
     color: #333;
 }
 
-.comment-reply {
-    margin-left: 55px;
+.comment-footer {
+    padding-left: 52px;
+    display: flex;
+    gap: 16px;
+}
+
+.comment-reply-btn,
+.load-replies-btn {
     background: none;
     border: none;
     color: #666;
     font-family: 'Poppins', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-.comment-reply:hover {
+.comment-reply-btn:hover,
+.load-replies-btn:hover {
     color: #000;
 }
 
-.related-books-section {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 0;
+.related-books-column {
 }
 
 .related-books-grid {
@@ -566,63 +559,36 @@ body {
     gap: 20px;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.related-book {
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+.related-book:hover {
+    transform: scale(1.05);
 }
 
-@media (max-width: 1400px) {
-    .book-detail-container {
-        flex-direction: column;
-    }
-    
-    .book-cover-section {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    .book-details-section {
-        padding-left: 0;
-    }
+.related-book-cover {
+    width: 100%;
+    height: 200px;
+    background: #F5F5F5;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
 }
 
-@media (max-width: 768px) {
-    .logo {
-        font-size: 40px;
-    }
-    
-    .nav-menu {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .contents-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .two-column-layout {
-        grid-template-columns: 1fr;
-    }
-    
-    .related-books-grid {
-        grid-template-columns: 1fr;
-    }
+.related-book-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.related-book-author {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    color: #666;
 }

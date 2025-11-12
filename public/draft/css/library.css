@@ -1,0 +1,481 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #373737;
+    color: #FFF;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #373737;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.first_header {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+    padding-right: 52px;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 52px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFF;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.7;
+}
+
+.first_header a {
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 300;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.first_header a:hover {
+    opacity: 0.5;
+}
+
+nav {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_bar {
+    display: flex;
+    list-style: none;
+    gap: 51px;
+}
+
+.nav_bar a {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 300;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav_bar a:hover {
+    opacity: 0.5;
+}
+
+.nav_bar a.active {
+    font-weight: 700;
+}
+
+.sub_nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 52px;
+}
+
+.search_input_group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search_input_container {
+    width: 255px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin-right: 10px;
+}
+
+.search_input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #FFF;
+}
+
+.search_input::placeholder {
+    color: #828282;
+}
+
+.search-label {
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.main-content {
+    padding: 60px 54px 0;
+}
+
+.controls-bar {
+    display: flex;
+    gap: 50px;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+    margin-left: 220px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-btn {
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.dropdown-btn:hover {
+    opacity: 0.7;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    gap: 72px;
+    margin-bottom: 100px;
+    align-items: flex-start;
+}
+
+.section-title {
+    width: 148px;
+    height: 46px;
+    font-family: Cardo, serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 57%;
+    letter-spacing: -0.2px;
+    color: #FFF;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-top: 10px;
+}
+
+.for-you-grid {
+    display: flex;
+    gap: 57px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 10px 0 20px;
+    scroll-behavior: smooth;
+}
+
+.for-you-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.for-you-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.for-you-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.for-you-card {
+    width: 429px;
+    height: 287px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.50);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.for-you-card-image {
+    width: 161px;
+    height: 252px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+.for-you-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.for-you-card-title {
+    display: flex;
+    width: 179px;
+    height: 59px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.16px;
+    margin-bottom: 8px;
+}
+
+.for-you-card-author {
+    color: #FFF;
+    font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.075px;
+    margin-bottom: 38px;
+}
+
+.for-you-card-rating {
+    font-size: 16px;
+    color: #FFF;
+}
+
+.for-you-card-popup {
+    display: none;
+    position: fixed;
+    width: 726px;
+    height: 450px;
+    background: #B2B2B2;
+    z-index: 500;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+.for-you-card:hover .for-you-card-popup {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.popup-image {
+    width: 285px;
+    height: 401px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.popup-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 40px;
+}
+
+.popup-title {
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 145%;
+    letter-spacing: -0.2px;
+    margin-bottom: 20px;
+}
+
+.popup-summary {
+    width: 100%;
+    color: #FFF;
+    font-family: Cardo, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 145%;
+    letter-spacing: -0.075px;
+}
+
+.section-grid {
+    width: 100%;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    gap: 114px;
+    margin-bottom: 67px;
+}
+
+.book-card {
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+}
+
+.book-card-cover {
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.book-card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.book-card-author {
+    font-size: 13px;
+    color: #AAA;
+    text-align: center;
+}
+
+.divider-with-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 67px; 
+    max-width: 1456px; 
+}
+
+.divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.show-more-btn {
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+.show-more-btn:hover {
+    opacity: 0.7;
+}
+
+.show-more-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.show-more-btn.expanded .show-more-icon {
+    transform: rotate(180deg);
+}
+
+.footer {
+    display: flex;
+    width: 100%;
+    height: 340px;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    margin-top: 100px;
+}
+
+.footer-logo {
+    color: #000;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+@media (max-width: 1400px) {
+    .book-grid {
+        gap: 80px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .book-grid {
+        grid-template-columns: repeat(4, 200px);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav_bar {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .book-grid {
+        grid-template-columns: repeat(2, 200px);
+        gap: 40px;
+    }
+    
+    .for-you-card {
+        width: 350px;
+    }
+}
