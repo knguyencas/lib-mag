@@ -1,6 +1,5 @@
 console.log('Library JS loaded!');
 
-// State management
 const libraryState = {
     genres: [],
     genreSections: new Map(),
@@ -10,18 +9,18 @@ const libraryState = {
     currentSortOrder: 'newest'
 };
 
-document.addEventListener('DOMContentLoaded', async function() {
+let currentOpenDropdown = null;
+
+document.addEventListener('DOMContentLoaded', async function () {
     console.log('DOM Content Loaded - Initializing Library Page');
-    
+
     try {
-        // Initialize controls first
         await initializeControls();
-        
-        // Initialize all sections
+        await initializeSearch();
         await initializeForYouSection();
         await initializePopularSection();
         await initializeDynamicGenreSections();
-        
+
         console.log('Library page fully initialized!');
     } catch (error) {
         console.error('Error initializing library:', error);
@@ -29,259 +28,229 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-/**
- * Initialize filter controls
- */
 async function initializeControls() {
-    // Fetch genres first
     const genres = await apiService.getPrimaryGenres();
     libraryState.genres = genres;
     console.log('Loaded genres:', genres);
-    
-    const genreDropdown = document.querySelector('.dropdown-btn:nth-child(3)');
-    const sortDropdown = document.querySelector('.dropdown-btn:nth-child(2)');
-    
-    if (genreDropdown) {
-        genreDropdown.addEventListener('click', function() {
-            showGenreSelector();
-        });
-    }
-    
-    if (sortDropdown) {
-        sortDropdown.addEventListener('click', function() {
-            showSortSelector();
-        });
-    }
-}
 
-/**
- * Show genre selector with modal/dropdown
- */
-function showGenreSelector() {
-    const genreOptions = ['All Genres', ...libraryState.genres];
-    
-    // Create modal
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-    `;
-    
-    const container = document.createElement('div');
-    container.style.cssText = `
-        background: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        max-width: 400px;
-        width: 90%;
-    `;
-    
-    let html = '<h3 style="margin-bottom: 20px; color: #000;">Select Genre</h3>';
-    genreOptions.forEach((genre, index) => {
-        const value = index === 0 ? 'all' : genre;
-        const isSelected = (value === 'all' && libraryState.currentGenreFilter === 'all') || 
-                          (value === libraryState.currentGenreFilter);
-        
-        html += `
-            <div style="padding: 10px; cursor: pointer; background: ${isSelected ? '#000' : '#f0f0f0'}; 
-                        color: ${isSelected ? '#fff' : '#000'}; margin-bottom: 8px; border-radius: 4px;"
-                 data-genre="${value}" class="genre-option">
-                ${genre}
-            </div>
-        `;
-    });
-    
-    container.innerHTML = html;
-    modal.appendChild(container);
-    document.body.appendChild(modal);
-    
-    // Add click handlers
-    container.querySelectorAll('.genre-option').forEach(option => {
-        option.addEventListener('click', async function() {
-            const selectedGenre = this.dataset.genre;
-            libraryState.currentGenreFilter = selectedGenre;
-            
-            // Update button text
-            const genreBtn = document.querySelector('.dropdown-btn:nth-child(3)');
-            if (genreBtn) {
-                const displayText = selectedGenre === 'all' ? 'All Genres' : selectedGenre;
-                genreBtn.innerHTML = `Genre: ${displayText} <span>▼</span>`;
-            }
-            
-            // Remove modal
-            document.body.removeChild(modal);
-            
-            // Reload content
-            await refreshLibraryContent();
+    const buttons = document.querySelectorAll('.dropdown-btn');
+    const panel = document.getElementById('dropdownPanel');
+    const panelInner = panel.querySelector('.dropdown-panel-inner');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const type = btn.dataset.dropdown;
+            openDropdownPanel(type, btn, panel, panelInner);
         });
     });
-    
-    // Close on outside click
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            document.body.removeChild(modal);
+
+    document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && ![...buttons].some(b => b.contains(e.target))) {
+            closeDropdownPanel(panel);
         }
     });
 }
 
-/**
- * Show sort selector
- */
-function showSortSelector() {
-    const sortOptions = {
-        'newest': 'Newest First',
-        'oldest': 'Oldest First',
-        'rating': 'Highest Rating'
-    };
-    
-    // Create modal
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-    `;
-    
-    const container = document.createElement('div');
-    container.style.cssText = `
-        background: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        max-width: 400px;
-        width: 90%;
-    `;
-    
-    let html = '<h3 style="margin-bottom: 20px; color: #000;">Select Sort Order</h3>';
-    Object.entries(sortOptions).forEach(([key, value]) => {
-        const isSelected = key === libraryState.currentSortOrder;
-        
-        html += `
-            <div style="padding: 10px; cursor: pointer; background: ${isSelected ? '#000' : '#f0f0f0'}; 
-                        color: ${isSelected ? '#fff' : '#000'}; margin-bottom: 8px; border-radius: 4px;"
-                 data-sort="${key}" class="sort-option">
-                ${value}
-            </div>
-        `;
-    });
-    
-    container.innerHTML = html;
-    modal.appendChild(container);
-    document.body.appendChild(modal);
-    
-    // Add click handlers
-    container.querySelectorAll('.sort-option').forEach(option => {
-        option.addEventListener('click', async function() {
-            const selectedSort = this.dataset.sort;
-            libraryState.currentSortOrder = selectedSort;
-            
-            // Update button text
-            const sortBtn = document.querySelector('.dropdown-btn:nth-child(2)');
-            if (sortBtn) {
-                sortBtn.innerHTML = `Sort: ${sortOptions[selectedSort]} <span>▼</span>`;
-            }
-            
-            // Remove modal
-            document.body.removeChild(modal);
-            
-            // Reload content
-            await refreshLibraryContent();
+function openDropdownPanel(type, button, panel, panelInner) {
+    if (currentOpenDropdown === type && panel.classList.contains('open')) {
+        closeDropdownPanel(panel);
+        return;
+    }
+
+    currentOpenDropdown = type;
+    panelInner.innerHTML = '';
+
+    if (type === 'genre') {
+        const options = ['all', ...libraryState.genres];
+
+        options.forEach(value => {
+            const label = value === 'all' ? 'All Genres' : value;
+            const div = document.createElement('div');
+            div.className = 'dropdown-option';
+            if (value === libraryState.currentGenreFilter) div.classList.add('active');
+            div.textContent = label;
+            div.dataset.value = value;
+
+            div.addEventListener('click', async () => {
+                libraryState.currentGenreFilter = value;
+
+                const genreBtn = document.querySelector('[data-dropdown="genre"]');
+                if (genreBtn) {
+                    const displayText = value === 'all' ? 'All' : value;
+                    genreBtn.innerHTML = `Genre: ${displayText} <span>▼</span>`;
+                }
+
+                closeDropdownPanel(panel);
+                await refreshLibraryContent();
+            });
+
+            panelInner.appendChild(div);
         });
-    });
+    } else if (type === 'sort') {
+        const sortOptions = {
+            newest: 'Newest First',
+            oldest: 'Oldest First',
+            rating: 'Highest Rating'
+        };
+
+        Object.entries(sortOptions).forEach(([value, label]) => {
+            const div = document.createElement('div');
+            div.className = 'dropdown-option';
+            if (value === libraryState.currentSortOrder) div.classList.add('active');
+            div.textContent = label;
+            div.dataset.value = value;
+
+            div.addEventListener('click', async () => {
+                libraryState.currentSortOrder = value;
+
+                const sortBtn = document.querySelector('[data-dropdown="sort"]');
+                if (sortBtn) {
+                    sortBtn.innerHTML = `Sort: ${label} <span>▼</span>`;
+                }
+
+                closeDropdownPanel(panel);
+                await refreshLibraryContent();
+            });
+
+            panelInner.appendChild(div);
+        });
+    } else if (type === 'view') {
+        const viewOptions = {
+            default: 'Default'
+        };
+
+        Object.entries(viewOptions).forEach(([value, label]) => {
+            const div = document.createElement('div');
+            div.className = 'dropdown-option active';
+            div.textContent = label;
+
+            div.addEventListener('click', () => {
+                const viewBtn = document.querySelector('[data-dropdown="view"]');
+                if (viewBtn) {
+                    viewBtn.innerHTML = `View: ${label} <span>▼</span>`;
+                }
+                closeDropdownPanel(panel);
+            });
+
+            panelInner.appendChild(div);
+        });
+    }
+
+    const rect = button.getBoundingClientRect();
+    panel.style.top = rect.bottom + 5 + 'px';
+    panel.style.left = rect.left + 'px';
+    panel.style.minWidth = rect.width + 'px';
+
+    panel.classList.add('open');
+    button.classList.add('open');
+}
+
+function closeDropdownPanel(panel) {
+    panel.classList.remove('open');
+    currentOpenDropdown = null;
     
-    // Close on outside click
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            document.body.removeChild(modal);
-        }
+    document.querySelectorAll('.dropdown-btn').forEach(btn => {
+        btn.classList.remove('open');
     });
 }
 
-/**
- * Refresh library content based on filters
- */
+async function initializeSearch() {
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('searchInput');
+    const searchError = document.getElementById('searchError');
+
+    if (searchButton && searchInput) {
+        searchButton.addEventListener('click', () => performSearch(searchError));
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch(searchError);
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            if (searchError) {
+                searchError.textContent = '';
+            }
+        });
+    }
+}
+
+async function performSearch(searchError) {
+    const searchInput = document.getElementById('searchInput');
+    const keyword = searchInput.value.trim();
+
+    if (!keyword) {
+        if (searchError) {
+            searchError.textContent = 'Please enter a search term';
+        }
+        return;
+    }
+
+    if (searchError) {
+        searchError.textContent = '';
+    }
+
+    console.log('Redirecting to search results for:', keyword);
+
+    window.location.href = `search-results.html?q=${encodeURIComponent(keyword)}`;
+}
+
 async function refreshLibraryContent() {
     console.log('=== REFRESH LIBRARY CONTENT ===');
-    console.log('Current filter:', {
-        genre: libraryState.currentGenreFilter,
-        sort: libraryState.currentSortOrder
-    });
-    
-    // Clear all dynamic genre sections first
+
     document.querySelectorAll('.section.genre-section').forEach(section => {
-        console.log('Removing section:', section.id);
         section.remove();
     });
-    
+
     await initializeForYouSection();
     await initializePopularSection();
     await initializeDynamicGenreSections();
-    
+
     console.log('=== REFRESH COMPLETE ===');
 }
 
-/**
- * Initialize "For You" section with top-rated books
- */
+// ================== FOR YOU ==================
 async function initializeForYouSection() {
     const forYouGrid = document.getElementById('forYouGrid');
-    
+
     if (!forYouGrid) {
         console.error('forYouGrid NOT FOUND!');
         return;
     }
-    
+
     try {
-        console.log('Fetching For You books...');
-        
         let books;
         if (libraryState.currentGenreFilter === 'all') {
             books = await apiService.getForYouBooks(20);
         } else {
-            // Get books filtered by genre
             const result = await apiService.getBooksByGenrePaginated(
                 libraryState.currentGenreFilter,
                 1,
                 20,
-                'rating' // Always sort by rating for "For You"
+                'rating'
             );
             books = result.books;
         }
-        
+
         libraryState.forYouBooks = books;
-        
+
         if (books.length === 0) {
             forYouGrid.innerHTML = '<p style="color: white;">No books available for this genre.</p>';
             return;
         }
-        
+
         forYouGrid.innerHTML = '';
-        
+
         books.forEach(book => {
             const card = createForYouCard(book);
             forYouGrid.appendChild(card);
         });
-        
-        console.log(`Created ${books.length} For You cards`);
-        
-        // Enable horizontal scroll with mouse wheel
+
         forYouGrid.removeEventListener('wheel', handleWheel);
         forYouGrid.addEventListener('wheel', handleWheel, { passive: false });
-        
+
     } catch (error) {
         console.error('Error initializing For You section:', error);
         forYouGrid.innerHTML = '<p style="color: white;">Error loading books.</p>';
@@ -293,125 +262,111 @@ function handleWheel(e) {
     this.scrollLeft += e.deltaY;
 }
 
-/**
- * Initialize "Popular" section
- * - Default 1 row (5 books)
- * - Attach Show more / Show less handler
- */
+// ================== POPULAR ==================
+// ================== POPULAR ==================
 async function initializePopularSection() {
-    // set default rows for popular
     libraryState.genreSections.set('popular', 1);
+    await loadPopularBooks(1, 5); // Load 1 row (5 books)
 
-    await loadPopularBooks(1, 5);
-
-    // Attach click handler for Show more button
     const popularShowMoreBtn = document.querySelector('.show-more-btn[data-section="popular"]');
     if (popularShowMoreBtn && !popularShowMoreBtn.dataset.bound) {
         popularShowMoreBtn.addEventListener('click', function () {
             handleShowMorePopular(this);
         });
-        popularShowMoreBtn.dataset.bound = 'true'; // avoid duplicate listeners on refresh
+        popularShowMoreBtn.dataset.bound = 'true';
     }
 }
 
-/**
- * Load books for Popular section with given limit
- */
 async function loadPopularBooks(page = 1, limit = 5) {
-    const popularGrid = document.getElementById('popularGrid');
-    if (!popularGrid) {
+    const grid = document.getElementById('popularGrid');
+    
+    if (!grid) {
         console.error('popularGrid NOT FOUND!');
         return;
     }
-    
+
     try {
-        console.log('Fetching Popular books with filter:', libraryState.currentGenreFilter,
-                    'page:', page, 'limit:', limit);
+        console.log(`Loading popular books - page: ${page}, limit: ${limit}`);
         
-        const result = await apiService.getBooksByGenrePaginated(
-            libraryState.currentGenreFilter === 'all' ? null : libraryState.currentGenreFilter,
-            page,
-            limit,
-            libraryState.currentSortOrder
-        );
+        // Gọi API với limit đúng
+        const books = await apiService.getPopularBooks(limit);
+        console.log('Popular Books Response:', books);
         
-        libraryState.popularBooks = result.books;
-        
-        popularGrid.innerHTML = '';
-        
-        if (result.books.length === 0) {
-            popularGrid.innerHTML = '<p style="color: white;">No books found.</p>';
-        } else {
-            result.books.forEach(book => {
-                const card = createBookCard(book);
-                popularGrid.appendChild(card);
-            });
+        if (page === 1) {
+            grid.innerHTML = ''; // Clear grid chỉ khi load page 1
         }
         
-        console.log(`Rendered ${result.books.length} Popular books`);
+        if (books && books.length > 0) {
+            books.forEach(book => {
+                const card = createBookCard(book);
+                grid.appendChild(card);
+            });
+            console.log(`Loaded ${books.length} popular books`);
+        } else {
+            if (page === 1) {
+                grid.innerHTML = '<p style="color: white; grid-column: 1 / -1;">No popular books available</p>';
+            }
+        }
     } catch (error) {
-        console.error('Error loading Popular section:', error);
-        popularGrid.innerHTML = '<p style="color: white;">Error loading books.</p>';
+        console.error('Error loading popular books:', error);
+        if (page === 1) {
+            grid.innerHTML = '<p style="color: white; grid-column: 1 / -1;">Failed to load popular books</p>';
+        }
     }
 }
 
-/**
- * Dynamically create genre sections based on available genres
- */
+async function handleShowMorePopular(button) {
+    const sectionKey = 'popular';
+    const currentRows = libraryState.genreSections.get(sectionKey) || 1;
+
+    if (currentRows >= 3) {
+        await loadPopularBooks(1, 5);
+        libraryState.genreSections.set(sectionKey, 1);
+        button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
+        button.classList.remove('expanded');
+    } else {
+        const newRows = currentRows + 1;
+        await loadPopularBooks(1, newRows * 5);
+        libraryState.genreSections.set(sectionKey, newRows);
+
+        if (newRows >= 3) {
+            button.innerHTML = 'Show less <span class="show-more-icon">▲</span>';
+            button.classList.add('expanded');
+        } else {
+            button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
+        }
+    }
+}
+
+// ================== GENRE SECTIONS ==================
 async function initializeDynamicGenreSections() {
     try {
-        console.log('=== INITIALIZING GENRE SECTIONS ===');
-        
         const genres = libraryState.genres;
-        
         if (genres.length === 0) {
             console.warn('No genres found');
             return;
         }
-        
+
         const mainContent = document.querySelector('.main-content');
         const popularSection = document.querySelector('.section:has(#popularGrid)');
-        
-        // FORCE REMOVE all existing genre sections
-        console.log('Removing existing genre sections...');
-        const existingSections = document.querySelectorAll('.section.genre-section');
-        console.log(`Found ${existingSections.length} existing sections`);
-        existingSections.forEach(section => {
-            console.log('Removing:', section.id);
+
+        document.querySelectorAll('.section.genre-section').forEach(section => {
             section.remove();
         });
-        
-        // Also remove by ID pattern as backup
-        genres.forEach(genre => {
-            const sectionId = `section-${slugify(genre)}`;
-            const section = document.getElementById(sectionId);
-            if (section) {
-                console.log('Force removing by ID:', sectionId);
-                section.remove();
-            }
-        });
-        
-        // Determine which genres to show
+
         let genresToShow;
         if (libraryState.currentGenreFilter === 'all') {
             genresToShow = genres;
-            console.log('Showing ALL genres:', genresToShow);
         } else {
             genresToShow = [libraryState.currentGenreFilter];
-            console.log('Showing ONLY genre:', genresToShow);
         }
-        
-        // Create sections in order
-        console.log('Creating genre sections...');
+
         let lastSection = popularSection;
-        
+
         for (let i = 0; i < genresToShow.length; i++) {
             const genre = genresToShow[i];
-            console.log(`Creating section ${i + 1}/${genresToShow.length}: ${genre}`);
-            
             const genreSection = await createGenreSection(genre);
-            
-            // Insert after the last section
+
             if (lastSection && lastSection.nextSibling) {
                 lastSection.parentNode.insertBefore(genreSection, lastSection.nextSibling);
             } else if (lastSection) {
@@ -419,32 +374,22 @@ async function initializeDynamicGenreSections() {
             } else {
                 mainContent.appendChild(genreSection);
             }
-            
-            // Update last section reference for next iteration
+
             lastSection = genreSection;
-            
-            // Load books for this genre
-            console.log(`Loading books for ${genre}...`);
             await loadGenreBooks(genre, 1, 5);
         }
-        
-        console.log(`=== CREATED ${genresToShow.length} GENRE SECTIONS ===`);
-        
     } catch (error) {
         console.error('Error initializing dynamic genre sections:', error);
     }
 }
 
-/**
- * Create a genre section element
- */
 async function createGenreSection(genre) {
     const section = document.createElement('section');
     section.className = 'section genre-section';
     section.id = `section-${slugify(genre)}`;
-    
+
     const formattedTitle = formatGenreTitle(genre);
-    
+
     section.innerHTML = `
         <h2 class="section-title">${formattedTitle}</h2>
         <div class="section-grid">
@@ -458,117 +403,68 @@ async function createGenreSection(genre) {
             </div>
         </div>
     `;
-    
-    // Initialize state
+
     libraryState.genreSections.set(slugify(genre), 1);
-    
-    // Add event listener
+
     const showMoreBtn = section.querySelector('.show-more-btn');
-    showMoreBtn.addEventListener('click', function() {
+    showMoreBtn.addEventListener('click', function () {
         handleShowMore(genre, this);
     });
-    
+
     return section;
 }
 
-/**
- * Load books for a specific genre
- */
 async function loadGenreBooks(genre, page = 1, limit = 5) {
     const gridId = `${slugify(genre)}Grid`;
     const grid = document.getElementById(gridId);
-    
+
     if (!grid) {
         console.error(`Grid not found for genre: ${genre}`);
         return;
     }
-    
+
     try {
-        console.log(`Loading books for ${genre}, page: ${page}, limit: ${limit}, sort: ${libraryState.currentSortOrder}`);
-        
         const result = await apiService.getBooksByGenrePaginated(
             genre,
             page,
             limit,
             libraryState.currentSortOrder
         );
-        
+
         const books = result.books;
-        
-        console.log(`Received ${books.length} books for ${genre}`);
-        
-        // Clear grid if page 1
+
         if (page === 1) {
             grid.innerHTML = '';
         }
-        
+
         if (books.length === 0) {
             grid.innerHTML = '<p style="color: white; grid-column: 1 / -1;">No books found in this genre.</p>';
             return;
         }
-        
+
         books.forEach(book => {
             const card = createBookCard(book);
             grid.appendChild(card);
         });
-        
-        console.log(`Rendered ${books.length} books for ${genre}`);
-        
     } catch (error) {
         console.error(`Error loading books for ${genre}:`, error);
         grid.innerHTML = '<p style="color: white; grid-column: 1 / -1;">Error loading books.</p>';
     }
 }
 
-//  Show More button
 async function handleShowMore(genre, button) {
     const section = slugify(genre);
     const currentRows = libraryState.genreSections.get(section) || 1;
-    
-    console.log(`Show more clicked for ${genre}, current rows: ${currentRows}`);
-    
+
     if (currentRows >= 3) {
-        // Collapse to 1 row
         await loadGenreBooks(genre, 1, 5);
         libraryState.genreSections.set(section, 1);
         button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
         button.classList.remove('expanded');
-        console.log(`${genre} collapsed to 1 row`);
     } else {
-        // Expand by 1 row
         const newRows = currentRows + 1;
         await loadGenreBooks(genre, 1, newRows * 5);
         libraryState.genreSections.set(section, newRows);
-        
-        if (newRows >= 3) {
-            button.innerHTML = 'Show less <span class="show-more-icon">▲</span>';
-            button.classList.add('expanded');
-        } else {
-            button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
-        }
-        
-        console.log(`${genre} expanded to ${newRows} rows`);
-    }
-}
-
-async function handleShowMorePopular(button) {
-    const sectionKey = 'popular';
-    const currentRows = libraryState.genreSections.get(sectionKey) || 1;
-
-    console.log(`Show more clicked for Popular, current rows: ${currentRows}`);
-
-    if (currentRows >= 3) {
-        // Collapse to 1 row
-        await loadPopularBooks(1, 5);
-        libraryState.genreSections.set(sectionKey, 1);
-        button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
-        button.classList.remove('expanded');
-        console.log('Popular collapsed to 1 row');
-    } else {
-        // Expand by 1 row
-        const newRows = currentRows + 1;
-        await loadPopularBooks(1, newRows * 5); // 5 books per row
-        libraryState.genreSections.set(sectionKey, newRows);
 
         if (newRows >= 3) {
             button.innerHTML = 'Show less <span class="show-more-icon">▲</span>';
@@ -576,88 +472,185 @@ async function handleShowMorePopular(button) {
         } else {
             button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
         }
-
-        console.log(`Popular expanded to ${newRows} rows`);
     }
 }
 
-// Create a For You card
+// ================== CARD HELPERS ==================
 function createForYouCard(book) {
     const card = document.createElement('div');
     card.className = 'for-you-card';
     card.dataset.bookId = book.book_id;
-    
+
     const coverUrl = book.coverImage_cloud?.url || '';
-    const rating = '★'.repeat(Math.round(book.rating || 0)) + '☆'.repeat(5 - Math.round(book.rating || 0));
-    
+    const ratingValue = parseFloat(book.rating || 0);
+    const fullStars = Math.floor(ratingValue);
+    const fraction = ratingValue - fullStars;
+    const hasHalf = fraction >= 0.25 && fraction < 0.75;
+    const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+    let ratingHtml = '';
+
+    for (let i = 0; i < fullStars; i++) {
+        ratingHtml += '<span class="star full"></span>';
+    }
+    if (hasHalf) {
+        ratingHtml += '<span class="star half"></span>';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+        ratingHtml += '<span class="star empty"></span>';
+    }
+
+    let titleClass = 'popup-title';
+    if (book.title.length > 60) {
+        titleClass += ' very-long-title';
+    } else if (book.title.length > 40) {
+        titleClass += ' long-title';
+    }
+
+    const summaryText = book.blurb || book.punchline || 'No description available.';
+
     card.innerHTML = `
-        <div class="for-you-card-image" style="${coverUrl ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;` : 'background: #666;'}">
-            ${!coverUrl ? `<strong style="color: #fff; padding: 10px;">${truncateText(book.title, 30)}</strong>` : ''}
+        <div class="for-you-card-image" style="${
+            coverUrl
+                ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;`
+                : 'background: #666;'
+        }">
+            ${
+                !coverUrl
+                    ? `<strong style="color: #fff; padding: 10px;">${truncateText(
+                          book.title,
+                          30
+                      )}</strong>`
+                    : ''
+            }
         </div>
         <div class="for-you-card-info">
-            <div class="for-you-card-title">${truncateText(book.title, 50)}</div>
+            <div class="for-you-card-title">${book.title}</div>
             <div class="for-you-card-author">by ${book.author}</div>
-            <div class="for-you-card-rating">${rating}</div>
+            <div class="for-you-card-rating">
+                <span class="rating-stars">${ratingHtml}</span>
+                <span class="rating-number">${ratingValue ? ratingValue.toFixed(1) : ''}</span>
+            </div>
         </div>
         <div class="for-you-card-popup">
-            <div class="popup-image" style="${coverUrl ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;` : 'background: #666;'}">
-                ${!coverUrl ? `<strong style="color: #fff; font-size: 20px;">${book.title}</strong><div style="color: #fff; font-size: 14px; margin-top: 15px;">by ${book.author}</div>` : ''}
+            <div class="popup-image" style="${
+                coverUrl
+                    ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;`
+                    : 'background: #666;'
+            }">
+                ${
+                    !coverUrl
+                        ? `<strong style="color: #fff; font-size: 20px;">${
+                              book.title
+                          }</strong><div style="color: #fff; font-size: 14px; margin-top: 15px;">by ${
+                              book.author
+                          }</div>`
+                        : ''
+                }
             </div>
             <div class="popup-content">
-                <div class="popup-title">${book.title}</div>
-                <div class="popup-summary">${book.blurb || book.punchline || 'No description available.'}</div>
+                <div class="${titleClass}">${book.title}</div>
+                <div class="popup-summary-container">
+                    <div class="popup-summary" data-full-text="${escapeHtml(summaryText)}">
+                        ${summaryText}
+                    </div>
+                    <span class="show-more-popup" style="display: none;">Show more</span>
+                </div>
             </div>
         </div>
     `;
-    
-    card.addEventListener('mouseenter', function() {
+
+    // Handle popup positioning and truncation check
+    card.addEventListener('mouseenter', function () {
         const popup = this.querySelector('.for-you-card-popup');
         const rect = this.getBoundingClientRect();
-        
-        const centerY = rect.top + (rect.height / 2);
+
+        const centerY = rect.top + rect.height / 2;
         const popupTop = centerY - 225;
-        
+
         popup.style.top = popupTop + 'px';
         popup.style.left = rect.left + 'px';
+
+        // Check if summary needs truncation
+        const summaryEl = popup.querySelector('.popup-summary');
+        const showMoreBtn = popup.querySelector('.show-more-popup');
+        const titleEl = popup.querySelector('.popup-title');
+
+        if (summaryEl && showMoreBtn && titleEl) {
+            // Calculate available height for summary
+            const titleHeight = titleEl.offsetHeight;
+            const availableHeight = 401 - titleHeight - 40; // 401px poster height - title - margins
+            
+            summaryEl.style.maxHeight = availableHeight + 'px';
+
+            // Check if content overflows
+            if (summaryEl.scrollHeight > availableHeight) {
+                // Content is too long - show fade and "Show more"
+                summaryEl.classList.add('truncated');
+                showMoreBtn.style.display = 'block';
+            } else {
+                // Content fits - hide fade and "Show more"
+                summaryEl.classList.remove('truncated');
+                showMoreBtn.style.display = 'none';
+            }
+        }
     });
-    
-    card.addEventListener('click', function() {
-        viewBookDetails(book.book_id);
+
+    card.addEventListener('click', function (e) {
+        if (e.target.classList.contains('show-more-popup')) {
+            e.stopPropagation();
+            viewBookDetails(book.book_id);
+        } else {
+            viewBookDetails(book.book_id);
+        }
     });
-    
+
     return card;
 }
 
-// Create a regular book card element
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function createBookCard(book) {
     const card = document.createElement('div');
     card.className = 'book-card';
     card.dataset.bookId = book.book_id;
-    
+
     const coverUrl = book.coverImage_cloud?.url || '';
-    
+
     card.innerHTML = `
-        <div class="book-card-cover" style="${coverUrl ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;` : 'background: #666; display: flex; align-items: center; justify-content: center;'}">
-            ${!coverUrl ? `<strong style="color: #fff; padding: 10px; text-align: center;">${truncateText(book.title, 30)}</strong>` : ''}
+        <div class="book-card-cover" style="${
+            coverUrl
+                ? `background-image: url('${coverUrl}'); background-size: cover; background-position: center;`
+                : 'background: #666; display: flex; align-items: center; justify-content: center;'
+        }">
+            ${
+                !coverUrl
+                    ? `<strong style="color: #fff; padding: 10px; text-align: center;">${truncateText(
+                          book.title,
+                          30
+                      )}</strong>`
+                    : ''
+            }
         </div>
         <div class="book-card-title">${truncateText(book.title, 40)}</div>
         <div class="book-card-author">${book.author}</div>
     `;
-    
-    card.addEventListener('click', function() {
+
+    card.addEventListener('click', function () {
         viewBookDetails(book.book_id);
     });
-    
+
     return card;
 }
 
-// View book details
 function viewBookDetails(bookId) {
     console.log('Viewing book:', bookId);
     window.location.href = `book-detail.html?id=${bookId}`;
 }
 
-// Convert text to URL-friendly slug
 function slugify(text) {
     return text
         .toLowerCase()
@@ -665,22 +658,20 @@ function slugify(text) {
         .replace(/^-+|-+$/g, '');
 }
 
-// Format genre title with hyphenation
 function formatGenreTitle(genre) {
     const hyphenated = {
-        'Psychology': 'Psycho-logy',
-        'Philosophy': 'Philo-sophy',
-        'Literature': 'Litera-ture',
-        'Psychiatry': 'Psychi-atry',
+        Psychology: 'Psycho-logy',
+        Philosophy: 'Philo-sophy',
+        Literature: 'Litera-ture',
+        Psychiatry: 'Psychi-atry',
         'Social Sciences': 'Social Scien-ces',
         'Religion & Spirituality': 'Religion & Spirit-uality',
         'Business & Economics': 'Business & Econo-mics'
     };
-    
+
     return hyphenated[genre] || genre;
 }
 
-// Truncate text to specified length
 function truncateText(text, maxLength) {
     if (!text) return '';
     if (text.length <= maxLength) return text;
@@ -691,7 +682,8 @@ function showErrorMessage(message) {
     const mainContent = document.querySelector('.main-content');
     if (mainContent) {
         const errorDiv = document.createElement('div');
-        errorDiv.style.cssText = 'color: white; padding: 20px; text-align: center; background: rgba(255, 0, 0, 0.2); margin: 20px 0;';
+        errorDiv.style.cssText =
+            'color: white; padding: 20px; text-align: center; background: rgba(255, 0, 0, 0.2); margin: 20px 0;';
         errorDiv.textContent = message;
         mainContent.insertBefore(errorDiv, mainContent.firstChild);
     }

@@ -1,0 +1,115 @@
+/* Search Results Page Specific Styles */
+
+.search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-info {
+    flex: 1;
+}
+
+.search-title {
+    font-family: Cardo, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFF;
+    margin-bottom: 10px;
+}
+
+.search-count {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-query {
+    color: #FFF;
+    font-weight: 500;
+}
+
+.back-btn {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+.search-results-section {
+    margin-bottom: 100px;
+}
+
+.search-results-section .book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    gap: 114px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+}
+
+.no-results-icon {
+    font-size: 80px;
+    margin-bottom: 30px;
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.no-results p {
+    font-family: 'Cardo', serif;
+    font-size: 18px;
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
+
+.browse-btn {
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.browse-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.browse-btn:active {
+    transform: translateY(0);
+}

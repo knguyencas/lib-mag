@@ -1,15 +1,8 @@
-/*
-   GLOBAL RESET & BASE
-*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/*
-  HOME PAGE
-*/
 
 body.home {
   max-width: 1920px;
@@ -19,9 +12,6 @@ body.home {
   color: #000;
 }
 
-/*
-   TYPOGRAPHY BASE
-*/
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   color: #000;
@@ -60,9 +50,6 @@ button, input {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
-/*
-   CONTAINER WIDTH CONTROL
-*/
 .header,
 .first_header,
 .nav_bar,
@@ -105,9 +92,6 @@ button, input {
   white-space: nowrap;
 }
 
-/* 
-  HEADER SUB ELEMENTS 
-*/
 .first_header a {
   text-align: center;
   font-size: 15px;
@@ -121,9 +105,6 @@ button, input {
   font-weight: 700;
 }
 
-/*
-  NAVIGATION
-*/
 nav {
   height: 80px;
   padding: 0px 611px;
@@ -152,9 +133,6 @@ nav {
   font-weight: 700;
 }
 
-/*
-  SUB NAV: SEARCH
-*/
 .sub_nav {
   display: flex;
   justify-content: flex-end;
@@ -210,9 +188,6 @@ nav {
   font-weight: 700;
 }
 
-/*
-  WRAPPED FIRST IMPRESSION
-*/
 .first_impression_wrapped{
   display: flex;
   width: 100%;
@@ -221,9 +196,7 @@ nav {
   flex: 1;
   width: 50%;
 }
-/*
-  SLOGAN SECTION
-*/
+
 .slogan {
   justify-content: space-between;
   align-items: flex-start;
@@ -285,9 +258,6 @@ nav {
   color: #000;
 }
 
-/* 
-   INTRODUCTION SECTION
-*/
 .introduction {
   display: flex;
   flex-direction: column;
@@ -331,9 +301,6 @@ nav {
   margin-bottom: 6px;
 }
 
-/*
-   MOST READ SECTION
-*/
 .most_read {
   padding: 60px;
 }
@@ -350,10 +317,6 @@ nav {
   height: 468px;
   position: relative;
 }
-
-/*.most_read_grid::-webkit-scrollbar {
-  display: none;
-}*/
 
 .most_read_grid .book {
   flex: 0 0 auto;
@@ -376,4 +339,26 @@ nav {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.search_btn {
+    align-self: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.125px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.search_btn:hover {
+    font-weight: 700;
+    transform: translateY(-1px);
+}
+
+.search_btn:active {
+    transform: translateY(1px);
 }
