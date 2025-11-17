@@ -1,9 +1,7 @@
 const API_BASE_URL = 'http://localhost:3000/api';
 
 const apiService = {
-    /**
-     * Get all primary genres
-     */
+    // Get all primary genres
     async getPrimaryGenres() {
         try {
             const response = await fetch(`${API_BASE_URL}/books/metadata/genres`);
@@ -18,9 +16,7 @@ const apiService = {
         }
     },
 
-    /**
-     * Get "For You" books - top rated books
-     */
+    // Get "For You" books - top rated books
     async getForYouBooks(limit = 20) {
         try {
             const response = await fetch(`${API_BASE_URL}/books?limit=${limit}&sortBy=rating&status=published`);
@@ -35,9 +31,7 @@ const apiService = {
         }
     },
 
-    /**
-     * Get popular books
-     */
+    // Get popular books
     async getPopularBooks(limit = 20) {
         try {
             const response = await fetch(`${API_BASE_URL}/books?limit=${limit}&sortBy=rating&status=published`);
@@ -52,9 +46,7 @@ const apiService = {
         }
     },
 
-    /**
-     * Get books by genre with pagination
-     */
+    // Get books by genre with pagination
     async getBooksByGenrePaginated(genre, page = 1, limit = 5) {
         try {
             const response = await fetch(`${API_BASE_URL}/books?primary_genre=${encodeURIComponent(genre)}&page=${page}&limit=${limit}&sortBy=rating&status=published`);
