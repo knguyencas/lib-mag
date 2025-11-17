@@ -32,9 +32,9 @@ const apiService = {
     },
 
     // Get popular books
-    async getPopularBooks(limit = 20) {
+    async getPopularBooks(limit = 20, sortBy = 'rating') {
         try {
-            const response = await fetch(`${API_BASE_URL}/books?limit=${limit}&sortBy=rating&status=published`);
+            const response = await fetch(`${API_BASE_URL}/books?limit=${limit}&sortBy=${sortBy}&status=published`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -46,10 +46,20 @@ const apiService = {
         }
     },
 
-    // Get books by genre with pagination
-    async getBooksByGenrePaginated(genre, page = 1, limit = 5) {
+    // Get books by genre with pagination and sort
+    async getBooksByGenrePaginated(genre, page = 1, limit = 5, sortBy = 'newest') {
         try {
-            const response = await fetch(`${API_BASE_URL}/books?primary_genre=${encodeURIComponent(genre)}&page=${page}&limit=${limit}&sortBy=rating&status=published`);
+            let url = `${API_BASE_URL}/books?page=${page}&limit=${limit}&status=published`;
+            
+            // Add genre filter if not null
+            if (genre && genre !== 'all') {
+                url += `&primary_genre=${encodeURIComponent(genre)}`;
+            }
+            
+            // Add sort parameter
+            url += `&sortBy=${sortBy}`;
+            
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
