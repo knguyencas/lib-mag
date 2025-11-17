@@ -221,7 +221,7 @@ async function refreshLibraryContent() {
         sort: libraryState.currentSortOrder
     });
     
-    // Clear all sections first
+    // Clear all dynamic genre sections first
     document.querySelectorAll('.section.genre-section').forEach(section => {
         console.log('Removing section:', section.id);
         section.remove();
@@ -234,7 +234,9 @@ async function refreshLibraryContent() {
     console.log('=== REFRESH COMPLETE ===');
 }
 
-// Initialize "For You" section with top-rated books
+/**
+ * Initialize "For You" section with top-rated books
+ */
 async function initializeForYouSection() {
     const forYouGrid = document.getElementById('forYouGrid');
     
@@ -291,8 +293,31 @@ function handleWheel(e) {
     this.scrollLeft += e.deltaY;
 }
 
-//Initialize "Popular" section
+/**
+ * Initialize "Popular" section
+ * - Default 1 row (5 books)
+ * - Attach Show more / Show less handler
+ */
 async function initializePopularSection() {
+    // set default rows for popular
+    libraryState.genreSections.set('popular', 1);
+
+    await loadPopularBooks(1, 5);
+
+    // Attach click handler for Show more button
+    const popularShowMoreBtn = document.querySelector('.show-more-btn[data-section="popular"]');
+    if (popularShowMoreBtn && !popularShowMoreBtn.dataset.bound) {
+        popularShowMoreBtn.addEventListener('click', function () {
+            handleShowMorePopular(this);
+        });
+        popularShowMoreBtn.dataset.bound = 'true'; // avoid duplicate listeners on refresh
+    }
+}
+
+/**
+ * Load books for Popular section with given limit
+ */
+async function loadPopularBooks(page = 1, limit = 5) {
     const popularGrid = document.getElementById('popularGrid');
     if (!popularGrid) {
         console.error('popularGrid NOT FOUND!');
@@ -300,12 +325,13 @@ async function initializePopularSection() {
     }
     
     try {
-        console.log('Fetching Popular books with filter:', libraryState.currentGenreFilter);
+        console.log('Fetching Popular books with filter:', libraryState.currentGenreFilter,
+                    'page:', page, 'limit:', limit);
         
         const result = await apiService.getBooksByGenrePaginated(
             libraryState.currentGenreFilter === 'all' ? null : libraryState.currentGenreFilter,
-            1,
-            5,
+            page,
+            limit,
             libraryState.currentSortOrder
         );
         
@@ -322,15 +348,16 @@ async function initializePopularSection() {
             });
         }
         
-        libraryState.genreSections.set('popular', 1);
-        console.log(`Created ${result.books.length} Popular books`);
+        console.log(`Rendered ${result.books.length} Popular books`);
     } catch (error) {
-        console.error('Error initializing Popular section:', error);
+        console.error('Error loading Popular section:', error);
         popularGrid.innerHTML = '<p style="color: white;">Error loading books.</p>';
     }
 }
 
-// Dynamically create genre sections based on available genres
+/**
+ * Dynamically create genre sections based on available genres
+ */
 async function initializeDynamicGenreSections() {
     try {
         console.log('=== INITIALIZING GENRE SECTIONS ===');
@@ -408,7 +435,9 @@ async function initializeDynamicGenreSections() {
     }
 }
 
-// Create a genre section element
+/**
+ * Create a genre section element
+ */
 async function createGenreSection(genre) {
     const section = document.createElement('section');
     section.className = 'section genre-section';
@@ -442,7 +471,9 @@ async function createGenreSection(genre) {
     return section;
 }
 
-// Load books for a specific genre
+/**
+ * Load books for a specific genre
+ */
 async function loadGenreBooks(genre, page = 1, limit = 5) {
     const gridId = `${slugify(genre)}Grid`;
     const grid = document.getElementById(gridId);
@@ -489,10 +520,7 @@ async function loadGenreBooks(genre, page = 1, limit = 5) {
     }
 }
 
-/**
- * Handle "Show More" button click
- * Logic: 1 row → 2 rows → 3 rows → back to 1 row
- */
+//  Show More button
 async function handleShowMore(genre, button) {
     const section = slugify(genre);
     const currentRows = libraryState.genreSections.get(section) || 1;
@@ -523,7 +551,37 @@ async function handleShowMore(genre, button) {
     }
 }
 
-// Create a "For You" card element
+async function handleShowMorePopular(button) {
+    const sectionKey = 'popular';
+    const currentRows = libraryState.genreSections.get(sectionKey) || 1;
+
+    console.log(`Show more clicked for Popular, current rows: ${currentRows}`);
+
+    if (currentRows >= 3) {
+        // Collapse to 1 row
+        await loadPopularBooks(1, 5);
+        libraryState.genreSections.set(sectionKey, 1);
+        button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
+        button.classList.remove('expanded');
+        console.log('Popular collapsed to 1 row');
+    } else {
+        // Expand by 1 row
+        const newRows = currentRows + 1;
+        await loadPopularBooks(1, newRows * 5); // 5 books per row
+        libraryState.genreSections.set(sectionKey, newRows);
+
+        if (newRows >= 3) {
+            button.innerHTML = 'Show less <span class="show-more-icon">▲</span>';
+            button.classList.add('expanded');
+        } else {
+            button.innerHTML = 'Show more <span class="show-more-icon">▼</span>';
+        }
+
+        console.log(`Popular expanded to ${newRows} rows`);
+    }
+}
+
+// Create a For You card
 function createForYouCard(book) {
     const card = document.createElement('div');
     card.className = 'for-you-card';
@@ -593,7 +651,7 @@ function createBookCard(book) {
     return card;
 }
 
-// View book details (navigate to book detail page)
+// View book details
 function viewBookDetails(bookId) {
     console.log('Viewing book:', bookId);
     window.location.href = `book-detail.html?id=${bookId}`;
