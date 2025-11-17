@@ -592,3 +592,18 @@ nav {
     font-size: 11px;
     color: #666;
 }
+
+.primary-genre {
+    display: inline-block;
+    padding: 6px 16px;
+    background: #000;
+    color: #FFF;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.26px;
+    text-transform: capitalize;
+    margin-right: 4px;
+}

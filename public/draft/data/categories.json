@@ -1,0 +1,1129 @@
+[
+  {
+    "category_id": "CAT001",
+    "name": "Psychological Fiction",
+    "slug": "psychological-fiction",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Literature",
+      "Fiction",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT002",
+    "name": "Psychoanalysis",
+    "slug": "psychoanalysis",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT003",
+    "name": "Analytical Psychology",
+    "slug": "analytical-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT004",
+    "name": "Clinical Psychology",
+    "slug": "clinical-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT005",
+    "name": "Cognitive Psychology",
+    "slug": "cognitive-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT006",
+    "name": "Existential Psychology",
+    "slug": "existential-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG001",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT007",
+    "name": "Social Psychology",
+    "slug": "social-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology",
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG001",
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT008",
+    "name": "Behavioral Psychology",
+    "slug": "behavioral-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT009",
+    "name": "Depth Psychology",
+    "slug": "depth-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT010",
+    "name": "Neuropsychology",
+    "slug": "neuropsychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology",
+      "Science"
+    ],
+    "genre_ids": [
+      "PG001",
+      "PG008"
+    ]
+  },
+  {
+    "category_id": "CAT011",
+    "name": "Developmental Psychology",
+    "slug": "developmental-psychology",
+    "primary_genre": "Psychology",
+    "primary_genre_id": "PG001",
+    "genres": [
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT012",
+    "name": "Existentialism",
+    "slug": "existentialism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT013",
+    "name": "Phenomenology",
+    "slug": "phenomenology",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT014",
+    "name": "Metaphysics",
+    "slug": "metaphysics",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT015",
+    "name": "Epistemology",
+    "slug": "epistemology",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT016",
+    "name": "Ethics",
+    "slug": "ethics",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT017",
+    "name": "Political Philosophy",
+    "slug": "political-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG002",
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT018",
+    "name": "Moral Philosophy",
+    "slug": "moral-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT019",
+    "name": "Eastern Philosophy",
+    "slug": "eastern-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "genre_ids": [
+      "PG002",
+      "PG007"
+    ]
+  },
+  {
+    "category_id": "CAT020",
+    "name": "Western Philosophy",
+    "slug": "western-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT021",
+    "name": "Ancient Philosophy",
+    "slug": "ancient-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT022",
+    "name": "Modern Philosophy",
+    "slug": "modern-philosophy",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT023",
+    "name": "Philosophy of Mind",
+    "slug": "philosophy-of-mind",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG002",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT024",
+    "name": "Philosophy of Language",
+    "slug": "philosophy-of-language",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT025",
+    "name": "Absurdism",
+    "slug": "absurdism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT026",
+    "name": "Stoicism",
+    "slug": "stoicism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT027",
+    "name": "Taoism",
+    "slug": "taoism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "genre_ids": [
+      "PG002",
+      "PG007"
+    ]
+  },
+  {
+    "category_id": "CAT028",
+    "name": "Buddhism",
+    "slug": "buddhism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "genre_ids": [
+      "PG002",
+      "PG007"
+    ]
+  },
+  {
+    "category_id": "CAT029",
+    "name": "Rationalism",
+    "slug": "rationalism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT030",
+    "name": "Empiricism",
+    "slug": "empiricism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT031",
+    "name": "Idealism",
+    "slug": "idealism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT032",
+    "name": "Skepticism",
+    "slug": "skepticism",
+    "primary_genre": "Philosophy",
+    "primary_genre_id": "PG002",
+    "genres": [
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT033",
+    "name": "Classic Literature",
+    "slug": "classic-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT034",
+    "name": "Modern Literature",
+    "slug": "modern-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT035",
+    "name": "Literary Fiction",
+    "slug": "literary-fiction",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT036",
+    "name": "Existential Fiction",
+    "slug": "existential-fiction",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT037",
+    "name": "Autobiographical Novel",
+    "slug": "autobiographical-novel",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT038",
+    "name": "Epistolary Novel",
+    "slug": "epistolary-novel",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT039",
+    "name": "Gothic Literature",
+    "slug": "gothic-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT040",
+    "name": "Dystopian Literature",
+    "slug": "dystopian-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT041",
+    "name": "Magical Realism",
+    "slug": "magical-realism",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT042",
+    "name": "Modernist Fiction",
+    "slug": "modernist-fiction",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT043",
+    "name": "Postmodern Fiction",
+    "slug": "postmodern-fiction",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT044",
+    "name": "Romantic Literature",
+    "slug": "romantic-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT045",
+    "name": "Feminist Literature",
+    "slug": "feminist-literature",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction",
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010",
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT046",
+    "name": "Coming-of-Age",
+    "slug": "coming-of-age",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT047",
+    "name": "Dark Academia",
+    "slug": "dark-academia",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT048",
+    "name": "Symbolism",
+    "slug": "symbolism",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT049",
+    "name": "Surrealism",
+    "slug": "surrealism",
+    "primary_genre": "Literature",
+    "primary_genre_id": "PG003",
+    "genres": [
+      "Literature",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG003",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT050",
+    "name": "Psychopathology",
+    "slug": "psychopathology",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG004",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT051",
+    "name": "Mental Health",
+    "slug": "mental-health",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG004",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT052",
+    "name": "Bipolar Disorder",
+    "slug": "bipolar-disorder",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry"
+    ],
+    "genre_ids": [
+      "PG004"
+    ]
+  },
+  {
+    "category_id": "CAT053",
+    "name": "Schizophrenia",
+    "slug": "schizophrenia",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry"
+    ],
+    "genre_ids": [
+      "PG004"
+    ]
+  },
+  {
+    "category_id": "CAT054",
+    "name": "Depression Studies",
+    "slug": "depression-studies",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG004",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT055",
+    "name": "Addiction",
+    "slug": "addiction",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG004",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT056",
+    "name": "Psychiatric Treatment",
+    "slug": "psychiatric-treatment",
+    "primary_genre": "Psychiatry",
+    "primary_genre_id": "PG004",
+    "genres": [
+      "Psychiatry"
+    ],
+    "genre_ids": [
+      "PG004"
+    ]
+  },
+  {
+    "category_id": "CAT057",
+    "name": "Psychological Thriller",
+    "slug": "psychological-thriller",
+    "primary_genre": "Thriller & Horror",
+    "primary_genre_id": "PG005",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG005",
+      "PG010",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT058",
+    "name": "Psychological Horror",
+    "slug": "psychological-horror",
+    "primary_genre": "Thriller & Horror",
+    "primary_genre_id": "PG005",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG005",
+      "PG010",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT059",
+    "name": "Suspense",
+    "slug": "suspense",
+    "primary_genre": "Thriller & Horror",
+    "primary_genre_id": "PG005",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG005",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT060",
+    "name": "Crime Fiction",
+    "slug": "crime-fiction",
+    "primary_genre": "Thriller & Horror",
+    "primary_genre_id": "PG005",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction"
+    ],
+    "genre_ids": [
+      "PG005",
+      "PG010"
+    ]
+  },
+  {
+    "category_id": "CAT061",
+    "name": "Sociology",
+    "slug": "sociology",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT062",
+    "name": "Anthropology",
+    "slug": "anthropology",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT063",
+    "name": "Cultural Studies",
+    "slug": "cultural-studies",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT064",
+    "name": "History",
+    "slug": "history",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT065",
+    "name": "Gender Studies",
+    "slug": "gender-studies",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences"
+    ],
+    "genre_ids": [
+      "PG006"
+    ]
+  },
+  {
+    "category_id": "CAT066",
+    "name": "Political Science",
+    "slug": "political-science",
+    "primary_genre": "Social Sciences",
+    "primary_genre_id": "PG006",
+    "genres": [
+      "Social Sciences",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG006",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT067",
+    "name": "Theology",
+    "slug": "theology",
+    "primary_genre": "Religion & Spirituality",
+    "primary_genre_id": "PG007",
+    "genres": [
+      "Religion & Spirituality",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG007",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT068",
+    "name": "Buddhist Philosophy",
+    "slug": "buddhist-philosophy",
+    "primary_genre": "Religion & Spirituality",
+    "primary_genre_id": "PG007",
+    "genres": [
+      "Religion & Spirituality",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG007",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT069",
+    "name": "Christian Theology",
+    "slug": "christian-theology",
+    "primary_genre": "Religion & Spirituality",
+    "primary_genre_id": "PG007",
+    "genres": [
+      "Religion & Spirituality"
+    ],
+    "genre_ids": [
+      "PG007"
+    ]
+  },
+  {
+    "category_id": "CAT070",
+    "name": "Spiritual Literature",
+    "slug": "spiritual-literature",
+    "primary_genre": "Religion & Spirituality",
+    "primary_genre_id": "PG007",
+    "genres": [
+      "Religion & Spirituality",
+      "Literature"
+    ],
+    "genre_ids": [
+      "PG007",
+      "PG003"
+    ]
+  },
+  {
+    "category_id": "CAT071",
+    "name": "Mysticism",
+    "slug": "mysticism",
+    "primary_genre": "Religion & Spirituality",
+    "primary_genre_id": "PG007",
+    "genres": [
+      "Religion & Spirituality",
+      "Philosophy"
+    ],
+    "genre_ids": [
+      "PG007",
+      "PG002"
+    ]
+  },
+  {
+    "category_id": "CAT072",
+    "name": "Neuroscience",
+    "slug": "neuroscience",
+    "primary_genre": "Science",
+    "primary_genre_id": "PG008",
+    "genres": [
+      "Science",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG008",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT073",
+    "name": "Cognitive Science",
+    "slug": "cognitive-science",
+    "primary_genre": "Science",
+    "primary_genre_id": "PG008",
+    "genres": [
+      "Science",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG008",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT074",
+    "name": "Physics",
+    "slug": "physics",
+    "primary_genre": "Science",
+    "primary_genre_id": "PG008",
+    "genres": [
+      "Science"
+    ],
+    "genre_ids": [
+      "PG008"
+    ]
+  },
+  {
+    "category_id": "CAT075",
+    "name": "Biology",
+    "slug": "biology",
+    "primary_genre": "Science",
+    "primary_genre_id": "PG008",
+    "genres": [
+      "Science"
+    ],
+    "genre_ids": [
+      "PG008"
+    ]
+  },
+  {
+    "category_id": "CAT076",
+    "name": "Science and Spirituality",
+    "slug": "science-and-spirituality",
+    "primary_genre": "Science",
+    "primary_genre_id": "PG008",
+    "genres": [
+      "Science",
+      "Religion & Spirituality"
+    ],
+    "genre_ids": [
+      "PG008",
+      "PG007"
+    ]
+  },
+  {
+    "category_id": "CAT077",
+    "name": "Behavioral Economics",
+    "slug": "behavioral-economics",
+    "primary_genre": "Business & Economics",
+    "primary_genre_id": "PG009",
+    "genres": [
+      "Business & Economics",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG009",
+      "PG001"
+    ]
+  },
+  {
+    "category_id": "CAT078",
+    "name": "Finance",
+    "slug": "finance",
+    "primary_genre": "Business & Economics",
+    "primary_genre_id": "PG009",
+    "genres": [
+      "Business & Economics"
+    ],
+    "genre_ids": [
+      "PG009"
+    ]
+  },
+  {
+    "category_id": "CAT079",
+    "name": "Decision Science",
+    "slug": "decision-science",
+    "primary_genre": "Business & Economics",
+    "primary_genre_id": "PG009",
+    "genres": [
+      "Business & Economics",
+      "Psychology"
+    ],
+    "genre_ids": [
+      "PG009",
+      "PG001"
+    ]
+  }
+]

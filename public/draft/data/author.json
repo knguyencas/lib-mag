@@ -1,0 +1,2096 @@
+[
+  {
+    "author_id": "AU001",
+    "name": "Fyodor Dostoevsky",
+    "full_name": "Fyodor Mikhailovich Dostoevsky",
+    "slug": "fyodor-dostoevsky",
+    "birth_year": 1821,
+    "death_year": 1881,
+    "nationality": "Russian",
+    "bio": "One of the greatest novelists in world literature. His works explore the depths of human psychology, morality, and existential struggle.",
+    "genres": [
+      "Fiction",
+      "Psychology",
+      "Philosophy",
+      "Literature"
+    ],
+    "image": "/images/authors/fyodor-dostoevsky.jpg",
+    "books": [
+      {
+        "book_id": "BK001",
+        "title": "Crime and Punishment",
+        "year": 1866,
+        "rating": 4.7
+      },
+      {
+        "book_id": "BK002",
+        "title": "The Brothers Karamazov",
+        "year": 1880,
+        "rating": 4.8
+      },
+      {
+        "book_id": "BK048",
+        "title": "Notes from Underground",
+        "year": 1864,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 3,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU002",
+    "name": "Sylvia Plath",
+    "full_name": "Sylvia Plath",
+    "slug": "sylvia-plath",
+    "birth_year": 1932,
+    "death_year": 1963,
+    "nationality": "American",
+    "bio": "Poet and novelist known for her confessional style and exploration of mental illness, identity, and female experience in works like The Bell Jar.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/sylvia-plath.jpg",
+    "books": [
+      {
+        "book_id": "BK003",
+        "title": "The Bell Jar",
+        "year": 1963,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU003",
+    "name": "Hermann Hesse",
+    "full_name": "Hermann Karl Hesse",
+    "slug": "hermann-hesse",
+    "birth_year": 1877,
+    "death_year": 1962,
+    "nationality": "German-Swiss",
+    "bio": "Nobel Prize-winning author known for exploring themes of self-discovery, spirituality, and the search for authenticity through works like Siddhartha and Steppenwolf.",
+    "genres": [
+      "Fiction",
+      "Literature",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/hermann-hesse.jpg",
+    "books": [
+      {
+        "book_id": "BK004",
+        "title": "Steppenwolf",
+        "year": 1927,
+        "rating": 4.2
+      },
+      {
+        "book_id": "BK008",
+        "title": "Demian",
+        "year": 1919,
+        "rating": 4.6
+      },
+      {
+        "book_id": "BK046",
+        "title": "Demian",
+        "year": 1919,
+        "rating": 4.4
+      },
+      {
+        "book_id": "BK047",
+        "title": "Steppenwolf",
+        "year": 1927,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 4,
+    "average_rating": 4.43
+  },
+  {
+    "author_id": "AU004",
+    "name": "Albert Camus",
+    "full_name": "Albert Camus",
+    "slug": "albert-camus",
+    "birth_year": 1913,
+    "death_year": 1960,
+    "nationality": "French-Algerian",
+    "bio": "Nobel Prize-winning philosopher and author. Key figure in absurdism, exploring the human condition and the search for meaning in an indifferent universe.",
+    "genres": [
+      "Philosophy",
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/albert-camus.jpg",
+    "books": [
+      {
+        "book_id": "BK005",
+        "title": "The Stranger",
+        "year": 1942,
+        "rating": 4.6
+      },
+      {
+        "book_id": "BK045",
+        "title": "The Myth of Sisyphus",
+        "year": 1942,
+        "rating": 4.3
+      },
+      {
+        "book_id": "BK087",
+        "title": "The Rebel",
+        "year": 1951,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 3,
+    "average_rating": 4.47
+  },
+  {
+    "author_id": "AU005",
+    "name": "Franz Kafka",
+    "full_name": "Franz Kafka",
+    "slug": "franz-kafka",
+    "birth_year": 1883,
+    "death_year": 1924,
+    "nationality": "Czech",
+    "bio": "German-language writer whose works blend realism and the fantastic, exploring themes of alienation, bureaucracy, and existential anxiety.",
+    "genres": [
+      "Fiction",
+      "Psychology",
+      "Literature"
+    ],
+    "image": "/images/authors/franz-kafka.jpg",
+    "books": [
+      {
+        "book_id": "BK006",
+        "title": "The Trial",
+        "year": 1925,
+        "rating": 4.4
+      },
+      {
+        "book_id": "BK007",
+        "title": "The Metamorphosis",
+        "year": 1915,
+        "rating": 4.5
+      },
+      {
+        "book_id": "BK023",
+        "title": "The Castle",
+        "year": 1926,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 3,
+    "average_rating": 4.37
+  },
+  {
+    "author_id": "AU006",
+    "name": "Milan Kundera",
+    "full_name": "Milan Kundera",
+    "slug": "milan-kundera",
+    "birth_year": 1929,
+    "death_year": 2023,
+    "nationality": "Czech-French",
+    "bio": "Novelist and essayist known for exploring themes of exile, identity, and the weight of history in works combining philosophy with storytelling.",
+    "genres": [
+      "Fiction",
+      "Philosophy",
+      "Literature"
+    ],
+    "image": "/images/authors/milan-kundera.jpg",
+    "books": [
+      {
+        "book_id": "BK009",
+        "title": "The Unbearable Lightness of Being",
+        "year": 1984,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU007",
+    "name": "Sigmund Freud",
+    "full_name": "Sigmund Freud",
+    "slug": "sigmund-freud",
+    "birth_year": 1856,
+    "death_year": 1939,
+    "nationality": "Austrian",
+    "bio": "Founder of psychoanalysis. Freud's theories about the unconscious mind, dreams, and psychosexual development revolutionized psychology and continue to influence modern thought.",
+    "genres": [
+      "Psychology",
+      "Philosophy"
+    ],
+    "image": "/images/authors/sigmund-freud.jpg",
+    "books": [
+      {
+        "book_id": "BK010",
+        "title": "The Interpretation of Dreams",
+        "year": 1899,
+        "rating": 4.7
+      },
+      {
+        "book_id": "BK013",
+        "title": "Beyond the Pleasure Principle",
+        "year": 1920,
+        "rating": 4.2
+      },
+      {
+        "book_id": "BK014",
+        "title": "Civilization and Its Discontents",
+        "year": 1930,
+        "rating": 4.2
+      },
+      {
+        "book_id": "BK015",
+        "title": "The Psychopathology of Everyday Life",
+        "year": 1901,
+        "rating": 4.3
+      },
+      {
+        "book_id": "BK042",
+        "title": "The Ego and the Id",
+        "year": 1923,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 5,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU008",
+    "name": "Carl G. Jung",
+    "full_name": "Carl Gustav Jung",
+    "slug": "carl-g-jung",
+    "birth_year": 1875,
+    "death_year": 1961,
+    "nationality": "Swiss",
+    "bio": "Founder of analytical psychology. Developed concepts of archetypes, collective unconscious, and psychological types that revolutionized depth psychology.",
+    "genres": [
+      "Psychology",
+      "Philosophy"
+    ],
+    "image": "/images/authors/carl-g-jung.jpg",
+    "books": [
+      {
+        "book_id": "BK011",
+        "title": "Memories, Dreams, Reflections",
+        "year": 1961,
+        "rating": 4
+      },
+      {
+        "book_id": "BK012",
+        "title": "The Archetypes and the Collective Unconscious",
+        "year": 1959,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.05
+  },
+  {
+    "author_id": "AU009",
+    "name": "R.D. Laing",
+    "full_name": "R.D. Laing (Ronald David Laing)",
+    "slug": "r-d-laing",
+    "birth_year": 1927,
+    "death_year": 1989,
+    "nationality": "Scottish",
+    "bio": "Psychiatrist who challenged traditional psychiatric practices, viewing mental illness as a natural response to an insane world. Pioneer of anti-psychiatry movement.",
+    "genres": [
+      "Psychiatry",
+      "Psychology",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/r-d-laing.jpg",
+    "books": [
+      {
+        "book_id": "BK016",
+        "title": "The Divided Self",
+        "year": 1960,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU010",
+    "name": "Kay Redfield Jamison",
+    "full_name": "Kay Redfield Jamison",
+    "slug": "kay-redfield-jamison",
+    "birth_year": 1946,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Clinical psychologist and writer known for her work on bipolar disorder, combining scientific research with personal memoir.",
+    "genres": [
+      "Psychology",
+      "Psychiatry"
+    ],
+    "image": "/images/authors/kay-redfield-jamison.jpg",
+    "books": [
+      {
+        "book_id": "BK017",
+        "title": "An Unquiet Mind",
+        "year": 1995,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU011",
+    "name": "Oliver Sacks",
+    "full_name": "Oliver Wolf Sacks",
+    "slug": "oliver-sacks",
+    "birth_year": 1933,
+    "death_year": 2015,
+    "nationality": "British-American",
+    "bio": "Neurologist and author who brought humanistic approach to neuroscience, telling remarkable stories of patients with neurological disorders.",
+    "genres": [
+      "Science",
+      "Psychology"
+    ],
+    "image": "/images/authors/oliver-sacks.jpg",
+    "books": [
+      {
+        "book_id": "BK018",
+        "title": "The Man Who Mistook His Wife for a Hat",
+        "year": 1985,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU012",
+    "name": "Christopher R. Browning",
+    "full_name": "Christopher R. Browning",
+    "slug": "christopher-r-browning",
+    "birth_year": 1944,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Historian specializing in the Holocaust, known for groundbreaking research on the psychological mechanisms of mass violence.",
+    "genres": [
+      "Social Sciences"
+    ],
+    "image": "/images/authors/christopher-r-browning.jpg",
+    "books": [
+      {
+        "book_id": "BK019",
+        "title": "Ordinary Men: Reserve Police Battalion 101 and the Final Solution in Poland",
+        "year": 1992,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU013",
+    "name": "Herbert Marcuse",
+    "full_name": "Herbert Marcuse",
+    "slug": "herbert-marcuse",
+    "birth_year": 1898,
+    "death_year": 1979,
+    "nationality": "German-American",
+    "bio": "Philosopher and sociologist associated with the Frankfurt School, critiquing advanced industrial society and consumerism.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/herbert-marcuse.jpg",
+    "books": [
+      {
+        "book_id": "BK020",
+        "title": "Eros and Civilization",
+        "year": 1955,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU014",
+    "name": "Haruki Murakami",
+    "full_name": "Haruki Murakami",
+    "slug": "haruki-murakami",
+    "birth_year": 1949,
+    "death_year": null,
+    "nationality": "Japanese",
+    "bio": "Contemporary Japanese writer known for surreal narratives blending Western and Eastern influences, exploring themes of loneliness, alienation, and the search for meaning.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/haruki-murakami.jpg",
+    "books": [
+      {
+        "book_id": "BK021",
+        "title": "Kafka on the Shore",
+        "year": 2002,
+        "rating": 4
+      },
+      {
+        "book_id": "BK022",
+        "title": "Norwegian Wood",
+        "year": 1987,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.05
+  },
+  {
+    "author_id": "AU015",
+    "name": "Johann Wolfgang von Goethe",
+    "full_name": "Johann Wolfgang von Goethe",
+    "slug": "johann-wolfgang-von-goethe",
+    "birth_year": 1749,
+    "death_year": 1832,
+    "nationality": "German",
+    "bio": "Poet, novelist, playwright, and natural philosopher. One of the greatest figures in German literature and Western culture.",
+    "genres": [
+      "Literature",
+      "Fiction",
+      "Philosophy"
+    ],
+    "image": "/images/authors/johann-wolfgang-von-goethe.jpg",
+    "books": [
+      {
+        "book_id": "BK024",
+        "title": "The Sorrows of Young Werther",
+        "year": 1774,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU016",
+    "name": "Chuck Palahniuk",
+    "full_name": "Chuck Palahniuk",
+    "slug": "chuck-palahniuk",
+    "birth_year": 1962,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Contemporary American novelist known for transgressive fiction exploring themes of consumerism, identity, and societal breakdown.",
+    "genres": [
+      "Fiction",
+      "Thriller & Horror"
+    ],
+    "image": "/images/authors/chuck-palahniuk.jpg",
+    "books": [
+      {
+        "book_id": "BK025",
+        "title": "Fight Club",
+        "year": 1996,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU017",
+    "name": "Anthony Burgess",
+    "full_name": "Anthony Burgess",
+    "slug": "anthony-burgess",
+    "birth_year": 1917,
+    "death_year": 1993,
+    "nationality": "British",
+    "bio": "Novelist, critic, and composer, best known for dystopian novel A Clockwork Orange exploring free will and morality.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/anthony-burgess.jpg",
+    "books": [
+      {
+        "book_id": "BK026",
+        "title": "A Clockwork Orange",
+        "year": 1962,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU018",
+    "name": "John Fowles",
+    "full_name": "John Robert Fowles",
+    "slug": "john-fowles",
+    "birth_year": 1926,
+    "death_year": 2005,
+    "nationality": "British",
+    "bio": "Novelist known for complex narratives exploring existential themes and the nature of fiction itself.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/john-fowles.jpg",
+    "books": [
+      {
+        "book_id": "BK027",
+        "title": "The Collector",
+        "year": 1963,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU019",
+    "name": "Donna Tartt",
+    "full_name": "Donna Tartt",
+    "slug": "donna-tartt",
+    "birth_year": 1963,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Novelist known for literary thrillers exploring themes of beauty, morality, and the dark side of elite culture.",
+    "genres": [
+      "Fiction",
+      "Thriller & Horror",
+      "Literature"
+    ],
+    "image": "/images/authors/donna-tartt.jpg",
+    "books": [
+      {
+        "book_id": "BK028",
+        "title": "The Secret History",
+        "year": 1992,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU020",
+    "name": "Jerzy Kosinski",
+    "full_name": "Jerzy Kosiński",
+    "slug": "jerzy-kosinski",
+    "birth_year": 1933,
+    "death_year": 1991,
+    "nationality": "Polish-American",
+    "bio": "Novelist known for sparse, allegorical novels exploring trauma, identity, and the horrors of war and totalitarianism.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/jerzy-kosinski.jpg",
+    "books": [
+      {
+        "book_id": "BK029",
+        "title": "The Painted Bird",
+        "year": 1965,
+        "rating": 4.6
+      },
+      {
+        "book_id": "BK050",
+        "title": "The Painted Bird",
+        "year": 1965,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.65
+  },
+  {
+    "author_id": "AU021",
+    "name": "Hubert Selby Jr.",
+    "full_name": "Hubert Selby Jr.",
+    "slug": "hubert-selby-jr",
+    "birth_year": 1928,
+    "death_year": 2004,
+    "nationality": "American",
+    "bio": "Novelist known for brutally realistic portrayals of urban life, addiction, and human degradation.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/hubert-selby-jr.jpg",
+    "books": [
+      {
+        "book_id": "BK030",
+        "title": "Requiem for a Dream",
+        "year": 1978,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU022",
+    "name": "Stephen King",
+    "full_name": "Stephen Edwin King",
+    "slug": "stephen-king",
+    "birth_year": 1947,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Master of horror and suspense fiction, with works often exploring psychological terror and the dark side of human nature.",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction"
+    ],
+    "image": "/images/authors/stephen-king.jpg",
+    "books": [
+      {
+        "book_id": "BK031",
+        "title": "The Shining",
+        "year": 1977,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU023",
+    "name": "Bret Easton Ellis",
+    "full_name": "Bret Easton Ellis",
+    "slug": "bret-easton-ellis",
+    "birth_year": 1964,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Contemporary novelist known for satirical and disturbing portraits of American consumer culture and moral vacancy.",
+    "genres": [
+      "Fiction",
+      "Thriller & Horror"
+    ],
+    "image": "/images/authors/bret-easton-ellis.jpg",
+    "books": [
+      {
+        "book_id": "BK032",
+        "title": "American Psycho",
+        "year": 1991,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.1
+  },
+  {
+    "author_id": "AU024",
+    "name": "Ken Kesey",
+    "full_name": "Ken Elton Kesey",
+    "slug": "ken-kesey",
+    "birth_year": 1935,
+    "death_year": 2001,
+    "nationality": "American",
+    "bio": "Novelist and countercultural figure, known for works critiquing institutional power and celebrating individual freedom.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/ken-kesey.jpg",
+    "books": [
+      {
+        "book_id": "BK033",
+        "title": "One Flew Over the Cuckoo’s Nest",
+        "year": 1962,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU025",
+    "name": "José Saramago",
+    "full_name": "José de Sousa Saramago",
+    "slug": "jos-saramago",
+    "birth_year": 1922,
+    "death_year": 2010,
+    "nationality": "Portuguese",
+    "bio": "Nobel Prize-winning novelist known for allegorical narratives exploring human nature, politics, and existence.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/jos-saramago.jpg",
+    "books": [
+      {
+        "book_id": "BK034",
+        "title": "Blindness",
+        "year": 1995,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU026",
+    "name": "Kazuo Ishiguro",
+    "full_name": "Kazuo Ishiguro",
+    "slug": "kazuo-ishiguro",
+    "birth_year": 1954,
+    "death_year": null,
+    "nationality": "British-Japanese",
+    "bio": "Nobel Prize-winning novelist known for explorations of memory, time, and self-delusion in restrained, elegant prose.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/kazuo-ishiguro.jpg",
+    "books": [
+      {
+        "book_id": "BK035",
+        "title": "Never Let Me Go",
+        "year": 2005,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU027",
+    "name": "Daniel Keyes",
+    "full_name": "Daniel Keyes",
+    "slug": "daniel-keyes",
+    "birth_year": 1927,
+    "death_year": 2014,
+    "nationality": "American",
+    "bio": "Novelist and short story writer, best known for exploring intelligence, humanity, and ethics in science fiction.",
+    "genres": [
+      "Fiction",
+      "Psychology"
+    ],
+    "image": "/images/authors/daniel-keyes.jpg",
+    "books": [
+      {
+        "book_id": "BK036",
+        "title": "Flowers for Algernon",
+        "year": 1966,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU028",
+    "name": "Don DeLillo",
+    "full_name": "Don DeLillo",
+    "slug": "don-delillo",
+    "birth_year": 1936,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Postmodern novelist known for works examining contemporary American life, media, technology, and paranoia.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/don-delillo.jpg",
+    "books": [
+      {
+        "book_id": "BK037",
+        "title": "White Noise",
+        "year": 1985,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU029",
+    "name": "Michael Cunningham",
+    "full_name": "Michael Cunningham",
+    "slug": "michael-cunningham",
+    "birth_year": 1952,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Novelist known for lyrical prose exploring consciousness, identity, and the passage of time.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/michael-cunningham.jpg",
+    "books": [
+      {
+        "book_id": "BK038",
+        "title": "The Hours",
+        "year": 1998,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU030",
+    "name": "Shirley Jackson",
+    "full_name": "Shirley Hardie Jackson",
+    "slug": "shirley-jackson",
+    "birth_year": 1916,
+    "death_year": 1965,
+    "nationality": "American",
+    "bio": "Writer known for gothic horror and psychological suspense, masterfully exploring domestic unease and the uncanny.",
+    "genres": [
+      "Thriller & Horror",
+      "Fiction"
+    ],
+    "image": "/images/authors/shirley-jackson.jpg",
+    "books": [
+      {
+        "book_id": "BK039",
+        "title": "We Have Always Lived in the Castle",
+        "year": 1962,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU031",
+    "name": "William Faulkner",
+    "full_name": "William Cuthbert Faulkner",
+    "slug": "william-faulkner",
+    "birth_year": 1897,
+    "death_year": 1962,
+    "nationality": "American",
+    "bio": "Nobel Prize-winning novelist known for complex narratives exploring the American South, race, and the decline of aristocracy.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/william-faulkner.jpg",
+    "books": [
+      {
+        "book_id": "BK040",
+        "title": "The Sound and the Fury",
+        "year": 1929,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU032",
+    "name": "Jordan B. Peterson",
+    "full_name": "Jordan Bernt Peterson",
+    "slug": "jordan-b-peterson",
+    "birth_year": 1962,
+    "death_year": null,
+    "nationality": "Canadian",
+    "bio": "Clinical psychologist and cultural critic known for works on psychology, philosophy, and self-improvement, blending mythology, religion, and modern psychology.",
+    "genres": [
+      "Psychology",
+      "Philosophy"
+    ],
+    "image": "/images/authors/jordan-b-peterson.jpg",
+    "books": [
+      {
+        "book_id": "BK041",
+        "title": "Maps of Meaning: The Architecture of Belief",
+        "year": 1999,
+        "rating": 4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4
+  },
+  {
+    "author_id": "AU033",
+    "name": "A. M. Homes",
+    "full_name": "A. M. Homes",
+    "slug": "a-m-homes",
+    "birth_year": 1961,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Contemporary novelist known for dark, satirical examinations of American suburban life and family dysfunction.",
+    "genres": [
+      "Fiction",
+      "Literature"
+    ],
+    "image": "/images/authors/a-m-homes.jpg",
+    "books": [
+      {
+        "book_id": "BK043",
+        "title": "The End of Alice",
+        "year": 1996,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU034",
+    "name": "Morgan Housel",
+    "full_name": "Morgan Housel",
+    "slug": "morgan-housel",
+    "birth_year": 1985,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Financial writer exploring the psychology of money and decision-making, making complex financial concepts accessible through storytelling.",
+    "genres": [
+      "Business & Economics",
+      "Psychology"
+    ],
+    "image": "/images/authors/morgan-housel.jpg",
+    "books": [
+      {
+        "book_id": "BK044",
+        "title": "The Psychology of Money",
+        "year": 2020,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU035",
+    "name": "Friedrich Nietzsche",
+    "full_name": "Friedrich Wilhelm Nietzsche",
+    "slug": "friedrich-nietzsche",
+    "birth_year": 1844,
+    "death_year": 1900,
+    "nationality": "German",
+    "bio": "Influential philosopher known for concepts like the Übermensch, will to power, and the death of God. His radical ideas challenged traditional morality and religion.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/friedrich-nietzsche.jpg",
+    "books": [
+      {
+        "book_id": "BK049",
+        "title": "Thus Spoke Zarathustra",
+        "year": 1883,
+        "rating": 4.6
+      },
+      {
+        "book_id": "BK056",
+        "title": "Beyond Good and Evil",
+        "year": 1886,
+        "rating": 4.4
+      },
+      {
+        "book_id": "BK068",
+        "title": "The Genealogy of Morals",
+        "year": 1887,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 3,
+    "average_rating": 4.53
+  },
+  {
+    "author_id": "AU036",
+    "name": "Plato",
+    "full_name": "Plato",
+    "slug": "plato",
+    "birth_year": -428,
+    "death_year": -348,
+    "nationality": "Greek",
+    "bio": "Ancient Greek philosopher, student of Socrates, and teacher of Aristotle. Founded the Academy and developed theory of Forms and ideal state.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/plato.jpg",
+    "books": [
+      {
+        "book_id": "BK051",
+        "title": "The Republic",
+        "year": -380,
+        "rating": 4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4
+  },
+  {
+    "author_id": "AU037",
+    "name": "Aristotle",
+    "full_name": "Aristotle",
+    "slug": "aristotle",
+    "birth_year": -384,
+    "death_year": -322,
+    "nationality": "Greek",
+    "bio": "Ancient Greek philosopher and polymath. Student of Plato and teacher of Alexander the Great. His works cover logic, metaphysics, ethics, politics, and natural sciences.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/aristotle.jpg",
+    "books": [
+      {
+        "book_id": "BK052",
+        "title": "Nicomachean Ethics",
+        "year": -340,
+        "rating": 4.1
+      },
+      {
+        "book_id": "BK099",
+        "title": "Politics",
+        "year": -350,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.35
+  },
+  {
+    "author_id": "AU038",
+    "name": "Marcus Aurelius",
+    "full_name": "Marcus Aurelius Antoninus",
+    "slug": "marcus-aurelius",
+    "birth_year": 121,
+    "death_year": 180,
+    "nationality": "Roman",
+    "bio": "Roman Emperor and Stoic philosopher. His Meditations is a cornerstone of Stoic philosophy and personal reflection.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/marcus-aurelius.jpg",
+    "books": [
+      {
+        "book_id": "BK053",
+        "title": "Meditations",
+        "year": 180,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU039",
+    "name": "Lao Tzu",
+    "full_name": "Lao Tzu (Laozi)",
+    "slug": "lao-tzu",
+    "birth_year": -601,
+    "death_year": -531,
+    "nationality": "Chinese",
+    "bio": "Ancient Chinese philosopher and founder of Taoism. Author of the Tao Te Ching, one of the most influential texts in Eastern philosophy.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/lao-tzu.jpg",
+    "books": [
+      {
+        "book_id": "BK054",
+        "title": "Tao Te Ching",
+        "year": -400,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU040",
+    "name": "Confucius",
+    "full_name": "Confucius (Kong Qiu)",
+    "slug": "confucius",
+    "birth_year": -551,
+    "death_year": -479,
+    "nationality": "Chinese",
+    "bio": "Ancient Chinese philosopher whose teachings on ethics, family, and social harmony shaped East Asian culture for millennia.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/confucius.jpg",
+    "books": [
+      {
+        "book_id": "BK055",
+        "title": "The Analects",
+        "year": -475,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU041",
+    "name": "Martin Heidegger",
+    "full_name": "Martin Heidegger",
+    "slug": "martin-heidegger",
+    "birth_year": 1889,
+    "death_year": 1976,
+    "nationality": "German",
+    "bio": "Influential 20th-century philosopher known for his analysis of Being and existential phenomenology. His magnum opus \"Being and Time\" transformed continental philosophy.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/martin-heidegger.jpg",
+    "books": [
+      {
+        "book_id": "BK057",
+        "title": "Being and Time",
+        "year": 1927,
+        "rating": 4.5
+      },
+      {
+        "book_id": "BK091",
+        "title": "Poetry, Language, Thought",
+        "year": 1971,
+        "rating": 4
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.25
+  },
+  {
+    "author_id": "AU042",
+    "name": "Baruch Spinoza",
+    "full_name": "Baruch Spinoza",
+    "slug": "baruch-spinoza",
+    "birth_year": 1632,
+    "death_year": 1677,
+    "nationality": "Dutch",
+    "bio": "Rationalist philosopher who developed a monistic metaphysics identifying God with Nature, profoundly influencing Enlightenment thought.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/baruch-spinoza.jpg",
+    "books": [
+      {
+        "book_id": "BK058",
+        "title": "The Ethics",
+        "year": 1677,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU043",
+    "name": "Immanuel Kant",
+    "full_name": "Immanuel Kant",
+    "slug": "immanuel-kant",
+    "birth_year": 1724,
+    "death_year": 1804,
+    "nationality": "German",
+    "bio": "Central figure in modern philosophy. His Critique of Pure Reason and categorical imperative revolutionized epistemology and ethics.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/immanuel-kant.jpg",
+    "books": [
+      {
+        "book_id": "BK059",
+        "title": "Critique of Pure Reason",
+        "year": 1781,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU044",
+    "name": "Unknown (Traditionally Attributed to Gautama Buddha)",
+    "full_name": "Gautama Buddha (Siddhartha Gautama)",
+    "slug": "unknown-traditionally-attributed-to-gautama-buddha",
+    "birth_year": -563,
+    "death_year": -483,
+    "nationality": "Indian",
+    "bio": "Spiritual teacher and founder of Buddhism. His teachings on suffering, compassion, and enlightenment transformed Asian spirituality.",
+    "genres": [
+      "Religion & Spirituality",
+      "Philosophy"
+    ],
+    "image": "/images/authors/unknown-traditionally-attributed-to-gautama-buddha.jpg",
+    "books": [
+      {
+        "book_id": "BK060",
+        "title": "The Dhammapada",
+        "year": -300,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU045",
+    "name": "Søren Kierkegaard",
+    "full_name": "Søren Aabye Kierkegaard",
+    "slug": "s-ren-kierkegaard",
+    "birth_year": 1813,
+    "death_year": 1855,
+    "nationality": "Danish",
+    "bio": "Father of existentialism. Explored themes of faith, anxiety, and individual existence against societal conformity.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/s-ren-kierkegaard.jpg",
+    "books": [
+      {
+        "book_id": "BK061",
+        "title": "Fear and Trembling",
+        "year": 1843,
+        "rating": 4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4
+  },
+  {
+    "author_id": "AU046",
+    "name": "Jean-Paul Sartre",
+    "full_name": "Jean-Paul Charles Aymard Sartre",
+    "slug": "jean-paul-sartre",
+    "birth_year": 1905,
+    "death_year": 1980,
+    "nationality": "French",
+    "bio": "Existentialist philosopher and novelist. Explored freedom, bad faith, and the human condition. Nobel Prize in Literature (declined).",
+    "genres": [
+      "Philosophy",
+      "Fiction"
+    ],
+    "image": "/images/authors/jean-paul-sartre.jpg",
+    "books": [
+      {
+        "book_id": "BK062",
+        "title": "Being and Nothingness",
+        "year": 1943,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.1
+  },
+  {
+    "author_id": "AU047",
+    "name": "Simone de Beauvoir",
+    "full_name": "Simone Lucie Ernestine Marie Bertrand de Beauvoir",
+    "slug": "simone-de-beauvoir",
+    "birth_year": 1908,
+    "death_year": 1986,
+    "nationality": "French",
+    "bio": "Existentialist philosopher and feminist theorist. Her work The Second Sex is foundational to contemporary feminism.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/simone-de-beauvoir.jpg",
+    "books": [
+      {
+        "book_id": "BK063",
+        "title": "The Second Sex",
+        "year": 1949,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU048",
+    "name": "Michel Foucault",
+    "full_name": "Paul-Michel Foucault",
+    "slug": "michel-foucault",
+    "birth_year": 1926,
+    "death_year": 1984,
+    "nationality": "French",
+    "bio": "Philosopher and historian of ideas, known for theories on power, knowledge, and social institutions. Profoundly influenced postmodern thought.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/michel-foucault.jpg",
+    "books": [
+      {
+        "book_id": "BK064",
+        "title": "Discipline and Punish: The Birth of the Prison",
+        "year": 1975,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU049",
+    "name": "Hannah Arendt",
+    "full_name": "Hannah Arendt",
+    "slug": "hannah-arendt",
+    "birth_year": 1906,
+    "death_year": 1975,
+    "nationality": "German-American",
+    "bio": "Political theorist known for works on totalitarianism, authority, and the nature of power. Her analysis of evil remains deeply influential.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/hannah-arendt.jpg",
+    "books": [
+      {
+        "book_id": "BK065",
+        "title": "The Human Condition",
+        "year": 1958,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU050",
+    "name": "Ludwig Wittgenstein",
+    "full_name": "Ludwig Josef Johann Wittgenstein",
+    "slug": "ludwig-wittgenstein",
+    "birth_year": 1889,
+    "death_year": 1951,
+    "nationality": "Austrian-British",
+    "bio": "Philosopher who contributed to logic, philosophy of mathematics, philosophy of mind, and philosophy of language. His work fundamentally changed analytical philosophy.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/ludwig-wittgenstein.jpg",
+    "books": [
+      {
+        "book_id": "BK066",
+        "title": "Tractatus Logico-Philosophicus",
+        "year": 1921,
+        "rating": 4.4
+      },
+      {
+        "book_id": "BK090",
+        "title": "Philosophical Investigations",
+        "year": 1953,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 2,
+    "average_rating": 4.55
+  },
+  {
+    "author_id": "AU051",
+    "name": "John Stuart Mill",
+    "full_name": "John Stuart Mill",
+    "slug": "john-stuart-mill",
+    "birth_year": 1806,
+    "death_year": 1873,
+    "nationality": "British",
+    "bio": "Philosopher and political economist, advocate of utilitarianism and individual liberty.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/john-stuart-mill.jpg",
+    "books": [
+      {
+        "book_id": "BK067",
+        "title": "On Liberty",
+        "year": 1859,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU052",
+    "name": "Niccolò Machiavelli",
+    "full_name": "Niccolò di Bernardo dei Machiavelli",
+    "slug": "niccol-machiavelli",
+    "birth_year": 1469,
+    "death_year": 1527,
+    "nationality": "Italian",
+    "bio": "Renaissance political philosopher known for pragmatic, often controversial analysis of power and statecraft.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/niccol-machiavelli.jpg",
+    "books": [
+      {
+        "book_id": "BK069",
+        "title": "The Prince",
+        "year": 1532,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU053",
+    "name": "Georg Wilhelm Friedrich Hegel",
+    "full_name": "Georg Wilhelm Friedrich Hegel",
+    "slug": "georg-wilhelm-friedrich-hegel",
+    "birth_year": 1770,
+    "death_year": 1831,
+    "nationality": "German",
+    "bio": "Idealist philosopher whose dialectical method and phenomenology profoundly influenced Western thought.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/georg-wilhelm-friedrich-hegel.jpg",
+    "books": [
+      {
+        "book_id": "BK070",
+        "title": "The Phenomenology of Spirit",
+        "year": 1807,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU054",
+    "name": "Arthur Schopenhauer",
+    "full_name": "Arthur Schopenhauer",
+    "slug": "arthur-schopenhauer",
+    "birth_year": 1788,
+    "death_year": 1860,
+    "nationality": "German",
+    "bio": "Philosopher known for his pessimistic philosophy and influence on Nietzsche, Freud, and others. Emphasized will and suffering in human existence.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/arthur-schopenhauer.jpg",
+    "books": [
+      {
+        "book_id": "BK071",
+        "title": "The World as Will and Representation",
+        "year": 1818,
+        "rating": 4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4
+  },
+  {
+    "author_id": "AU055",
+    "name": "Jean-Jacques Rousseau",
+    "full_name": "Jean-Jacques Rousseau",
+    "slug": "jean-jacques-rousseau",
+    "birth_year": 1712,
+    "death_year": 1778,
+    "nationality": "Swiss-French",
+    "bio": "Enlightenment philosopher whose ideas on the social contract, education, and natural goodness influenced modern political thought.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/jean-jacques-rousseau.jpg",
+    "books": [
+      {
+        "book_id": "BK072",
+        "title": "The Social Contract",
+        "year": 1762,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.1
+  },
+  {
+    "author_id": "AU056",
+    "name": "Thomas Hobbes",
+    "full_name": "Thomas Hobbes",
+    "slug": "thomas-hobbes",
+    "birth_year": 1588,
+    "death_year": 1679,
+    "nationality": "English",
+    "bio": "Political philosopher known for social contract theory and view of human nature as driven by self-interest.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/thomas-hobbes.jpg",
+    "books": [
+      {
+        "book_id": "BK073",
+        "title": "Leviathan",
+        "year": 1651,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU057",
+    "name": "David Hume",
+    "full_name": "David Hume",
+    "slug": "david-hume",
+    "birth_year": 1711,
+    "death_year": 1776,
+    "nationality": "Scottish",
+    "bio": "Empiricist philosopher and historian, skeptical of metaphysics and causation, emphasizing human sentiment and habit.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/david-hume.jpg",
+    "books": [
+      {
+        "book_id": "BK074",
+        "title": "An Enquiry Concerning Human Understanding",
+        "year": 1748,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU058",
+    "name": "Fritjof Capra",
+    "full_name": "Fritjof Capra",
+    "slug": "fritjof-capra",
+    "birth_year": 1939,
+    "death_year": null,
+    "nationality": "Austrian-American",
+    "bio": "Physicist and systems theorist known for exploring parallels between modern physics and Eastern mysticism.",
+    "genres": [
+      "Science",
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/fritjof-capra.jpg",
+    "books": [
+      {
+        "book_id": "BK075",
+        "title": "The Tao of Physics",
+        "year": 1975,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU059",
+    "name": "Karl Popper",
+    "full_name": "Karl Raimund Popper",
+    "slug": "karl-popper",
+    "birth_year": 1902,
+    "death_year": 1994,
+    "nationality": "Austrian-British",
+    "bio": "Philosopher of science known for falsificationism and critique of historicism and totalitarianism.",
+    "genres": [
+      "Philosophy",
+      "Science"
+    ],
+    "image": "/images/authors/karl-popper.jpg",
+    "books": [
+      {
+        "book_id": "BK076",
+        "title": "The Open Society and Its Enemies",
+        "year": 1945,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU060",
+    "name": "Sun Tzu",
+    "full_name": "Sun Tzu (Sun Wu)",
+    "slug": "sun-tzu",
+    "birth_year": -544,
+    "death_year": -496,
+    "nationality": "Chinese",
+    "bio": "Ancient Chinese military strategist whose Art of War remains influential in strategy, business, and politics.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/sun-tzu.jpg",
+    "books": [
+      {
+        "book_id": "BK077",
+        "title": "The Art of War",
+        "year": -500,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU061",
+    "name": "Nāgārjuna",
+    "full_name": "Nāgārjuna",
+    "slug": "n-g-rjuna",
+    "birth_year": 150,
+    "death_year": 250,
+    "nationality": "Indian",
+    "bio": "Buddhist philosopher and founder of Madhyamaka school, developing the concept of emptiness (śūnyatā).",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/n-g-rjuna.jpg",
+    "books": [
+      {
+        "book_id": "BK078",
+        "title": "The Middle Way",
+        "year": 200,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU062",
+    "name": "Zhuang Zhou (Zhuangzi)",
+    "full_name": "Zhuang Zhou (Zhuangzi)",
+    "slug": "zhuang-zhou-zhuangzi",
+    "birth_year": -369,
+    "death_year": -286,
+    "nationality": "Chinese",
+    "bio": "Ancient Taoist philosopher known for parables exploring relativity, spontaneity, and harmony with the Tao.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/zhuang-zhou-zhuangzi.jpg",
+    "books": [
+      {
+        "book_id": "BK079",
+        "title": "The Book of Zhuangzi",
+        "year": -300,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU063",
+    "name": "Jacques Derrida",
+    "full_name": "Jacques Derrida",
+    "slug": "jacques-derrida",
+    "birth_year": 1930,
+    "death_year": 2004,
+    "nationality": "French-Algerian",
+    "bio": "Philosopher known for deconstruction, challenging Western metaphysics and logocentrism.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/jacques-derrida.jpg",
+    "books": [
+      {
+        "book_id": "BK080",
+        "title": "Of Grammatology",
+        "year": 1967,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  },
+  {
+    "author_id": "AU064",
+    "name": "John Locke",
+    "full_name": "John Locke",
+    "slug": "john-locke",
+    "birth_year": 1632,
+    "death_year": 1704,
+    "nationality": "English",
+    "bio": "Enlightenment philosopher foundational to liberalism, empiricism, and modern political thought.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/john-locke.jpg",
+    "books": [
+      {
+        "book_id": "BK081",
+        "title": "An Essay Concerning Human Understanding",
+        "year": 1690,
+        "rating": 4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4
+  },
+  {
+    "author_id": "AU065",
+    "name": "George Berkeley",
+    "full_name": "George Berkeley",
+    "slug": "george-berkeley",
+    "birth_year": 1685,
+    "death_year": 1753,
+    "nationality": "Irish",
+    "bio": "Empiricist philosopher known for idealism, arguing that material objects exist only as perceptions.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/george-berkeley.jpg",
+    "books": [
+      {
+        "book_id": "BK082",
+        "title": "A Treatise Concerning the Principles of Human Knowledge",
+        "year": 1710,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.1
+  },
+  {
+    "author_id": "AU066",
+    "name": "Blaise Pascal",
+    "full_name": "Blaise Pascal",
+    "slug": "blaise-pascal",
+    "birth_year": 1623,
+    "death_year": 1662,
+    "nationality": "French",
+    "bio": "Mathematician, physicist, and religious philosopher known for probabilistic thinking and defense of Christianity.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality",
+      "Science"
+    ],
+    "image": "/images/authors/blaise-pascal.jpg",
+    "books": [
+      {
+        "book_id": "BK083",
+        "title": "Pensées",
+        "year": 1670,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU067",
+    "name": "Voltaire",
+    "full_name": "François-Marie Arouet (Voltaire)",
+    "slug": "voltaire",
+    "birth_year": 1694,
+    "death_year": 1778,
+    "nationality": "French",
+    "bio": "Enlightenment writer and philosopher known for wit, satire, and advocacy of civil liberties and religious freedom.",
+    "genres": [
+      "Philosophy",
+      "Literature"
+    ],
+    "image": "/images/authors/voltaire.jpg",
+    "books": [
+      {
+        "book_id": "BK084",
+        "title": "Candide",
+        "year": 1759,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU068",
+    "name": "Michel de Montaigne",
+    "full_name": "Michel Eyquem de Montaigne",
+    "slug": "michel-de-montaigne",
+    "birth_year": 1533,
+    "death_year": 1592,
+    "nationality": "French",
+    "bio": "Renaissance philosopher who pioneered the essay form, exploring human nature through skeptical self-examination.",
+    "genres": [
+      "Philosophy",
+      "Literature"
+    ],
+    "image": "/images/authors/michel-de-montaigne.jpg",
+    "books": [
+      {
+        "book_id": "BK085",
+        "title": "Essays",
+        "year": 1580,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU069",
+    "name": "John Rawls",
+    "full_name": "John Bordley Rawls",
+    "slug": "john-rawls",
+    "birth_year": 1921,
+    "death_year": 2002,
+    "nationality": "American",
+    "bio": "Political philosopher whose theory of justice as fairness revitalized liberal political philosophy.",
+    "genres": [
+      "Philosophy",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/john-rawls.jpg",
+    "books": [
+      {
+        "book_id": "BK086",
+        "title": "A Theory of Justice",
+        "year": 1971,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU070",
+    "name": "Emmanuel Levinas",
+    "full_name": "Emmanuel Levinas",
+    "slug": "emmanuel-levinas",
+    "birth_year": 1906,
+    "death_year": 1995,
+    "nationality": "French-Lithuanian",
+    "bio": "Philosopher known for ethics based on responsibility to the Other, profoundly influencing continental philosophy.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/emmanuel-levinas.jpg",
+    "books": [
+      {
+        "book_id": "BK088",
+        "title": "Totality and Infinity",
+        "year": 1961,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU071",
+    "name": "Jiddu Krishnamurti",
+    "full_name": "Jiddu Krishnamurti",
+    "slug": "jiddu-krishnamurti",
+    "birth_year": 1895,
+    "death_year": 1986,
+    "nationality": "Indian",
+    "bio": "Spiritual teacher who spoke on psychological revolution, freedom from conditioning, and the nature of consciousness.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/jiddu-krishnamurti.jpg",
+    "books": [
+      {
+        "book_id": "BK089",
+        "title": "The First and Last Freedom",
+        "year": 1954,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU072",
+    "name": "Gilles Deleuze",
+    "full_name": "Gilles Louis René Deleuze",
+    "slug": "gilles-deleuze",
+    "birth_year": 1925,
+    "death_year": 1995,
+    "nationality": "French",
+    "bio": "Postmodern philosopher known for concepts of difference, multiplicity, and creative becoming.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/gilles-deleuze.jpg",
+    "books": [
+      {
+        "book_id": "BK092",
+        "title": "Difference and Repetition",
+        "year": 1968,
+        "rating": 4.1
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.1
+  },
+  {
+    "author_id": "AU073",
+    "name": "Thomas Aquinas",
+    "full_name": "Thomas Aquinas",
+    "slug": "thomas-aquinas",
+    "birth_year": 1225,
+    "death_year": 1274,
+    "nationality": "Italian",
+    "bio": "Medieval philosopher and theologian who synthesized Aristotelian philosophy with Christian theology.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/thomas-aquinas.jpg",
+    "books": [
+      {
+        "book_id": "BK093",
+        "title": "Summa Theologica",
+        "year": 1274,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU074",
+    "name": "Saint Augustine",
+    "full_name": "Augustine of Hippo (Saint Augustine)",
+    "slug": "saint-augustine",
+    "birth_year": 354,
+    "death_year": 430,
+    "nationality": "Roman African",
+    "bio": "Early Christian theologian and philosopher whose writings shaped Western Christianity and philosophy.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/saint-augustine.jpg",
+    "books": [
+      {
+        "book_id": "BK094",
+        "title": "Confessions",
+        "year": 398,
+        "rating": 4.2
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.2
+  },
+  {
+    "author_id": "AU075",
+    "name": "Bertrand Russell",
+    "full_name": "Bertrand Arthur William Russell",
+    "slug": "bertrand-russell",
+    "birth_year": 1872,
+    "death_year": 1970,
+    "nationality": "British",
+    "bio": "Philosopher, logician, mathematician, and social critic. Nobel Prize in Literature. Co-authored Principia Mathematica and championed analytical philosophy.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/bertrand-russell.jpg",
+    "books": [
+      {
+        "book_id": "BK095",
+        "title": "A History of Western Philosophy",
+        "year": 1945,
+        "rating": 4.3
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.3
+  },
+  {
+    "author_id": "AU076",
+    "name": "Edmund Husserl",
+    "full_name": "Edmund Gustav Albrecht Husserl",
+    "slug": "edmund-husserl",
+    "birth_year": 1859,
+    "death_year": 1938,
+    "nationality": "German",
+    "bio": "Founder of phenomenology, a philosophical method examining consciousness and the structures of experience. Profoundly influenced 20th-century philosophy.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/edmund-husserl.jpg",
+    "books": [
+      {
+        "book_id": "BK096",
+        "title": "Ideas: General Introduction to Pure Phenomenology",
+        "year": 1913,
+        "rating": 4.4
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.4
+  },
+  {
+    "author_id": "AU077",
+    "name": "Slavoj Žižek",
+    "full_name": "Slavoj Žižek",
+    "slug": "slavoj-i-ek",
+    "birth_year": 1949,
+    "death_year": null,
+    "nationality": "Slovenian",
+    "bio": "Contemporary philosopher and cultural critic known for applying Lacanian psychoanalysis to popular culture and ideology.",
+    "genres": [
+      "Philosophy",
+      "Psychology",
+      "Social Sciences"
+    ],
+    "image": "/images/authors/slavoj-i-ek.jpg",
+    "books": [
+      {
+        "book_id": "BK097",
+        "title": "The Sublime Object of Ideology",
+        "year": 1989,
+        "rating": 4.5
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.5
+  },
+  {
+    "author_id": "AU078",
+    "name": "Epicurus",
+    "full_name": "Epicurus",
+    "slug": "epicurus",
+    "birth_year": -341,
+    "death_year": -270,
+    "nationality": "Greek",
+    "bio": "Ancient Greek philosopher who founded Epicureanism, teaching that pleasure through moderation leads to happiness.",
+    "genres": [
+      "Philosophy"
+    ],
+    "image": "/images/authors/epicurus.jpg",
+    "books": [
+      {
+        "book_id": "BK098",
+        "title": "Letter to Menoeceus and Principal Doctrines",
+        "year": -300,
+        "rating": 4.6
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.6
+  },
+  {
+    "author_id": "AU079",
+    "name": "Benjamin Hoff",
+    "full_name": "Benjamin Hoff",
+    "slug": "benjamin-hoff",
+    "birth_year": 1946,
+    "death_year": null,
+    "nationality": "American",
+    "bio": "Author known for introducing Eastern philosophy through Western popular culture, particularly via Winnie-the-Pooh.",
+    "genres": [
+      "Philosophy",
+      "Religion & Spirituality"
+    ],
+    "image": "/images/authors/benjamin-hoff.jpg",
+    "books": [
+      {
+        "book_id": "BK100",
+        "title": "The Tao of Pooh",
+        "year": 1982,
+        "rating": 4.7
+      }
+    ],
+    "book_count": 1,
+    "average_rating": 4.7
+  }
+]

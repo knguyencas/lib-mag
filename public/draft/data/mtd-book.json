@@ -2,6 +2,7 @@
   {
     "book_id": "BK001",
     "title": "Crime and Punishment",
+    "slug": "crime-and-punishment",
     "author": "Fyodor Dostoevsky",
     "author_id": "AU001",
     "year": 1866,
@@ -16,18 +17,18 @@
     "blurb": "A desperate young man plans the perfect crime — the murder of a despicable pawnbroker, an old woman no one loves and no one will mourn. Is it not just, he reasons, for a man of genius to transgress moral law if it will ultimately benefit humanity? So begins one of the greatest novels ever written: a powerful psychological study, a terrifying murder mystery, and a haunting exploration of morality and redemption. Raskolnikov, an impoverished student living in a garret in the gloomy slums of St. Petersburg, carries out his grotesque scheme and plunges into a hell of guilt, paranoia, and madness. As he grapples with his conscience, Dostoevsky lays bare the dark recesses of the criminal mind — the fragile balance between pride and despair, and the eternal struggle between good and evil within the human soul.",
     "coverImage": "/images/books/crime-and-punishment.jpg",
     "coverImage_cloud": {
-    "url": "https://res.cloudinary.com/dcnw2lsxt/image/upload/v1763100196/81bAXZAp-GL._AC_UF1000_1000_QL80__zy00qa.jpg",
-    "public_id": "PsycheJourney_lib_books_images/crime_and_punishment",
-    "width": 600,
-    "height": 900,
-    "format": "jpg"
+      "url": "https://res.cloudinary.com/dcnw2lsxt/image/upload/v1763100196/81bAXZAp-GL._AC_UF1000_1000_QL80__zy00qa.jpg",
+      "public_id": "PsycheJourney_lib_books_images/crime_and_punishment",
+      "width": 600,
+      "height": 900,
+      "format": "jpg"
     },
     "epub": {
-    "url": "https://res.cloudinary.com/dcnw2lsxt/raw/upload/v1763101663/vnks0h9iu5vfuteix4fpi7kx-0015-crime-and-punishment-fyodor-dostoevsky_gzrnht.epub",
-    "public_id": "PsycheJourney_lib_epub_books_contents/crime-and-punishment-fyodor-dostoevsky-epub",
-    "size_bytes": 524881,
-    "mime_type": "application/epub+zip",
-    "uploaded_at": "2024-11-10T08:00:00Z"
+      "url": "https://res.cloudinary.com/dcnw2lsxt/raw/upload/v1763101663/vnks0h9iu5vfuteix4fpi7kx-0015-crime-and-punishment-fyodor-dostoevsky_gzrnht.epub",
+      "public_id": "PsycheJourney_lib_epub_books_contents/crime-and-punishment-fyodor-dostoevsky-epub",
+      "size_bytes": 524881,
+      "mime_type": "application/epub+zip",
+      "uploaded_at": "2024-11-10T08:00:00Z"
     },
     "isbn": "9780143058144",
     "pageCount": 671,
@@ -44,30 +45,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T08:00:00Z"
+        "$date": "2025-11-10T08:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T10:00:00Z"
+        "$date": "2025-11-10T10:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "classic-literature",
       "existentialism"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T08:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T10:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK002",
     "title": "The Brothers Karamazov",
+    "slug": "the-brothers-karamazov",
     "author": "Fyodor Dostoevsky",
     "author_id": "AU001",
     "year": 1880,
@@ -96,30 +89,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T08:15:00Z"
+        "$date": "2025-11-10T08:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T10:15:00Z"
+        "$date": "2025-11-10T10:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "philosophical-novel",
       "family-drama"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T08:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T10:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK003",
     "title": "The Bell Jar",
+    "slug": "the-bell-jar",
     "author": "Sylvia Plath",
     "author_id": "AU002",
     "year": 1963,
@@ -147,30 +132,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T08:30:00Z"
+        "$date": "2025-11-10T08:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T10:30:00Z"
+        "$date": "2025-11-10T10:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "autobiographical-novel",
       "feminist-literature"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T08:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T10:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK004",
     "title": "Steppenwolf",
+    "slug": "steppenwolf",
     "author": "Hermann Hesse",
     "author_id": "AU003",
     "year": 1927,
@@ -198,30 +175,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T08:45:00Z"
+        "$date": "2025-11-10T08:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T10:45:00Z"
+        "$date": "2025-11-10T10:45:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "existentialism",
       "spiritual-literature"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T08:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T10:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK005",
     "title": "The Stranger",
+    "slug": "the-stranger",
     "author": "Albert Camus",
     "author_id": "AU004",
     "year": 1942,
@@ -249,29 +218,21 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T09:00:00Z"
+        "$date": "2025-11-10T09:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T11:00:00Z"
+        "$date": "2025-11-10T11:00:00Z"
       }
     },
     "tags": [
       "existential-fiction",
       "psychological-novel"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T09:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T11:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK006",
     "title": "The Trial",
+    "slug": "the-trial",
     "author": "Franz Kafka",
     "author_id": "AU005",
     "year": 1925,
@@ -299,30 +260,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T09:15:00Z"
+        "$date": "2025-11-10T09:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T11:15:00Z"
+        "$date": "2025-11-10T11:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "absurdism",
       "existential-literature"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T09:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T11:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK007",
     "title": "The Metamorphosis",
+    "slug": "the-metamorphosis",
     "author": "Franz Kafka",
     "author_id": "AU005",
     "year": 1915,
@@ -350,30 +303,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T09:30:00Z"
+        "$date": "2025-11-10T09:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T11:30:00Z"
+        "$date": "2025-11-10T11:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "surrealism",
       "alienation"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T09:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T11:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK008",
     "title": "Demian",
+    "slug": "demian",
     "author": "Hermann Hesse",
     "author_id": "AU003",
     "year": 1919,
@@ -401,30 +346,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T09:45:00Z"
+        "$date": "2025-11-10T09:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T11:45:00Z"
+        "$date": "2025-11-10T11:45:00Z"
       }
     },
     "tags": [
       "coming-of-age",
       "psychological-fiction",
       "symbolism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T09:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T11:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK009",
     "title": "The Unbearable Lightness of Being",
+    "slug": "the-unbearable-lightness-of-being",
     "author": "Milan Kundera",
     "author_id": "AU006",
     "year": 1984,
@@ -453,30 +390,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T10:00:00Z"
+        "$date": "2025-11-10T10:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T12:00:00Z"
+        "$date": "2025-11-10T12:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "existentialism",
       "romantic-drama"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T10:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T12:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK010",
     "title": "The Interpretation of Dreams",
+    "slug": "the-interpretation-of-dreams",
     "author": "Sigmund Freud",
     "author_id": "AU007",
     "year": 1899,
@@ -504,30 +433,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T10:15:00Z"
+        "$date": "2025-11-10T10:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T12:15:00Z"
+        "$date": "2025-11-10T12:15:00Z"
       }
     },
     "tags": [
       "psychoanalysis",
       "dream-studies",
       "foundational-psychology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T10:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T12:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK011",
     "title": "Memories, Dreams, Reflections",
+    "slug": "memories-dreams-reflections",
     "author": "Carl G. Jung",
     "author_id": "AU008",
     "year": 1961,
@@ -543,7 +464,7 @@
     "coverImage": "/images/books/memories-dreams-reflections.jpg",
     "isbn": "9780679723950",
     "pageCount": 250,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -555,30 +476,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T10:30:00Z"
+        "$date": "2025-11-10T10:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T12:30:00Z"
+        "$date": "2025-11-10T12:30:00Z"
       }
     },
     "tags": [
       "analytical-psychology",
       "autobiography",
       "depth-psychology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T10:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T12:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK012",
     "title": "The Archetypes and the Collective Unconscious",
+    "slug": "the-archetypes-and-the-collective-unconscious",
     "author": "Carl G. Jung",
     "author_id": "AU008",
     "year": 1959,
@@ -606,30 +519,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T10:45:00Z"
+        "$date": "2025-11-10T10:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T12:45:00Z"
+        "$date": "2025-11-10T12:45:00Z"
       }
     },
     "tags": [
       "analytical-psychology",
       "mythology",
       "depth-psychology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T10:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T12:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK013",
     "title": "Beyond the Pleasure Principle",
+    "slug": "beyond-the-pleasure-principle",
     "author": "Sigmund Freud",
     "author_id": "AU007",
     "year": 1920,
@@ -657,30 +562,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T11:00:00Z"
+        "$date": "2025-11-10T11:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T13:00:00Z"
+        "$date": "2025-11-10T13:00:00Z"
       }
     },
     "tags": [
       "psychoanalysis",
       "instinct-theory",
       "psychodynamic-theory"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T11:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T13:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK014",
     "title": "Civilization and Its Discontents",
+    "slug": "civilization-and-its-discontents",
     "author": "Sigmund Freud",
     "author_id": "AU007",
     "year": 1930,
@@ -708,30 +605,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T11:15:00Z"
+        "$date": "2025-11-10T11:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T13:15:00Z"
+        "$date": "2025-11-10T13:15:00Z"
       }
     },
     "tags": [
       "psychoanalysis",
       "cultural-psychology",
       "philosophy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T11:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T13:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK015",
     "title": "The Psychopathology of Everyday Life",
+    "slug": "the-psychopathology-of-everyday-life",
     "author": "Sigmund Freud",
     "author_id": "AU007",
     "year": 1901,
@@ -759,30 +648,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T11:30:00Z"
+        "$date": "2025-11-10T11:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T13:30:00Z"
+        "$date": "2025-11-10T13:30:00Z"
       }
     },
     "tags": [
       "psychoanalysis",
       "cognitive-psychology",
       "behavioral-science"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T11:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T13:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK016",
     "title": "The Divided Self",
+    "slug": "the-divided-self",
     "author": "R.D. Laing",
     "author_id": "AU009",
     "year": 1960,
@@ -810,30 +691,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T11:45:00Z"
+        "$date": "2025-11-10T11:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T13:45:00Z"
+        "$date": "2025-11-10T13:45:00Z"
       }
     },
     "tags": [
       "existential-psychology",
       "psychiatry",
       "phenomenology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T11:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T13:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK017",
     "title": "An Unquiet Mind",
+    "slug": "an-unquiet-mind",
     "author": "Kay Redfield Jamison",
     "author_id": "AU010",
     "year": 1995,
@@ -861,30 +734,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T12:00:00Z"
+        "$date": "2025-11-10T12:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T14:00:00Z"
+        "$date": "2025-11-10T14:00:00Z"
       }
     },
     "tags": [
       "clinical-psychology",
       "memoir",
       "bipolar-disorder"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T12:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T14:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK018",
     "title": "The Man Who Mistook His Wife for a Hat",
+    "slug": "the-man-who-mistook-his-wife-for-a-hat",
     "author": "Oliver Sacks",
     "author_id": "AU011",
     "year": 1985,
@@ -912,30 +777,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T12:15:00Z"
+        "$date": "2025-11-10T12:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T14:15:00Z"
+        "$date": "2025-11-10T14:15:00Z"
       }
     },
     "tags": [
       "neuropsychology",
       "case-studies",
       "cognitive-science"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T12:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T14:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK019",
     "title": "Ordinary Men: Reserve Police Battalion 101 and the Final Solution in Poland",
+    "slug": "ordinary-men-reserve-police-battalion-101-and-the-final-solution-in-poland",
     "author": "Christopher R. Browning",
     "author_id": "AU012",
     "year": 1992,
@@ -963,30 +820,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T12:30:00Z"
+        "$date": "2025-11-10T12:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T14:30:00Z"
+        "$date": "2025-11-10T14:30:00Z"
       }
     },
     "tags": [
       "social-psychology",
       "history",
       "moral-psychology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T12:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T14:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK020",
     "title": "Eros and Civilization",
+    "slug": "eros-and-civilization",
     "author": "Herbert Marcuse",
     "author_id": "AU013",
     "year": 1955,
@@ -1014,30 +863,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T12:45:00Z"
+        "$date": "2025-11-10T12:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T14:45:00Z"
+        "$date": "2025-11-10T14:45:00Z"
       }
     },
     "tags": [
       "psychoanalytic-theory",
       "critical-psychology",
       "philosophy-of-desire"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T12:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T14:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK021",
     "title": "Kafka on the Shore",
+    "slug": "kafka-on-the-shore",
     "author": "Haruki Murakami",
     "author_id": "AU014",
     "year": 2002,
@@ -1053,7 +894,7 @@
     "coverImage": "/images/books/kafka-on-the-shore.jpg",
     "isbn": "9781400079278",
     "pageCount": 300,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -1065,30 +906,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T13:00:00Z"
+        "$date": "2025-11-10T13:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T15:00:00Z"
+        "$date": "2025-11-10T15:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "magical-realism",
       "memory-and-identity"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T13:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T15:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK022",
     "title": "Norwegian Wood",
+    "slug": "norwegian-wood",
     "author": "Haruki Murakami",
     "author_id": "AU014",
     "year": 1987,
@@ -1116,30 +949,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T13:15:00Z"
+        "$date": "2025-11-10T13:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T15:15:00Z"
+        "$date": "2025-11-10T15:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "romance",
       "depression"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T13:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T15:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK023",
     "title": "The Castle",
+    "slug": "the-castle",
     "author": "Franz Kafka",
     "author_id": "AU005",
     "year": 1926,
@@ -1167,30 +992,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T13:30:00Z"
+        "$date": "2025-11-10T13:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T15:30:00Z"
+        "$date": "2025-11-10T15:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "absurdism",
       "alienation"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T13:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T15:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK024",
     "title": "The Sorrows of Young Werther",
+    "slug": "the-sorrows-of-young-werther",
     "author": "Johann Wolfgang von Goethe",
     "author_id": "AU015",
     "year": 1774,
@@ -1218,30 +1035,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T13:45:00Z"
+        "$date": "2025-11-10T13:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T15:45:00Z"
+        "$date": "2025-11-10T15:45:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "romanticism",
       "epistolary-novel"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T13:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T15:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK025",
     "title": "Fight Club",
+    "slug": "fight-club",
     "author": "Chuck Palahniuk",
     "author_id": "AU016",
     "year": 1996,
@@ -1269,30 +1078,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T14:00:00Z"
+        "$date": "2025-11-10T14:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T16:00:00Z"
+        "$date": "2025-11-10T16:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "satire",
       "masculinity-and-identity"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T14:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T16:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK026",
     "title": "A Clockwork Orange",
+    "slug": "a-clockwork-orange",
     "author": "Anthony Burgess",
     "author_id": "AU017",
     "year": 1962,
@@ -1320,30 +1121,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T14:15:00Z"
+        "$date": "2025-11-10T14:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T16:15:00Z"
+        "$date": "2025-11-10T16:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "dystopian",
       "moral-philosophy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T14:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T16:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK027",
     "title": "The Collector",
+    "slug": "the-collector",
     "author": "John Fowles",
     "author_id": "AU018",
     "year": 1963,
@@ -1371,30 +1164,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T14:30:00Z"
+        "$date": "2025-11-10T14:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T16:30:00Z"
+        "$date": "2025-11-10T16:30:00Z"
       }
     },
     "tags": [
       "psychological-thriller",
       "obsession",
       "captivity"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T14:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T16:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK028",
     "title": "The Secret History",
+    "slug": "the-secret-history",
     "author": "Donna Tartt",
     "author_id": "AU019",
     "year": 1992,
@@ -1422,30 +1207,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T14:45:00Z"
+        "$date": "2025-11-10T14:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T16:45:00Z"
+        "$date": "2025-11-10T16:45:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "dark-academia",
       "moral-corruption"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T14:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T16:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK029",
     "title": "The Painted Bird",
+    "slug": "the-painted-bird",
     "author": "Jerzy Kosinski",
     "author_id": "AU020",
     "year": 1965,
@@ -1473,30 +1250,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T15:00:00Z"
+        "$date": "2025-11-10T15:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T17:00:00Z"
+        "$date": "2025-11-10T17:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "war",
       "trauma"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T15:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T17:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK030",
     "title": "Requiem for a Dream",
+    "slug": "requiem-for-a-dream",
     "author": "Hubert Selby Jr.",
     "author_id": "AU021",
     "year": 1978,
@@ -1524,30 +1293,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T15:15:00Z"
+        "$date": "2025-11-10T15:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T17:15:00Z"
+        "$date": "2025-11-10T17:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "addiction",
       "despair"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T15:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T17:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK031",
     "title": "The Shining",
+    "slug": "the-shining",
     "author": "Stephen King",
     "author_id": "AU022",
     "year": 1977,
@@ -1575,30 +1336,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T15:30:00Z"
+        "$date": "2025-11-10T15:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T17:30:00Z"
+        "$date": "2025-11-10T17:30:00Z"
       }
     },
     "tags": [
       "psychological-horror",
       "family-trauma",
       "supernatural"
-    ],
-    "featured": true,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T15:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T17:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK032",
     "title": "American Psycho",
+    "slug": "american-psycho",
     "author": "Bret Easton Ellis",
     "author_id": "AU023",
     "year": 1991,
@@ -1626,30 +1379,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T15:45:00Z"
+        "$date": "2025-11-10T15:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T17:45:00Z"
+        "$date": "2025-11-10T17:45:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "satire",
       "violence-and-identity"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T15:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T17:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK033",
     "title": "One Flew Over the Cuckoo’s Nest",
+    "slug": "one-flew-over-the-cuckoo-s-nest",
     "author": "Ken Kesey",
     "author_id": "AU024",
     "year": 1962,
@@ -1677,30 +1422,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T16:00:00Z"
+        "$date": "2025-11-10T16:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T18:00:00Z"
+        "$date": "2025-11-10T18:00:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "psychiatry",
       "rebellion"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T16:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T18:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK034",
     "title": "Blindness",
+    "slug": "blindness",
     "author": "José Saramago",
     "author_id": "AU025",
     "year": 1995,
@@ -1728,30 +1465,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T16:15:00Z"
+        "$date": "2025-11-10T16:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T18:15:00Z"
+        "$date": "2025-11-10T18:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "allegory",
       "social-breakdown"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T16:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T18:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK035",
     "title": "Never Let Me Go",
+    "slug": "never-let-me-go",
     "author": "Kazuo Ishiguro",
     "author_id": "AU026",
     "year": 2005,
@@ -1779,30 +1508,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T16:30:00Z"
+        "$date": "2025-11-10T16:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T18:30:00Z"
+        "$date": "2025-11-10T18:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "science-fiction",
       "existential-tragedy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T16:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T18:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK036",
     "title": "Flowers for Algernon",
+    "slug": "flowers-for-algernon",
     "author": "Daniel Keyes",
     "author_id": "AU027",
     "year": 1966,
@@ -1830,30 +1551,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T16:45:00Z"
+        "$date": "2025-11-10T16:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T18:45:00Z"
+        "$date": "2025-11-10T18:45:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "science-fiction",
       "cognitive-decline"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T16:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T18:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK037",
     "title": "White Noise",
+    "slug": "white-noise",
     "author": "Don DeLillo",
     "author_id": "AU028",
     "year": 1985,
@@ -1881,30 +1594,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T17:00:00Z"
+        "$date": "2025-11-10T17:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T19:00:00Z"
+        "$date": "2025-11-10T19:00:00Z"
       }
     },
     "tags": [
       "postmodern-fiction",
       "psychological-satire",
       "media-and-death"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T17:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T19:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK038",
     "title": "The Hours",
+    "slug": "the-hours",
     "author": "Michael Cunningham",
     "author_id": "AU029",
     "year": 1998,
@@ -1932,30 +1637,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T17:15:00Z"
+        "$date": "2025-11-10T17:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T19:15:00Z"
+        "$date": "2025-11-10T19:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "existentialism",
       "feminist-literature"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T17:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T19:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK039",
     "title": "We Have Always Lived in the Castle",
+    "slug": "we-have-always-lived-in-the-castle",
     "author": "Shirley Jackson",
     "author_id": "AU030",
     "year": 1962,
@@ -1983,30 +1680,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T17:30:00Z"
+        "$date": "2025-11-10T17:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T19:30:00Z"
+        "$date": "2025-11-10T19:30:00Z"
       }
     },
     "tags": [
       "psychological-gothic",
       "isolation",
       "family-secrets"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T17:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T19:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK040",
     "title": "The Sound and the Fury",
+    "slug": "the-sound-and-the-fury",
     "author": "William Faulkner",
     "author_id": "AU031",
     "year": 1929,
@@ -2034,30 +1723,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T17:45:00Z"
+        "$date": "2025-11-10T17:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T19:45:00Z"
+        "$date": "2025-11-10T19:45:00Z"
       }
     },
     "tags": [
       "modernist-fiction",
       "psychological-stream-of-consciousness",
       "family-decay"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T17:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T19:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK041",
     "title": "Maps of Meaning: The Architecture of Belief",
+    "slug": "maps-of-meaning-the-architecture-of-belief",
     "author": "Jordan B. Peterson",
     "author_id": "AU032",
     "year": 1999,
@@ -2073,7 +1754,7 @@
     "coverImage": "/images/books/maps-of-meaning-the-architecture-of-belief.jpg",
     "isbn": "9780000000041",
     "pageCount": 400,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -2085,30 +1766,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T18:00:00Z"
+        "$date": "2025-11-10T18:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T20:00:00Z"
+        "$date": "2025-11-10T20:00:00Z"
       }
     },
     "tags": [
       "cognitive-psychology",
       "mythology",
       "philosophy-of-mind"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T18:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T20:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK042",
     "title": "The Ego and the Id",
+    "slug": "the-ego-and-the-id",
     "author": "Sigmund Freud",
     "author_id": "AU007",
     "year": 1923,
@@ -2135,29 +1808,21 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T18:15:00Z"
+        "$date": "2025-11-10T18:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T20:15:00Z"
+        "$date": "2025-11-10T20:15:00Z"
       }
     },
     "tags": [
       "psychoanalysis",
       "personality-theory"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T18:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T20:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK043",
     "title": "The End of Alice",
+    "slug": "the-end-of-alice",
     "author": "A. M. Homes",
     "author_id": "AU033",
     "year": 1996,
@@ -2185,30 +1850,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T18:30:00Z"
+        "$date": "2025-11-10T18:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T20:30:00Z"
+        "$date": "2025-11-10T20:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "taboo",
       "obsession"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T18:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T20:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK044",
     "title": "The Psychology of Money",
+    "slug": "the-psychology-of-money",
     "author": "Morgan Housel",
     "author_id": "AU034",
     "year": 2020,
@@ -2236,30 +1893,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T18:45:00Z"
+        "$date": "2025-11-10T18:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T20:45:00Z"
+        "$date": "2025-11-10T20:45:00Z"
       }
     },
     "tags": [
       "behavioral-psychology",
       "finance",
       "decision-science"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T18:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T20:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK045",
     "title": "The Myth of Sisyphus",
+    "slug": "the-myth-of-sisyphus",
     "author": "Albert Camus",
     "author_id": "AU004",
     "year": 1942,
@@ -2287,30 +1936,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T19:00:00Z"
+        "$date": "2025-11-10T19:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T21:00:00Z"
+        "$date": "2025-11-10T21:00:00Z"
       }
     },
     "tags": [
       "existential-psychology",
       "philosophy-of-mind",
       "absurdism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T19:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T21:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK046",
     "title": "Demian",
+    "slug": "demian",
     "author": "Hermann Hesse",
     "author_id": "AU003",
     "year": 1919,
@@ -2338,30 +1979,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T19:15:00Z"
+        "$date": "2025-11-10T19:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T21:15:00Z"
+        "$date": "2025-11-10T21:15:00Z"
       }
     },
     "tags": [
       "coming-of-age",
       "psychological-fiction",
       "symbolism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T19:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T21:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK047",
     "title": "Steppenwolf",
+    "slug": "steppenwolf",
     "author": "Hermann Hesse",
     "author_id": "AU003",
     "year": 1927,
@@ -2389,30 +2022,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T19:30:00Z"
+        "$date": "2025-11-10T19:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T21:30:00Z"
+        "$date": "2025-11-10T21:30:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "existentialism",
       "spiritual-literature"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T19:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T21:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK048",
     "title": "Notes from Underground",
+    "slug": "notes-from-underground",
     "author": "Fyodor Dostoevsky",
     "author_id": "AU001",
     "year": 1864,
@@ -2440,30 +2065,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T19:45:00Z"
+        "$date": "2025-11-10T19:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T21:45:00Z"
+        "$date": "2025-11-10T21:45:00Z"
       }
     },
     "tags": [
       "psychological-monologue",
       "existentialism",
       "human-condition"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T19:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T21:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK049",
     "title": "Thus Spoke Zarathustra",
+    "slug": "thus-spoke-zarathustra",
     "author": "Friedrich Nietzsche",
     "author_id": "AU035",
     "year": 1883,
@@ -2491,30 +2108,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T20:00:00Z"
+        "$date": "2025-11-10T20:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T22:00:00Z"
+        "$date": "2025-11-10T22:00:00Z"
       }
     },
     "tags": [
       "philosophical-psychology",
       "existentialism",
       "symbolic-fiction"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T20:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T22:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK050",
     "title": "The Painted Bird",
+    "slug": "the-painted-bird",
     "author": "Jerzy Kosinski",
     "author_id": "AU020",
     "year": 1965,
@@ -2542,30 +2151,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T20:15:00Z"
+        "$date": "2025-11-10T20:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T22:15:00Z"
+        "$date": "2025-11-10T22:15:00Z"
       }
     },
     "tags": [
       "psychological-fiction",
       "war-trauma",
       "existential-horror"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T20:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T22:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK051",
     "title": "The Republic",
+    "slug": "the-republic",
     "author": "Plato",
     "author_id": "AU036",
     "year": -380,
@@ -2581,7 +2182,7 @@
     "coverImage": "/images/books/the-republic.jpg",
     "isbn": "9780140449495",
     "pageCount": 450,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -2593,30 +2194,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T20:30:00Z"
+        "$date": "2025-11-10T20:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T22:30:00Z"
+        "$date": "2025-11-10T22:30:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T20:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T22:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK052",
     "title": "Nicomachean Ethics",
+    "slug": "nicomachean-ethics",
     "author": "Aristotle",
     "author_id": "AU037",
     "year": -340,
@@ -2644,30 +2237,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T20:45:00Z"
+        "$date": "2025-11-10T20:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T22:45:00Z"
+        "$date": "2025-11-10T22:45:00Z"
       }
     },
     "tags": [
       "ethics",
       "moral-philosophy",
       "virtue-theory"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T20:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T22:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK053",
     "title": "Meditations",
+    "slug": "meditations",
     "author": "Marcus Aurelius",
     "author_id": "AU038",
     "year": 180,
@@ -2695,30 +2280,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T21:00:00Z"
+        "$date": "2025-11-10T21:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T23:00:00Z"
+        "$date": "2025-11-10T23:00:00Z"
       }
     },
     "tags": [
       "stoicism",
       "ethics",
       "personal-philosophy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T21:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T23:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK054",
     "title": "Tao Te Ching",
+    "slug": "tao-te-ching",
     "author": "Lao Tzu",
     "author_id": "AU039",
     "year": -400,
@@ -2746,30 +2323,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T21:15:00Z"
+        "$date": "2025-11-10T21:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T23:15:00Z"
+        "$date": "2025-11-10T23:15:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "taoism",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T21:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T23:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK055",
     "title": "The Analects",
+    "slug": "the-analects",
     "author": "Confucius",
     "author_id": "AU040",
     "year": -475,
@@ -2797,30 +2366,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T21:30:00Z"
+        "$date": "2025-11-10T21:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T23:30:00Z"
+        "$date": "2025-11-10T23:30:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "ethics",
       "social-order"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T21:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T23:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK056",
     "title": "Beyond Good and Evil",
+    "slug": "beyond-good-and-evil",
     "author": "Friedrich Nietzsche",
     "author_id": "AU035",
     "year": 1886,
@@ -2848,30 +2409,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T21:45:00Z"
+        "$date": "2025-11-10T21:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-10T23:45:00Z"
+        "$date": "2025-11-10T23:45:00Z"
       }
     },
     "tags": [
       "moral-philosophy",
       "existentialism",
       "critique-of-reason"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T21:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-10T23:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK057",
     "title": "Being and Time",
+    "slug": "being-and-time",
     "author": "Martin Heidegger",
     "author_id": "AU041",
     "year": 1927,
@@ -2899,30 +2452,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T22:00:00Z"
+        "$date": "2025-11-10T22:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T00:00:00Z"
+        "$date": "2025-11-11T00:00:00Z"
       }
     },
     "tags": [
       "ontology",
       "phenomenology",
       "existentialism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T22:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T00:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK058",
     "title": "The Ethics",
+    "slug": "the-ethics",
     "author": "Baruch Spinoza",
     "author_id": "AU042",
     "year": 1677,
@@ -2950,30 +2495,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T22:15:00Z"
+        "$date": "2025-11-10T22:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T00:15:00Z"
+        "$date": "2025-11-11T00:15:00Z"
       }
     },
     "tags": [
       "metaphysics",
       "rationalism",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T22:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T00:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK059",
     "title": "Critique of Pure Reason",
+    "slug": "critique-of-pure-reason",
     "author": "Immanuel Kant",
     "author_id": "AU043",
     "year": 1781,
@@ -3001,30 +2538,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T22:30:00Z"
+        "$date": "2025-11-10T22:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T00:30:00Z"
+        "$date": "2025-11-11T00:30:00Z"
       }
     },
     "tags": [
       "epistemology",
       "metaphysics",
       "philosophy-of-mind"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T22:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T00:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK060",
     "title": "The Dhammapada",
+    "slug": "the-dhammapada",
     "author": "Unknown (Traditionally Attributed to Gautama Buddha)",
     "author_id": "AU044",
     "year": -300,
@@ -3052,30 +2581,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T22:45:00Z"
+        "$date": "2025-11-10T22:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T00:45:00Z"
+        "$date": "2025-11-11T00:45:00Z"
       }
     },
     "tags": [
       "buddhist-philosophy",
       "ethics",
       "spiritual-practice"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T22:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T00:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK061",
     "title": "Fear and Trembling",
+    "slug": "fear-and-trembling",
     "author": "Søren Kierkegaard",
     "author_id": "AU045",
     "year": 1843,
@@ -3091,7 +2612,7 @@
     "coverImage": "/images/books/fear-and-trembling.jpg",
     "isbn": "9780140444490",
     "pageCount": 500,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -3103,30 +2624,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T23:00:00Z"
+        "$date": "2025-11-10T23:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T01:00:00Z"
+        "$date": "2025-11-11T01:00:00Z"
       }
     },
     "tags": [
       "existentialism",
       "ethics",
       "theology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T23:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T01:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK062",
     "title": "Being and Nothingness",
+    "slug": "being-and-nothingness",
     "author": "Jean-Paul Sartre",
     "author_id": "AU046",
     "year": 1943,
@@ -3154,30 +2667,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T23:15:00Z"
+        "$date": "2025-11-10T23:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T01:15:00Z"
+        "$date": "2025-11-11T01:15:00Z"
       }
     },
     "tags": [
       "existentialism",
       "phenomenology",
       "ontology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T23:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T01:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK063",
     "title": "The Second Sex",
+    "slug": "the-second-sex",
     "author": "Simone de Beauvoir",
     "author_id": "AU047",
     "year": 1949,
@@ -3205,30 +2710,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T23:30:00Z"
+        "$date": "2025-11-10T23:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T01:30:00Z"
+        "$date": "2025-11-11T01:30:00Z"
       }
     },
     "tags": [
       "feminist-philosophy",
       "existentialism",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T23:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T01:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK064",
     "title": "Discipline and Punish: The Birth of the Prison",
+    "slug": "discipline-and-punish-the-birth-of-the-prison",
     "author": "Michel Foucault",
     "author_id": "AU048",
     "year": 1975,
@@ -3256,30 +2753,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-10T23:45:00Z"
+        "$date": "2025-11-10T23:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T01:45:00Z"
+        "$date": "2025-11-11T01:45:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "social-theory",
       "power-and-control"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-10T23:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T01:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK065",
     "title": "The Human Condition",
+    "slug": "the-human-condition",
     "author": "Hannah Arendt",
     "author_id": "AU049",
     "year": 1958,
@@ -3307,30 +2796,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T00:00:00Z"
+        "$date": "2025-11-11T00:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T02:00:00Z"
+        "$date": "2025-11-11T02:00:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "modern-thought"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T00:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T02:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK066",
     "title": "Tractatus Logico-Philosophicus",
+    "slug": "tractatus-logico-philosophicus",
     "author": "Ludwig Wittgenstein",
     "author_id": "AU050",
     "year": 1921,
@@ -3358,30 +2839,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T00:15:00Z"
+        "$date": "2025-11-11T00:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T02:15:00Z"
+        "$date": "2025-11-11T02:15:00Z"
       }
     },
     "tags": [
       "logic",
       "philosophy-of-language",
       "analytic-philosophy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T00:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T02:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK067",
     "title": "On Liberty",
+    "slug": "on-liberty",
     "author": "John Stuart Mill",
     "author_id": "AU051",
     "year": 1859,
@@ -3409,30 +2882,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T00:30:00Z"
+        "$date": "2025-11-11T00:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T02:30:00Z"
+        "$date": "2025-11-11T02:30:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "liberalism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T00:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T02:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK068",
     "title": "The Genealogy of Morals",
+    "slug": "the-genealogy-of-morals",
     "author": "Friedrich Nietzsche",
     "author_id": "AU035",
     "year": 1887,
@@ -3460,30 +2925,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T00:45:00Z"
+        "$date": "2025-11-11T00:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T02:45:00Z"
+        "$date": "2025-11-11T02:45:00Z"
       }
     },
     "tags": [
       "moral-philosophy",
       "psychology-of-ethics",
       "cultural-critique"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T00:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T02:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK069",
     "title": "The Prince",
+    "slug": "the-prince",
     "author": "Niccolò Machiavelli",
     "author_id": "AU052",
     "year": 1532,
@@ -3511,30 +2968,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T01:00:00Z"
+        "$date": "2025-11-11T01:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T03:00:00Z"
+        "$date": "2025-11-11T03:00:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "realism",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T01:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T03:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK070",
     "title": "The Phenomenology of Spirit",
+    "slug": "the-phenomenology-of-spirit",
     "author": "Georg Wilhelm Friedrich Hegel",
     "author_id": "AU053",
     "year": 1807,
@@ -3562,30 +3011,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T01:15:00Z"
+        "$date": "2025-11-11T01:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T03:15:00Z"
+        "$date": "2025-11-11T03:15:00Z"
       }
     },
     "tags": [
       "german-idealism",
       "metaphysics",
       "dialectics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T01:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T03:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK071",
     "title": "The World as Will and Representation",
+    "slug": "the-world-as-will-and-representation",
     "author": "Arthur Schopenhauer",
     "author_id": "AU054",
     "year": 1818,
@@ -3601,7 +3042,7 @@
     "coverImage": "/images/books/the-world-as-will-and-representation.jpg",
     "isbn": "9780486217611",
     "pageCount": 550,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -3613,30 +3054,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T01:30:00Z"
+        "$date": "2025-11-11T01:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T03:30:00Z"
+        "$date": "2025-11-11T03:30:00Z"
       }
     },
     "tags": [
       "metaphysics",
       "aesthetics",
       "pessimism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T01:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T03:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK072",
     "title": "The Social Contract",
+    "slug": "the-social-contract",
     "author": "Jean-Jacques Rousseau",
     "author_id": "AU055",
     "year": 1762,
@@ -3664,30 +3097,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T01:45:00Z"
+        "$date": "2025-11-11T01:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T03:45:00Z"
+        "$date": "2025-11-11T03:45:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "social-theory"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T01:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T03:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK073",
     "title": "Leviathan",
+    "slug": "leviathan",
     "author": "Thomas Hobbes",
     "author_id": "AU056",
     "year": 1651,
@@ -3715,30 +3140,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T02:00:00Z"
+        "$date": "2025-11-11T02:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T04:00:00Z"
+        "$date": "2025-11-11T04:00:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "social-contract-theory",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T02:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T04:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK074",
     "title": "An Enquiry Concerning Human Understanding",
+    "slug": "an-enquiry-concerning-human-understanding",
     "author": "David Hume",
     "author_id": "AU057",
     "year": 1748,
@@ -3766,30 +3183,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T02:15:00Z"
+        "$date": "2025-11-11T02:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T04:15:00Z"
+        "$date": "2025-11-11T04:15:00Z"
       }
     },
     "tags": [
       "epistemology",
       "empiricism",
       "skepticism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T02:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T04:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK075",
     "title": "The Tao of Physics",
+    "slug": "the-tao-of-physics",
     "author": "Fritjof Capra",
     "author_id": "AU058",
     "year": 1975,
@@ -3817,30 +3226,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T02:30:00Z"
+        "$date": "2025-11-11T02:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T04:30:00Z"
+        "$date": "2025-11-11T04:30:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "science-and-spirituality",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T02:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T04:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK076",
     "title": "The Open Society and Its Enemies",
+    "slug": "the-open-society-and-its-enemies",
     "author": "Karl Popper",
     "author_id": "AU059",
     "year": 1945,
@@ -3868,30 +3269,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T02:45:00Z"
+        "$date": "2025-11-11T02:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T04:45:00Z"
+        "$date": "2025-11-11T04:45:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "epistemology",
       "science-and-reason"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T02:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T04:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK077",
     "title": "The Art of War",
+    "slug": "the-art-of-war",
     "author": "Sun Tzu",
     "author_id": "AU060",
     "year": -500,
@@ -3919,30 +3312,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T03:00:00Z"
+        "$date": "2025-11-11T03:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T05:00:00Z"
+        "$date": "2025-11-11T05:00:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "strategy",
       "leadership"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T03:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T05:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK078",
     "title": "The Middle Way",
+    "slug": "the-middle-way",
     "author": "Nāgārjuna",
     "author_id": "AU061",
     "year": 200,
@@ -3970,30 +3355,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T03:15:00Z"
+        "$date": "2025-11-11T03:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T05:15:00Z"
+        "$date": "2025-11-11T05:15:00Z"
       }
     },
     "tags": [
       "buddhist-philosophy",
       "madhyamaka",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T03:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T05:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK079",
     "title": "The Book of Zhuangzi",
+    "slug": "the-book-of-zhuangzi",
     "author": "Zhuang Zhou (Zhuangzi)",
     "author_id": "AU062",
     "year": -300,
@@ -4021,30 +3398,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T03:30:00Z"
+        "$date": "2025-11-11T03:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T05:30:00Z"
+        "$date": "2025-11-11T05:30:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "taoism",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T03:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T05:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK080",
     "title": "Of Grammatology",
+    "slug": "of-grammatology",
     "author": "Jacques Derrida",
     "author_id": "AU063",
     "year": 1967,
@@ -4072,30 +3441,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T03:45:00Z"
+        "$date": "2025-11-11T03:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T05:45:00Z"
+        "$date": "2025-11-11T05:45:00Z"
       }
     },
     "tags": [
       "post-structuralism",
       "philosophy-of-language",
       "deconstruction"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T03:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T05:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK081",
     "title": "An Essay Concerning Human Understanding",
+    "slug": "an-essay-concerning-human-understanding",
     "author": "John Locke",
     "author_id": "AU064",
     "year": 1690,
@@ -4111,7 +3472,7 @@
     "coverImage": "/images/books/an-essay-concerning-human-understanding.jpg",
     "isbn": "9780199296620",
     "pageCount": 600,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -4123,30 +3484,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T04:00:00Z"
+        "$date": "2025-11-11T04:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T06:00:00Z"
+        "$date": "2025-11-11T06:00:00Z"
       }
     },
     "tags": [
       "empiricism",
       "epistemology",
       "philosophy-of-mind"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T04:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T06:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK082",
     "title": "A Treatise Concerning the Principles of Human Knowledge",
+    "slug": "a-treatise-concerning-the-principles-of-human-knowledge",
     "author": "George Berkeley",
     "author_id": "AU065",
     "year": 1710,
@@ -4174,30 +3527,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T04:15:00Z"
+        "$date": "2025-11-11T04:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T06:15:00Z"
+        "$date": "2025-11-11T06:15:00Z"
       }
     },
     "tags": [
       "idealism",
       "epistemology",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T04:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T06:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK083",
     "title": "Pensées",
+    "slug": "pens-es",
     "author": "Blaise Pascal",
     "author_id": "AU066",
     "year": 1670,
@@ -4225,30 +3570,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T04:30:00Z"
+        "$date": "2025-11-11T04:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T06:30:00Z"
+        "$date": "2025-11-11T06:30:00Z"
       }
     },
     "tags": [
       "theology",
       "existential-philosophy",
       "faith-and-reason"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T04:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T06:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK084",
     "title": "Candide",
+    "slug": "candide",
     "author": "Voltaire",
     "author_id": "AU067",
     "year": 1759,
@@ -4276,30 +3613,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T04:45:00Z"
+        "$date": "2025-11-11T04:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T06:45:00Z"
+        "$date": "2025-11-11T06:45:00Z"
       }
     },
     "tags": [
       "satire",
       "philosophy-of-optimism",
       "enlightenment"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T04:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T06:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK085",
     "title": "Essays",
+    "slug": "essays",
     "author": "Michel de Montaigne",
     "author_id": "AU068",
     "year": 1580,
@@ -4327,30 +3656,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T05:00:00Z"
+        "$date": "2025-11-11T05:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T07:00:00Z"
+        "$date": "2025-11-11T07:00:00Z"
       }
     },
     "tags": [
       "humanism",
       "skepticism",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T05:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T07:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK086",
     "title": "A Theory of Justice",
+    "slug": "a-theory-of-justice",
     "author": "John Rawls",
     "author_id": "AU069",
     "year": 1971,
@@ -4378,30 +3699,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T05:15:00Z"
+        "$date": "2025-11-11T05:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T07:15:00Z"
+        "$date": "2025-11-11T07:15:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "justice"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T05:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T07:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK087",
     "title": "The Rebel",
+    "slug": "the-rebel",
     "author": "Albert Camus",
     "author_id": "AU004",
     "year": 1951,
@@ -4429,30 +3742,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T05:30:00Z"
+        "$date": "2025-11-11T05:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T07:30:00Z"
+        "$date": "2025-11-11T07:30:00Z"
       }
     },
     "tags": [
       "existentialism",
       "political-philosophy",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T05:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T07:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK088",
     "title": "Totality and Infinity",
+    "slug": "totality-and-infinity",
     "author": "Emmanuel Levinas",
     "author_id": "AU070",
     "year": 1961,
@@ -4480,30 +3785,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T05:45:00Z"
+        "$date": "2025-11-11T05:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T07:45:00Z"
+        "$date": "2025-11-11T07:45:00Z"
       }
     },
     "tags": [
       "ethics",
       "phenomenology",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T05:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T07:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK089",
     "title": "The First and Last Freedom",
+    "slug": "the-first-and-last-freedom",
     "author": "Jiddu Krishnamurti",
     "author_id": "AU071",
     "year": 1954,
@@ -4531,30 +3828,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T06:00:00Z"
+        "$date": "2025-11-11T06:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T08:00:00Z"
+        "$date": "2025-11-11T08:00:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "psychological-inquiry",
       "spiritual-liberation"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T06:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T08:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK090",
     "title": "Philosophical Investigations",
+    "slug": "philosophical-investigations",
     "author": "Ludwig Wittgenstein",
     "author_id": "AU050",
     "year": 1953,
@@ -4582,30 +3871,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T06:15:00Z"
+        "$date": "2025-11-11T06:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T08:15:00Z"
+        "$date": "2025-11-11T08:15:00Z"
       }
     },
     "tags": [
       "philosophy-of-language",
       "analytic-philosophy",
       "logic"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T06:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T08:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK091",
     "title": "Poetry, Language, Thought",
+    "slug": "poetry-language-thought",
     "author": "Martin Heidegger",
     "author_id": "AU041",
     "year": 1971,
@@ -4621,7 +3902,7 @@
     "coverImage": "/images/books/poetry-language-thought.jpg",
     "isbn": "9780060937287",
     "pageCount": 650,
-    "rating": 4.0,
+    "rating": 4,
     "status": "published",
     "structure": {
       "type": "chapters_only",
@@ -4633,30 +3914,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T06:30:00Z"
+        "$date": "2025-11-11T06:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T08:30:00Z"
+        "$date": "2025-11-11T08:30:00Z"
       }
     },
     "tags": [
       "ontology",
       "aesthetics",
       "phenomenology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T06:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T08:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK092",
     "title": "Difference and Repetition",
+    "slug": "difference-and-repetition",
     "author": "Gilles Deleuze",
     "author_id": "AU072",
     "year": 1968,
@@ -4684,30 +3957,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T06:45:00Z"
+        "$date": "2025-11-11T06:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T08:45:00Z"
+        "$date": "2025-11-11T08:45:00Z"
       }
     },
     "tags": [
       "metaphysics",
       "continental-philosophy",
       "epistemology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T06:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T08:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK093",
     "title": "Summa Theologica",
+    "slug": "summa-theologica",
     "author": "Thomas Aquinas",
     "author_id": "AU073",
     "year": 1274,
@@ -4735,30 +4000,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T07:00:00Z"
+        "$date": "2025-11-11T07:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T09:00:00Z"
+        "$date": "2025-11-11T09:00:00Z"
       }
     },
     "tags": [
       "theology",
       "metaphysics",
       "ethics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T07:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T09:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK094",
     "title": "Confessions",
+    "slug": "confessions",
     "author": "Saint Augustine",
     "author_id": "AU074",
     "year": 398,
@@ -4786,30 +4043,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T07:15:00Z"
+        "$date": "2025-11-11T07:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T09:15:00Z"
+        "$date": "2025-11-11T09:15:00Z"
       }
     },
     "tags": [
       "theology",
       "autobiography",
       "existential-faith"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T07:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T09:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK095",
     "title": "A History of Western Philosophy",
+    "slug": "a-history-of-western-philosophy",
     "author": "Bertrand Russell",
     "author_id": "AU075",
     "year": 1945,
@@ -4837,30 +4086,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T07:30:00Z"
+        "$date": "2025-11-11T07:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T09:30:00Z"
+        "$date": "2025-11-11T09:30:00Z"
       }
     },
     "tags": [
       "history-of-philosophy",
       "logic",
       "epistemology"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T07:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T09:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK096",
     "title": "Ideas: General Introduction to Pure Phenomenology",
+    "slug": "ideas-general-introduction-to-pure-phenomenology",
     "author": "Edmund Husserl",
     "author_id": "AU076",
     "year": 1913,
@@ -4888,30 +4129,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T07:45:00Z"
+        "$date": "2025-11-11T07:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T09:45:00Z"
+        "$date": "2025-11-11T09:45:00Z"
       }
     },
     "tags": [
       "phenomenology",
       "epistemology",
       "metaphysics"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T07:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T09:45:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK097",
     "title": "The Sublime Object of Ideology",
+    "slug": "the-sublime-object-of-ideology",
     "author": "Slavoj Žižek",
     "author_id": "AU077",
     "year": 1989,
@@ -4939,30 +4172,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T08:00:00Z"
+        "$date": "2025-11-11T08:00:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T10:00:00Z"
+        "$date": "2025-11-11T10:00:00Z"
       }
     },
     "tags": [
       "psychoanalytic-theory",
       "political-philosophy",
       "cultural-critique"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T08:00:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T10:00:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK098",
     "title": "Letter to Menoeceus and Principal Doctrines",
+    "slug": "letter-to-menoeceus-and-principal-doctrines",
     "author": "Epicurus",
     "author_id": "AU078",
     "year": -300,
@@ -4990,30 +4215,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T08:15:00Z"
+        "$date": "2025-11-11T08:15:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T10:15:00Z"
+        "$date": "2025-11-11T10:15:00Z"
       }
     },
     "tags": [
       "ethics",
       "hedonism",
       "ancient-philosophy"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T08:15:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T10:15:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK099",
     "title": "Politics",
+    "slug": "politics",
     "author": "Aristotle",
     "author_id": "AU037",
     "year": -350,
@@ -5041,30 +4258,22 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T08:30:00Z"
+        "$date": "2025-11-11T08:30:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T10:30:00Z"
+        "$date": "2025-11-11T10:30:00Z"
       }
     },
     "tags": [
       "political-philosophy",
       "ethics",
       "social-theory"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T08:30:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T10:30:00Z"
-    }
+    ]
   },
   {
     "book_id": "BK100",
     "title": "The Tao of Pooh",
+    "slug": "the-tao-of-pooh",
     "author": "Benjamin Hoff",
     "author_id": "AU079",
     "year": 1982,
@@ -5092,25 +4301,16 @@
     "upload_info": {
       "admin_id": "ADMIN001",
       "uploaded_at": {
-        "$date": "2024-11-11T08:45:00Z"
+        "$date": "2025-11-11T08:45:00Z"
       },
       "published_at": {
-        "$date": "2024-11-11T10:45:00Z"
+        "$date": "2025-11-11T10:45:00Z"
       }
     },
     "tags": [
       "eastern-philosophy",
       "popular-philosophy",
       "taoism"
-    ],
-    "featured": false,
-    "view_count": 0,
-    "download_count": 0,
-    "createdAt": {
-      "$date": "2024-11-11T08:45:00Z"
-    },
-    "updatedAt": {
-      "$date": "2024-11-11T10:45:00Z"
-    }
+    ]
   }
 ]

@@ -1,0 +1,52 @@
+[
+  {
+    "genre_id": "PG001",
+    "name": "Psychology",
+    "slug": "psychology"
+  },
+  {
+    "genre_id": "PG002",
+    "name": "Philosophy",
+    "slug": "philosophy"
+  },
+  {
+    "genre_id": "PG003",
+    "name": "Literature",
+    "slug": "literature"
+  },
+  {
+    "genre_id": "PG004",
+    "name": "Psychiatry",
+    "slug": "psychiatry"
+  },
+  {
+    "genre_id": "PG005",
+    "name": "Thriller & Horror",
+    "slug": "thriller-and-horror"
+  },
+  {
+    "genre_id": "PG006",
+    "name": "Social Sciences",
+    "slug": "social-sciences"
+  },
+  {
+    "genre_id": "PG007",
+    "name": "Religion & Spirituality",
+    "slug": "religion-and-spirituality"
+  },
+  {
+    "genre_id": "PG008",
+    "name": "Science",
+    "slug": "science"
+  },
+  {
+    "genre_id": "PG009",
+    "name": "Business & Economics",
+    "slug": "business-and-economics"
+  },
+  {
+    "genre_id": "PG010",
+    "name": "Fiction",
+    "slug": "fiction"
+  }
+]

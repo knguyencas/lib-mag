@@ -1,0 +1,368 @@
+[
+  {
+    "tag_id": "TAG001",
+    "name": "depression",
+    "category_id": "CAT004",
+    "category_name": "Clinical Psychology"
+  },
+  {
+    "tag_id": "TAG002",
+    "name": "anxiety",
+    "category_id": "CAT004",
+    "category_name": "Clinical Psychology"
+  },
+  {
+    "tag_id": "TAG003",
+    "name": "trauma",
+    "category_id": "CAT004",
+    "category_name": "Clinical Psychology"
+  },
+  {
+    "tag_id": "TAG004",
+    "name": "obsession",
+    "category_id": "CAT035",
+    "category_name": "Psychological Fiction"
+  },
+  {
+    "tag_id": "TAG005",
+    "name": "alienation",
+    "category_id": "CAT035",
+    "category_name": "Psychological Fiction"
+  },
+  {
+    "tag_id": "TAG006",
+    "name": "identity-crisis",
+    "category_id": "CAT035",
+    "category_name": "Psychological Fiction"
+  },
+  {
+    "tag_id": "TAG007",
+    "name": "mental-illness",
+    "category_id": "CAT004",
+    "category_name": "Clinical Psychology"
+  },
+  {
+    "tag_id": "TAG008",
+    "name": "consciousness",
+    "category_id": "CAT005",
+    "category_name": "Cognitive Psychology"
+  },
+  {
+    "tag_id": "TAG009",
+    "name": "memory",
+    "category_id": "CAT005",
+    "category_name": "Cognitive Psychology"
+  },
+  {
+    "tag_id": "TAG010",
+    "name": "dream-studies",
+    "category_id": "CAT002",
+    "category_name": "Psychoanalysis"
+  },
+  {
+    "tag_id": "TAG011",
+    "name": "instinct-theory",
+    "category_id": "CAT002",
+    "category_name": "Psychoanalysis"
+  },
+  {
+    "tag_id": "TAG012",
+    "name": "cognitive-decline",
+    "category_id": "CAT010",
+    "category_name": "Neuropsychology"
+  },
+  {
+    "tag_id": "TAG015",
+    "name": "behavioral-science",
+    "category_id": "CAT008",
+    "category_name": "Behavioral Psychology"
+  },
+  {
+    "tag_id": "TAG016",
+    "name": "existential-crisis",
+    "category_id": "CAT012",
+    "category_name": "Existentialism"
+  },
+  {
+    "tag_id": "TAG017",
+    "name": "meaning-of-life",
+    "category_id": "CAT012",
+    "category_name": "Existentialism"
+  },
+  {
+    "tag_id": "TAG018",
+    "name": "free-will",
+    "category_id": "CAT014",
+    "category_name": "Metaphysics"
+  },
+  {
+    "tag_id": "TAG019",
+    "name": "consciousness",
+    "category_id": "CAT023",
+    "category_name": "Philosophy of Mind"
+  },
+  {
+    "tag_id": "TAG020",
+    "name": "being-and-nothingness",
+    "category_id": "CAT012",
+    "category_name": "Existentialism"
+  },
+  {
+    "tag_id": "TAG021",
+    "name": "absurdity",
+    "category_id": "CAT025",
+    "category_name": "Absurdism"
+  },
+  {
+    "tag_id": "TAG022",
+    "name": "nihilism",
+    "category_id": "CAT012",
+    "category_name": "Existentialism"
+  },
+  {
+    "tag_id": "TAG024",
+    "name": "morality",
+    "category_id": "CAT018",
+    "category_name": "Moral Philosophy"
+  },
+  {
+    "tag_id": "TAG027",
+    "name": "ontology",
+    "category_id": "CAT014",
+    "category_name": "Metaphysics"
+  },
+  {
+    "tag_id": "TAG033",
+    "name": "narrative",
+    "category_id": "CAT034",
+    "category_name": "Modern Literature"
+  },
+  {
+    "tag_id": "TAG034",
+    "name": "character-study",
+    "category_id": "CAT035",
+    "category_name": "Psychological Fiction"
+  },
+  {
+    "tag_id": "TAG035",
+    "name": "stream-of-consciousness",
+    "category_id": "CAT042",
+    "category_name": "Modernist Fiction"
+  },
+  {
+    "tag_id": "TAG036",
+    "name": "introspection",
+    "category_id": "CAT035",
+    "category_name": "Psychological Fiction"
+  },
+  {
+    "tag_id": "TAG037",
+    "name": "confession",
+    "category_id": "CAT037",
+    "category_name": "Autobiographical Novel"
+  },
+  {
+    "tag_id": "TAG046",
+    "name": "madness",
+    "category_id": "CAT050",
+    "category_name": "Psychopathology"
+  },
+  {
+    "tag_id": "TAG047",
+    "name": "insanity",
+    "category_id": "CAT050",
+    "category_name": "Psychopathology"
+  },
+  {
+    "tag_id": "TAG048",
+    "name": "mental-breakdown",
+    "category_id": "CAT051",
+    "category_name": "Mental Health"
+  },
+  {
+    "tag_id": "TAG049",
+    "name": "institutionalization",
+    "category_id": "CAT056",
+    "category_name": "Psychiatric Treatment"
+  },
+  {
+    "tag_id": "TAG050",
+    "name": "diagnosis",
+    "category_id": "CAT050",
+    "category_name": "Psychopathology"
+  },
+  {
+    "tag_id": "TAG055",
+    "name": "murder",
+    "category_id": "CAT060",
+    "category_name": "Crime Fiction"
+  },
+  {
+    "tag_id": "TAG056",
+    "name": "violence",
+    "category_id": "CAT057",
+    "category_name": "Psychological Thriller"
+  },
+  {
+    "tag_id": "TAG057",
+    "name": "paranoia",
+    "category_id": "CAT057",
+    "category_name": "Psychological Thriller"
+  },
+  {
+    "tag_id": "TAG058",
+    "name": "captivity",
+    "category_id": "CAT058",
+    "category_name": "Psychological Horror"
+  },
+  {
+    "tag_id": "TAG059",
+    "name": "obsession",
+    "category_id": "CAT057",
+    "category_name": "Psychological Thriller"
+  },
+  {
+    "tag_id": "TAG060",
+    "name": "psychological-manipulation",
+    "category_id": "CAT057",
+    "category_name": "Psychological Thriller"
+  },
+  {
+    "tag_id": "TAG062",
+    "name": "crime",
+    "category_id": "CAT060",
+    "category_name": "Crime Fiction"
+  },
+  {
+    "tag_id": "TAG063",
+    "name": "horror",
+    "category_id": "CAT058",
+    "category_name": "Psychological Horror"
+  },
+  {
+    "tag_id": "TAG064",
+    "name": "society",
+    "category_id": "CAT061",
+    "category_name": "Sociology"
+  },
+  {
+    "tag_id": "TAG065",
+    "name": "culture",
+    "category_id": "CAT063",
+    "category_name": "Cultural Studies"
+  },
+  {
+    "tag_id": "TAG066",
+    "name": "power-structures",
+    "category_id": "CAT066",
+    "category_name": "Political Science"
+  },
+  {
+    "tag_id": "TAG067",
+    "name": "inequality",
+    "category_id": "CAT061",
+    "category_name": "Sociology"
+  },
+  {
+    "tag_id": "TAG068",
+    "name": "conformity",
+    "category_id": "CAT061",
+    "category_name": "Sociology"
+  },
+  {
+    "tag_id": "TAG069",
+    "name": "social-order",
+    "category_id": "CAT061",
+    "category_name": "Sociology"
+  },
+  {
+    "tag_id": "TAG073",
+    "name": "faith",
+    "category_id": "CAT067",
+    "category_name": "Theology"
+  },
+  {
+    "tag_id": "TAG074",
+    "name": "salvation",
+    "category_id": "CAT069",
+    "category_name": "Christian Theology"
+  },
+  {
+    "tag_id": "TAG075",
+    "name": "enlightenment",
+    "category_id": "CAT068",
+    "category_name": "Buddhist Philosophy"
+  },
+  {
+    "tag_id": "TAG076",
+    "name": "meditation",
+    "category_id": "CAT068",
+    "category_name": "Buddhist Philosophy"
+  },
+  {
+    "tag_id": "TAG077",
+    "name": "prayer",
+    "category_id": "CAT069",
+    "category_name": "Christian Theology"
+  },
+  {
+    "tag_id": "TAG080",
+    "name": "spiritual-practice",
+    "category_id": "CAT070",
+    "category_name": "Spiritual Literature"
+  },
+  {
+    "tag_id": "TAG082",
+    "name": "brain",
+    "category_id": "CAT072",
+    "category_name": "Neuroscience"
+  },
+  {
+    "tag_id": "TAG083",
+    "name": "consciousness",
+    "category_id": "CAT073",
+    "category_name": "Cognitive Science"
+  },
+  {
+    "tag_id": "TAG084",
+    "name": "quantum-physics",
+    "category_id": "CAT074",
+    "category_name": "Physics"
+  },
+  {
+    "tag_id": "TAG085",
+    "name": "evolution",
+    "category_id": "CAT075",
+    "category_name": "Biology"
+  },
+  {
+    "tag_id": "TAG089",
+    "name": "money-psychology",
+    "category_id": "CAT077",
+    "category_name": "Behavioral Economics"
+  },
+  {
+    "tag_id": "TAG090",
+    "name": "investment",
+    "category_id": "CAT078",
+    "category_name": "Finance"
+  },
+  {
+    "tag_id": "TAG091",
+    "name": "risk",
+    "category_id": "CAT078",
+    "category_name": "Finance"
+  },
+  {
+    "tag_id": "TAG092",
+    "name": "behavioral-bias",
+    "category_id": "CAT077",
+    "category_name": "Behavioral Economics"
+  },
+  {
+    "tag_id": "TAG094",
+    "name": "decision-making",
+    "category_id": "CAT079",
+    "category_name": "Decision Science"
+  }
+]

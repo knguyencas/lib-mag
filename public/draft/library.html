@@ -31,9 +31,9 @@
     <div class="sub_nav">
         <div class="search_input_group">
             <div class="search_input_container">
-                <input type="text" class="search_input" placeholder="Search for author/Guideline">
+                <input type="text" class="search_input" id="searchInput" placeholder="Search for author/Guideline">
             </div>
-            <span class="search-label">Search</span>
+            <span class="search-label" id="searchButton">Search</span>
         </div>
     </div>
 
@@ -47,6 +47,7 @@
         <section class="section for-you-section">
             <h2 class="section-title">For You</h2>
             <div class="for-you-grid" id="forYouGrid">
+                <p style="color: white;">Loading...</p>
             </div>
         </section>
 
@@ -65,41 +66,15 @@
             </div>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Philo-sophy</h2>
-            <div class="section-grid">
-                <div class="book-grid" id="philosophyGrid">
-                </div>
-                <div class="divider-with-button">
-                    <div class="divider-line"></div>
-                    <button class="show-more-btn" data-section="philosophy">
-                        Show more <span class="show-more-icon">▼</span>
-                    </button>
-                    <div class="divider-line"></div>
-                </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <h2 class="section-title">Psycho-logy</h2>
-            <div class="section-grid">
-                <div class="book-grid" id="psychologyGrid">
-                </div>
-                <div class="divider-with-button">
-                    <div class="divider-line"></div>
-                    <button class="show-more-btn" data-section="psychology">
-                        Show more <span class="show-more-icon">▼</span>
-                    </button>
-                    <div class="divider-line"></div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
         <div class="footer-logo">PSYCHE JOURNEY©</div>
     </footer>
 
+    <script src="js/lib-api-service.js"></script>
     <script src="js/library.js"></script>
+
 </body>
 </html>

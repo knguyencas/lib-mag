@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick API Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #333;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+        button:hover {
+            background: #00ff00;
+            color: #000;
+        }
+        pre {
+            background: #000;
+            padding: 15px;
+            border: 1px solid #00ff00;
+            overflow-x: auto;
+            max-height: 500px;
+        }
+        .error {
+            color: #ff0000;
+        }
+        .success {
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Quick API Test</h1>
+    
+    <div>
+        <h3>Backend URL: <span id="apiUrl">http://localhost:3000/api</span></h3>
+        <button onclick="testConnection()">1. Test Connection</button>
+        <button onclick="testGenres()">2. Test Genres</button>
+        <button onclick="testBooks()">3. Test Books</button>
+        <button onclick="testAllEndpoints()">4. Test All</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3000/api';
+
+        function log(message, isError = false) {
+            const resultDiv = document.getElementById('result');
+            const className = isError ? 'error' : 'success';
+            resultDiv.innerHTML += `<div class="${className}">${message}</div>`;
+        }
+
+        function logJSON(data) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        function clearLog() {
+            document.getElementById('result').innerHTML = '<h3>Results:</h3>';
+        }
+
+        async function testConnection() {
+            clearLog();
+            log('Testing connection to backend...');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/books?limit=1`);
+                
+                if (response.ok) {
+                    log(`✓ SUCCESS: Connected to backend (${response.status})`);
+                    const data = await response.json();
+                    logJSON(data);
+                } else {
+                    log(`✗ FAILED: Status ${response.status}`, true);
+                }
+            } catch (error) {
+                log(`✗ ERROR: ${error.message}`, true);
+                log('Is backend running? Run: npm run dev', true);
+            }
+        }
+
+        async function testGenres() {
+            clearLog();
+            log('Testing /books/metadata/genres...');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/books/metadata/genres`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✓ SUCCESS: Got genres`);
+                    logJSON(data);
+                    
+                    if (data.data && data.data.length > 0) {
+                        log(`Found ${data.data.length} genres: ${data.data.join(', ')}`);
+                    } else {
+                        log('⚠ WARNING: No genres returned', true);
+                    }
+                } else {
+                    log(`✗ FAILED: Status ${response.status}`, true);
+                }
+            } catch (error) {
+                log(`✗ ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function testBooks() {
+            clearLog();
+            log('Testing /books endpoint...');
+
+            try {
+                // Test 1: Get all books
+                log('\n--- Test 1: Get all published books ---');
+                const response1 = await fetch(`${API_BASE_URL}/books?status=published&limit=5`);
+                
+                if (response1.ok) {
+                    const data1 = await response1.json();
+                    log(`✓ SUCCESS: Got ${data1.data?.length || 0} books`);
+                    log(`Total in database: ${data1.pagination?.total || 0}`);
+                    
+                    if (data1.data && data1.data.length > 0) {
+                        log(`\nFirst book: ${data1.data[0].title}`);
+                        logJSON(data1.data[0]);
+                    } else {
+                        log('⚠ WARNING: No books found in database!', true);
+                        log('You need to add books with status="published"', true);
+                    }
+                } else {
+                    log(`✗ FAILED: Status ${response1.status}`, true);
+                }
+
+                // Test 2: Get by genre
+                log('\n--- Test 2: Get books by genre (Psychology) ---');
+                const response2 = await fetch(`${API_BASE_URL}/books?primary_genre=Psychology&limit=3`);
+                
+                if (response2.ok) {
+                    const data2 = await response2.json();
+                    log(`✓ SUCCESS: Got ${data2.data?.length || 0} Psychology books`);
+                    
+                    if (data2.data && data2.data.length > 0) {
+                        data2.data.forEach(book => {
+                            log(`  - ${book.title} (${book.rating || 0}⭐)`);
+                        });
+                    }
+                } else {
+                    log(`✗ FAILED: Status ${response2.status}`, true);
+                }
+
+            } catch (error) {
+                log(`✗ ERROR: ${error.message}`, true);
+            }
+        }
+
+        async function testAllEndpoints() {
+            clearLog();
+            log('=== COMPREHENSIVE API TEST ===\n');
+
+            // Test 1: Connection
+            log('1️⃣ Testing connection...');
+            try {
+                const r1 = await fetch(`${API_BASE_URL}/books?limit=1`);
+                if (r1.ok) {
+                    log('  ✓ Backend is running');
+                } else {
+                    log(`  ✗ Backend returned ${r1.status}`, true);
+                    return;
+                }
+            } catch (e) {
+                log('  ✗ Cannot connect to backend!', true);
+                log('  Make sure to run: npm run dev', true);
+                return;
+            }
+
+            // Test 2: Genres
+            log('\n2️⃣ Testing genres endpoint...');
+            try {
+                const r2 = await fetch(`${API_BASE_URL}/books/metadata/genres`);
+                if (r2.ok) {
+                    const d2 = await r2.json();
+                    if (d2.data && d2.data.length > 0) {
+                        log(`  ✓ Found ${d2.data.length} genres`);
+                        log(`  Genres: ${d2.data.join(', ')}`);
+                    } else {
+                        log('  ⚠ No genres found', true);
+                    }
+                } else {
+                    log(`  ✗ Failed (${r2.status})`, true);
+                }
+            } catch (e) {
+                log(`  ✗ Error: ${e.message}`, true);
+            }
+
+            // Test 3: Books count
+            log('\n3️⃣ Checking database books...');
+            try {
+                const r3 = await fetch(`${API_BASE_URL}/books?limit=1`);
+                if (r3.ok) {
+                    const d3 = await r3.json();
+                    const total = d3.pagination?.total || 0;
+                    log(`  ✓ Total books: ${total}`);
+                    
+                    if (total === 0) {
+                        log('  ⚠ WARNING: Database is empty!', true);
+                        log('  You need to add books to the database', true);
+                    }
+                } else {
+                    log(`  ✗ Failed (${r3.status})`, true);
+                }
+            } catch (e) {
+                log(`  ✗ Error: ${e.message}`, true);
+            }
+
+            // Test 4: Published books
+            log('\n4️⃣ Checking published books...');
+            try {
+                const r4 = await fetch(`${API_BASE_URL}/books?status=published&limit=1`);
+                if (r4.ok) {
+                    const d4 = await r4.json();
+                    const total = d4.pagination?.total || 0;
+                    log(`  ✓ Published books: ${total}`);
+                    
+                    if (total === 0) {
+                        log('  ⚠ WARNING: No published books!', true);
+                        log('  Fix: Set books status to "published"', true);
+                    }
+                } else {
+                    log(`  ✗ Failed (${r4.status})`, true);
+                }
+            } catch (e) {
+                log(`  ✗ Error: ${e.message}`, true);
+            }
+
+            // Test 5: Sample book
+            log('\n5️⃣ Fetching sample book...');
+            try {
+                const r5 = await fetch(`${API_BASE_URL}/books?status=published&limit=1`);
+                if (r5.ok) {
+                    const d5 = await r5.json();
+                    if (d5.data && d5.data.length > 0) {
+                        const book = d5.data[0];
+                        log(`  ✓ Sample book found`);
+                        log(`  Title: ${book.title}`);
+                        log(`  Author: ${book.author}`);
+                        log(`  Genre: ${book.primary_genre}`);
+                        log(`  Rating: ${book.rating || 0}`);
+                        log(`  Cover: ${book.coverImage_cloud?.url ? 'Yes' : 'No'}`);
+                    }
+                } else {
+                    log(`  ✗ Failed (${r5.status})`, true);
+                }
+            } catch (e) {
+                log(`  ✗ Error: ${e.message}`, true);
+            }
+
+            log('\n=== TEST COMPLETE ===');
+        }
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            setTimeout(testAllEndpoints, 500);
+        });
+    </script>
+</body>
+</html>
