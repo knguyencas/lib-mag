@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Scroll effect for header logo
+  const header = document.querySelector('.header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  });
+
   // Logo click
   const logo = document.querySelector('.logo');
   if (logo) {
@@ -67,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
       searchError.textContent = '';
     }
 
-    // Redirect to search results page
     window.location.href = `search-results.html?q=${encodeURIComponent(searchText)}`;
   }
 
@@ -80,10 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   async function loadMostReadBooks() {
     try {
-      // Show loading state
       mostReadGrid.innerHTML = '<div style="color: #666; padding: 20px;">Loading books...</div>';
 
-      // Load API service if not already loaded
       if (typeof apiService === 'undefined') {
         console.error('API Service not loaded');
         mostReadGrid.innerHTML = '<div style="color: #666; padding: 20px;">Unable to load books</div>';
@@ -101,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Clear loading message
       mostReadGrid.innerHTML = '';
 
-      // Add all books from database
       books.forEach(book => {
         const bookEl = document.createElement('a');
         bookEl.href = `book-detail.html?id=${book.book_id}`;

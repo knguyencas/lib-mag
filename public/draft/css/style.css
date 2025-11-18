@@ -10,6 +10,7 @@ body.home {
   margin: 0 auto;
   background: #fff;
   color: #000;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,13 +65,14 @@ button, input {
 }
 
 /*
-   HEADER
+   HEADER - Library Style with Shrinking Logo on Scroll
 */
-.header{
+.header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background: #fff;
+  transition: all 0.3s ease;
 }
 
 .first_header {
@@ -79,57 +81,90 @@ button, input {
   align-items: center;
   justify-content: flex-end;
   gap: 22px;
-  padding-right: 40px;
+  padding-right: 52px;
   position: relative;
+  transition: height 0.3s ease;
 }
 
+/* Logo - Large by default, shrinks when scrolled */
 .logo {
   position: absolute;
-  left: 80px;
+  left: 52px;
   font-size: 65px;
-  line-height: 110%;
-  letter-spacing: -1.95px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  transition: font-size 0.3s ease, opacity 0.3s ease;
+  margin: 0;
+  line-height: 1;
   white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+/* When scrolled - logo shrinks to library size */
+.header.scrolled .logo {
+  font-size: 24px;
+}
+
+.header.scrolled .first_header {
+  height: 100px; /* Keep same height as library */
 }
 
 .first_header a {
-  text-align: center;
+  color: #000;
   font-size: 15px;
   font-weight: 300;
-  line-height: 145%;
-  letter-spacing: -0.12px;
-  text-transform: capitalize;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .first_header a:hover {
-  font-weight: 700;
+  opacity: 0.5;
 }
 
 nav {
   height: 80px;
-  padding: 0px 611px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 
 .nav_bar {
   display: flex;
   list-style: none;
   gap: 51px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_bar li {
+  margin: 0;
 }
 
 .nav_bar a {
-  font-size: 20px;
+  color: #000;
+  font-size: 16px;
   font-weight: 300;
-  line-height: 145%;
-  letter-spacing: -0.15px;
-  text-transform: capitalize;
-  transition: 0.2s;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
-.nav_bar a.active,
 .nav_bar a:hover {
+  opacity: 0.5;
+}
+
+.nav_bar a.active {
   font-weight: 700;
 }
 
@@ -138,13 +173,13 @@ nav {
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  padding: 0 40px;
+  padding: 8px 52px;
 }
 
 .search_bar {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 6px;
 }
 
@@ -160,7 +195,9 @@ nav {
   background-color: #EEEEEE;
   border: none;
   padding: 0 8px;
-  outline:none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
 }
 
 .search_error {
@@ -169,7 +206,7 @@ nav {
   color: #db5a5a;
   font-size: 14px;
   min-height: 20px;
-  align-items: center;
+  text-align: right;
 }
 
 .search_btn {
@@ -180,19 +217,26 @@ nav {
   font-size: 12px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.125px;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-.search_btn.active,
 .search_btn:hover {
   font-weight: 700;
+  transform: translateY(-1px);
 }
 
-.first_impression_wrapped{
+.search_btn:active {
+  transform: translateY(1px);
+}
+
+.first_impression_wrapped {
   display: flex;
   width: 100%;
 }
-.slogan, .introduction{
+
+.slogan, .introduction {
   flex: 1;
   width: 50%;
 }
@@ -206,23 +250,100 @@ nav {
 
 .maintext {
   text-align: center;
+  position: relative;
 }
 
 .maintext h2 {
   font-weight: 600;
 }
 
-.maintext h2 .italic_part {
+/* Sliding animations for main title - only on load */
+.slide-from-left {
+  display: inline-block;
   font-style: italic;
   font-weight: 300;
+  animation: slideFromLeft 2s ease-out forwards;
+  transform: translateX(-100vw);
 }
 
+.slide-from-right {
+  display: inline-block;
+  animation: slideFromRight 2s ease-out forwards;
+  transform: translateX(100vw);
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Floating scattered words - gentle floating */
 .subtext {
   text-align: center;
   font-family: "Cardo", serif;
   font-size: 25px;
   font-weight: 400;
   margin-top: 16px;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  transition: all 0.5s ease;
+}
+
+.float-word {
+  display: inline-block;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: floatGentle 8s ease-in-out infinite;
+  position: relative;
+}
+
+.float-word:nth-child(1) { animation-delay: 0s; }
+.float-word:nth-child(2) { animation-delay: 0.3s; }
+.float-word:nth-child(3) { animation-delay: 0.6s; }
+.float-word:nth-child(4) { animation-delay: 0.9s; }
+.float-word:nth-child(5) { animation-delay: 1.2s; }
+.float-word:nth-child(6) { animation-delay: 1.5s; }
+
+/* Gentle floating animation */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(8px, -8px);
+  }
+  50% {
+    transform: translate(0, -12px);
+  }
+  75% {
+    transform: translate(-8px, -8px);
+  }
+}
+
+/* On hover - words align straight */
+.subtext:hover .float-word {
+  animation: none;
+  transform: translate(0, 0) !important;
 }
 
 /* 
@@ -244,6 +365,15 @@ nav {
   border-radius: 12px;
   font-size: 20px;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn.black {
@@ -268,37 +398,59 @@ nav {
 
 .our_goals h3 {
   width: 160px;
+  animation: floatBounce 8s ease-in-out infinite;
 }
 
 .our_goals p {
   width: 706px;
   margin-top: 10px;
+  animation: floatBounce 8s ease-in-out infinite 1s;
 }
 
-.our_goals{
+.our_goals {
   flex: 1;
   padding-right: 15px;
+  position: relative;
 }
 
 .abilities {
   text-align: right;
   flex: 1;
   padding-left: 15px;
+  position: relative;
 }
 
 .abilities h3 {
   text-align: right;
   margin: 0;
+  animation: floatBounce 8s ease-in-out infinite 2s;
 }
 
 .abilities ul {
   list-style: none;
   margin-top: 10px;
   padding-right: 0;
+  animation: floatBounce 8s ease-in-out infinite 3s;
 }
 
 .abilities li {
   margin-bottom: 6px;
+}
+
+/* Bouncing float animation - up/down and left/right */
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(15px, -10px);
+  }
+  50% {
+    transform: translate(0, -20px);
+  }
+  75% {
+    transform: translate(-15px, -10px);
+  }
 }
 
 .most_read {
@@ -339,26 +491,4 @@ nav {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.search_btn {
-    align-self: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.125px;
-    transition: all 0.2s ease;
-    user-select: none;
-}
-
-.search_btn:hover {
-    font-weight: 700;
-    transform: translateY(-1px);
-}
-
-.search_btn:active {
-    transform: translateY(1px);
 }

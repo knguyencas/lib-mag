@@ -82,7 +82,6 @@ async function performSearch(keyword) {
         console.log('Search result:', result);
         
         if (result.success && result.data && result.data.length > 0) {
-            // Show results
             displayResults(result.data, keyword);
             
             if (searchCount) {
