@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register – Psyche Journey</title>
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="first_header">
+      <h1 class="logo">PSYCHE JOURNEY</h1>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </div>
+    <nav>
+      <ul class="nav_bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="perspective.html">Perspective</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="auth-card">
+      <h1 class="auth-title">Register</h1>
+
+      <div
+        id="registerSuccess"
+        class="success-text"
+        style="display: none"
+      >
+        Account created! Now you can sign in.
+      </div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="regUsername">Username</label>
+          <input
+            id="regUsername"
+            type="text"
+            class="auth-input"
+            autocomplete="username"
+            placeholder="Enter username"
+            required
+          />
+          <div class="error-text" id="regUsernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regPassword">Password</label>
+          <div class="input-wrapper">
+            <input
+              id="regPassword"
+              type="password"
+              class="auth-input"
+              autocomplete="new-password"
+              placeholder="Password (min 8 characters)"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="regPassword"
+              aria-label="Toggle password visibility"
+            ></button>
+          </div>
+          <div class="error-text" id="regPasswordError"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regConfirmPassword"
+            >Confirm Password</label
+          >
+          <div class="input-wrapper">
+            <input
+              id="regConfirmPassword"
+              type="password"
+              class="auth-input"
+              autocomplete="new-password"
+              placeholder="Re-enter password"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="regConfirmPassword"
+              aria-label="Toggle password visibility"
+            ></button>
+          </div>
+          <div class="error-text" id="regConfirmPasswordError"></div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="regTerms" />
+          <label for="regTerms">
+            I accept the
+            <a href="#" onclick="return false;">Terms and Conditions</a>
+          </label>
+        </div>
+        <div class="error-text" id="regTermsError"></div>
+
+        <button type="submit" class="primary-btn" id="registerBtn">
+          Register
+        </button>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span>OR</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="social-row">
+        <button
+          class="social-btn"
+          type="button"
+          id="regGoogleBtn"
+          title="Sign up with Google"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+          />
+        </button>
+      </div>
+
+      <p class="bottom-text">
+        Already have an account?
+        <a href="login.html">Sign In</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2025 Psyche Journey · a small corner for wandering minds.
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

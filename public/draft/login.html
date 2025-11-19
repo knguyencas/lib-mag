@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In – Psyche Journey</title>
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="first_header">
+      <h1 class="logo">PSYCHE JOURNEY</h1>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </div>
+    <nav>
+      <ul class="nav_bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="perspective.html">Perspective</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="auth-card">
+      <h1 class="auth-title">Sign In</h1>
+
+      <div
+        id="loginErrorGlobal"
+        class="error-text"
+        style="margin-bottom: 8px; display: none"
+      ></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginUsername">Username</label>
+          <input
+            id="loginUsername"
+            type="text"
+            class="auth-input"
+            autocomplete="username"
+            placeholder="Enter username"
+            required
+          />
+          <div class="error-text" id="loginUsernameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <div class="input-wrapper">
+            <input
+              id="loginPassword"
+              type="password"
+              class="auth-input"
+              autocomplete="current-password"
+              placeholder="Password"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="loginPassword"
+              aria-label="Toggle password visibility"
+            ></button>
+          </div>
+          <div class="error-text" id="loginPasswordError"></div>
+        </div>
+
+        <div class="inline-row">
+          <label>
+            <input type="checkbox" id="loginRemember" />
+            Remember me
+          </label>
+          <a href="#" onclick="return false;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="primary-btn" id="loginBtn">
+          Sign In
+        </button>
+      </form>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span>OR</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="social-row">
+        <button
+          class="social-btn"
+          type="button"
+          id="loginGoogleBtn"
+          title="Sign in with Google"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+          />
+        </button>
+      </div>
+
+      <p class="bottom-text">
+        Don't have an account?
+        <a href="register.html">Register Now</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © 2025 Psyche Journey · built for curious minds.
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
