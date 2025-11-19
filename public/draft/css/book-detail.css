@@ -95,7 +95,6 @@ nav {
     font-weight: 300;
 }
 
-/* SEARCH BAR - MATCHING HOME STYLE */
 .sub_nav {
     display: flex;
     justify-content: flex-end;
@@ -366,10 +365,11 @@ nav {
 
 .contents-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 60px;
-    max-width: 600px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 40px 60px;
+    width: 100%;
 }
+
 
 .part-title {
     font-family: 'Poppins', sans-serif;

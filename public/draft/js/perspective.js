@@ -253,14 +253,16 @@ function setupSearchToggle() {
 
 function handleSearch(input, errorSpan) {
   const query = input.value.trim();
+
   if (!query) {
     if (errorSpan) errorSpan.textContent = 'Please enter a keyword.';
     return;
   }
-  if (errorSpan) errorSpan.textContent = '';
 
-  window.location.href = `library.html?search=${encodeURIComponent(query)}`;
+  if (errorSpan) errorSpan.textContent = '';
+  window.location.href = `search-results.html?search=${encodeURIComponent(query)}`;
 }
+
 
 async function loadGenres() {
   const select = document.getElementById('genreSelect');

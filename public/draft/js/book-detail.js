@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('=== BOOK DETAIL PAGE INITIALIZED ===');
-
     const bookId = getBookIdFromURL();
     console.log('Book ID from URL:', bookId);
 
@@ -372,7 +370,14 @@ function initializeSearch() {
     btn.addEventListener('click', () => {
         const q = input.value.trim();
         if (!q) return;
-        window.location.href = `library.html?search=${encodeURIComponent(q)}`;
+
+        window.location.href = `search-results.html?search=${encodeURIComponent(q)}`;
+    });
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            btn.click();
+        }
     });
 }
 
