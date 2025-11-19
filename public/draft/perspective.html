@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Psyche Journey – Perspective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;300;400;500;600;700&family=Cardo:wght@400;700&family=Square+Peg&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/perspective.css" />
+  <script defer src="js/perspective.js"></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="first_header">
+      <a href="index.html" style="text-decoration: none;">
+        <h1 class="logo">PSYCHE JOURNEY</h1>
+      </a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+      <!-- KHÔNG có search ở header nữa -->
+    </div>
+
+    <nav>
+      <ul class="nav_bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="perspective.html" class="active">Perspective</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SEARCH BAR dưới nav -->
+  <div class="sub_nav" id="subNav">
+    <div class="search_bar">
+      <!-- Nút Search ban đầu -->
+      <button id="searchToggle" class="search_toggle_btn">Search</button>
+
+      <!-- Group input + button, ẩn cho tới khi bấm searchToggle -->
+      <div class="search_input_group" id="searchInputGroup">
+        <input type="text" id="perspectiveSearchInput" class="search_input" placeholder="Enter">
+        <button id="perspectiveSearchBtn" class="search_btn">Search</button>
+      </div>
+
+      <span id="searchError" class="search_error"></span>
+    </div>
+  </div>
+
+  <!-- FRIENDLY REMINDER overlay -->
+  <section class="reminder-overlay" id="reminderOverlay">
+    <div class="reminder-inner">
+      <h1 class="reminder-title">Friendly reminder</h1>
+      <div class="reminder-text">
+        <p>Please maintain a respectful, equal, and friendly tone in all discussions.</p>
+        <p>Shared content should uphold accuracy and academic integrity, avoiding
+           misinformation or distortion.</p>
+        <p>This space is not for political viewpoints or criticism of any specific organization
+           or government.</p>
+        <p>Thank you for helping keep this environment positive and safe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="perspective-page">
+    <section class="content-row">
+      <div class="posts-column" id="postsColumn">
+        <!-- Posts render bằng JS -->
+      </div>
+
+      <aside class="sort-column">
+        <div class="sort-panel scroll-animate">
+          <div class="sort-header-bar">
+            <span class="sort-title">Sort and Filter</span>
+          </div>
+
+          <div class="sort-label">Sort By</div>
+          <div class="sort-divider"></div>
+          <select class="sort-select" id="sortSelect">
+            <option value="newest">Newest update (default)</option>
+            <option value="upvotes">Most upvote</option>
+          </select>
+
+          <div class="sort-label sort-with-label">With</div>
+          <div class="sort-divider"></div>
+          <select class="sort-select" id="genreSelect">
+            <option value="all">All primary genres</option>
+          </select>
+
+          <div class="clear-filter" id="clearFilterBtn">Clear Filter</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PAGINATION -->
+    <div class="perspective-pagination" id="perspectivePagination"></div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Psyche Journey. A quiet place for thoughts, perspectives, and conversations.</p>
+  </footer>
+</body>
+</html>

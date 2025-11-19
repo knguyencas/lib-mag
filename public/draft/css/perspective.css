@@ -1,0 +1,602 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F3F3F3;
+  color: #000000;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* ==========================
+   HEADER (giống book-detail)
+   ========================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #F3F3F3;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.first_header {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  padding-right: 52px;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  left: 52px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  color: #000;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.first_header a {
+  color: #000;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 145%;
+  letter-spacing: -0.075px;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.first_header a:hover {
+  opacity: 0.5;
+}
+
+nav {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_bar {
+  display: flex;
+  list-style: none;
+  gap: 51px;
+}
+
+.nav_bar a {
+  color: #000;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 145%;
+  letter-spacing: -0.08px;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav_bar a:hover {
+  opacity: 0.5;
+}
+
+/* active = bold như library */
+.nav_bar a.active {
+  font-weight: 700 !important;
+}
+
+/* ==========================
+   SEARCH BAR dưới nav
+   ========================== */
+
+.sub_nav {
+  background: #F3F3F3;
+  padding: 8px 52px;
+}
+
+.search_bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* nút Search ban đầu */
+.search_toggle_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.search_toggle_btn:hover {
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.search_toggle_btn:active {
+  transform: translateY(1px);
+}
+
+/* group input + btn – ẩn cho tới khi click toggle */
+.search_input_group {
+  display: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.search_input_group.visible {
+  display: flex;
+}
+
+.search_input {
+  width: 200px;
+  height: 30px;
+  background-color: #EEEEEE;
+  border: none;
+  padding: 0 8px;
+  outline: none;
+  font-size: 12px;
+  color: #000;
+}
+
+.search_input::placeholder {
+  color: #999;
+}
+
+.search_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.2s ease;
+  user-select: none;
+  color: #000;
+}
+
+.search_btn:hover {
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.search_btn:active {
+  transform: translateY(1px);
+}
+
+.search_error {
+  display: block;
+  font-family: "Cardo", serif;
+  color: #db5a5a;
+  font-size: 14px;
+  min-height: 20px;
+  text-align: right;
+}
+
+/* ==========================
+   FRIENDLY REMINDER overlay
+   ========================== */
+
+.reminder-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.reminder-inner {
+  width: 954px;
+  text-align: left;
+}
+
+.reminder-title {
+  color: #AF0000;
+  font-family: "Square Peg", cursive;
+  font-size: 150px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: -4.5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.reminder-text {
+  color: #000;
+  font-family: "Cardo", serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: -0.9px;
+  text-align: center;
+}
+
+.reminder-text p + p {
+  margin-top: 6px;
+}
+
+/* ==========================
+   PAGE CONTENT
+   ========================== */
+
+.perspective-page {
+  position: relative;
+  z-index: 2;
+  padding: 220px 80px 80px;
+}
+
+/* POSTS + SORT LAYOUT */
+
+.content-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.posts-column {
+  width: 1174px;
+}
+
+.sort-column {
+  width: 383px;
+  margin-left: 40px;
+}
+
+/* POST CARD */
+
+.post-card {
+  position: relative;
+  background: #D9D9D9;
+  width: 1174px;
+  height: 460px;
+  flex-shrink: 0;
+  padding: 24px 30px 24px 30px;
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.post-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.post-avatar {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #B0B0B0;
+}
+
+.post-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.post-topic-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: baseline;
+}
+
+.post-topic {
+  color: #2A2A2A;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+  letter-spacing: -0.1px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+}
+
+.post-by {
+  color: #2A2A2A;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 145%;
+  letter-spacing: -0.1px;
+  text-transform: capitalize;
+}
+
+.post-tag {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #666;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.post-date {
+  position: absolute;
+  right: 32px;
+  top: 26px;
+  color: #828282;
+  text-align: center;
+  font-family: "Consolas", monospace;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+  letter-spacing: -0.06px;
+  text-transform: capitalize;
+}
+
+.post-content {
+  margin-top: 10px;
+  width: 1115px;
+  color: #000;
+  font-family: "Cardo", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: -0.6px;
+}
+
+.post-content p + p {
+  margin-top: 4px;
+}
+
+.post-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 60px;
+  padding-right: 32px;
+}
+
+.vote-link {
+  color: #000;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 145%;
+  letter-spacing: -0.07px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.vote-link.favorite-active {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* SORT PANEL */
+
+.sort-panel {
+  width: 383px;
+  background: #D9D9D9;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25) inset;
+  padding: 20px 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sort-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sort-header-bar {
+  width: 310px;
+  height: 28px;
+  background: #F0F0F0;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+}
+
+.sort-title {
+  text-transform: capitalize;
+}
+
+.sort-label {
+  width: 310px;
+  color: #3A3A3A;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+  letter-spacing: -0.075px;
+  text-transform: capitalize;
+}
+
+.sort-with-label {
+  margin-top: 6px;
+}
+
+.sort-divider {
+  width: 310px;
+  height: 1px;
+  background: #FFF;
+}
+
+.sort-select {
+  width: 310px;
+  height: 30px;
+  border: 0.5px solid #000;
+  background: #F0F0F0;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  padding: 4px 10px;
+  outline: none;
+}
+
+.clear-filter {
+  width: 310px;
+  text-align: right;
+  margin-top: 8px;
+  color: #828282;
+  font-family: "Consolas", monospace;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 145%;
+  letter-spacing: -0.06px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+/* ==========================
+   PAGINATION
+   ========================== */
+
+.perspective-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 120px;
+  padding-bottom: 60px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.perspective-pagination.visible {
+  opacity: 1;
+}
+
+.pagination-inner {
+  height: 70px;
+  padding: 0 30px;
+  border-radius: 35px;
+  background: #848484;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.page-dot,
+.page-number {
+  min-width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.page-dot {
+  background: #d9d9d9;
+  color: #000;
+  cursor: default;
+}
+
+.page-number {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+}
+
+.page-number:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.page-number.active {
+  background: #d9d9d9;
+  color: #000;
+}
+
+.page-prev,
+.page-next {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #d9d9d9;
+  padding: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.page-prev:hover:not(:disabled),
+.page-next:hover:not(:disabled) {
+  color: #fff;
+}
+
+.page-prev:disabled,
+.page-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ==========================
+   FOOTER
+   ========================== */
+
+.footer {
+  border-top: 1px solid #E0E0E0;
+  padding: 24px 52px 40px;
+  font-size: 12px;
+  color: #666;
+  background: #F3F3F3;
+  text-align: left;
+}

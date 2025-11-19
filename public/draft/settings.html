@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Psyche Journey – Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/settings.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="first_header">
+      <a href="index.html" style="text-decoration: none;">
+        <h1 class="logo">PSYCHE JOURNEY</h1>
+      </a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </div>
+
+    <nav>
+      <ul class="nav_bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="themes.html">Themes</a></li>
+        <li><a href="perspective.html">Perspective</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="settings.html" class="active">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="settings-page">
+    <section class="settings-hero">
+      <div class="settings-hero-left">
+        <div class="settings-avatar">
+          <span>ST</span>
+        </div>
+        <div class="settings-user-info">
+          <h2 class="settings-username">stckww</h2>
+          <p class="settings-email">cas@example.com</p>
+          <p class="settings-role">Psyche Journey reader / contributor</p>
+        </div>
+      </div>
+      <div class="settings-hero-right">
+        <button class="btn-outline" id="btnEditProfileTop">Edit profile</button>
+      </div>
+    </section>
+
+    <section class="settings-layout">
+      <!-- SIDE NAV -->
+      <aside class="settings-sidebar">
+        <h3 class="sidebar-title">Sections</h3>
+        <ul class="sidebar-list">
+          <li><button class="sidebar-link active" data-target="#profileSettings">Profile</button></li>
+          <li><button class="sidebar-link" data-target="#readingSettings">Reading</button></li>
+          <li><button class="sidebar-link" data-target="#appearanceSettings">Appearance</button></li>
+          <li><button class="sidebar-link" data-target="#notificationSettings">Notifications</button></li>
+          <li><button class="sidebar-link" data-target="#privacySettings">Privacy</button></li>
+          <li><button class="sidebar-link" data-target="#accountSettings">Account</button></li>
+        </ul>
+      </aside>
+
+      <!-- CONTENT CARDS -->
+      <section class="settings-content">
+
+        <!-- PROFILE -->
+        <section class="settings-card" id="profileSettings">
+          <div class="card-header">
+            <h3>Profile</h3>
+            <p>Basic information that appears on your public profile.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <label for="displayName">Display name</label>
+              <input type="text" id="displayName" placeholder="stckww">
+            </div>
+
+            <div class="form-row">
+              <label for="bio">Short bio</label>
+              <textarea id="bio" rows="3" placeholder="Write a short line about who you are or what you’re reading lately."></textarea>
+            </div>
+
+            <div class="form-row double">
+              <div>
+                <label for="location">Location</label>
+                <input type="text" id="location" placeholder="Ho Chi Minh City, Vietnam">
+              </div>
+              <div>
+                <label for="lang">Interface language</label>
+                <select id="lang">
+                  <option value="en" selected>English</option>
+                  <option value="vi">Tiếng Việt</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-outline" type="button">Cancel</button>
+              <button class="btn-primary" id="saveProfileBtn" type="button">Save changes</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- READING -->
+        <section class="settings-card" id="readingSettings">
+          <div class="card-header">
+            <h3>Reading preferences</h3>
+            <p>How you prefer to read books and posts in Psyche Journey.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row double">
+              <div>
+                <label for="fontSize">Base font size</label>
+                <select id="fontSize">
+                  <option value="small">Small</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="large">Large</option>
+                </select>
+              </div>
+              <div>
+                <label for="lineHeight">Line spacing</label>
+                <select id="lineHeight">
+                  <option value="compact">Compact</option>
+                  <option value="comfortable" selected>Comfortable</option>
+                  <option value="wide">Wide</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Justified text</p>
+                <p class="toggle-desc">Align book and post paragraphs to both left and right (like printed books).</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="justifiedToggle" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Show reading progress</p>
+                <p class="toggle-desc">Display page / chapter progress on the reading screen.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="progressToggle" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-outline" type="button">Reset to default</button>
+              <button class="btn-primary" type="button">Save preferences</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- APPEARANCE -->
+        <section class="settings-card" id="appearanceSettings">
+          <div class="card-header">
+            <h3>Appearance</h3>
+            <p>Theme and visual mood of the reading environment.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <label>Theme</label>
+              <div class="theme-options">
+                <label class="theme-pill active">
+                  <input type="radio" name="theme" value="light" checked>
+                  <span>Light</span>
+                </label>
+                <label class="theme-pill">
+                  <input type="radio" name="theme" value="dark">
+                  <span>Dark</span>
+                </label>
+                <label class="theme-pill">
+                  <input type="radio" name="theme" value="system">
+                  <span>Follow system</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="accentColor">Accent color</label>
+              <select id="accentColor">
+                <option value="classic" selected>Classic black</option>
+                <option value="deepred">Deep red</option>
+                <option value="forest">Forest green</option>
+                <option value="ocean">Muted blue</option>
+              </select>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Reduce animation</p>
+                <p class="toggle-desc">Turn off most micro-animations for a calmer experience.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="reduceMotionToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-outline" type="button">Preview</button>
+              <button class="btn-primary" type="button">Apply</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section class="settings-card" id="notificationSettings">
+          <div class="card-header">
+            <h3>Notifications</h3>
+            <p>When Psyche Journey is allowed to tap you on the shoulder.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Email – replies to your comments</p>
+                <p class="toggle-desc">Get an email when someone replies to your comment on a book or perspective post.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="notifReplies" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Email – new perspectives</p>
+                <p class="toggle-desc">Occasional summary of new posts in themes and perspectives you follow.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="notifPerspectives">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Product news</p>
+                <p class="toggle-desc">Updates about new features and experiments. Rare, and only when meaningful.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="notifProduct">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-outline" type="button">Mute all</button>
+              <button class="btn-primary" type="button">Save</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRIVACY -->
+        <section class="settings-card" id="privacySettings">
+          <div class="card-header">
+            <h3>Privacy</h3>
+            <p>Control what other readers can see about you.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Show reading activity</p>
+                <p class="toggle-desc">Allow others to see what you’re currently reading on your profile.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="activityToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-row toggle-row">
+              <div class="toggle-text">
+                <p class="toggle-title">Public favorites</p>
+                <p class="toggle-desc">Make your favorite books and posts visible to other users.</p>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="favoritesToggle" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label for="profileVisibility">Profile visibility</label>
+              <select id="profileVisibility">
+                <option value="public" selected>Public</option>
+                <option value="readers">Visible to logged-in readers only</option>
+                <option value="private">Only me</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-primary" type="button">Save privacy settings</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACCOUNT -->
+        <section class="settings-card" id="accountSettings">
+          <div class="card-header">
+            <h3>Account</h3>
+            <p>Login and data controls.</p>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <label for="emailAccount">Email</label>
+              <input type="email" id="emailAccount" placeholder="cas@example.com">
+            </div>
+
+            <div class="form-row">
+              <label>Password</label>
+              <button class="btn-text" type="button" id="changePasswordBtn">Change password</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="danger-zone">
+              <h4>Danger zone</h4>
+              <p>Export your data or permanently delete your account from Psyche Journey.</p>
+              <div class="danger-actions">
+                <button class="btn-outline" type="button">Export reading data</button>
+                <button class="btn-danger" type="button">Delete account</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Psyche Journey. Settings for a quieter, more intentional reading space.</p>
+  </footer>
+<script defer src="js/settings.js"></script>
+</body>
+</html>
