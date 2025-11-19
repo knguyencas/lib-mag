@@ -149,7 +149,6 @@ nav {
   align-items: center;
 }
 
-/* MAIN LAYOUT */
 .settings-layout {
   max-width: 1174px;
   margin: 0 auto;
@@ -159,7 +158,6 @@ nav {
   align-items: flex-start;
 }
 
-/* SIDEBAR */
 .settings-sidebar {
   background: #FFFFFF;
   padding: 20px 18px;
@@ -202,14 +200,12 @@ nav {
   color: #FFF;
 }
 
-/* CONTENT */
 .settings-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* CARD */
 .settings-card {
   background: #FFFFFF;
   border-radius: 8px;
@@ -232,7 +228,6 @@ nav {
   margin-top: 16px;
 }
 
-/* FORM ELEMENTS */
 .form-row {
   margin-bottom: 18px;
   display: flex;
@@ -274,7 +269,6 @@ nav {
   background: #FFF;
 }
 
-/* TOGGLE ROW */
 .toggle-row {
   flex-direction: row;
   align-items: center;
@@ -296,7 +290,6 @@ nav {
   color: #777;
 }
 
-/* TOGGLE SWITCH */
 .toggle {
   position: relative;
   width: 46px;
@@ -439,7 +432,6 @@ nav {
   gap: 10px;
 }
 
-/* DIVIDER & DANGER ZONE */
 .divider {
   margin: 16px 0;
   height: 1px;

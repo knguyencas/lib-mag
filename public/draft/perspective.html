@@ -10,7 +10,6 @@
   <script defer src="js/perspective.js"></script>
 </head>
 <body>
-  <!-- HEADER -->
   <header class="header">
     <div class="first_header">
       <a href="index.html" style="text-decoration: none;">
@@ -18,7 +17,6 @@
       </a>
       <a href="contact.html">Contact</a>
       <a href="login.html">Login</a>
-      <!-- KHÔNG có search ở header nữa -->
     </div>
 
     <nav>
@@ -32,13 +30,10 @@
     </nav>
   </header>
 
-  <!-- SEARCH BAR dưới nav -->
   <div class="sub_nav" id="subNav">
     <div class="search_bar">
-      <!-- Nút Search ban đầu -->
       <button id="searchToggle" class="search_toggle_btn">Search</button>
 
-      <!-- Group input + button, ẩn cho tới khi bấm searchToggle -->
       <div class="search_input_group" id="searchInputGroup">
         <input type="text" id="perspectiveSearchInput" class="search_input" placeholder="Enter">
         <button id="perspectiveSearchBtn" class="search_btn">Search</button>
@@ -48,7 +43,6 @@
     </div>
   </div>
 
-  <!-- FRIENDLY REMINDER overlay -->
   <section class="reminder-overlay" id="reminderOverlay">
     <div class="reminder-inner">
       <h1 class="reminder-title">Friendly reminder</h1>
@@ -63,11 +57,9 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
   <main class="perspective-page">
     <section class="content-row">
       <div class="posts-column" id="postsColumn">
-        <!-- Posts render bằng JS -->
       </div>
 
       <aside class="sort-column">
@@ -94,7 +86,6 @@
       </aside>
     </section>
 
-    <!-- PAGINATION -->
     <div class="perspective-pagination" id="perspectivePagination"></div>
   </main>
 

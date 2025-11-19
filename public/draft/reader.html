@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Psyche Journey - Reader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reader.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="first_header">
+            <h1 class="logo">PSYCHE JOURNEY</h1>
+        </div>
+
+        <nav>
+            <ul class="nav_bar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="themes.html">Themes</a></li>
+                <li><a href="perspective.html">Perspective</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="reader-main">
+        <div class="reader-container">
+
+            <div class="back-to-book">
+                <button id="backToBookBtn" class="back-btn">
+                    ← Back to book details
+                </button>
+            </div>
+
+            <div class="work-meta">
+                <div class="work-title" id="bookTitle">Loading...</div>
+                <div class="chapter-meta">
+                    <span id="chapterPosition">Chapter ? of ?</span>
+                </div>
+            </div>
+
+            <div class="chapter-nav" id="topNav">
+                <button class="nav-btn" id="prevBtnTop">« Previous Chapter</button>
+
+                <div class="chapter-select-wrapper">
+                    <label for="chapterSelectTop">Chapter:</label>
+                    <select id="chapterSelectTop" class="chapter-select"></select>
+                </div>
+
+                <button class="nav-btn" id="nextBtnTop">Next Chapter »</button>
+            </div>
+
+            <article class="chapter-article">
+                <h1 class="chapter-heading" id="chapterTitle">Loading...</h1>
+                <div class="chapter-body" id="chapterContent">
+                    Please wait...
+                </div>
+            </article>
+
+            <div class="chapter-nav bottom-nav" id="bottomNav">
+                <button class="nav-btn" id="prevBtnBottom">« Previous Chapter</button>
+
+                <div class="chapter-select-wrapper">
+                    <label for="chapterSelectBottom">Chapter:</label>
+                    <select id="chapterSelectBottom" class="chapter-select"></select>
+                </div>
+
+                <button class="nav-btn" id="nextBtnBottom">Next Chapter »</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/reader.js"></script>
+</body>
+
+</html>

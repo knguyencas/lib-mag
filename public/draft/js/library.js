@@ -198,7 +198,7 @@ async function performSearch(searchError) {
 }
 
 async function refreshLibraryContent() {
-    console.log('=== REFRESH LIBRARY CONTENT ===');
+    console.log('REFRESH LIBRARY CONTENT');
 
     document.querySelectorAll('.section.genre-section').forEach(section => {
         section.remove();
@@ -208,10 +208,9 @@ async function refreshLibraryContent() {
     await initializePopularSection();
     await initializeDynamicGenreSections();
 
-    console.log('=== REFRESH COMPLETE ===');
+    console.log('REFRESH COMPLETE');
 }
 
-// ================== FOR YOU ==================
 async function initializeForYouSection() {
     const forYouGrid = document.getElementById('forYouGrid');
 
@@ -288,12 +287,11 @@ async function loadPopularBooks(page = 1, limit = 5) {
     try {
         console.log(`Loading popular books - page: ${page}, limit: ${limit}`);
         
-        // Gọi API với limit đúng
         const books = await apiService.getPopularBooks(limit);
         console.log('Popular Books Response:', books);
         
         if (page === 1) {
-            grid.innerHTML = ''; // Clear grid chỉ khi load page 1
+            grid.innerHTML = '';
         }
         
         if (books && books.length > 0) {
@@ -338,7 +336,6 @@ async function handleShowMorePopular(button) {
     }
 }
 
-// ================== GENRE SECTIONS ==================
 async function initializeDynamicGenreSections() {
     try {
         const genres = libraryState.genres;
@@ -475,7 +472,6 @@ async function handleShowMore(genre, button) {
     }
 }
 
-// ================== CARD HELPERS ==================
 function createForYouCard(book) {
     const card = document.createElement('div');
     card.className = 'for-you-card';
@@ -559,7 +555,6 @@ function createForYouCard(book) {
         </div>
     `;
 
-    // Handle popup positioning and truncation check
     card.addEventListener('mouseenter', function () {
         const popup = this.querySelector('.for-you-card-popup');
         const rect = this.getBoundingClientRect();
@@ -570,25 +565,20 @@ function createForYouCard(book) {
         popup.style.top = popupTop + 'px';
         popup.style.left = rect.left + 'px';
 
-        // Check if summary needs truncation
         const summaryEl = popup.querySelector('.popup-summary');
         const showMoreBtn = popup.querySelector('.show-more-popup');
         const titleEl = popup.querySelector('.popup-title');
 
         if (summaryEl && showMoreBtn && titleEl) {
-            // Calculate available height for summary
             const titleHeight = titleEl.offsetHeight;
-            const availableHeight = 401 - titleHeight - 40; // 401px poster height - title - margins
+            const availableHeight = 401 - titleHeight - 40;
             
             summaryEl.style.maxHeight = availableHeight + 'px';
 
-            // Check if content overflows
             if (summaryEl.scrollHeight > availableHeight) {
-                // Content is too long - show fade and "Show more"
                 summaryEl.classList.add('truncated');
                 showMoreBtn.style.display = 'block';
             } else {
-                // Content fits - hide fade and "Show more"
                 summaryEl.classList.remove('truncated');
                 showMoreBtn.style.display = 'none';
             }

@@ -1,4 +1,3 @@
-// Mock data
 const mockThemes = [
   { id: 1, title: "Understanding Psychology", user: "john_doe", likes: 128 },
   { id: 2, title: "Modern Philosophy", user: "jane_smith", likes: 95 },
@@ -93,11 +92,9 @@ function createPostCard(post, position) {
   return article;
 }
 
-// Pagination controls
 function renderPagination() {
   const paginationEl = document.getElementById('pagination');
   
-  // Hide pagination if only 1 page
   if (totalPages <= 1) {
     paginationEl.style.display = 'none';
     return;
@@ -108,7 +105,6 @@ function renderPagination() {
   const inner = document.createElement('div');
   inner.className = 'pagination-inner';
   
-  // Previous button
   const prevBtn = document.createElement('button');
   prevBtn.className = 'page-prev';
   prevBtn.textContent = 'Prev';
@@ -116,12 +112,10 @@ function renderPagination() {
   prevBtn.onclick = () => goToPage(currentPage - 1);
   inner.appendChild(prevBtn);
   
-  // Page numbers
   const maxVisible = 5;
   let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
   let endPage = Math.min(totalPages, startPage + maxVisible - 1);
   
-  // Adjust if we're near the end
   if (endPage - startPage < maxVisible - 1) {
     startPage = Math.max(1, endPage - maxVisible + 1);
   }
@@ -141,7 +135,6 @@ function renderPagination() {
     }
   }
   
-  // Next button
   const nextBtn = document.createElement('button');
   nextBtn.className = 'page-next';
   nextBtn.textContent = 'Next';
@@ -152,32 +145,27 @@ function renderPagination() {
   paginationEl.innerHTML = '';
   paginationEl.appendChild(inner);
   
-  // Fade in pagination
   setTimeout(() => {
     paginationEl.classList.add('visible');
   }, 100);
 }
 
-// Navigate to specific page
 function goToPage(page) {
   if (page < 1 || page > totalPages || page === currentPage) return;
   
   currentPage = page;
   
-  // Smooth scroll to top
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
   
-  // Render new page with slight delay for smooth transition
   setTimeout(() => {
     renderPage(currentPage);
     renderPagination();
   }, 300);
 }
 
-// Setup like button functionality
 function setupLikeButtons() {
   const likeButtons = document.querySelectorAll('.like-button');
   
@@ -194,7 +182,6 @@ function setupLikeButtons() {
       const countSpan = newButton.querySelector('.like-count');
       const icon = newButton.querySelector('.like-icon');
       
-      // Toggle liked state
       isLiked = !isLiked;
       
       if (isLiked) {
@@ -202,7 +189,6 @@ function setupLikeButtons() {
         newButton.classList.add('liked');
         icon.style.fill = '#fff';
         
-        // Flip up animation
         countSpan.classList.remove('flip-down');
         countSpan.classList.add('flip-up');
       } else {
@@ -210,15 +196,12 @@ function setupLikeButtons() {
         newButton.classList.remove('liked');
         icon.style.fill = 'none';
         
-        // Flip down animation
         countSpan.classList.remove('flip-up');
         countSpan.classList.add('flip-down');
       }
       
-      // Update count
       countSpan.textContent = currentCount;
       
-      // Clear animation classes
       setTimeout(() => {
         countSpan.classList.remove('flip-up', 'flip-down');
       }, 400);

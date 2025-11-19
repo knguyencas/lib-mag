@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Scroll effect for header logo
   const header = document.querySelector('.header');
   let lastScroll = 0;
 
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.querySelector('.search_bar input');
   let searchError = document.querySelector('.search_error');
   
-  // Create error element if it doesn't exist
   if (!searchError) {
     searchError = document.createElement('div');
     searchError.className = 'search_error';
@@ -61,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Clear error when typing
     searchInput.addEventListener('input', function() {
       if (searchError) {
         searchError.textContent = '';
@@ -86,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.href = `search-results.html?q=${encodeURIComponent(searchText)}`;
   }
 
-  // Most Read Books Section - Load from Database
   const mostReadGrid = document.querySelector('.most_read_grid');
   
   if (mostReadGrid) {
@@ -111,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Clear loading message
       mostReadGrid.innerHTML = '';
 
       books.forEach(book => {
@@ -148,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
       let isHovering = false;
       let scrollPosition = 0;
 
-      // Set initial state - books evenly spaced with no gap
       function setDefaultState() {
         bookElements.forEach((book, index) => {
           book.style.marginRight = '0px';
@@ -159,25 +153,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
       setDefaultState();
 
-      // Mouse enter grid - enable overlapping mode
       mostReadGrid.addEventListener('mouseenter', function() {
         isHovering = true;
         scrollPosition = 0;
         updateBookPositions();
       });
 
-      // Scroll handler
       mostReadGrid.addEventListener('wheel', function(e) {
         if (!isHovering) return;
         
         e.preventDefault();
         
-        // Determine scroll direction
         if (e.deltaY > 0) {
-          // Scroll down - increase overlap
           scrollPosition = Math.min(scrollPosition + 1, bookElements.length - 1);
         } else {
-          // Scroll up - decrease overlap
           scrollPosition = Math.max(scrollPosition - 1, 0);
         }
         
@@ -190,12 +179,10 @@ document.addEventListener('DOMContentLoaded', function() {
           let zIndex;
           
           if (index < scrollPosition) {
-            // Books before scroll position - fully overlapped
             const overlapPercent = 80;
             marginRight = -(240 * overlapPercent / 100);
             zIndex = index;
           } else if (index === scrollPosition) {
-            // Current focused book
             marginRight = 0;
             zIndex = 100;
             book.style.transform = 'scale(1.05) translateY(-10px)';

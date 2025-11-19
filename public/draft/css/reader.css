@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f6f6f6;
+    color: #111;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.first_header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 52px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+nav {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_bar {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav_bar a {
+    color: #000;
+    font-size: 15px;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.nav_bar a:hover {
+    opacity: 0.5;
+}
+
+.reader-main {
+    padding: 40px 10px 60px;
+}
+
+.reader-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 28px 32px 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.back-to-book {
+    margin-bottom: 16px;
+}
+
+.back-btn {
+    background: none;
+    border: 1px solid #000;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.work-meta {
+    margin-bottom: 18px;
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: 10px;
+}
+
+.work-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.chapter-meta {
+    font-size: 13px;
+    color: #666;
+}
+
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 10px 0;
+}
+
+.bottom-nav {
+    margin-top: 32px;
+    border-top: 1px solid #e3e3e3;
+}
+
+.nav-btn {
+    background: #e3e3e3;
+    border: 1px solid #c8c8c8;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #dadada;
+}
+
+.nav-btn:disabled {
+    background: #f0f0f0;
+    color: #aaa;
+}
+
+.chapter-select-wrapper {
+    flex: 1;
+    text-align: center;
+}
+
+.chapter-select {
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.chapter-heading {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.chapter-body {
+    font-family: 'Cardo', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #111;
+}
+
+.chapter-body p {
+    margin-bottom: 1em;
+}
