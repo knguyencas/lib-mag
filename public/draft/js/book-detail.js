@@ -362,21 +362,41 @@ function initializeRatingSystem(book) {
 }
 
 function initializeSearch() {
-    const input = document.querySelector('.search_input');
-    const btn = document.querySelector('.search_btn');
+    const input = document.getElementById('bookDetailSearchInput');
+    const btn = document.getElementById('bookDetailSearchBtn');
+    const errorSpan = document.querySelector('.search_error');
 
-    if (!input || !btn) return;
+    if (!input || !btn) {
+        console.error('Search elements not found');
+        return;
+    }
 
     btn.addEventListener('click', () => {
-        const q = input.value.trim();
-        if (!q) return;
+        const query = input.value.trim();
+        
+        if (!query) {
+            if (errorSpan) {
+                errorSpan.textContent = 'Please enter a search term';
+            }
+            return;
+        }
 
-        window.location.href = `search-results.html?search=${encodeURIComponent(q)}`;
+        if (errorSpan) {
+            errorSpan.textContent = '';
+        }
+
+        window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
     });
 
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             btn.click();
+        }
+    });
+
+    input.addEventListener('input', () => {
+        if (errorSpan) {
+            errorSpan.textContent = '';
         }
     });
 }
@@ -393,7 +413,6 @@ function initializeReadingButtons(book) {
 
     if (continueBtn) {
         continueBtn.addEventListener('click', () => {
-            // sau này có thể lưu last_chapter trong localStorage / user profile
             window.location.href = `reader.html?id=${book.book_id}&chapter=1`;
         });
     }

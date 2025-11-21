@@ -32,10 +32,11 @@
         <div class="search_bar">
             <div class="search_input_group">
                 <div class="search_input_container" id="searchInputContainer">
-                    <input type="text" class="search_input" placeholder="Enter">
+                    <input type="text" class="search_input" id="bookDetailSearchInput" placeholder="Enter">
                 </div>
-                <button class="search_btn" id="searchBtn">Search</button>
+                <button class="search_btn" id="bookDetailSearchBtn">Search</button>
             </div>
+            <div class="search_error"></div>
         </div>
     </div>
 
@@ -108,7 +109,8 @@
         </section>
     </main>
 
-    <script src="js/book-api-service.js"></script>
     <script src="js/book-detail.js"></script>
+    <script src="js/api-service.js"></script>
+
 </body>
 </html>
