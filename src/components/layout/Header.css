@@ -1,0 +1,151 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+body.home .header {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.home .header .logo,
+body.home .header a,
+body.home .header .nav_bar a {
+  color: #000;
+}
+
+body.home .header .search_input_group input {
+  background: #EEEEEE;
+  color: #000;
+}
+
+body.home .header .search_input_group input::placeholder {
+  color: #999;
+}
+
+body.library .header {
+  background: #373737;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.library .header .logo,
+body.library .header a,
+body.library .header .nav_bar a {
+  color: #FFF;
+}
+
+body.library .header .search_input_group input {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+}
+
+body.library .header .search_input_group input::placeholder {
+  color: #828282;
+}
+
+.header.scrolled .logo {
+  font-size: 24px;
+}
+
+.header.scrolled .first_header {
+  height: 100px;
+}
+
+.first_header {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  padding-right: 52px;
+  position: relative;
+  transition: height 0.3s ease;
+}
+
+.logo {
+  position: absolute;
+  left: 52px;
+  font-size: 65px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: font-size 0.3s ease, opacity 0.3s ease;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: 'Poppins', sans-serif;
+}
+
+body.library .logo {
+  font-size: 24px;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.first_header a {
+  font-size: 15px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.first_header a:hover {
+  opacity: 0.5;
+}
+
+nav {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.nav_bar {
+  display: flex;
+  list-style: none;
+  gap: 51px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_bar li {
+  margin: 0;
+}
+
+.nav_bar a {
+  font-size: 16px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.nav_bar a:hover {
+  opacity: 0.5;
+}
+
+.nav_bar a.active {
+  font-weight: 700;
+}
+
+.sub_nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 52px;
+}
