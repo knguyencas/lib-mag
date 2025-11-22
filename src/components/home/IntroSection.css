@@ -1,0 +1,77 @@
+.introduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 15px;
+  gap: 40px;
+}
+
+.our_goals {
+  flex: 1;
+  padding-right: 15px;
+  position: relative;
+}
+
+.our_goals h3 {
+  width: 160px;
+  animation: floatBounce 8s ease-in-out infinite;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000;
+}
+
+.our_goals p {
+  width: 706px;
+  margin-top: 10px;
+  animation: floatBounce 8s ease-in-out infinite 1s;
+  font-family: "Cardo", serif;
+  font-size: 18px;
+  line-height: 145%;
+  color: #000;
+}
+
+.abilities {
+  text-align: right;
+  flex: 1;
+  padding-left: 15px;
+  position: relative;
+}
+
+.abilities h3 {
+  text-align: right;
+  margin: 0;
+  animation: floatBounce 8s ease-in-out infinite 2s;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000;
+}
+
+.abilities ul {
+  list-style: none;
+  margin-top: 10px;
+  padding-right: 0;
+  animation: floatBounce 8s ease-in-out infinite 3s;
+}
+
+.abilities li {
+  margin-bottom: 6px;
+  font-family: "Cardo", serif;
+  font-size: 18px;
+  line-height: 145%;
+  color: #000;
+}
+
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(15px, -10px);
+  }
+  50% {
+    transform: translate(0, -20px);
+  }
+  75% {
+    transform: translate(-15px, -10px);
+  }
+}
