@@ -1,0 +1,53 @@
+.contents-section {
+  background: #FAFAFA;
+  padding: 60px 52px;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #000;
+}
+
+.contents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px 60px;
+  width: 100%;
+}
+
+.part-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.chapter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapter-list li {
+  margin-bottom: 8px;
+}
+
+.chapter-list a {
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.chapter-list a:hover {
+  opacity: 0.6;
+  text-decoration: underline;
+}
