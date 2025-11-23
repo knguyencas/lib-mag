@@ -1,0 +1,87 @@
+.controls-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.controls-bar {
+  display: flex;
+  gap: 50px;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+.dropdown-btn {
+  background: transparent;
+  border: none;
+  color: #FFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+.dropdown-btn:hover {
+  opacity: 0.7;
+}
+
+.dropdown-btn span {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-btn.open span {
+  transform: rotate(180deg);
+}
+
+.dropdown-panel {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 16px 20px;
+  display: none;
+  z-index: 1000;
+  min-width: 200px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-panel.open {
+  display: block;
+}
+
+.dropdown-panel-inner {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.dropdown-option {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 8px 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease;
+  border-radius: 4px;
+}
+
+.dropdown-option:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(4px);
+}
+
+.dropdown-option.active {
+  opacity: 1;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+}
