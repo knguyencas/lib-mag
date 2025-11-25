@@ -1,16 +1,106 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import HomePage from './pages/HomePage';
+import LibraryPage from './pages/LibraryPage';
+import './styles/global.css';
+import BookDetailPage from './pages/BookDetailPage';
+import ReaderPage from './pages/ReaderPage';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    document.title = 'Psyche Journey - Digital Library';
+  }, []);
 
   return (
-    <>
-     <div>Hello World</div>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/library" element={<LibraryPage />} />
+        <Route path="/book-detail" element={<BookDetailPage />} />
+        <Route path="/book-detail" element={<PlaceholderPage title="Book Detail" />} />
+        <Route path="/reader" element={<ReaderPage />} />
+        <Route path="/search-results" element={<PlaceholderPage title="Search Results" />} />
+        <Route path="/login" element={<PlaceholderPage title="Login" />} />
+        <Route path="/register" element={<PlaceholderPage title="Register" />} />
+        <Route path="/themes" element={<PlaceholderPage title="Themes" />} />
+        <Route path="/perspective" element={<PlaceholderPage title="Perspective" />} />
+        <Route path="/about" element={<PlaceholderPage title="About" />} />
+        <Route path="/contact" element={<PlaceholderPage title="Contact" />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+function PlaceholderPage({ title }) {
+  useEffect(() => {
+    document.title = title + ' - Psyche Journey';
+  }, [title]);
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      background: '#f5f5f5'
+    }}>
+      <h1 style={{ fontSize: '48px', marginBottom: '20px', color: '#333' }}>
+        {title}
+      </h1>
+      <p style={{ fontSize: '18px', color: '#666', marginBottom: '30px' }}>
+        This page is coming soon...
+      </p>
+      <a href="/" style={{
+        padding: '12px 24px',
+        background: '#000',
+        color: '#fff',
+        borderRadius: '8px',
+        textDecoration: 'none',
+        fontWeight: '500'
+      }}>
+        Back to Home
+      </a>
+    </div>
+  );
+}
+
+function NotFound() {
+  useEffect(() => {
+    document.title = '404 - Page Not Found | Psyche Journey';
+  }, []);
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      background: '#f5f5f5'
+    }}>
+      <h1 style={{ fontSize: '72px', marginBottom: '20px', color: '#333' }}>
+        404
+      </h1>
+      <p style={{ fontSize: '24px', color: '#666', marginBottom: '30px' }}>
+        Page not found
+      </p>
+      <a href="/" style={{
+        padding: '12px 24px',
+        background: '#000',
+        color: '#fff',
+        borderRadius: '8px',
+        textDecoration: 'none',
+        fontWeight: '500'
+      }}>
+        Back to Home
+      </a>
+    </div>
+  );
+}
+
+export default App;
