@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap');
 
 body {
@@ -15,7 +14,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Body classes for different pages */
 body.home {
   background: #fff;
   color: #000;
@@ -26,7 +24,6 @@ body.library {
   color: #FFF;
 }
 
-/* Common typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 700;
@@ -65,7 +62,6 @@ button, input {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -84,7 +80,6 @@ button, input {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* For library page scrollbar */
 body.library ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }

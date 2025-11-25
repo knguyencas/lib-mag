@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.search-results {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFFFFF;
+  color: #000000;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.search-results-page {
+  background: #FFFFFF;
+}
+
+.search-results-page .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-results-page .logo,
+.search-results-page .first_header a,
+.search-results-page .nav_bar a {
+  color: #000;
+}
+
+.search-results-page .search_input_group input {
+  background-color: #EEEEEE;
+  color: #000;
+}
+
+.search-results-page .search_input_group input::placeholder {
+  color: #999;
+}
+
+.search-results-page .search_btn {
+  color: #000;
+}
+
+.main-content {
+  min-height: calc(100vh - 80px);
+}
+
+.search-header {
+  padding: 60px 52px 24px 52px;
+}
+
+.search-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.search-title .keyword {
+  color: #666;
+  font-weight: 400;
+}
+
+.results-count {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #999;
+}
