@@ -35,16 +35,16 @@
 
       <form id="loginForm" novalidate>
         <div class="form-group">
-          <label class="form-label" for="loginUsername">Username</label>
+          <label class="form-label" for="loginIdentifier">Email or Username</label>
           <input
-            id="loginUsername"
+            id="loginIdentifier"
             type="text"
             class="auth-input"
             autocomplete="username"
-            placeholder="Enter username"
+            placeholder="Enter email or username"
             required
           />
-          <div class="error-text" id="loginUsernameError"></div>
+          <div class="error-text" id="loginIdentifierError"></div>
         </div>
 
         <div class="form-group">
@@ -112,8 +112,9 @@
     © 2025 Psyche Journey · built for curious minds.
   </footer>
 
-  <script src="js/auth.js"></script>
+  <!-- Thứ tự script: service -> header-auth -> auth UI -->
   <script src="services/authService.js"></script>
-
+  <script src="js/header-auth.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

@@ -33,45 +33,35 @@ function setupPasswordVisibility() {
   });
 }
 
-function loadUsers() {
-  const raw = localStorage.getItem("demoUsers");
-  if (!raw) return {};
-  try {
-    return JSON.parse(raw);
-  } catch {
-    return {};
-  }
-}
-
-function saveUsers(users) {
-  localStorage.setItem("demoUsers", JSON.stringify(users));
-}
-
 function setupRegisterForm() {
   const form = document.getElementById("registerForm");
   if (!form) return;
 
   const usernameInput = document.getElementById("regUsername");
+  const emailInput = document.getElementById("regEmail");
   const passwordInput = document.getElementById("regPassword");
   const confirmInput = document.getElementById("regConfirmPassword");
   const termsCheckbox = document.getElementById("regTerms");
 
   const usernameError = document.getElementById("regUsernameError");
+  const emailError = document.getElementById("regEmailError");
   const passwordError = document.getElementById("regPasswordError");
   const confirmError = document.getElementById("regConfirmPasswordError");
   const termsError = document.getElementById("regTermsError");
   const successBox = document.getElementById("registerSuccess");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     usernameError.textContent = "";
+    emailError.textContent = "";
     passwordError.textContent = "";
     confirmError.textContent = "";
     termsError.textContent = "";
     successBox.style.display = "none";
 
     const username = usernameInput.value.trim();
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
     const confirm = confirmInput.value;
 
@@ -79,6 +69,14 @@ function setupRegisterForm() {
 
     if (!username) {
       usernameError.textContent = "Username is required.";
+      valid = false;
+    } else if (username.length < 3) {
+      usernameError.textContent = "Username must be at least 3 characters.";
+      valid = false;
+    }
+
+    if (!email) {
+      emailError.textContent = "Email is required.";
       valid = false;
     }
 
@@ -105,25 +103,29 @@ function setupRegisterForm() {
 
     if (!valid) return;
 
-    const users = loadUsers();
-    if (users[username]) {
-      usernameError.textContent = "This username is already taken.";
-      return;
+    try {
+      await AuthClient.register(username, email, password);
+
+      successBox.style.display = "block";
+      successBox.textContent = "Registration successful! Redirecting...";
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    } catch (error) {
+      if (error.message && error.message.toLowerCase().includes("exists")) {
+        emailError.textContent = "This email or username is already taken.";
+      } else {
+        emailError.textContent =
+          error.message || "Registration failed. Please try again.";
+      }
     }
-
-    users[username] = { password, createdAt: new Date().toISOString() };
-    saveUsers(users);
-
-    successBox.style.display = "block";
-    form.reset();
   });
 
   const googleBtn = document.getElementById("regGoogleBtn");
   if (googleBtn) {
     googleBtn.addEventListener("click", () => {
-      alert(
-        "Google sign-up demo.\nKhi có backend cậu sẽ gọi OAuth 2.0 / Google Identity ở đây."
-      );
+      alert("Google sign-up coming soon!");
     });
   }
 }
@@ -132,30 +134,31 @@ function setupLoginForm() {
   const form = document.getElementById("loginForm");
   if (!form) return;
 
-  const usernameInput = document.getElementById("loginUsername");
+  const identifierInput = document.getElementById("loginIdentifier");
   const passwordInput = document.getElementById("loginPassword");
 
-  const usernameError = document.getElementById("loginUsernameError");
+  const identifierError = document.getElementById("loginIdentifierError");
   const passwordError = document.getElementById("loginPasswordError");
   const globalError = document.getElementById("loginErrorGlobal");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    usernameError.textContent = "";
+    identifierError.textContent = "";
     passwordError.textContent = "";
     globalError.style.display = "none";
     globalError.textContent = "";
 
-    const username = usernameInput.value.trim();
+    const identifier = identifierInput.value.trim();
     const password = passwordInput.value;
 
     let valid = true;
 
-    if (!username) {
-      usernameError.textContent = "Username is required.";
+    if (!identifier) {
+      identifierError.textContent = "Please enter your email or username.";
       valid = false;
     }
+
     if (!password) {
       passwordError.textContent = "Password is required.";
       valid = false;
@@ -163,24 +166,21 @@ function setupLoginForm() {
 
     if (!valid) return;
 
-    const users = loadUsers();
-    const user = users[username];
+    try {
+      await AuthClient.login(identifier, password);
 
-    if (!user || user.password !== password) {
-      globalError.textContent = "Invalid username or password.";
+      window.location.href = "index.html";
+    } catch (error) {
+      globalError.textContent =
+        error.message || "Invalid email/username or password.";
       globalError.style.display = "block";
-      return;
     }
-
-    alert(`Welcome, ${username}! (demo login)`);
   });
 
   const googleBtn = document.getElementById("loginGoogleBtn");
   if (googleBtn) {
     googleBtn.addEventListener("click", () => {
-      alert(
-        "Google demo."
-      );
+      alert("Google login coming soon!");
     });
   }
 }
