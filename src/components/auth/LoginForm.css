@@ -1,0 +1,117 @@
+.auth-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #555;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid #d3d3d3;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  background: #f7f7fa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #6c6f90;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(108, 111, 144, 0.25);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  padding-right: 60px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #777;
+  transition: opacity 0.15s ease;
+}
+
+.inline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-row input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.inline-row a {
+  color: #555;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.primary-btn {
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  background: #3d3f5c;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 16px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: #2f3149;
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-text {
+  display: block;
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 4px;
+}

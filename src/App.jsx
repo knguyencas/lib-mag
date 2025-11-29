@@ -2,10 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import LibraryPage from './pages/LibraryPage';
-import './styles/global.css';
 import BookDetailPage from './pages/BookDetailPage';
 import ReaderPage from './pages/ReaderPage';
-
+import SearchResultPage from './pages/SearchResultPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import './styles/global.css';
 
 function App() {
   useEffect(() => {
@@ -18,13 +21,29 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/book-detail" element={<BookDetailPage />} />
-        <Route path="/book-detail" element={<PlaceholderPage title="Book Detail" />} />
         <Route path="/reader" element={<ReaderPage />} />
-        <Route path="/search-results" element={<PlaceholderPage title="Search Results" />} />
-        <Route path="/login" element={<PlaceholderPage title="Login" />} />
-        <Route path="/register" element={<PlaceholderPage title="Register" />} />
+        <Route path="/search-results" element={<SearchResultPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        
+        <Route 
+          path="/perspective" 
+          element={
+            <ProtectedRoute>
+              <PlaceholderPage title="Perspective" />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/settings" 
+          element={
+            <ProtectedRoute>
+              <PlaceholderPage title="Settings" />
+            </ProtectedRoute>
+          } 
+        />
+        
         <Route path="/themes" element={<PlaceholderPage title="Themes" />} />
-        <Route path="/perspective" element={<PlaceholderPage title="Perspective" />} />
         <Route path="/about" element={<PlaceholderPage title="About" />} />
         <Route path="/contact" element={<PlaceholderPage title="Contact" />} />
         <Route path="*" element={<NotFound />} />

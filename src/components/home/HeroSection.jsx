@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authService } from '../../services/authService';
 import './HeroSection.css';
 
 function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
+    setIsLoggedIn(authService.isLoggedIn());
   }, []);
 
   const floatingWords = ['Where', 'Perspectives', 'Grow', 'Into', 'Mindful', 'Thoughts'];
@@ -39,18 +42,37 @@ function HeroSection() {
         </p>
 
         <div className="default_home_buttons">
-          <button 
-            className="btn black"
-            onClick={() => navigate('/login')}
-          >
-            Login
-          </button>
-          <button 
-            className="btn white"
-            onClick={() => navigate('/library')}
-          >
-            Explore library
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button 
+                className="btn black"
+                onClick={() => navigate('/library')}
+              >
+                Browse Library
+              </button>
+              <button 
+                className="btn white"
+                onClick={() => navigate('/perspective')}
+              >
+                Share Thoughts
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                className="btn black"
+                onClick={() => navigate('/login')}
+              >
+                Login
+              </button>
+              <button 
+                className="btn white"
+                onClick={() => navigate('/library')}
+              >
+                Explore library
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>

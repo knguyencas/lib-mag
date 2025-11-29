@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import SearchFilters from '../components/search/SearchFilters';
-import SearchResultsGrid from '../components/search/SearchResultsGrid';
+import SearchResultsGrid from '../components/search/SearchResultGrid';
 import { searchService } from '../services/searchService';
 import { bookService } from '../services/bookService';
 import '../styles/search-results.css';

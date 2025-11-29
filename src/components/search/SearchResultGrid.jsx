@@ -1,5 +1,5 @@
 import SearchResultCard from './SearchResultCard';
-import './SearchResultsGrid.css';
+import './SearchResultGrid.css';
 
 function SearchResultsGrid({ results, loading, error }) {
   if (loading) {
