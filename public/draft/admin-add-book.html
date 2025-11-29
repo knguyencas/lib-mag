@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin – Add New Book | Psyche Journey</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cardo:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/admin-add-book.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="first_header">
+      <h1 class="logo">PSYCHE JOURNEY</h1>
+      <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="library.html">Library</a>
+        <span class="divider">|</span>
+        <span class="admin-label">Admin Panel</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-page">
+    <aside class="admin-sidebar">
+      <h2 class="sidebar-title">Admin</h2>
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active">
+          <span>Add new book</span>
+        </li>
+        <li class="sidebar-item disabled">
+          <span>Manage books</span>
+        </li>
+        <li class="sidebar-item disabled">
+          <span>Authors & metadata</span>
+        </li>
+      </ul>
+      <div class="sidebar-note">
+        Only users with <strong>admin</strong> role can access this page.
+      </div>
+    </aside>
+
+    <section class="admin-content">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Add new book</h2>
+          <p class="page-subtitle">
+            Fill in metadata, upload cover & ebook. Primary genre will be derived from categories in backend.
+          </p>
+        </div>
+        <button type="button" class="ghost-button" id="previewJsonBtn">
+          Preview JSON
+        </button>
+      </div>
+
+      <form id="adminAddBookForm" class="admin-form">
+        <section class="form-section">
+          <h3 class="section-title">Basic information</h3>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="title">Title <span class="required">*</span></label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                placeholder="The Archetypes and the Collective Unconscious"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="slug">Slug (optional)</label>
+              <input
+                type="text"
+                id="slug"
+                name="slug"
+                placeholder="the-archetypes-and-the-collective-unconscious"
+              />
+              <small class="field-hint">
+                Optional URL slug for frontend routing (backend may ignore).
+              </small>
+            </div>
+
+            <div class="form-field">
+              <label>Author (auto)</label>
+              <input
+                type="text"
+                id="authorDisplay"
+                readonly
+                placeholder="Will be filled from selected authors"
+              />
+              <small class="field-hint">
+                This value is auto-filled from the first selected author and not sent to backend.
+              </small>
+            </div>
+
+            <div class="form-field">
+              <label for="publisher">Publisher <span class="required">*</span></label>
+              <input
+                type="text"
+                id="publisher"
+                name="publisher"
+                placeholder="Routledge"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="year">Publication year <span class="required">*</span></label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                placeholder="1959"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="language">Language</label>
+              <input
+                type="text"
+                id="language"
+                name="language"
+                placeholder="en"
+              />
+              <small class="field-hint">Defaults to <code>en</code> if empty.</small>
+            </div>
+
+            <div class="form-field">
+              <label for="punchline">Punchline / one-line hook <span class="required">*</span></label>
+              <input
+                type="text"
+                id="punchline"
+                name="punchline"
+                maxlength="200"
+                placeholder="A deep dive into archetypes and the collective unconscious."
+              />
+              <div class="char-counter" data-for="punchline">
+                <span class="char-count">0</span> / 200
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="isbn">ISBN (optional)</label>
+              <input
+                type="text"
+                id="isbn"
+                name="isbn"
+                placeholder="978-0-00-000000-0"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="pageCount">Page count <span class="required">*</span></label>
+              <input
+                type="number"
+                id="pageCount"
+                name="pageCount"
+                min="1"
+                placeholder="400"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h3 class="section-title">Authors, categories & tags</h3>
+
+          <div class="form-field form-field-full">
+            <label for="authorSearch">Authors <span class="required">*</span></label>
+            <input
+              type="text"
+              id="authorSearch"
+              placeholder="Type author name (e.g., Carl)..."
+              autocomplete="off"
+            />
+            <small class="field-hint">
+              Start typing to search existing authors. You’ll see suggestions like
+              <em>Carl G. Jung – AU008</em>. If no match, you can add a new author – the system will
+              auto-generate <code>author_id</code> and mark it as <em>needs update</em>.
+            </small>
+            <div id="authorSuggestions" class="suggestions-list"></div>
+            <div id="selectedAuthors" class="chips-container"></div>
+            <input type="hidden" id="authorIdsHidden" name="author_ids" />
+            <input type="hidden" id="newAuthorsHidden" name="new_authors" />
+          </div>
+
+          <div class="form-field form-field-full">
+            <label for="categorySearch">Categories</label>
+            <input
+              type="text"
+              id="categorySearch"
+              placeholder="Type category (e.g., Analytical Psychology, Decision Science)..."
+              autocomplete="off"
+            />
+            <small class="field-hint">
+              Suggestions will show as <em>Decision Science – CAT079</em>. If no match, you can add new category (will be flagged for update).
+            </small>
+            <div id="categorySuggestions" class="suggestions-list"></div>
+            <div id="selectedCategories" class="chips-container"></div>
+            <input type="hidden" id="categoryIdsHidden" name="category_ids" />
+            <input type="hidden" id="newCategoriesHidden" name="new_categories" />
+          </div>
+
+          <div class="form-field form-field-full">
+            <label for="tagSearch">Tags</label>
+            <input
+              type="text"
+              id="tagSearch"
+              placeholder="Type tag (e.g., archetypes, shadow work, dark academia)..."
+              autocomplete="off"
+            />
+            <small class="field-hint">
+              Suggestions will show as <em>Dark academia – TAG012</em>. If no match, you can add new tag (flagged for update).
+            </small>
+            <div id="tagSuggestions" class="suggestions-list"></div>
+            <div id="selectedTags" class="chips-container"></div>
+            <input type="hidden" id="tagIdsHidden" name="tag_ids" />
+            <input type="hidden" id="newTagsHidden" name="new_tags" />
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h3 class="section-title">Blurb / description</h3>
+          <div class="form-field">
+            <label for="blurb">Blurb <span class="required">*</span></label>
+            <textarea
+              id="blurb"
+              name="blurb"
+              rows="6"
+              placeholder="Write a short description for this book..."
+            ></textarea>
+            <small class="field-hint">
+              This is what users will see on the book detail page. Keep it clear and evocative.
+            </small>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h3 class="section-title">Files</h3>
+          <div class="file-grid">
+            <div class="file-upload-block">
+              <label class="file-label" for="coverFile">
+                Cover image <span class="required">*</span>
+              </label>
+              <div class="file-dropzone" id="coverDropzone">
+                <p class="file-drop-main">Click to upload cover image</p>
+                <p class="file-drop-sub">Recommended: JPG/PNG, vertical ratio (2:3).</p>
+                <input type="file" id="coverFile" name="cover" accept="image/*" />
+              </div>
+              <div class="cover-preview" id="coverPreview">
+                <img id="coverPreviewImg" alt="Cover preview" />
+              </div>
+            </div>
+
+            <div class="file-upload-block">
+              <label class="file-label" for="ebookFile">
+                Ebook file <span class="required">*</span>
+              </label>
+              <div class="file-dropzone" id="ebookDropzone">
+                <p class="file-drop-main">Click to upload ebook file</p>
+                <p class="file-drop-sub">EPUB preferred; PDF also supported.</p>
+                <input type="file" id="ebookFile" name="ebook" accept=".epub,.pdf" />
+              </div>
+              <div class="ebook-info" id="ebookInfo"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-actions">
+          <button type="button" class="ghost-button" id="resetFormBtn">
+            Reset form
+          </button>
+          <button type="submit" class="primary-button" id="submitBookBtn">
+            Save book (send to backend)
+          </button>
+        </section>
+      </form>
+
+      <section class="debug-panel" id="debugPanel">
+        <div class="debug-header">
+          <h3>Request payload preview (metadata only)</h3>
+          <button type="button" class="ghost-button small" id="clearDebugBtn">Clear</button>
+        </div>
+        <pre id="debugOutput">{ }</pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/admin-add-book.js"></script>
+</body>
+</html>

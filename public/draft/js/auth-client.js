@@ -43,7 +43,6 @@ const AuthClient = {
       }
       
       this.setSession(result.data.token, result.data.user);
-      
       return result;
     } catch (error) {
       console.error('Register error:', error);
@@ -51,14 +50,14 @@ const AuthClient = {
     }
   },
   
-  async login(email, password) {
+  async login(identifier, password) {
     try {
       const response = await fetch(`${this.API_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ identifier, password })
       });
       
       const result = await response.json();
@@ -68,7 +67,6 @@ const AuthClient = {
       }
       
       this.setSession(result.data.token, result.data.user);
-      
       return result;
     } catch (error) {
       console.error('Login error:', error);
@@ -101,7 +99,6 @@ const AuthClient = {
   async getProfile() {
     try {
       const token = this.getToken();
-      
       if (!token) {
         throw new Error('No token found');
       }
@@ -113,13 +110,11 @@ const AuthClient = {
       });
       
       const result = await response.json();
-       
       if (!response.ok) {
         throw new Error(result.message || 'Failed to get profile');
       }
       
       this.setSession(token, result.data);
-      
       return result.data;
     } catch (error) {
       console.error('Get profile error:', error);
