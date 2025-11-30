@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Visual Post – Psyche Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/create-visual-post.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="first_header">
+      <a href="index.html" style="text-decoration: none;">
+        <h1 class="logo">PSYCHE JOURNEY</h1>
+      </a>
+      <a href="contact.html">Contact</a>
+      <a href="#" id="authLink">Login</a>
+    </div>
+
+    <nav>
+      <ul class="nav_bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="library.html">Library</a></li>
+        <li><a href="themes.html" class="active">Themes</a></li>
+        <li><a href="perspective.html">Perspective</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="create-page">
+    <div class="create-container">
+      <div class="create-header">
+        <h1>Create Visual Post</h1>
+        <p>Share your visual perspective with the community</p>
+      </div>
+
+      <form id="createPostForm" class="create-form">
+        <!-- Image Upload Section -->
+        <div class="form-section">
+          <h2>Upload Image *</h2>
+          <div class="image-upload-area" id="imageUploadArea">
+            <input 
+              type="file" 
+              id="postImage" 
+              accept="image/jpeg,image/png,image/jpg,image/webp"
+              required
+              hidden
+            />
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="56" height="56" rx="8"/>
+                <circle cx="22" cy="22" r="6"/>
+                <path d="M4 45l16-16 10 10 16-16 14 14"/>
+              </svg>
+              <h3>Click to upload or drag and drop</h3>
+              <p>JPG, PNG or WEBP (max 5MB)</p>
+              <p class="upload-hint">Recommended: High quality images work best</p>
+            </div>
+            <div class="image-preview" id="imagePreview" style="display: none;">
+              <img id="previewImg" src="" alt="Preview">
+              <button type="button" class="remove-image" id="removeImage">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post Details Section -->
+        <div class="form-section">
+          <h2>Post Details</h2>
+          
+          <div class="form-group">
+            <label for="postTitle">Title *</label>
+            <input 
+              type="text" 
+              id="postTitle" 
+              maxlength="200" 
+              required
+              placeholder="Give your visual a meaningful title"
+            />
+            <span class="char-count" id="titleCount">0/200</span>
+          </div>
+
+          <div class="form-group">
+            <label for="postDescription">Description (Optional)</label>
+            <textarea 
+              id="postDescription" 
+              rows="6" 
+              maxlength="1000"
+              placeholder="Share the story or meaning behind this visual..."
+            ></textarea>
+            <span class="char-count" id="descCount">0/1000</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="postGenre">Primary Genre *</label>
+              <select id="postGenre" required>
+                <option value="">Select genre</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Sociology">Sociology</option>
+                <option value="Self-Help">Self-Help</option>
+                <option value="Art">Art</option>
+                <option value="Nature">Nature</option>
+                <option value="Abstract">Abstract</option>
+                <option value="Mindfulness">Mindfulness</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="postTags">Tags (Optional)</label>
+              <input 
+                type="text" 
+                id="postTags" 
+                placeholder="inspiration, art, mindfulness"
+              />
+              <small>Separate with commas</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <a href="themes.html" class="btn-cancel">Cancel</a>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Create Post</span>
+            <span class="btn-loading" style="display: none;">
+              <div class="spinner-small"></div>
+              Creating...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Psyche Journey. Visual exploration of the mind.</p>
+  </footer>
+
+  <script src="js/auth-client.js"></script>
+  <script src="js/create-visual-post.js"></script>
+</body>
+</html>

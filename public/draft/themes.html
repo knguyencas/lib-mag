@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Psyche Journey – Themes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/themes.css" />
 </head>
 <body>
@@ -12,8 +15,10 @@
       <a href="index.html" style="text-decoration: none;">
         <h1 class="logo">PSYCHE JOURNEY</h1>
       </a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
+      <div class="header-right">
+        <a href="contact.html">Contact</a>
+        <a href="#" id="authLink">Login</a>
+      </div>
     </div>
 
     <nav>
@@ -28,15 +33,42 @@
   </header>
 
   <main class="themes-page">
-    <section class="themes-grid" id="themesGrid">
-    </section>
-
-    <div class="themes-pagination" id="pagination">
+    <div class="loading-spinner" id="loadingSpinner">
+      <div class="spinner"></div>
+      <p>Loading themes...</p>
     </div>
+
+    <div class="no-results" id="noResults" style="display: none;">
+      <h3>No themes found</h3>
+      <p id="noResultsMessage">Try adjusting your filters</p>
+    </div>
+
+    <div class="visual-grid" id="visualGrid">
+    </div>
+
+    <section class="pagination-section" id="paginationSection" style="display: none;">
+      <button class="page-number active" data-page="1">1</button>
+      <button class="page-number" data-page="2">2</button>
+      <button class="page-number" data-page="3">3</button>
+      <button class="page-number" data-page="4">4</button>
+      <button class="page-number" data-page="5">5</button>
+      <button class="page-number" data-page="6">6</button>
+      <button class="page-next" id="nextBtn">Next</button>
+    </section>
   </main>
 
-  <script src="js/themes.js"></script>
+  <a href="create-visual-post.html" class="floating-create-btn" id="floatingCreateBtn" style="display: none;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </a>
+
+  <footer class="footer">
+    <p>© 2025 Psyche Journey. Visual exploration of the mind.</p>
+  </footer>
+
   <script src="js/auth-client.js"></script>
-  <script src="js/header-auth.js"></script>
+  <script src="js/themes.js"></script>
 </body>
 </html>
