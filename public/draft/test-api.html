@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psyche Library API Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .token-display {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .response.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+
+        .response.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-indicator.connected {
+            background: #28a745;
+        }
+
+        .status-indicator.disconnected {
+            background: #dc3545;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Psyche Library API Test</h1>
+            <p>Test tất cả endpoints Authentication & Authorization</p>
+            <div class="token-display">
+                <strong>Current Token:</strong>
+                <div id="currentToken">Not logged in</div>
+            </div>
+            <div style="margin-top: 10px;">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span id="statusText">Checking connection...</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Info Box -->
+            <div class="info-box">
+                <strong>📋 Hướng dẫn:</strong>
+                1. Đảm bảo server chạy tại http://localhost:3000<br>
+                2. Chạy seed: <code>npm run seed:superadmin</code><br>
+                3. Test theo thứ tự: Login Super Admin → Create Admin → Register User
+            </div>
+
+            <div class="grid">
+                <!-- Section 1: Super Admin Login -->
+                <div class="section">
+                    <h2>🔐 1. Login Super Admin</h2>
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" id="superUsername" value="superadmin">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" id="superPassword" value="SuperAdmin@2025">
+                    </div>
+                    <button class="btn" onclick="loginSuperAdmin()">Login Super Admin</button>
+                    <div id="superAdminResponse" class="response" style="display:none;"></div>
+                </div>
+
+                <!-- Section 2: Register User -->
+                <div class="section">
+                    <h2>👤 2. Register User</h2>
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" id="regUsername" value="testuser1">
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional):</label>
+                        <input type="email" id="regEmail" value="user1@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password (min 8 chars):</label>
+                        <input type="password" id="regPassword" value="password123">
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="skipEmail">
+                        <label for="skipEmail">Skip email (test optional email)</label>
+                    </div>
+                    <button class="btn btn-success" onclick="registerUser()">Register User</button>
+                    <div id="registerResponse" class="response" style="display:none;"></div>
+                </div>
+
+                <!-- Section 3: Create Admin -->
+                <div class="section">
+                    <h2>👨‍💼 3. Create Admin (Need Token)</h2>
+                    <div class="form-group">
+                        <label>Username:</label>
+                        <input type="text" id="adminUsername" value="admin1">
+                    </div>
+                    <div class="form-group">
+                        <label>Email (Optional):</label>
+                        <input type="email" id="adminEmail" value="admin1@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password (min 8 chars):</label>
+                        <input type="password" id="adminPassword" value="admin123456">
+                    </div>
+                    <button class="btn btn-secondary" onclick="createAdmin()">Create Admin</button>
+                    <div id="adminResponse" class="response" style="display:none;"></div>
+                </div>
+
+                <!-- Section 4: Login User/Admin -->
+                <div class="section">
+                    <h2>🔑 4. Login (Any User)</h2>
+                    <div class="form-group">
+                        <label>Username or Email:</label>
+                        <input type="text" id="loginIdentifier" value="testuser1">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" id="loginPassword" value="password123">
+                    </div>
+                    <button class="btn" onclick="loginUser()">Login</button>
+                    <div id="loginResponse" class="response" style="display:none;"></div>
+                </div>
+
+                <!-- Section 5: Get Profile -->
+                <div class="section">
+                    <h2>📋 5. Get Profile (Need Token)</h2>
+                    <button class="btn btn-success" onclick="getProfile()">Get My Profile</button>
+                    <div id="profileResponse" class="response" style="display:none;"></div>
+                </div>
+
+                <!-- Section 6: List Admins -->
+                <div class="section">
+                    <h2>📜 6. List All Admins (Super Admin Only)</h2>
+                    <button class="btn btn-secondary" onclick="listAdmins()">Get Admin List</button>
+                    <div id="listAdminsResponse" class="response" style="display:none;"></div>
+                </div>
+            </div>
+
+            <!-- Clear Token Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="clearToken()" style="background: #dc3545;">Clear Token & Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        let currentToken = null;
+
+        // Check server connection
+        async function checkConnection() {
+            try {
+                const response = await fetch(`${API_URL}/books/metadata/genres`);
+                if (response.ok) {
+                    document.getElementById('statusIndicator').classList.add('connected');
+                    document.getElementById('statusText').textContent = 'Server connected ✅';
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                document.getElementById('statusIndicator').classList.add('disconnected');
+                document.getElementById('statusText').textContent = 'Server disconnected ❌';
+            }
+        }
+
+        // Update token display
+        function updateTokenDisplay(token) {
+            currentToken = token;
+            const tokenDisplay = document.getElementById('currentToken');
+            if (token) {
+                tokenDisplay.textContent = token.substring(0, 50) + '...';
+                localStorage.setItem('auth_token', token);
+            } else {
+                tokenDisplay.textContent = 'Not logged in';
+                localStorage.removeItem('auth_token');
+            }
+        }
+
+        // Display response
+        function displayResponse(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = isError ? 'response error' : 'response success';
+            element.textContent = JSON.stringify(data, null, 2);
+        }
+
+        // 1. Login Super Admin
+        async function loginSuperAdmin() {
+            const username = document.getElementById('superUsername').value;
+            const password = document.getElementById('superPassword').value;
+
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier: username, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.data.token) {
+                    updateTokenDisplay(data.data.token);
+                    displayResponse('superAdminResponse', data);
+                } else {
+                    displayResponse('superAdminResponse', data, true);
+                }
+            } catch (error) {
+                displayResponse('superAdminResponse', { error: error.message }, true);
+            }
+        }
+
+        // 2. Register User
+        async function registerUser() {
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const skipEmail = document.getElementById('skipEmail').checked;
+
+            const body = { username, password };
+            if (!skipEmail && email) {
+                body.email = email;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.data.token) {
+                    updateTokenDisplay(data.data.token);
+                    displayResponse('registerResponse', data);
+                } else {
+                    displayResponse('registerResponse', data, true);
+                }
+            } catch (error) {
+                displayResponse('registerResponse', { error: error.message }, true);
+            }
+        }
+
+        // 3. Create Admin
+        async function createAdmin() {
+            if (!currentToken) {
+                displayResponse('adminResponse', { 
+                    error: 'Please login as super_admin first!' 
+                }, true);
+                return;
+            }
+
+            const username = document.getElementById('adminUsername').value;
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            const body = { username, password };
+            if (email) body.email = email;
+
+            try {
+                const response = await fetch(`${API_URL}/admin/users/create-admin`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}`
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+                displayResponse('adminResponse', data, !response.ok);
+            } catch (error) {
+                displayResponse('adminResponse', { error: error.message }, true);
+            }
+        }
+
+        // 4. Login User/Admin
+        async function loginUser() {
+            const identifier = document.getElementById('loginIdentifier').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.data.token) {
+                    updateTokenDisplay(data.data.token);
+                    displayResponse('loginResponse', data);
+                } else {
+                    displayResponse('loginResponse', data, true);
+                }
+            } catch (error) {
+                displayResponse('loginResponse', { error: error.message }, true);
+            }
+        }
+
+        // 5. Get Profile
+        async function getProfile() {
+            if (!currentToken) {
+                displayResponse('profileResponse', { 
+                    error: 'Please login first!' 
+                }, true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/auth/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`
+                    }
+                });
+
+                const data = await response.json();
+                displayResponse('profileResponse', data, !response.ok);
+            } catch (error) {
+                displayResponse('profileResponse', { error: error.message }, true);
+            }
+        }
+
+        // 6. List Admins
+        async function listAdmins() {
+            if (!currentToken) {
+                displayResponse('listAdminsResponse', { 
+                    error: 'Please login as super_admin first!' 
+                }, true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/admin/users/admins`, {
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`
+                    }
+                });
+
+                const data = await response.json();
+                displayResponse('listAdminsResponse', data, !response.ok);
+            } catch (error) {
+                displayResponse('listAdminsResponse', { error: error.message }, true);
+            }
+        }
+
+        // Clear Token
+        function clearToken() {
+            updateTokenDisplay(null);
+            alert('Token cleared! All response boxes will be hidden.');
+            location.reload();
+        }
+
+        // On page load
+        window.onload = function() {
+            // Check server connection
+            checkConnection();
+            
+            // Load saved token
+            const savedToken = localStorage.getItem('auth_token');
+            if (savedToken) {
+                updateTokenDisplay(savedToken);
+            }
+        };
+    </script>
+</body>
+</html>

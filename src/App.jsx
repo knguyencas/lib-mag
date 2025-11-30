@@ -8,6 +8,11 @@ import SearchResultPage from './pages/SearchResultPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import ThemesPage from './pages/ThemesPage';
+import PerspectivePage from './pages/PerspectivePage';
+import SettingsPage from './pages/SettingsPage';
+import CreateVisualPostPage from './pages/CreateVisualPostPage';
+import AdminAddBookPage from './pages/AdminAddBookPage';
 import './styles/global.css';
 
 function App() {
@@ -46,6 +51,22 @@ function App() {
         <Route path="/themes" element={<PlaceholderPage title="Themes" />} />
         <Route path="/about" element={<PlaceholderPage title="About" />} />
         <Route path="/contact" element={<PlaceholderPage title="Contact" />} />
+        <Route 
+          path="/create-visual-post" 
+          element={
+            <ProtectedRoute>
+              <CreateVisualPostPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/add-book" 
+          element={
+            <ProtectedRoute>
+              <AdminAddBookPage />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
