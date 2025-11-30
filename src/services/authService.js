@@ -21,12 +21,29 @@ export const authService = {
     }
   },
 
-  login: async (email, password) => {
+  login: async (identifier, password) => {
     try {
-      const response = await api.post('/auth/login', {
-        email,
-        password
-      });
+      // Detect if it's email or username
+      const isEmail = identifier.includes('@');
+      
+      // SEND ALL POSSIBLE FIELDS - backend will use what it needs
+      const requestBody = {
+        identifier: identifier,  // Some backends use this
+        email: isEmail ? identifier : undefined,  // Some use email
+        username: !isEmail ? identifier : undefined,  // Some use username
+        password: password
+      };
+
+      // Remove undefined fields
+      Object.keys(requestBody).forEach(key => 
+        requestBody[key] === undefined && delete requestBody[key]
+      );
+
+      console.log('🔐 Login attempt with:', requestBody);
+
+      const response = await api.post('/auth/login', requestBody);
+
+      console.log('✅ Login response:', response.data);
 
       const { token, user } = response.data.data;
       
@@ -36,6 +53,14 @@ export const authService = {
 
       return response.data;
     } catch (error) {
+      console.error('❌ Login error:', error);
+      console.error('Error details:', {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        message: error.message
+      });
+      
       throw error.response?.data || error;
     }
   },

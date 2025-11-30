@@ -18,6 +18,7 @@ function LoginForm({ onSubmit, loading }) {
       [name]: type === 'checkbox' ? checked : value
     }));
 
+    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -26,20 +27,29 @@ function LoginForm({ onSubmit, loading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validate fields
     const newErrors = {};
-    if (!formData.identifier.trim()) {
+    
+    if (!formData.identifier || !formData.identifier.trim()) {
       newErrors.identifier = 'Please enter your email or username';
     }
-    if (!formData.password) {
+    
+    if (!formData.password || !formData.password.trim()) {
       newErrors.password = 'Password is required';
     }
 
+    // If there are errors, show them and don't submit
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    onSubmit(formData);
+    // Submit the form data
+    onSubmit({
+      identifier: formData.identifier.trim(),
+      password: formData.password,
+      rememberMe: formData.rememberMe
+    });
   };
 
   return (

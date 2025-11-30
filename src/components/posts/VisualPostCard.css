@@ -1,6 +1,11 @@
 .visual-post-card {
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.visual-post-card:hover {
+  opacity: 0.9;
 }
 
 .visual-post-placeholder {
@@ -8,10 +13,20 @@
   height: 230px;
   background: #6f6f6f;
   border-radius: 12px;
+  margin-bottom: 12px;
 }
 
 .visual-post-meta {
-  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.visual-post-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .visual-post-title {
@@ -19,10 +34,49 @@
   font-weight: 400;
   color: #dcdcdc;
   margin: 0;
+  flex: 1;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #8a8a8a;
+  transition: all 0.2s ease;
+  font-size: 11px;
+}
+
+.like-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #dcdcdc;
+}
+
+.like-button.liked {
+  color: #ff6b6b;
+}
+
+.like-button.liked svg {
+  fill: #ff6b6b;
+}
+
+.like-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.like-count {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .visual-post-author {
   font-size: 11px;
   color: #8a8a8a;
-  margin: 2px 0 0;
+  margin: 0;
 }
