@@ -15,6 +15,9 @@ import PerspectivePostDetailPage from './pages/PerspectivePostDetailPage';
 import SettingsPage from './pages/SettingsPage';
 import CreateVisualPostPage from './pages/CreateVisualPostPage';
 import AdminAddBookPage from './pages/AdminAddBookPage';
+import ManageAdminsPage from './pages/ManageAdminsPage';
+import ManageBooksPage from './pages/ManageBooksPage';
+import ManagePostsPage from './pages/ManagePostsPage';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
@@ -74,6 +77,33 @@ function App() {
               <AdminAddBookPage />
             </ProtectedRoute>
           }
+        />
+
+        <Route 
+          path="/admin/manage-admins" 
+          element={
+            <ProtectedRoute>
+              <ManageAdminsPage />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route 
+          path="/admin/manage-books" 
+          element={
+            <ProtectedRoute>
+              <ManageBooksPage />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route 
+          path="/admin/manage-posts" 
+          element={
+            <ProtectedRoute>
+              <ManagePostsPage />
+            </ProtectedRoute>
+          } 
         />
 
         <Route path="*" element={<NotFound />} />
