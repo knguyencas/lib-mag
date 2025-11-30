@@ -1,9 +1,119 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.themes-page {
+  min-height: 100vh;
+  background: #000;
+  color: #f5f5f5;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
+.themes-page-main {
+  max-width: 1200px;
+  margin: 80px auto 60px;
+  padding: 0 40px;
+}
+
+.themes-grid-wrapper {
+  width: 100%;
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  row-gap: 60px;
+}
+
+.themes-pagination {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-inner {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: #3b3b3b;
+  gap: 12px;
+}
+
+.page-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #d0d0d0;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.page-pill.active {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.page-next {
+  border: none;
+  background: transparent;
+  color: #d0d0d0;
+  font-size: 12px;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.page-next:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.floating-create-btn {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #f5f5f5;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.loading-spinner {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner .spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid #444;
+  border-top-color: #f5f5f5;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 8px;
+}
+
+.loading-spinner p {
+  font-size: 13px;
+  color: #ccc;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.footer {
+  padding: 20px 40px 30px;
+  text-align: center;
+  font-size: 11px;
+  color: #777;
 }
