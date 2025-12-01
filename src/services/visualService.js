@@ -32,14 +32,21 @@ export const visualService = {
       console.log('Fetching visual post from API:', `/visualpost/${postId}`);
       const response = await api.get(`/visualpost/${postId}`);
       console.log('Visual post API response:', response.data);
-      
-      const postData = response.data.data || response.data.post || response.data;
-      
+
+      const data = response.data || {};
+      const postData =
+        data.data?.post ||
+        data.data?.visualPost ||
+        data.post ||
+        data.visualPost ||
+        data.data ||
+        data;
+
       if (!postData || typeof postData !== 'object') {
         console.error('Invalid visual post data structure:', postData);
         throw new Error('Invalid response structure from API');
       }
-      
+
       return postData;
     } catch (error) {
       console.error('Error fetching visual post detail:', error);
@@ -64,52 +71,6 @@ export const visualService = {
       return response.data;
     } catch (error) {
       console.error('Error unliking post:', error);
-      throw error;
-    }
-  },
-
-  getComments: async (postId) => {
-    try {
-      const response = await api.get(`/comments/visual/${postId}`);
-      return response.data.data || response.data.comments || [];
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-      return [];
-    }
-  },
-
-  addComment: async (postId, content) => {
-    try {
-      const response = await api.post(`/comments/visual/${postId}`, {
-        content
-      });
-      return response.data.data || response.data.comment;
-    } catch (error) {
-      console.error('Error adding comment:', error);
-      throw error;
-    }
-  },
-
-  getGenres: async () => {
-    try {
-      const response = await api.get('/books/metadata/genres');
-      return response.data.data || [];
-    } catch (error) {
-      console.error('Error fetching genres:', error);
-      return [];
-    }
-  },
-
-  createPost: async (formData) => {
-    try {
-      const response = await api.post('/visualpost', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error creating visual post:', error);
       throw error;
     }
   }

@@ -12,7 +12,9 @@ function VisualPostCard({ post }) {
     if (e.target.closest('.like-button')) {
       return;
     }
-    navigate(`/visual-post/${post.id}`);
+    const postId = post.post_id || post.visual_id || post.id || post._id || post.slug;
+    if (!postId) return;
+    navigate(`/visual-post/${postId}`);
   };
 
   const handleLike = (e) => {
@@ -25,27 +27,65 @@ function VisualPostCard({ post }) {
       setLiked(true);
       setLikeCount(prev => prev + 1);
     }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'Unknown date';
+    const date = new Date(dateString);
+    if (isNaN(date)) return 'Unknown date';
     
-    // TODO: API call to like/unlike post
+    return date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
   };
 
   return (
     <div className="visual-post-card" onClick={handleClick}>
-      <div className="visual-post-placeholder"></div>
-
-      <div className="visual-post-meta">
-        <div className="visual-post-title-row">
-          <h3 className="visual-post-title">{post.title || 'Article Title'}</h3>
+      <div className="visual-post-image-container">
+        {post.image_url ? (
+          <img 
+            src={post.image_url} 
+            alt={post.title || 'Visual post'} 
+            className="visual-post-image"
+          />
+        ) : (
+          <div className="visual-post-image-placeholder">
+            <span>No image</span>
+          </div>
+        )}
+      </div>
+      
+      <div className="visual-post-content">
+        <div className="visual-post-header">
+          <h3 className="visual-post-title">
+            {post.title || 'Untitled visual post'}
+          </h3>
+          <span className="visual-post-date">
+            {formatDate(post.created_at || post.createdAt)}
+          </span>
+        </div>
+        
+        {post.caption && (
+          <p className="visual-post-caption">
+            {post.caption.length > 120 
+              ? `${post.caption.substring(0, 120)}...` 
+              : post.caption}
+          </p>
+        )}
+        
+        <div className="visual-post-footer">
           <button 
             className={`like-button ${liked ? 'liked' : ''}`}
             onClick={handleLike}
-            aria-label={liked ? 'Unlike' : 'Like'}
           >
             <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
               width="18" 
               height="18" 
-              viewBox="0 0 24 24" 
-              fill={liked ? 'currentColor' : 'none'}
+              fill={liked ? 'currentColor' : 'none'} 
               stroke="currentColor" 
               strokeWidth="2"
             >
@@ -54,7 +94,9 @@ function VisualPostCard({ post }) {
             <span className="like-count">{likeCount}</span>
           </button>
         </div>
-        <p className="visual-post-author">@{post.author?.username || 'author_name'}</p>
+        <p className="visual-post-author">
+          @{post.author?.username || 'author_name'}
+        </p>
       </div>
     </div>
   );

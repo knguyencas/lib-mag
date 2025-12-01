@@ -22,7 +22,9 @@ function PerspectivePostCard({ post }) {
     if (e.target.closest('.vote-button')) {
       return;
     }
-    navigate(`/perspective-post/${post.id}`);
+    const postId = post.post_id || post.perspective_id || post.id || post._id || post.slug;
+    if (!postId) return;
+    navigate(`/perspective-post/${postId}`);
   };
 
   const handleUpvote = async () => {
@@ -32,13 +34,12 @@ function PerspectivePostCard({ post }) {
     } else {
       setUpvoted(true);
       setUpvoteCount(prev => prev + 1);
-      
+
       if (downvoted) {
         setDownvoted(false);
         setDownvoteCount(prev => prev - 1);
       }
     }
-    
   };
 
   const handleDownvote = async () => {
@@ -48,88 +49,60 @@ function PerspectivePostCard({ post }) {
     } else {
       setDownvoted(true);
       setDownvoteCount(prev => prev + 1);
-      
+
       if (upvoted) {
         setUpvoted(false);
         setUpvoteCount(prev => prev - 1);
       }
     }
-    
   };
 
   return (
     <div className="perspective-post-card" onClick={handleCardClick}>
-      <div className="post-main-content">
-        <div className="post-header">
-          <div className="post-author-info">
-            <div className="post-avatar">
-              {post.author?.username?.substring(0, 2).toUpperCase() || 'U'}
-            </div>
-            <div className="post-author-details">
-              <span className="post-author-name">@{post.author?.username || 'Unknown'}</span>
-              <span className="post-date">{formatDate(post.createdAt)}</span>
-            </div>
-          </div>
-
-          {post.genre && (
-            <span className="post-genre-badge">{post.genre}</span>
-          )}
+      <div className="post-header">
+        <div className="post-meta">
+          <span className="post-type">Perspective</span>
+          <span className="post-date">
+            {post.created_at ? formatDate(post.created_at) : 'Unknown date'}
+          </span>
         </div>
-
         <h3 className="post-title">{post.title}</h3>
+      </div>
 
-        <div className="post-content-preview">
-          {post.content && post.content.length > 200
-            ? `${post.content.substring(0, 200)}...`
-            : post.content}
+      <div className="post-content-preview">
+        {post.content && post.content.length > 200
+          ? `${post.content.substring(0, 200)}...`
+          : post.content}
+      </div>
+
+      <div className="post-footer">
+        <div className="vote-section">
+          <button 
+            className={`vote-button upvote ${upvoted ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleUpvote();
+            }}
+          >
+            ▲
+            <span className="vote-count">{upvoteCount}</span>
+          </button>
+          <button 
+            className={`vote-button downvote ${downvoted ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDownvote();
+            }}
+          >
+            ▼
+            <span className="vote-count">{downvoteCount}</span>
+          </button>
         </div>
 
-        {post.tags && post.tags.length > 0 && (
-          <div className="post-tags">
-            {post.tags.map((tag, index) => (
-              <span key={index} className="tag">{tag}</span>
-            ))}
-          </div>
-        )}
-
-        <div className="post-footer">
-          <div className="post-stats">
-            <span className="stat-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-              {post.commentsCount || 0}
-            </span>
-            <span className="stat-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
-              {post.views || 0}
-            </span>
-          </div>
-
-          <div className="post-actions">
-            <button 
-              className={`vote-button upvote ${upvoted ? 'active' : ''}`}
-              onClick={handleUpvote}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill={upvoted ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
-                <path d="M12 19V6M5 12l7-7 7 7"/>
-              </svg>
-              {upvoteCount}
-            </button>
-
-            <button 
-              className={`vote-button downvote ${downvoted ? 'active' : ''}`}
-              onClick={handleDownvote}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill={downvoted ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
-                <path d="M12 5v13M5 12l7 7 7-7"/>
-              </svg>
-              {downvoteCount}
-            </button>
-          </div>
+        <div className="post-stats">
+          <span className="comments-count">
+            {post.commentsCount || 0} comments
+          </span>
         </div>
       </div>
     </div>

@@ -2,20 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import { authService } from '../services/authService';
-import { perspectiveService } from '../services/perspectiveService';
-import '../styles/perspective-post.css';
+import { visualService } from '../services/visualService';
+import '../styles/visual-post.css';
 
-function PerspectivePostDetailPage() {
+function VisualPostDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [loadingPost, setLoadingPost] = useState(true);
-  const [loadingComments, setLoadingComments] = useState(true);
-
-  const [commentText, setCommentText] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -23,16 +18,11 @@ function PerspectivePostDetailPage() {
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  // Vote state
-  const [voteState, setVoteState] = useState({
-    upvoted: false,
-    downvoted: false,
-    upvotes: 0,
-    downvotes: 0
-  });
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    document.title = 'Psyche Journey – Perspective Post';
+    document.title = 'Psyche Journey – Visual Post';
 
     const currentUser = authService.getUser();
     if (currentUser) {
@@ -45,57 +35,40 @@ function PerspectivePostDetailPage() {
 
     if (id) {
       loadPost(id);
-      loadComments(id);
     }
   }, [id]);
 
   const loadPost = async (postId) => {
     try {
-      setLoadingPost(true);
-      console.log('Loading post with ID:', postId);
-      const postData = await perspectiveService.getPostById(postId);
-      console.log('Post data received:', postData);
-      console.log('Post content:', postData?.content);
-      console.log('Post title/topic:', postData?.title || postData?.topic);
+      setLoading(true);
+      console.log('🔍 Loading visual post with ID:', postId);
+      const postData = await visualService.getPostById(postId);
+      console.log('Visual post data received:', postData);
       
       if (!postData) {
-        console.error('No post data returned from API');
+        console.error('❌ No post data returned from API');
         setPost(null);
         return;
       }
       
       setPost(postData);
       
-      // Initialize vote state
-      setVoteState({
-        upvoted: false,
-        downvoted: false,
-        upvotes: postData.upvotes || 0,
-        downvotes: postData.downvotes || 0
-      });
+      const likes = postData.likes || postData.likesCount || postData.like_count || 0;
+      console.log('💗 Likes count:', likes);
+      setLikeCount(likes);
+      
+      if (user && postData.user_likes) {
+        setLiked(postData.user_likes.includes(user.id || user._id));
+      } else if (user && postData.likedBy) {
+        setLiked(postData.likedBy.includes(user.id || user._id));
+      }
+      
     } catch (err) {
-      console.error('Error loading post detail:', err);
-      console.error('Error details:', err.response?.data || err.message);
+      console.error('❌ Error loading visual post:', err);
+      console.error('❌ Error details:', err.response?.data || err.message);
       setPost(null);
     } finally {
-      setLoadingPost(false);
-    }
-  };
-
-  const loadComments = async (postId) => {
-    try {
-      setLoadingComments(true);
-      console.log('Loading comments for post:', postId);
-      const commentsData = await perspectiveService.getComments(postId);
-      console.log('Comments data received:', commentsData);
-      console.log('Number of comments:', commentsData?.length || 0);
-      setComments(commentsData || []);
-    } catch (err) {
-      console.error('Error loading comments:', err);
-      console.error('Error details:', err.response?.data || err.message);
-      setComments([]);
-    } finally {
-      setLoadingComments(false);
+      setLoading(false);
     }
   };
 
@@ -113,110 +86,56 @@ function PerspectivePostDetailPage() {
     return `${day} ${month} ${year}`;
   };
 
-  const paragraphs = (post?.content || '')
-    .split(/\n\s*\n/)
-    .filter((p) => p.trim().length > 0);
-
   const handleSearch = () => {
     const q = searchText.trim();
     if (!q) return;
     navigate(`/search-results?q=${encodeURIComponent(q)}`);
   };
 
-  const handleSubmitComment = async (e) => {
-    if (e) e.preventDefault();
-    const text = commentText.trim();
-    if (!text) return;
-
+  const handleLike = async () => {
     if (!isLoggedIn) {
       navigate('/login');
       return;
     }
 
     try {
-      setSubmitting(true);
-      const newComment = await perspectiveService.addComment(id, text);
-      
-      // Add new comment to list
-      setComments(prev => [{
-        id: newComment.id || newComment._id,
-        user: '@' + (user.username || 'User'),
-        content: text,
-        createdAt: new Date().toISOString(),
-        isRoot: true
-      }, ...prev]);
-      
-      setCommentText('');
-    } catch (err) {
-      console.error('Error submitting comment:', err);
-      alert('Failed to post comment. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const handleCommentKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmitComment(e);
-    }
-  };
-
-  const handleVote = async (voteType) => {
-    if (!isLoggedIn) {
-      navigate('/login');
-      return;
-    }
-
-    try {
-      if (voteType === 'upvote') {
-        if (voteState.upvoted) {
-          // Remove upvote
-          setVoteState(prev => ({
-            ...prev,
-            upvoted: false,
-            upvotes: prev.upvotes - 1
-          }));
-        } else {
-          // Add upvote
-          await perspectiveService.upvotePost(id);
-          setVoteState(prev => ({
-            ...prev,
-            upvoted: true,
-            upvotes: prev.upvotes + 1,
-            downvoted: false,
-            downvotes: prev.downvoted ? prev.downvotes - 1 : prev.downvotes
-          }));
-        }
+      if (liked) {
+        await visualService.unlikePost(id);
+        setLiked(false);
+        setLikeCount(prev => Math.max(0, prev - 1));
       } else {
-        // downvote
-        if (voteState.downvoted) {
-          // Remove downvote
-          setVoteState(prev => ({
-            ...prev,
-            downvoted: false,
-            downvotes: prev.downvotes - 1
-          }));
-        } else {
-          // Add downvote
-          await perspectiveService.downvotePost(id);
-          setVoteState(prev => ({
-            ...prev,
-            downvoted: true,
-            downvotes: prev.downvotes + 1,
-            upvoted: false,
-            upvotes: prev.upvoted ? prev.upvotes - 1 : prev.upvotes
-          }));
-        }
+        await visualService.likePost(id);
+        setLiked(true);
+        setLikeCount(prev => prev + 1);
       }
     } catch (err) {
-      console.error('Error voting:', err);
+      console.error('❌ Error toggling like:', err);
+      alert('Failed to update like. Please try again.');
     }
   };
 
-  if (loadingPost && !post) {
+  const getImageUrl = () => {
+    if (!post) return '';
+    
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const imageField = post.image_url || post.image || post.imageUrl || post.photo_url || '';
+    
+    if (!imageField) return '';
+    
+    if (imageField.startsWith('http://') || imageField.startsWith('https://')) {
+      return imageField;
+    }
+    
+    if (imageField.startsWith('/')) {
+      return `${baseUrl}${imageField}`;
+    }
+    
+    return `${baseUrl}/${imageField}`;
+  };
+
+  if (loading && !post) {
     return (
-      <div className="perspective-post-page">
+      <div className="visual-post-page">
         <Header />
         <main className="post-page">
           <div className="loading-state">Loading post...</div>
@@ -227,7 +146,7 @@ function PerspectivePostDetailPage() {
 
   if (!post) {
     return (
-      <div className="perspective-post-page">
+      <div className="visual-post-page">
         <Header />
         <main className="post-page">
           <div className="loading-state">Post not found.</div>
@@ -236,8 +155,10 @@ function PerspectivePostDetailPage() {
     );
   }
 
+  const imageUrl = getImageUrl();
+
   return (
-    <div className="perspective-post-page">
+    <div className="visual-post-page">
       <Header />
       <div className="sub_nav">
         <div className="search_bar">
@@ -273,29 +194,39 @@ function PerspectivePostDetailPage() {
       <main className="post-page">
         <div
           style={{
-            maxWidth: '1174px',
+            maxWidth: '900px',
             margin: '0 auto 16px',
             padding: '0 30px',
           }}
         >
-          <Link to="/perspective" className="nav-link-inline">
-            &larr; Back to Perspective
+          <Link to="/themes" className="nav-link-inline">
+            &larr; Back to Visuals
           </Link>
         </div>
 
-        <section className="post-wrapper">
-          <article className="post-card">
+        <section className="visual-post-wrapper">
+          <article className="visual-post-card">
             <div className="post-date">{formatDate(post.updatedAt || post.createdAt)}</div>
 
-            <div className="post-header">
+            <div className="visual-post-image">
+              {imageUrl ? (
+                <img src={imageUrl} alt={post.title || post.caption || 'Visual post'} />
+              ) : (
+                <div className="no-image">No image available</div>
+              )}
+            </div>
+
+            <div className="visual-post-header">
               <div className="post-avatar"></div>
-              <div className="post-title-wrapper">
-                <div className="post-topic-line">
-                  <span className="post-topic">{post.title || post.topic}</span>
-                  <span className="post-by">
-                    By @{post.author?.username || post.author_username || 'anonymous'}
-                  </span>
+              <div className="post-info">
+                <div className="post-author">
+                  @{post.author?.username || post.author_username || 'anonymous'}
                 </div>
+                {(post.caption || post.content) && (
+                  <div className="post-caption">
+                    {post.caption || post.content}
+                  </div>
+                )}
                 {post.tags && post.tags.length > 0 && (
                   <div className="post-tag">
                     {Array.isArray(post.tags) ? post.tags.join(', ') : post.tags}
@@ -304,111 +235,29 @@ function PerspectivePostDetailPage() {
               </div>
             </div>
 
-            <div className="post-content">
-              {paragraphs.length === 0 ? (
-                <p>No content available.</p>
-              ) : (
-                paragraphs.map((p, idx) => <p key={idx}>{p}</p>)
-              )}
-            </div>
-
-            <div className="post-footer">
-              <span 
-                className={`vote-link ${voteState.upvoted ? 'favorite-active' : ''}`}
-                onClick={() => handleVote('upvote')}
+            <div className="visual-post-footer">
+              <button 
+                className={`like-btn ${liked ? 'liked' : ''}`}
+                onClick={handleLike}
+                disabled={!isLoggedIn}
+                title={isLoggedIn ? (liked ? 'Unlike' : 'Like') : 'Please log in to like'}
               >
-                Upvote ({voteState.upvotes})
-              </span>
-              <span 
-                className={`vote-link ${voteState.downvoted ? 'favorite-active' : ''}`}
-                onClick={() => handleVote('downvote')}
-              >
-                Downvote ({voteState.downvotes})
-              </span>
+                <span className="heart-icon">{liked ? '❤️' : '🤍'}</span>
+                <span className="like-count">{likeCount}</span>
+              </button>
             </div>
           </article>
         </section>
 
-        <section className="comment-title-wrapper">
-          <h2 className="comment-title">Comment ({comments.length})</h2>
-        </section>
-
-        <section className="comments-wrapper">
-          {loadingComments ? (
-            <div className="loading-state">Loading comments...</div>
-          ) : comments.length === 0 ? (
-            <div className="no-comments">No comments yet. Be the first to share your thoughts!</div>
-          ) : (
-            comments.map((c) => (
-              <article
-                key={c.id || c._id}
-                className={`comment-card ${
-                  c.isRoot ? 'comment-root' : 'comment-reply'
-                }`}
-              >
-                <div className="comment-date">
-                  {formatDate(c.createdAt)}
-                </div>
-                <div className="comment-header">
-                  <div className="comment-avatar"></div>
-                  <div className="comment-meta">
-                    <span className="comment-user">
-                      {c.user || '@' + (c.author?.username || 'anonymous')}
-                    </span>
-                  </div>
-                </div>
-                <div className="comment-body">{c.content}</div>
-                <div className="comment-footer">
-                  <span className="comment-action">Reply</span>
-                  <span className="comment-action">Upvote</span>
-                  <span className="comment-action">Downvote</span>
-                </div>
-              </article>
-            ))
-          )}
-        </section>
-
-        <section className="comment-form-wrapper">
-          <div className="comment-form-card">
-            <form onSubmit={handleSubmitComment}>
-              <textarea
-                className="comment-input"
-                placeholder={
-                  isLoggedIn
-                    ? 'Share your thoughts...'
-                    : 'Please log in to comment'
-                }
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                onKeyDown={handleCommentKeyDown}
-                disabled={!isLoggedIn}
-              />
-              <button
-                type="submit"
-                className="comment-submit-btn"
-                disabled={submitting || !isLoggedIn}
-              >
-                {submitting ? 'Submitting…' : 'Enter'}
-              </button>
-            </form>
-          </div>
-
-          {!isLoggedIn && (
-            <div className="comment-login-hint">
-              <Link to="/login">Log in</Link> to share your thoughts and join the conversation.
-            </div>
-          )}
-        </section>
       </main>
 
       <footer className="footer">
         <p>
-          © 2025 Psyche Journey. A quiet place for thoughts,
-          perspectives, and conversations.
+          © 2025 Psyche Journey. Visual exploration of the mind.
         </p>
       </footer>
     </div>
   );
 }
 
-export default PerspectivePostDetailPage;
+export default VisualPostDetailPage;
