@@ -11,8 +11,10 @@ function ThemesPage() {
   const navigate = useNavigate();
   const [visualPosts, setVisualPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState('newest');
 
   useEffect(() => {
     document.title = 'Psyche Journey – Themes';
@@ -20,101 +22,51 @@ function ThemesPage() {
     document.body.classList.remove('home', 'library');
 
     setIsLoggedIn(authService.isLoggedIn());
-    loadVisualPosts();
 
     return () => {
       document.body.classList.remove('themes');
     };
   }, []);
 
+  useEffect(() => {
+    loadVisualPosts();
+  }, [sortBy]);
+
   const loadVisualPosts = async () => {
     try {
       setLoading(true);
+      setError(null);
 
-      // mock data cho layout
-      const mockPosts = [
-        {
-          id: '1',
-          title: 'Article Title',
-          description: 'Exploring the depths of our unconscious mind through visual metaphor.',
-          imageUrl: '',
-          genre: 'Psychology',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-29',
-          likes: 42,
-          views: 128,
-        },
-        {
-          id: '2',
-          title: 'Article Title',
-          description: 'A visual journey into the collective unconscious.',
-          imageUrl: '',
-          genre: 'Philosophy',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-28',
-          likes: 35,
-          views: 95,
-        },
-        {
-          id: '3',
-          title: 'Article Title',
-          description: 'On the tension between light and shadow in the mind.',
-          imageUrl: '',
-          genre: 'Psychology',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-27',
-          likes: 21,
-          views: 74,
-        },
-        {
-          id: '4',
-          title: 'Article Title',
-          description: 'Symbolic images and quiet reflection.',
-          imageUrl: '',
-          genre: 'Mindfulness',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-26',
-          likes: 18,
-          views: 66,
-        },
-        {
-          id: '5',
-          title: 'Article Title',
-          description: 'Dreamlike compositions about memory and loss.',
-          imageUrl: '',
-          genre: 'Psychology',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-25',
-          likes: 30,
-          views: 90,
-        },
-        {
-          id: '6',
-          title: 'Article Title',
-          description: 'Quiet scenes that capture inner monologues.',
-          imageUrl: '',
-          genre: 'Philosophy',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-24',
-          likes: 16,
-          views: 54,
-        },
-        {
-          id: '7',
-          title: 'Article Title',
-          description: 'Visual notes on emotional regulation.',
-          imageUrl: '',
-          genre: 'Psychology',
-          author: { username: 'psyche_journey' },
-          createdAt: '2024-11-23',
-          likes: 11,
-          views: 40,
-        },
-      ];
+      const response = await fetch(`http://localhost:3000/api/visualpost?limit=100&sort=${sortBy}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to load visual posts');
+      }
 
-      setVisualPosts(mockPosts);
-    } catch (error) {
-      console.error('Error loading visual posts:', error);
+      const result = await response.json();
+
+      if (result.success) {
+        const transformedPosts = result.data.map(post => ({
+          id: post.post_id,
+          title: post.title,
+          description: post.content?.substring(0, 150) || '',
+          imageUrl: post.image_url || '',
+          genre: post.primary_genre || 'General',
+          author: post.author_id || { username: 'unknown' },
+          createdAt: post.createdAt,
+          likes: post.likes || 0,
+          views: post.views || 0,
+        }));
+
+        setVisualPosts(transformedPosts);
+      } else {
+        throw new Error(result.message || 'Failed to load posts');
+      }
+
+    } catch (err) {
+      console.error('Error loading visual posts:', err);
+      setError(err.message);
+      setVisualPosts([]);
     } finally {
       setLoading(false);
     }
@@ -128,6 +80,11 @@ function ThemesPage() {
     navigate('/create-visual-post');
   };
 
+  const handleSortChange = (newSort) => {
+    setSortBy(newSort);
+    setCurrentPage(1);
+  };
+
   const totalPages = Math.ceil(visualPosts.length / POSTS_PER_PAGE) || 1;
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const paginatedPosts = visualPosts.slice(
@@ -135,12 +92,9 @@ function ThemesPage() {
     startIndex + POSTS_PER_PAGE
   );
 
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
-
   const handleChangePage = (page) => {
     setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (loading) {
@@ -157,43 +111,126 @@ function ThemesPage() {
     );
   }
 
+  if (error) {
+    return (
+      <div className="themes-page">
+        <Header />
+        <main className="themes-page-main">
+          <div className="error-state">
+            <p style={{ color: '#f48771', marginBottom: '20px' }}>Error: {error}</p>
+            <button 
+              onClick={loadVisualPosts} 
+              style={{
+                padding: '12px 24px',
+                background: '#f5f5f5',
+                color: '#000',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
+            >
+              Retry
+            </button>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="themes-page">
       <Header />
 
       <main className="themes-page-main">
-        <section className="themes-grid-wrapper">
-          <div className="visual-grid">
-            {paginatedPosts.map((post) => (
-              <VisualPostCard key={post.id} post={post} />
-            ))}
-          </div>
+        <div style={{ 
+          marginBottom: '40px', 
+          display: 'flex', 
+          justifyContent: 'flex-end',
+          gap: '12px',
+          alignItems: 'center'
+        }}>
+          <span style={{ 
+            fontSize: '13px', 
+            color: '#ccc',
+            fontFamily: 'Poppins, sans-serif'
+          }}>
+            Sort by:
+          </span>
+          <select
+            value={sortBy}
+            onChange={(e) => handleSortChange(e.target.value)}
+            style={{
+              padding: '8px 16px',
+              background: '#1a1a1a',
+              color: '#f5f5f5',
+              border: '1px solid #3b3b3b',
+              borderRadius: '6px',
+              fontSize: '13px',
+              fontFamily: 'Poppins, sans-serif',
+              cursor: 'pointer',
+              outline: 'none'
+            }}
+          >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="likes">Most Liked</option>
+          </select>
+        </div>
 
-          <div className="themes-pagination">
-            <div className="pagination-inner">
-              {Array.from({ length: totalPages }).map((_, index) => {
-                const page = index + 1;
-                return (
-                  <button
-                    key={page}
-                    className={`page-pill ${page === currentPage ? 'active' : ''}`}
-                    onClick={() => handleChangePage(page)}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
-              <button
-                className="page-next"
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </button>
+        {/* POSTS GRID */}
+        <section className="themes-grid-wrapper">
+          {paginatedPosts.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '80px 20px',
+              color: '#999'
+            }}>
+              <p style={{ fontSize: '16px', marginBottom: '8px' }}>
+                No visual posts available yet
+              </p>
+              <p style={{ fontSize: '13px' }}>
+                Be the first to share your visual perspective!
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="visual-grid">
+              {paginatedPosts.map((post) => (
+                <VisualPostCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
+
+          {totalPages > 1 && (
+            <div className="themes-pagination">
+              <div className="pagination-inner">
+                {Array.from({ length: totalPages }).map((_, index) => {
+                  const page = index + 1;
+                  return (
+                    <button
+                      key={page}
+                      className={`page-pill ${page === currentPage ? 'active' : ''}`}
+                      onClick={() => handleChangePage(page)}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+                <button
+                  className="page-next"
+                  onClick={() => handleChangePage(Math.min(currentPage + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
         </section>
 
+        {/* FLOATING CREATE BUTTON */}
         {isLoggedIn && (
           <button className="floating-create-btn" onClick={handleCreatePost}>
             <svg
