@@ -1,54 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import Header from '@/components/layout/Header';
-import { authService } from '@/services/authService';
-import '@/styles/perspective-post.css';
-
-const API_BASE_URL = 'http://localhost:3000/api';
-
-function normalizePostFromApi(raw, fallbackId) {
-  if (!raw) return null;
-
-  const id = raw.id || raw._id || fallbackId;
-  const title = raw.title || raw.topic || 'Post Topic';
-  const authorUsername =
-    raw.author?.username ||
-    raw.user?.username ||
-    raw.username ||
-    'User_name';
-  const tags = raw.tags || raw.tag || [];
-  const updatedAt = raw.updatedAt || raw.lastUpdated || raw.createdAt || null;
-  const content =
-    raw.content ||
-    raw.body ||
-    `This is the content of the post, when you click on the topic name above, you can see all the pages and are allowed to comment.`;
-
-  return {
-    id,
-    title,
-    authorUsername,
-    tags,
-    updatedAt,
-    content,
-  };
-}
-
-function normalizeCommentFromApi(raw) {
-  if (!raw) return null;
-
-  return {
-    id: raw.id || raw._id || Math.random().toString(36).slice(2),
-    user:
-      '@' +
-      (raw.user?.username ||
-        raw.username ||
-        raw.userName ||
-        'User_name'),
-    content: raw.content || raw.text || '',
-    createdAt: raw.createdAt || raw.updatedAt || null,
-    isRoot: !raw.parentId && !raw.parent,
-  };
-}
+import Header from '../components/layout/Header';
+import { authService } from '../services/authService';
+import { perspectiveService } from '../services/perspectiveService';
+import '../styles/perspective-post.css';
 
 function PerspectivePostDetailPage() {
   const { id } = useParams();
@@ -67,6 +22,13 @@ function PerspectivePostDetailPage() {
 
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
+
+  const [voteState, setVoteState] = useState({
+    upvoted: false,
+    downvoted: false,
+    upvotes: 0,
+    downvotes: 0
+  });
 
   useEffect(() => {
     document.title = 'Psyche Journey – Perspective Post';
@@ -89,14 +51,15 @@ function PerspectivePostDetailPage() {
   const loadPost = async (postId) => {
     try {
       setLoadingPost(true);
-      const res = await fetch(`${API_BASE_URL}/perspectivepost/${postId}`);
-      if (!res.ok) {
-        throw new Error(`Failed to load post: ${res.status}`);
-      }
-      const json = await res.json();
-      const raw = json.data || json.post || json;
-      const mapped = normalizePostFromApi(raw, postId);
-      setPost(mapped);
+      const postData = await perspectiveService.getPostById(postId);
+      setPost(postData);
+      
+      setVoteState({
+        upvoted: false,
+        downvoted: false,
+        upvotes: postData.upvotes || 0,
+        downvotes: postData.downvotes || 0
+      });
     } catch (err) {
       console.error('Error loading post detail:', err);
       setPost(null);
@@ -108,18 +71,8 @@ function PerspectivePostDetailPage() {
   const loadComments = async (postId) => {
     try {
       setLoadingComments(true);
-      const res = await fetch(
-        `${API_BASE_URL}/comments/perspective/${postId}`
-      );
-      if (!res.ok) {
-        throw new Error(`Failed to load comments: ${res.status}`);
-      }
-      const json = await res.json();
-      const rawComments = json.data || json.comments || [];
-      const mapped = rawComments
-        .map((c) => normalizeCommentFromApi(c))
-        .filter(Boolean);
-      setComments(mapped);
+      const commentsData = await perspectiveService.getComments(postId);
+      setComments(commentsData);
     } catch (err) {
       console.error('Error loading comments:', err);
       setComments([]);
@@ -134,18 +87,8 @@ function PerspectivePostDetailPage() {
     if (Number.isNaN(d.getTime())) return '';
     const day = String(d.getDate()).padStart(2, '0');
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ];
     const month = monthNames[d.getMonth()];
     const year = d.getFullYear();
@@ -167,47 +110,27 @@ function PerspectivePostDetailPage() {
     const text = commentText.trim();
     if (!text) return;
 
-    if (!authService.isLoggedIn()) {
+    if (!isLoggedIn) {
       navigate('/login');
       return;
     }
 
     try {
       setSubmitting(true);
-      const currentUser = authService.getUser();
-
-      const res = await fetch(
-        `${API_BASE_URL}/comments/perspective/${id}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId: currentUser.id || currentUser._id,
-            content: text,
-          }),
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error(`Failed to add comment: ${res.status}`);
-      }
-
-      const json = await res.json();
-      const createdRaw = json.data || json.comment || json;
-      const created = normalizeCommentFromApi(createdRaw);
-
-      const fallbackComment =
-        created ||
-        normalizeCommentFromApi({
-          content: text,
-          user: { username: currentUser.username },
-          createdAt: new Date().toISOString(),
-        });
-
-      setComments((prev) => [fallbackComment, ...prev]);
+      const newComment = await perspectiveService.addComment(id, text);
+      
+      setComments(prev => [{
+        id: newComment.id || newComment._id,
+        user: '@' + (user.username || 'User'),
+        content: text,
+        createdAt: new Date().toISOString(),
+        isRoot: true
+      }, ...prev]);
+      
       setCommentText('');
     } catch (err) {
       console.error('Error submitting comment:', err);
+      alert('Failed to post comment. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -217,6 +140,53 @@ function PerspectivePostDetailPage() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSubmitComment(e);
+    }
+  };
+
+  const handleVote = async (voteType) => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      if (voteType === 'upvote') {
+        if (voteState.upvoted) {
+          setVoteState(prev => ({
+            ...prev,
+            upvoted: false,
+            upvotes: prev.upvotes - 1
+          }));
+        } else {
+          await perspectiveService.upvotePost(id);
+          setVoteState(prev => ({
+            ...prev,
+            upvoted: true,
+            upvotes: prev.upvotes + 1,
+            downvoted: false,
+            downvotes: prev.downvoted ? prev.downvotes - 1 : prev.downvotes
+          }));
+        }
+      } else {
+        if (voteState.downvoted) {
+          setVoteState(prev => ({
+            ...prev,
+            downvoted: false,
+            downvotes: prev.downvotes - 1
+          }));
+        } else {
+          await perspectiveService.downvotePost(id);
+          setVoteState(prev => ({
+            ...prev,
+            downvoted: true,
+            downvotes: prev.downvotes + 1,
+            upvoted: false,
+            upvotes: prev.upvoted ? prev.upvotes - 1 : prev.upvotes
+          }));
+        }
+      }
+    } catch (err) {
+      console.error('Error voting:', err);
     }
   };
 
@@ -291,57 +261,63 @@ function PerspectivePostDetailPage() {
 
         <section className="post-wrapper">
           <article className="post-card">
-            <div className="post-date">{formatDate(post.updatedAt)}</div>
+            <div className="post-date">{formatDate(post.updatedAt || post.createdAt)}</div>
 
             <div className="post-header">
               <div className="post-avatar"></div>
               <div className="post-title-wrapper">
                 <div className="post-topic-line">
-                  <span className="post-topic">{post.title}</span>
+                  <span className="post-topic">{post.title || post.topic}</span>
                   <span className="post-by">
-                    By @{post.authorUsername}
+                    By @{post.author?.username || post.author_username || 'anonymous'}
                   </span>
                 </div>
-                <div className="post-tag">
-                  {Array.isArray(post.tags)
-                    ? post.tags.join(', ')
-                    : ''}
-                </div>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="post-tag">
+                    {Array.isArray(post.tags) ? post.tags.join(', ') : post.tags}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="post-content">
               {paragraphs.length === 0 ? (
-                <p>
-                  This is the content of the post, when you click on
-                  the topic name above, you can see all the pages and
-                  are allowed to comment.
-                </p>
+                <p>No content available.</p>
               ) : (
                 paragraphs.map((p, idx) => <p key={idx}>{p}</p>)
               )}
             </div>
 
             <div className="post-footer">
-              <span className="vote-link">Upvote</span>
-              <span className="vote-link">Downvote</span>
+              <span 
+                className={`vote-link ${voteState.upvoted ? 'favorite-active' : ''}`}
+                onClick={() => handleVote('upvote')}
+              >
+                Upvote ({voteState.upvotes})
+              </span>
+              <span 
+                className={`vote-link ${voteState.downvoted ? 'favorite-active' : ''}`}
+                onClick={() => handleVote('downvote')}
+              >
+                Downvote ({voteState.downvotes})
+              </span>
             </div>
           </article>
         </section>
 
         <section className="comment-title-wrapper">
-          <h2 className="comment-title">Comment</h2>
+          <h2 className="comment-title">Comment ({comments.length})</h2>
         </section>
 
         <section className="comments-wrapper">
           {loadingComments ? (
             <div className="loading-state">Loading comments...</div>
           ) : comments.length === 0 ? (
-            <div className="no-comments">No comments yet.</div>
+            <div className="no-comments">No comments yet. Be the first to share your thoughts!</div>
           ) : (
             comments.map((c) => (
               <article
-                key={c.id}
+                key={c.id || c._id}
                 className={`comment-card ${
                   c.isRoot ? 'comment-root' : 'comment-reply'
                 }`}
@@ -352,7 +328,9 @@ function PerspectivePostDetailPage() {
                 <div className="comment-header">
                   <div className="comment-avatar"></div>
                   <div className="comment-meta">
-                    <span className="comment-user">{c.user}</span>
+                    <span className="comment-user">
+                      {c.user || '@' + (c.author?.username || 'anonymous')}
+                    </span>
                   </div>
                 </div>
                 <div className="comment-body">{c.content}</div>
@@ -373,17 +351,18 @@ function PerspectivePostDetailPage() {
                 className="comment-input"
                 placeholder={
                   isLoggedIn
-                    ? 'Comment...'
+                    ? 'Share your thoughts...'
                     : 'Please log in to comment'
                 }
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 onKeyDown={handleCommentKeyDown}
+                disabled={!isLoggedIn}
               />
               <button
                 type="submit"
                 className="comment-submit-btn"
-                disabled={submitting}
+                disabled={submitting || !isLoggedIn}
               >
                 {submitting ? 'Submitting…' : 'Enter'}
               </button>
@@ -392,9 +371,7 @@ function PerspectivePostDetailPage() {
 
           {!isLoggedIn && (
             <div className="comment-login-hint">
-              You can still type your thoughts here. When you submit,
-              you’ll be asked to log in so your comment can be posted
-              under your account.
+              <Link to="/login">Log in</Link> to share your thoughts and join the conversation.
             </div>
           )}
         </section>
