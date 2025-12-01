@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
+import Header from '../components/layout/Header';
 import '../styles/create-visual-post.css';
 
 function CreateVisualPostPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Create Visual Post - Psyche Journey';
+  }, []);
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -96,7 +101,7 @@ function CreateVisualPostPage() {
 
     try {
       const token = authService.getToken();
-      const user = authService.getCurrentUser();
+      const user = authService.getUser();
 
       if (!token || !user) {
         setError('You must be logged in to create a post');
@@ -109,7 +114,7 @@ function CreateVisualPostPage() {
       submitData.append('title', formData.title.trim());
       submitData.append('content', formData.content.trim());
       submitData.append('tags', JSON.stringify(formData.tags));
-      submitData.append('author_id', user.id);
+      submitData.append('author_id', user.id || user._id);
 
       const response = await fetch('http://localhost:3000/api/visualpost', {
         method: 'POST',
@@ -141,12 +146,17 @@ function CreateVisualPostPage() {
   };
 
   return (
-    <div className="create-post-container">
-      <h1>Create Visual Post</h1>
+    <div className="create-visual-post-page">
+      <Header />
+      
+      <main className="create-post-main">
+        <div className="create-post-container">
+          <h1 className="page-title">Create Visual Post</h1>
+          <p className="page-subtitle">Share your visual insights with the community</p>
 
-      <div className="post-info">
-        ℹ️ Posts require admin approval before publishing
-      </div>
+          <div className="post-info">
+            ℹ️ Posts require admin approval before publishing
+          </div>
 
       <form onSubmit={handleSubmit} className="create-post-form">
         <div className="form-section">
@@ -270,6 +280,12 @@ function CreateVisualPostPage() {
           </div>
         </div>
       )}
+        </div>
+      </main>
+
+      <footer className="footer">
+        <p>© 2025 Psyche Journey. Visual exploration of the mind.</p>
+      </footer>
     </div>
   );
 }

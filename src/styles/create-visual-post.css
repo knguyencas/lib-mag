@@ -7,12 +7,16 @@
 .create-visual-post-page {
   min-height: 100vh;
   background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
 }
 
 .create-post-main {
+  flex: 1;
   max-width: 900px;
   margin: 0 auto;
-  padding: 80px 40px 60px;
+  padding: 40px 40px 60px;
+  width: 100%;
 }
 
 .create-post-container {
@@ -35,6 +39,21 @@
   font-size: 14px;
   color: #666;
   margin-bottom: 32px;
+}
+
+.page-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
 }
 
 .error-message {
@@ -67,6 +86,7 @@
   color: #000;
 }
 
+/* IMAGE UPLOAD */
 .image-upload-area {
   width: 100%;
 }
@@ -143,6 +163,7 @@
   background: #a22;
 }
 
+/* TEXT INPUTS */
 .text-input {
   width: 100%;
   padding: 12px 16px;
@@ -253,6 +274,7 @@
   color: #c33;
 }
 
+/* FORM ACTIONS */
 .form-actions {
   display: flex;
   gap: 16px;
@@ -303,19 +325,19 @@
   cursor: not-allowed;
 }
 
+/* POST INFO */
 .post-info {
-  margin-top: 24px;
-  padding: 16px;
-  background: #f0f7ff;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  background: #e8f4fd;
   border-left: 4px solid #0066cc;
   border-radius: 4px;
-}
-
-.post-info p {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: #0066cc;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .modal-overlay {

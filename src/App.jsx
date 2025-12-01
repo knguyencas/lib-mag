@@ -8,12 +8,12 @@ import ReaderPage from './pages/ReaderPage';
 import SearchResultPage from './pages/SearchResultPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-
 import ThemesPage from './pages/ThemesPage';
 import PerspectivePage from './pages/PerspectivePage';
 import PerspectivePostDetailPage from './pages/PerspectivePostDetailPage';
 import SettingsPage from './pages/SettingsPage';
 import CreateVisualPostPage from './pages/CreateVisualPostPage';
+import CreatePerspectivePostPage from './pages/CreatePerspectivePostPage';
 import AdminAddBookPage from './pages/AdminAddBookPage';
 import ManageAdminsPage from './pages/ManageAdminsPage';
 import ManageBooksPage from './pages/ManageBooksPage';
@@ -66,6 +66,15 @@ function App() {
           element={
             <ProtectedRoute>
               <CreateVisualPostPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create-perspective-post"
+          element={
+            <ProtectedRoute>
+              <CreatePerspectivePostPage />
             </ProtectedRoute>
           }
         />
