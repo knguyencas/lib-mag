@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage';
 import ThemesPage from './pages/ThemesPage';
 import PerspectivePage from './pages/PerspectivePage';
 import PerspectivePostDetailPage from './pages/PerspectivePostDetailPage';
+import VisualPostDetailPage from './pages/VisualPostDetailPage';
 import SettingsPage from './pages/SettingsPage';
 import CreateVisualPostPage from './pages/CreateVisualPostPage';
 import CreatePerspectivePostPage from './pages/CreatePerspectivePostPage';
@@ -42,11 +43,17 @@ function App() {
 
         <Route path="/themes" element={<ThemesPage />} />
 
+        {/* Perspective Posts */}
         <Route path="/perspective" element={<PerspectivePage />} />
-
         <Route
           path="/perspective-post/:id"
           element={<PerspectivePostDetailPage />}
+        />
+
+        <Route path="/visuals" element={<ThemesPage />} />
+        <Route
+          path="/visual-post/:id"
+          element={<VisualPostDetailPage />}
         />
 
         <Route

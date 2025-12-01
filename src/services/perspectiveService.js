@@ -29,20 +29,44 @@ export const perspectiveService = {
 
   getPostById: async (postId) => {
     try {
+      console.log('Fetching post from API:', `/perspectivepost/${postId}`);
       const response = await api.get(`/perspectivepost/${postId}`);
-      return response.data.data || response.data.post;
+      console.log('API response:', response.data);
+      
+      const postData = response.data.data || response.data.post || response.data;
+      
+      if (!postData || typeof postData !== 'object') {
+        console.error('Invalid post data structure:', postData);
+        throw new Error('Invalid response structure from API');
+      }
+      
+      return postData;
     } catch (error) {
       console.error('Error fetching post detail:', error);
+      console.error('Error response:', error.response?.data);
       throw error;
     }
   },
 
   getComments: async (postId) => {
     try {
+      console.log('Fetching comments from API:', `/comments/perspective/${postId}`);
       const response = await api.get(`/comments/perspective/${postId}`);
-      return response.data.data || response.data.comments || [];
+      console.log('Comments API response:', response.data);
+      
+      const comments = response.data.data || response.data.comments || response.data;
+      
+      if (Array.isArray(comments)) {
+        return comments;
+      } else if (comments && typeof comments === 'object') {
+        return [comments];
+      }
+      
+      console.warn('No comments found or invalid structure');
+      return [];
     } catch (error) {
       console.error('Error fetching comments:', error);
+      console.error('Error response:', error.response?.data);
       return [];
     }
   },

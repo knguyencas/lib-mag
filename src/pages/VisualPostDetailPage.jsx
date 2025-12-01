@@ -52,16 +52,14 @@ function PerspectivePostDetailPage() {
   const loadPost = async (postId) => {
     try {
       setLoadingPost(true);
-      console.log('🔍 Loading post with ID:', postId);
+      console.log('Loading post with ID:', postId);
       const postData = await perspectiveService.getPostById(postId);
-      console.log('📦 Post data received:', postData);
-      console.log('📝 Post content field:', postData?.content);
-      console.log('📝 Post topic field:', postData?.topic);
-      console.log('📝 Post title field:', postData?.title);
-      console.log('📝 All post fields:', Object.keys(postData || {}));
+      console.log('Post data received:', postData);
+      console.log('Post content:', postData?.content);
+      console.log('Post title/topic:', postData?.title || postData?.topic);
       
       if (!postData) {
-        console.error('❌ No post data returned from API');
+        console.error('No post data returned from API');
         setPost(null);
         return;
       }
@@ -76,8 +74,8 @@ function PerspectivePostDetailPage() {
         downvotes: postData.downvotes || 0
       });
     } catch (err) {
-      console.error('❌ Error loading post detail:', err);
-      console.error('❌ Error details:', err.response?.data || err.message);
+      console.error('Error loading post detail:', err);
+      console.error('Error details:', err.response?.data || err.message);
       setPost(null);
     } finally {
       setLoadingPost(false);
@@ -87,14 +85,14 @@ function PerspectivePostDetailPage() {
   const loadComments = async (postId) => {
     try {
       setLoadingComments(true);
-      console.log('💬 Loading comments for post:', postId);
+      console.log('Loading comments for post:', postId);
       const commentsData = await perspectiveService.getComments(postId);
-      console.log('💬 Comments data received:', commentsData);
-      console.log('💬 Number of comments:', commentsData?.length || 0);
+      console.log('Comments data received:', commentsData);
+      console.log('Number of comments:', commentsData?.length || 0);
       setComments(commentsData || []);
     } catch (err) {
-      console.error('❌ Error loading comments:', err);
-      console.error('❌ Error details:', err.response?.data || err.message);
+      console.error('Error loading comments:', err);
+      console.error('Error details:', err.response?.data || err.message);
       setComments([]);
     } finally {
       setLoadingComments(false);
@@ -115,17 +113,7 @@ function PerspectivePostDetailPage() {
     return `${day} ${month} ${year}`;
   };
 
-  // Get content with multiple fallbacks
-  const getPostContent = () => {
-    if (!post) return '';
-    
-    // Try multiple field names
-    const content = post.content || post.body || post.text || post.description || '';
-    console.log('📄 Content to display:', content ? `${content.substring(0, 100)}...` : 'EMPTY');
-    return content;
-  };
-
-  const paragraphs = getPostContent()
+  const paragraphs = (post?.content || '')
     .split(/\n\s*\n/)
     .filter((p) => p.trim().length > 0);
 
@@ -137,45 +125,31 @@ function PerspectivePostDetailPage() {
 
   const handleSubmitComment = async (e) => {
     if (e) e.preventDefault();
-    
     const text = commentText.trim();
-    console.log('💭 Attempting to submit comment:', text);
-    
-    if (!text) {
-      console.log('⚠️ Comment text is empty');
-      return;
-    }
+    if (!text) return;
 
     if (!isLoggedIn) {
-      console.log('⚠️ User not logged in, redirecting...');
       navigate('/login');
       return;
     }
 
     try {
       setSubmitting(true);
-      console.log('📤 Submitting comment to API...');
       const newComment = await perspectiveService.addComment(id, text);
-      console.log('✅ Comment submitted successfully:', newComment);
       
       // Add new comment to list
-      const commentObj = {
-        id: newComment.id || newComment._id || Date.now().toString(),
+      setComments(prev => [{
+        id: newComment.id || newComment._id,
         user: '@' + (user.username || 'User'),
         content: text,
         createdAt: new Date().toISOString(),
         isRoot: true
-      };
+      }, ...prev]);
       
-      console.log('📝 Adding comment to UI:', commentObj);
-      setComments(prev => [commentObj, ...prev]);
       setCommentText('');
-      
-      alert('Comment posted successfully!');
     } catch (err) {
-      console.error('❌ Error submitting comment:', err);
-      console.error('❌ Error response:', err.response?.data);
-      alert('Failed to post comment. Error: ' + (err.response?.data?.message || err.message));
+      console.error('Error submitting comment:', err);
+      alert('Failed to post comment. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -332,19 +306,7 @@ function PerspectivePostDetailPage() {
 
             <div className="post-content">
               {paragraphs.length === 0 ? (
-                <div style={{ padding: '20px', background: '#fff9e6', borderRadius: '8px', marginBottom: '20px' }}>
-                  <p style={{ margin: 0, color: '#856404' }}>
-                    ⚠️ No content available for this post. This might be because:
-                  </p>
-                  <ul style={{ marginTop: '10px', color: '#856404' }}>
-                    <li>The post was created without content</li>
-                    <li>The content field is empty in the database</li>
-                    <li>There's an issue with the backend API</li>
-                  </ul>
-                  <p style={{ margin: '10px 0 0 0', fontSize: '14px', color: '#666' }}>
-                    Check browser console (F12) for debug logs.
-                  </p>
-                </div>
+                <p>No content available.</p>
               ) : (
                 paragraphs.map((p, idx) => <p key={idx}>{p}</p>)
               )}
@@ -417,21 +379,14 @@ function PerspectivePostDetailPage() {
                     : 'Please log in to comment'
                 }
                 value={commentText}
-                onChange={(e) => {
-                  console.log('📝 Comment text changed:', e.target.value);
-                  setCommentText(e.target.value);
-                }}
+                onChange={(e) => setCommentText(e.target.value)}
                 onKeyDown={handleCommentKeyDown}
-                disabled={!isLoggedIn || submitting}
+                disabled={!isLoggedIn}
               />
               <button
                 type="submit"
                 className="comment-submit-btn"
-                disabled={submitting || !isLoggedIn || !commentText.trim()}
-                onClick={(e) => {
-                  console.log('🖱️ Submit button clicked');
-                  handleSubmitComment(e);
-                }}
+                disabled={submitting || !isLoggedIn}
               >
                 {submitting ? 'Submitting…' : 'Enter'}
               </button>

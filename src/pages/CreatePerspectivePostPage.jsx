@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { perspectiveService } from '../services/perspectiveService';
 import { authService } from '../services/authService';
-import Header from '../components/Header';
+import Header from '../components/layout/Header';
 import '../styles/createPerspectivePost.css';
 
 function CreatePerspectivePostPage() {
@@ -51,6 +51,7 @@ function CreatePerspectivePostPage() {
       [name]: value
     }));
     
+    // Clear error when user types
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -88,6 +89,7 @@ function CreatePerspectivePostPage() {
     setLoading(true);
 
     try {
+      // Parse tags from comma-separated string
       const tagsArray = formData.tags
         .split(',')
         .map(tag => tag.trim())
@@ -128,6 +130,7 @@ function CreatePerspectivePostPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="create-post-form">
+          {/* Topic Input */}
           <div className="form-group">
             <label htmlFor="topic">
               Topic <span className="required">*</span>
@@ -146,6 +149,7 @@ function CreatePerspectivePostPage() {
             {errors.topic && <span className="error-message">{errors.topic}</span>}
           </div>
 
+          {/* Genre Select */}
           <div className="form-group">
             <label htmlFor="primary_genre">
               Primary Genre <span className="required">*</span>
@@ -164,6 +168,7 @@ function CreatePerspectivePostPage() {
             </select>
           </div>
 
+          {/* Tags Input */}
           <div className="form-group">
             <label htmlFor="tags">Tags (Optional)</label>
             <input
@@ -179,6 +184,7 @@ function CreatePerspectivePostPage() {
             </small>
           </div>
 
+          {/* Content Textarea */}
           <div className="form-group">
             <label htmlFor="content">
               Content <span className="required">*</span>
@@ -196,6 +202,7 @@ function CreatePerspectivePostPage() {
             {errors.content && <span className="error-message">{errors.content}</span>}
           </div>
 
+          {/* Form Actions */}
           <div className="form-actions">
             <button
               type="button"
