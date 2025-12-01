@@ -105,7 +105,7 @@ function Header() {
                   Settings
                 </button>
                 <button 
-                  onClick={() => handleMenuItemClick('/perspective')} 
+                  onClick={() => handleMenuItemClick('/my-posts')} 
                   className="dropdown-item"
                 >
                   My Posts

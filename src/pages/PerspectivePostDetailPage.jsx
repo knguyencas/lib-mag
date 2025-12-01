@@ -2,53 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import { authService } from '@/services/authService';
+import { perspectiveService } from '@/services/perspectiveService';
 import '@/styles/perspective-post.css';
-
-const API_BASE_URL = 'http://localhost:3000/api';
-
-function normalizePostFromApi(raw, fallbackId) {
-  if (!raw) return null;
-
-  const id = raw.id || raw._id || fallbackId;
-  const title = raw.title || raw.topic || 'Post Topic';
-  const authorUsername =
-    raw.author?.username ||
-    raw.user?.username ||
-    raw.username ||
-    'User_name';
-  const tags = raw.tags || raw.tag || [];
-  const updatedAt = raw.updatedAt || raw.lastUpdated || raw.createdAt || null;
-  const content =
-    raw.content ||
-    raw.body ||
-    `This is the content of the post, when you click on the topic name above, you can see all the pages and are allowed to comment.`;
-
-  return {
-    id,
-    title,
-    authorUsername,
-    tags,
-    updatedAt,
-    content,
-  };
-}
-
-function normalizeCommentFromApi(raw) {
-  if (!raw) return null;
-
-  return {
-    id: raw.id || raw._id || Math.random().toString(36).slice(2),
-    user:
-      '@' +
-      (raw.user?.username ||
-        raw.username ||
-        raw.userName ||
-        'User_name'),
-    content: raw.content || raw.text || '',
-    createdAt: raw.createdAt || raw.updatedAt || null,
-    isRoot: !raw.parentId && !raw.parent,
-  };
-}
 
 function PerspectivePostDetailPage() {
   const { id } = useParams();
@@ -89,14 +44,26 @@ function PerspectivePostDetailPage() {
   const loadPost = async (postId) => {
     try {
       setLoadingPost(true);
-      const res = await fetch(`${API_BASE_URL}/perspectivepost/${postId}`);
-      if (!res.ok) {
-        throw new Error(`Failed to load post: ${res.status}`);
+      console.log('🔍 Loading perspective post:', postId);
+      
+      const postData = await perspectiveService.getPostById(postId);
+      console.log('Mapped post data:', postData);
+      
+      if (!postData) {
+        console.error('No post data returned');
+        setPost(null);
+        return;
       }
-      const json = await res.json();
-      const raw = json.data || json.post || json;
-      const mapped = normalizePostFromApi(raw, postId);
-      setPost(mapped);
+
+      console.log('📝 Setting post state with:', {
+        title: postData.title,
+        content: postData.content,
+        contentLength: postData.content?.length,
+        author: postData.authorUsername
+      });
+
+      setPost(postData);
+      
     } catch (err) {
       console.error('Error loading post detail:', err);
       setPost(null);
@@ -108,18 +75,9 @@ function PerspectivePostDetailPage() {
   const loadComments = async (postId) => {
     try {
       setLoadingComments(true);
-      const res = await fetch(
-        `${API_BASE_URL}/comments/perspective/${postId}`
-      );
-      if (!res.ok) {
-        throw new Error(`Failed to load comments: ${res.status}`);
-      }
-      const json = await res.json();
-      const rawComments = json.data || json.comments || [];
-      const mapped = rawComments
-        .map((c) => normalizeCommentFromApi(c))
-        .filter(Boolean);
-      setComments(mapped);
+      const commentsData = await perspectiveService.getComments(postId);
+      console.log('Comments loaded:', commentsData);
+      setComments(commentsData || []);
     } catch (err) {
       console.error('Error loading comments:', err);
       setComments([]);
@@ -134,27 +92,13 @@ function PerspectivePostDetailPage() {
     if (Number.isNaN(d.getTime())) return '';
     const day = String(d.getDate()).padStart(2, '0');
     const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ];
     const month = monthNames[d.getMonth()];
     const year = d.getFullYear();
     return `${day} ${month} ${year}`;
   };
-
-  const paragraphs = (post?.content || '')
-    .split(/\n\s*\n/)
-    .filter((p) => p.trim().length > 0);
 
   const handleSearch = () => {
     const q = searchText.trim();
@@ -174,40 +118,16 @@ function PerspectivePostDetailPage() {
 
     try {
       setSubmitting(true);
-      const currentUser = authService.getUser();
-
-      const res = await fetch(
-        `${API_BASE_URL}/comments/perspective/${id}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId: currentUser.id || currentUser._id,
-            content: text,
-          }),
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error(`Failed to add comment: ${res.status}`);
-      }
-
-      const json = await res.json();
-      const createdRaw = json.data || json.comment || json;
-      const created = normalizeCommentFromApi(createdRaw);
-
-      const fallbackComment =
-        created ||
-        normalizeCommentFromApi({
-          content: text,
-          user: { username: currentUser.username },
-          createdAt: new Date().toISOString(),
-        });
-
-      setComments((prev) => [fallbackComment, ...prev]);
+      
+      const newComment = await perspectiveService.addComment(id, text);
+      console.log('Comment added:', newComment);
+      
+      setComments(prev => [newComment, ...prev]);
       setCommentText('');
+      
     } catch (err) {
       console.error('Error submitting comment:', err);
+      alert('Failed to add comment. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -225,7 +145,9 @@ function PerspectivePostDetailPage() {
       <div className="perspective-post-page">
         <Header />
         <main className="post-page">
-          <div className="loading-state">Loading post...</div>
+          <div className="loading-state" style={{ color: '#000', padding: '60px 20px' }}>
+            Loading post...
+          </div>
         </main>
       </div>
     );
@@ -236,14 +158,38 @@ function PerspectivePostDetailPage() {
       <div className="perspective-post-page">
         <Header />
         <main className="post-page">
-          <div className="loading-state">Post not found.</div>
+          <div className="loading-state" style={{ color: '#c33', padding: '60px 20px' }}>
+            Post not found.
+          </div>
         </main>
       </div>
     );
   }
 
+  const paragraphs = (post.content || '')
+    .split(/\n\s*\n/)
+    .filter((p) => p.trim().length > 0);
+
+  console.log('Content paragraphs:', paragraphs);
+  console.log('First paragraph:', paragraphs[0]);
+  
+  const MAX_PARAGRAPHS = 3;
+  const MAX_CHARS = 500;
+  
+  let displayParagraphs = paragraphs.slice(0, MAX_PARAGRAPHS);
+  let fullText = displayParagraphs.join('\n\n');
+  
+  if (fullText.length > MAX_CHARS) {
+    fullText = fullText.substring(0, MAX_CHARS) + '...';
+    displayParagraphs = [fullText];
+  } else if (paragraphs.length > MAX_PARAGRAPHS) {
+    displayParagraphs[displayParagraphs.length - 1] += '...';
+  }
+
+  console.log('Display paragraphs:', displayParagraphs);
+
   return (
-    <div className="perspective-post-page">
+    <div className="perspective-post-page" style={{ backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
       <Header />
       <div className="sub_nav">
         <div className="search_bar">
@@ -276,7 +222,7 @@ function PerspectivePostDetailPage() {
         </div>
       </div>
 
-      <main className="post-page">
+      <main className="post-page" style={{ padding: '60px 0 80px' }}>
         <div
           style={{
             maxWidth: '1174px',
@@ -284,90 +230,341 @@ function PerspectivePostDetailPage() {
             padding: '0 30px',
           }}
         >
-          <Link to="/perspective" className="nav-link-inline">
+          <Link 
+            to="/perspective" 
+            className="nav-link-inline"
+            style={{
+              color: '#000',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontFamily: 'Poppins, sans-serif'
+            }}
+          >
             &larr; Back to Perspective
           </Link>
         </div>
 
-        <section className="post-wrapper">
-          <article className="post-card">
-            <div className="post-date">{formatDate(post.updatedAt)}</div>
+        <section className="post-wrapper" style={{ display: 'flex', justifyContent: 'center' }}>
+          <article 
+            className="post-card" 
+            style={{
+              background: '#D9D9D9',
+              width: '1174px',
+              minHeight: '303px',
+              padding: '24px 30px',
+              position: 'relative',
+              marginBottom: '40px'
+            }}
+          >
+            <div 
+              className="post-date" 
+              style={{
+                position: 'absolute',
+                right: '32px',
+                top: '26px',
+                color: '#828282',
+                fontFamily: 'Consolas, monospace',
+                fontSize: '12px'
+              }}
+            >
+              {formatDate(post.updatedAt)}
+            </div>
 
-            <div className="post-header">
-              <div className="post-avatar"></div>
+            <div className="post-header" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+              <div 
+                className="post-avatar" 
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '50%',
+                  background: '#915656',
+                  flexShrink: 0
+                }}
+              ></div>
               <div className="post-title-wrapper">
-                <div className="post-topic-line">
-                  <span className="post-topic">{post.title}</span>
-                  <span className="post-by">
+                <div className="post-topic-line" style={{ display: 'flex', gap: '7px', alignItems: 'baseline' }}>
+                  <span 
+                    className="post-topic"
+                    style={{
+                      color: '#2A2A2A',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '20px',
+                      fontWeight: 400,
+                      textDecoration: 'underline'
+                    }}
+                  >
+                    {post.title}
+                  </span>
+                  <span 
+                    className="post-by"
+                    style={{
+                      color: '#2A2A2A',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '20px',
+                      fontWeight: 300
+                    }}
+                  >
                     By @{post.authorUsername}
                   </span>
                 </div>
-                <div className="post-tag">
-                  {Array.isArray(post.tags)
-                    ? post.tags.join(', ')
-                    : ''}
-                </div>
+                {post.tags && post.tags.length > 0 && (
+                  <div 
+                    className="post-tag"
+                    style={{
+                      marginTop: '2px',
+                      fontSize: '13px',
+                      color: '#666',
+                      fontFamily: 'Poppins, sans-serif'
+                    }}
+                  >
+                    {Array.isArray(post.tags)
+                      ? post.tags.join(', ')
+                      : post.tags}
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="post-content">
-              {paragraphs.length === 0 ? (
-                <p>
-                  This is the content of the post, when you click on
-                  the topic name above, you can see all the pages and
-                  are allowed to comment.
+            <div 
+              className="post-content" 
+              style={{
+                marginTop: '10px',
+                width: '100%',
+                color: '#000',
+                fontFamily: 'Cardo, serif',
+                fontSize: '20px',
+                fontWeight: 400,
+                lineHeight: '110%',
+                letterSpacing: '-0.6px'
+              }}
+            >
+              {displayParagraphs.length === 0 ? (
+                <p style={{ color: '#000', margin: 0 }}>
+                  {post.content || 'No content available for this post.'}
                 </p>
               ) : (
-                paragraphs.map((p, idx) => <p key={idx}>{p}</p>)
+                displayParagraphs.map((p, idx) => (
+                  <p key={idx} style={{ color: '#000', marginTop: idx > 0 ? '4px' : 0 }}>
+                    {p}
+                  </p>
+                ))
               )}
             </div>
 
-            <div className="post-footer">
-              <span className="vote-link">Upvote</span>
-              <span className="vote-link">Downvote</span>
+            <div 
+              className="post-footer" 
+              style={{
+                marginTop: 'auto',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: '60px',
+                paddingRight: '32px',
+                paddingTop: '20px'
+              }}
+            >
+              <span 
+                className="vote-link"
+                style={{
+                  color: '#000',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '14px',
+                  fontStyle: 'italic',
+                  cursor: 'pointer'
+                }}
+              >
+                Upvote
+              </span>
+              <span 
+                className="vote-link"
+                style={{
+                  color: '#000',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '14px',
+                  fontStyle: 'italic',
+                  cursor: 'pointer'
+                }}
+              >
+                Downvote
+              </span>
             </div>
           </article>
         </section>
 
-        <section className="comment-title-wrapper">
-          <h2 className="comment-title">Comment</h2>
+        <section 
+          className="comment-title-wrapper" 
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '40px'
+          }}
+        >
+          <h2 
+            className="comment-title"
+            style={{
+              width: '1174px',
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: '22px',
+              fontWeight: 600,
+              color: '#000'
+            }}
+          >
+            Comment
+          </h2>
         </section>
 
-        <section className="comments-wrapper">
+        <section 
+          className="comments-wrapper"
+          style={{
+            marginTop: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '25px'
+          }}
+        >
           {loadingComments ? (
-            <div className="loading-state">Loading comments...</div>
+            <div className="loading-state" style={{ color: '#666', padding: '40px 20px' }}>
+              Loading comments...
+            </div>
           ) : comments.length === 0 ? (
-            <div className="no-comments">No comments yet.</div>
+            <div className="no-comments" style={{ color: '#666', padding: '40px 20px' }}>
+              No comments yet.
+            </div>
           ) : (
-            comments.map((c) => (
+            comments.map((comment) => (
               <article
-                key={c.id}
-                className={`comment-card ${
-                  c.isRoot ? 'comment-root' : 'comment-reply'
-                }`}
+                key={comment.id || comment._id}
+                className="comment-card comment-root"
+                style={{
+                  background: '#D9D9D9',
+                  width: '1174px',
+                  minHeight: '150px',
+                  padding: '24px 30px',
+                  position: 'relative'
+                }}
               >
-                <div className="comment-date">
-                  {formatDate(c.createdAt)}
+                <div 
+                  className="comment-date"
+                  style={{
+                    position: 'absolute',
+                    right: '32px',
+                    top: '26px',
+                    color: '#828282',
+                    fontFamily: 'Consolas, monospace',
+                    fontSize: '12px'
+                  }}
+                >
+                  {formatDate(comment.createdAt)}
                 </div>
-                <div className="comment-header">
-                  <div className="comment-avatar"></div>
+                <div className="comment-header" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
+                  <div 
+                    className="comment-avatar"
+                    style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '50%',
+                      background: '#915656'
+                    }}
+                  ></div>
                   <div className="comment-meta">
-                    <span className="comment-user">{c.user}</span>
+                    <span 
+                      className="comment-user"
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                        fontSize: '16px',
+                        fontWeight: 400,
+                        color: '#000'
+                      }}
+                    >
+                      @{comment.user?.username || comment.username || 'User'}
+                    </span>
                   </div>
                 </div>
-                <div className="comment-body">{c.content}</div>
-                <div className="comment-footer">
-                  <span className="comment-action">Reply</span>
-                  <span className="comment-action">Upvote</span>
-                  <span className="comment-action">Downvote</span>
+                <div 
+                  className="comment-body"
+                  style={{
+                    marginTop: '4px',
+                    fontFamily: 'Cardo, serif',
+                    fontSize: '16px',
+                    lineHeight: 1.4,
+                    color: '#000'
+                  }}
+                >
+                  {comment.content || comment.text || ''}
+                </div>
+                <div 
+                  className="comment-footer"
+                  style={{
+                    marginTop: 'auto',
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    gap: '40px',
+                    paddingRight: '32px',
+                    paddingTop: '12px'
+                  }}
+                >
+                  <span 
+                    className="comment-action"
+                    style={{
+                      color: '#000',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '13px',
+                      fontStyle: 'italic',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Reply
+                  </span>
+                  <span 
+                    className="comment-action"
+                    style={{
+                      color: '#000',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '13px',
+                      fontStyle: 'italic',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Upvote
+                  </span>
+                  <span 
+                    className="comment-action"
+                    style={{
+                      color: '#000',
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '13px',
+                      fontStyle: 'italic',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Downvote
+                  </span>
                 </div>
               </article>
             ))
           )}
         </section>
 
-        <section className="comment-form-wrapper">
-          <div className="comment-form-card">
+        <section 
+          className="comment-form-wrapper"
+          style={{
+            marginTop: '40px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '10px'
+          }}
+        >
+          <div 
+            className="comment-form-card"
+            style={{
+              width: '1174px',
+              background: '#FFFFFF',
+              padding: '18px 18px 40px 18px',
+              cursor: 'text',
+              border: '1px solid #D0D0D0'
+            }}
+          >
             <form onSubmit={handleSubmitComment}>
               <textarea
                 className="comment-input"
@@ -379,11 +576,35 @@ function PerspectivePostDetailPage() {
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 onKeyDown={handleCommentKeyDown}
+                disabled={!isLoggedIn || submitting}
+                style={{
+                  width: '100%',
+                  minHeight: '120px',
+                  border: 'none',
+                  outline: 'none',
+                  resize: 'vertical',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '14px',
+                  background: '#FFFFFF',
+                  cursor: 'text',
+                  color: '#000'
+                }}
               />
               <button
                 type="submit"
                 className="comment-submit-btn"
-                disabled={submitting}
+                disabled={submitting || !isLoggedIn}
+                style={{
+                  marginTop: '18px',
+                  float: 'right',
+                  padding: '6px 24px',
+                  border: 'none',
+                  background: '#D9D9D9',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  color: '#000'
+                }}
               >
                 {submitting ? 'Submitting…' : 'Enter'}
               </button>
@@ -391,16 +612,35 @@ function PerspectivePostDetailPage() {
           </div>
 
           {!isLoggedIn && (
-            <div className="comment-login-hint">
+            <div 
+              className="comment-login-hint"
+              style={{
+                width: '1174px',
+                fontSize: '13px',
+                fontFamily: 'Poppins, sans-serif',
+                color: '#666',
+                marginTop: '4px'
+              }}
+            >
               You can still type your thoughts here. When you submit,
-              you’ll be asked to log in so your comment can be posted
+              you'll be asked to log in so your comment can be posted
               under your account.
             </div>
           )}
         </section>
       </main>
 
-      <footer className="footer">
+      <footer 
+        className="footer"
+        style={{
+          borderTop: '1px solid #E0E0E0',
+          padding: '24px 52px 40px',
+          fontSize: '12px',
+          color: '#666',
+          background: '#F3F3F3',
+          textAlign: 'left'
+        }}
+      >
         <p>
           © 2025 Psyche Journey. A quiet place for thoughts,
           perspectives, and conversations.

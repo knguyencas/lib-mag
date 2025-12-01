@@ -1,120 +1,43 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/layout/Header';
-import { authService } from '../services/authService';
-import { perspectiveService } from '../services/perspectiveService';
-import '../styles/perspective.css';
-
-const POSTS_PER_PAGE = 5;
-
-function formatShortDate(dateString) {
-  if (!dateString) return '';
-  const d = new Date(dateString);
-  if (Number.isNaN(d.getTime())) return '';
-  const day = String(d.getDate()).padStart(2, '0');
-  const monthNames = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-  ];
-  const month = monthNames[d.getMonth()];
-  const year = d.getFullYear();
-  return `${day} ${month} ${year}`;
-}
+import Header from '@/components/layout/Header';
+import { authService } from '@/services/authService';
+import { perspectiveService } from '@/services/perspectiveService';
 
 function PerspectivePage() {
   const navigate = useNavigate();
-
-  const [allPosts, setAllPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const [searchVisible, setSearchVisible] = useState(false);
-  const [searchText, setSearchText] = useState('');
-  const [searchError, setSearchError] = useState('');
-
-  const [sortBy, setSortBy] = useState('newest');
-  const [genre, setGenre] = useState('all');
-  const [genres, setGenres] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [contentRevealed, setContentRevealed] = useState(false);
-
+  const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [votes, setVotes] = useState({});
-
   useEffect(() => {
-    document.title = 'Psyche Journey – Perspective';
-    document.body.classList.add('perspective');
-    document.body.classList.remove('home', 'library');
+    document.title = 'Perspective – Psyche Journey';
+    
+    const currentUser = authService.getUser();
+    setIsLoggedIn(!!currentUser);
 
-    const user = authService.getUser();
-    setIsLoggedIn(!!user);
-
-    const handleScroll = () => {
-      const y = window.scrollY;
-      const reminder = document.querySelector('.reminder-overlay');
-      if (reminder) {
-        const alpha = Math.max(0, Math.min(1, 1 - y / 400));
-        reminder.style.opacity = alpha;
-      }
-      if (!contentRevealed && y > 80) {
-        setContentRevealed(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      document.body.classList.remove('perspective');
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [contentRevealed]);
-
-  useEffect(() => {
-    const loadGenres = async () => {
-      try {
-        const genreList = await perspectiveService.getGenres();
-        setGenres(genreList);
-      } catch (err) {
-        console.error('Error loading genres:', err);
-      }
-    };
-
-    loadGenres();
-  }, []);
-
-  useEffect(() => {
     loadPosts();
-  }, [sortBy, genre, currentPage]);
+  }, []);
 
   const loadPosts = async () => {
     try {
       setLoading(true);
-      setError(null);
-
-      const result = await perspectiveService.getAllPosts({
-        page: currentPage,
-        limit: POSTS_PER_PAGE,
-        sortBy,
-        genre
+      setError('');
+      
+      console.log('🔍 Loading published posts...');
+      
+      const postsData = await perspectiveService.getPublishedPosts({
+        page: 1,
+        limit: 20,
+        sort: 'newest'
       });
-
-      setAllPosts(result.posts);
-      setTotalPages(result.pagination.pages || 1);
-
-      const votesState = {};
-      result.posts.forEach(post => {
-        votesState[post.post_id || post.id] = {
-          upvoted: false,
-          downvoted: false,
-          upvotes: post.upvotes || 0,
-          downvotes: post.downvotes || 0
-        };
-      });
-      setVotes(votesState);
-
+      
+      console.log('Posts loaded:', postsData.length);
+      console.log('First post:', postsData[0]);
+      
+      setPosts(postsData);
+      
     } catch (err) {
       console.error('Error loading posts:', err);
       setError('Failed to load posts. Please try again.');
@@ -123,371 +46,261 @@ function PerspectivePage() {
     }
   };
 
-  useEffect(() => {
-    if (contentRevealed) {
-      const cards = document.querySelectorAll('.post-card');
-      cards.forEach((c) => c.classList.add('visible'));
-      const sortPanel = document.querySelector('.sort-panel');
-      if (sortPanel) sortPanel.classList.add('visible');
-      const pagination = document.querySelector('.perspective-pagination');
-      if (pagination) pagination.classList.add('visible');
-    }
-  }, [contentRevealed, allPosts, currentPage]);
-
-  const handleSearch = () => {
-    if (!searchText.trim()) {
-      setSearchError('Please enter a search term');
-      return;
-    }
-    setSearchError('');
-    navigate(`/search-results?q=${encodeURIComponent(searchText.trim())}`);
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const d = new Date(dateString);
+    if (Number.isNaN(d.getTime())) return '';
+    const day = String(d.getDate()).padStart(2, '0');
+    const monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    ];
+    const month = monthNames[d.getMonth()];
+    const year = d.getFullYear();
+    return `${day} ${month} ${year}`;
   };
 
-  const goToPage = (page) => {
-    if (page < 1 || page > totalPages || page === currentPage) return;
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setContentRevealed(true);
+  const truncateContent = (content, maxLength = 200) => {
+    if (!content) return '';
+    if (content.length <= maxLength) return content;
+    return content.substring(0, maxLength) + '...';
   };
 
-  const handleVote = async (postId, voteType) => {
+  const handlePostClick = (postId) => {
+    navigate(`/perspective-post/${postId}`);
+  };
+
+  const handleCreatePost = () => {
     if (!isLoggedIn) {
       navigate('/login');
       return;
     }
-
-    const currentVote = votes[postId];
-    if (!currentVote) return;
-
-    try {
-      if (voteType === 'upvote') {
-        if (currentVote.upvoted) {
-          setVotes(prev => ({
-            ...prev,
-            [postId]: {
-              ...prev[postId],
-              upvoted: false,
-              upvotes: prev[postId].upvotes - 1
-            }
-          }));
-        } else {
-          await perspectiveService.upvotePost(postId);
-          setVotes(prev => ({
-            ...prev,
-            [postId]: {
-              ...prev[postId],
-              upvoted: true,
-              upvotes: prev[postId].upvotes + 1,
-              downvoted: false,
-              downvotes: prev[postId].downvoted ? prev[postId].downvotes - 1 : prev[postId].downvotes
-            }
-          }));
-        }
-      } else {
-        if (currentVote.downvoted) {
-          setVotes(prev => ({
-            ...prev,
-            [postId]: {
-              ...prev[postId],
-              downvoted: false,
-              downvotes: prev[postId].downvotes - 1
-            }
-          }));
-        } else {
-          await perspectiveService.downvotePost(postId);
-          setVotes(prev => ({
-            ...prev,
-            [postId]: {
-              ...prev[postId],
-              downvoted: true,
-              downvotes: prev[postId].downvotes + 1,
-              upvoted: false,
-              upvotes: prev[postId].upvoted ? prev[postId].upvotes - 1 : prev[postId].upvotes
-            }
-          }));
-        }
-      }
-    } catch (err) {
-      console.error('Error voting:', err);
-    }
+    navigate('/create-perspective-post');
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
       <Header />
-      <div className="sub_nav" id="subNav">
-        <div className="search_bar">
-          {!searchVisible && (
-            <button
-              id="searchToggle"
-              className="search_toggle_btn"
-              onClick={() => setSearchVisible(true)}
-            >
-              Search
-            </button>
-          )}
-
-          <div
-            className={
-              'search_input_group' +
-              (searchVisible ? ' visible' : '')
-            }
-            id="searchInputGroup"
+      
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          marginBottom: '40px'
+        }}>
+          <h1 style={{
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '32px',
+            fontWeight: 600,
+            color: '#000',
+            margin: 0
+          }}>
+            Perspective
+          </h1>
+          
+          <button
+            onClick={handleCreatePost}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: '#2A2A2A',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '4px',
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: '14px',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
           >
-            <input
-              type="text"
-              id="perspectiveSearchInput"
-              className="search_input"
-              placeholder="Enter"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            />
+            Create Post
+          </button>
+        </div>
+
+        {loading && (
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 20px',
+            color: '#666',
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '16px'
+          }}>
+            Loading posts...
+          </div>
+        )}
+
+        {error && !loading && (
+          <div style={{
+            background: '#ffe6e6',
+            border: '1px solid #ffcccc',
+            color: '#cc0000',
+            padding: '16px 20px',
+            borderRadius: '4px',
+            marginBottom: '20px',
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '14px',
+            textAlign: 'center'
+          }}>
+            {error}
             <button
-              id="perspectiveSearchBtn"
-              className="search_btn"
-              onClick={handleSearch}
+              onClick={loadPosts}
+              style={{
+                marginLeft: '16px',
+                padding: '6px 16px',
+                backgroundColor: '#cc0000',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '13px'
+              }}
             >
-              Search
+              Retry
             </button>
           </div>
+        )}
 
-          <span id="searchError" className="search_error">
-            {searchError}
-          </span>
-        </div>
-      </div>
-
-      <section className="reminder-overlay" id="reminderOverlay">
-        <div className="reminder-inner">
-          <h1 className="reminder-title">Friendly reminder</h1>
-          <div className="reminder-text">
-            <p>
-              Please maintain a respectful, equal, and friendly tone in
-              all discussions.
-            </p>
-            <p>
-              Shared content should uphold accuracy and academic
-              integrity, avoiding misinformation or distortion.
-            </p>
-            <p>
-              This space is not for political viewpoints or criticism of
-              any specific organization or government.
-            </p>
-            <p>
-              Thank you for helping keep this environment positive and
-              safe.
-            </p>
+        {!loading && !error && posts.length === 0 && (
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 20px',
+            color: '#666',
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '16px'
+          }}>
+            No posts yet. Be the first to share your perspective!
           </div>
-        </div>
-      </section>
+        )}
 
-      <main className="perspective-page">
-        <section className="content-row">
-          <div className="posts-column" id="postsColumn">
-            {loading ? (
-              <p>Loading posts...</p>
-            ) : error ? (
-              <p style={{ color: '#c33' }}>{error}</p>
-            ) : allPosts.length === 0 ? (
-              <p>No posts yet.</p>
-            ) : (
-              allPosts.map((post) => {
-                const postId = post.post_id || post.id;
-                const voteState = votes[postId] || {};
-
-                return (
-                  <article
-                    key={postId}
-                    className="post-card"
-                  >
-                    <div className="post-date">
-                      {formatShortDate(post.updatedAt || post.createdAt)}
-                    </div>
-                    <div className="post-header">
-                      <div className="post-avatar"></div>
-                      <div className="post-title-wrapper">
-                        <div className="post-topic-line">
-                          <span 
-                            className="post-topic"
-                            onClick={() => navigate(`/perspective-post/${postId}`)}
-                            style={{ cursor: 'pointer' }}
-                          >
-                            {post.title || post.topic}
-                          </span>
-                          <span className="post-by">
-                            By @{post.author?.username || post.author_username || 'anonymous'}
-                          </span>
-                        </div>
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="post-tag">
-                            {Array.isArray(post.tags) ? post.tags.join(', ') : post.tags}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="post-content">
-                      <p>
-                        {post.content 
-                          ? post.content.substring(0, 500) + (post.content.length > 500 ? '...' : '')
-                          : 'Click the topic above to read the full post and comment.'
-                        }
-                      </p>
-                    </div>
-
-                    <div className="post-footer">
-                      <span 
-                        className={`vote-link ${voteState.upvoted ? 'favorite-active' : ''}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleVote(postId, 'upvote');
-                        }}
-                      >
-                        Upvote ({voteState.upvotes || 0})
-                      </span>
-                      <span 
-                        className={`vote-link ${voteState.downvoted ? 'favorite-active' : ''}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleVote(postId, 'downvote');
-                        }}
-                      >
-                        Downvote ({voteState.downvotes || 0})
-                      </span>
-                    </div>
-                  </article>
-                );
-              })
-            )}
-          </div>
-
-          <aside className="sort-column">
-            <div className="sort-panel scroll-animate">
-              <div className="sort-header-bar">
-                <span className="sort-title">Sort And Filter</span>
-              </div>
-
-              <div className="sort-label">Sort By</div>
-              <div className="sort-divider"></div>
-              <select
-                className="sort-select"
-                id="sortSelect"
-                value={sortBy}
-                onChange={(e) => {
-                  setSortBy(e.target.value);
-                  setCurrentPage(1);
+        {!loading && !error && posts.length > 0 && (
+          <div style={{
+            display: 'grid',
+            gap: '24px'
+          }}>
+            {posts.map((post) => (
+              <article
+                key={post.id || post.post_id}
+                onClick={() => handlePostClick(post.post_id)}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E0E0E0',
+                  borderRadius: '8px',
+                  padding: '24px',
+                  cursor: 'pointer',
+                  transition: 'box-shadow 0.2s',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
                 }}
               >
-                <option value="newest">Newest update (default)</option>
-                <option value="upvotes">Most upvote</option>
-              </select>
-
-              <div className="sort-label sort-with-label">With</div>
-              <div className="sort-divider"></div>
-              <select
-                className="sort-select"
-                id="genreSelect"
-                value={genre}
-                onChange={(e) => {
-                  setGenre(e.target.value);
-                  setCurrentPage(1);
-                }}
-              >
-                <option value="all">All primary genres</option>
-                {genres.map((g) => (
-                  <option key={g} value={g}>
-                    {g}
-                  </option>
-                ))}
-              </select>
-
-              <div
-                className="clear-filter"
-                id="clearFilterBtn"
-                onClick={() => {
-                  setSortBy('newest');
-                  setGenre('all');
-                  setCurrentPage(1);
-                }}
-              >
-                Clear Filter
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        {totalPages > 1 && (
-          <div
-            className="perspective-pagination"
-            id="perspectivePagination"
-          >
-            <div className="pagination-inner">
-              <button
-                className="page-prev"
-                disabled={currentPage === 1}
-                onClick={() => goToPage(currentPage - 1)}
-              >
-                Prev
-              </button>
-
-              {Array.from({ length: totalPages }).map((_, idx) => {
-                const page = idx + 1;
-                if (page === currentPage) {
-                  return (
-                    <div key={page} className="page-dot">
-                      {page}
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  marginBottom: '16px'
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <h2 style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '20px',
+                      fontWeight: 600,
+                      color: '#000',
+                      margin: '0 0 8px 0',
+                      textDecoration: 'underline'
+                    }}>
+                      {post.title}
+                    </h2>
+                    <div style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontSize: '14px',
+                      color: '#666'
+                    }}>
+                      By @{post.authorUsername} · {formatDate(post.updatedAt)}
                     </div>
-                  );
-                }
-                return (
-                  <button
-                    key={page}
-                    className="page-number"
-                    onClick={() => goToPage(page)}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
+                  </div>
 
-              <button
-                className="page-next"
-                disabled={currentPage === totalPages}
-                onClick={() => goToPage(currentPage + 1)}
-              >
-                Next
-              </button>
-            </div>
+                  {post.primary_genre && (
+                    <span style={{
+                      padding: '4px 12px',
+                      backgroundColor: '#E8E8E8',
+                      borderRadius: '12px',
+                      fontSize: '12px',
+                      fontFamily: 'Poppins, sans-serif',
+                      color: '#666',
+                      whiteSpace: 'nowrap',
+                      marginLeft: '16px'
+                    }}>
+                      {post.primary_genre}
+                    </span>
+                  )}
+                </div>
+
+                <p style={{
+                  fontFamily: 'Cardo, serif',
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#333',
+                  margin: '0 0 16px 0'
+                }}>
+                  {truncateContent(post.content, 200)}
+                </p>
+
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '24px',
+                  fontSize: '13px',
+                  fontFamily: 'Poppins, sans-serif',
+                  color: '#666'
+                }}>
+                  <span>👁 {post.views || 0} views</span>
+                  <span>💬 {post.commentsCount || 0} comments</span>
+                  <span>⬆ {post.upvotes || 0}</span>
+                  <span>⬇ {post.downvotes || 0}</span>
+                  
+                  {post.tags && post.tags.length > 0 && (
+                    <div style={{
+                      marginLeft: 'auto',
+                      display: 'flex',
+                      gap: '6px',
+                      flexWrap: 'wrap'
+                    }}>
+                      {post.tags.slice(0, 3).map((tag, idx) => (
+                        <span
+                          key={idx}
+                          style={{
+                            fontSize: '11px',
+                            color: '#999',
+                            fontStyle: 'italic'
+                          }}
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         )}
       </main>
 
-      {isLoggedIn && (
-        <button 
-          className="floating-create-btn" 
-          onClick={() => navigate('/create-perspective-post')}
-          title="Create new perspective post"
-        >
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-          >
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-        </button>
-      )}
-
-      <footer className="footer">
-        <p>
-          © 2025 Psyche Journey. A quiet place for thoughts,
-          perspectives, and conversations.
-        </p>
+      <footer style={{
+        borderTop: '1px solid #E0E0E0',
+        padding: '24px 52px 40px',
+        fontSize: '12px',
+        color: '#666',
+        background: '#F3F3F3',
+        textAlign: 'center',
+        fontFamily: 'Poppins, sans-serif'
+      }}>
+        <p>© 2025 Psyche Journey. A quiet place for thoughts, perspectives, and conversations.</p>
       </footer>
     </div>
   );

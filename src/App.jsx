@@ -15,6 +15,7 @@ import VisualPostDetailPage from './pages/VisualPostDetailPage';
 import SettingsPage from './pages/SettingsPage';
 import CreateVisualPostPage from './pages/CreateVisualPostPage';
 import CreatePerspectivePostPage from './pages/CreatePerspectivePostPage';
+import MyPostsPage from './pages/MyPostsPage';
 import AdminAddBookPage from './pages/AdminAddBookPage';
 import ManageAdminsPage from './pages/ManageAdminsPage';
 import ManageBooksPage from './pages/ManageBooksPage';
@@ -54,6 +55,16 @@ function App() {
         <Route
           path="/visual-post/:id"
           element={<VisualPostDetailPage />}
+        />
+
+        {/* User Posts */}
+        <Route
+          path="/my-posts"
+          element={
+            <ProtectedRoute>
+              <MyPostsPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
