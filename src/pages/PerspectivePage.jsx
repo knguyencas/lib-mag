@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
+import SearchBar from '@/components/layout/SearchBar';
 import { authService } from '@/services/authService';
 import { perspectiveService } from '@/services/perspectiveService';
 
@@ -81,6 +82,7 @@ function PerspectivePage() {
   return (
     <div style={{ backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
       <Header />
+      <SearchBar />
       
       <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
         <div style={{ 

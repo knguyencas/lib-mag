@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/authService';
-import SearchBar from './SearchBar';
 import './Header.css';
 
 function Header() {
@@ -196,9 +195,6 @@ function Header() {
         </ul>
       </nav>
 
-      <div className="sub_nav">
-        <SearchBar />
-      </div>
     </header>
   );
 }

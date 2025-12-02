@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/layout/Header';
+import SearchBar from '../components/layout/SearchBar';
 import ControlsBar from '../components/library/ControlsBar';
 import ForYouSection from '../components/library/ForYouSection';
 import BookGrid from '../components/library/BookGrid';
@@ -43,6 +44,7 @@ function LibraryPage() {
   return (
     <div className="library-page">
       <Header />
+      <SearchBar />
 
       <main className="main-content">
         <ControlsBar

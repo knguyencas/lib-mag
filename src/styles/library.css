@@ -17,7 +17,6 @@ body {
   background: #373737;
 }
 
-/* HEADER */
 .header {
   position: sticky;
   top: 0;
@@ -96,7 +95,6 @@ nav {
   font-weight: 700;
 }
 
-/* SEARCH BAR */
 .sub_nav {
   display: flex;
   justify-content: flex-end;
@@ -162,12 +160,10 @@ nav {
   text-align: right;
 }
 
-/* MAIN CONTENT */
 .main-content {
   padding: 60px 54px 0;
 }
 
-/* FOOTER */
 .footer {
   display: flex;
   width: 100%;

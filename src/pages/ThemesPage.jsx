@@ -4,6 +4,7 @@ import Header from '../components/layout/Header';
 import VisualPostCard from '../components/posts/VisualPostCard';
 import { authService } from '../services/authService';
 import '../styles/themes.css';
+import SearchBar from '../components/layout/SearchBar';
 
 const POSTS_PER_PAGE = 6;
 
@@ -101,6 +102,8 @@ function ThemesPage() {
     return (
       <div className="themes-page">
         <Header />
+        <SearchBar />
+
         <main className="themes-page-main">
           <div className="loading-spinner">
             <div className="spinner"></div>
@@ -143,6 +146,7 @@ function ThemesPage() {
   return (
     <div className="themes-page">
       <Header />
+      <SearchBar />
 
       <main className="themes-page-main">
         <div style={{ 

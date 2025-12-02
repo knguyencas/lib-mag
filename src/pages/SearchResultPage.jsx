@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Header from '../components/layout/Header';
+import SearchBar from '../components/layout/SearchBar';
 import SearchFilters from '../components/search/SearchFilters';
 import SearchResultsGrid from '../components/search/SearchResultGrid';
 import { searchService } from '../services/searchService';
@@ -94,6 +95,7 @@ function SearchResultsPage() {
   return (
     <div className="search-results-page">
       <Header />
+      <SearchBar/>
 
       <main className="main-content">
         <div className="search-header">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
+import SearchBar from '../components/layout/SearchBar';
 import BookCover from '@/components/book/BookCover';
 import BookInfo from '@/components/book/BookInfo';
 import ContentsSection from '@/components/book/ContentsSection';
@@ -107,6 +108,7 @@ function BookDetailPage() {
   return (
     <div className="book-detail-page">
       <Header />
+      <SearchBar />
 
       <main className="main-content">
         <div className="book-detail-wrapper">

@@ -1,3 +1,13 @@
+/* WRAPPER – giống style sub_nav lúc đầu, để dính về phía bên phải */
+.sub_nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 52px;
+}
+
+/* KHỐI SEARCH CHÍNH */
 .search_bar {
   display: flex;
   flex-direction: column;
@@ -11,6 +21,7 @@
   gap: 6px;
 }
 
+/* INPUT CƠ BẢN – default sáng, rồi bên dưới override theo body */
 .search_input_group input {
   width: 200px;
   height: 30px;
@@ -19,8 +30,15 @@
   outline: none;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
+  background-color: #EEEEEE;
+  color: #000;
 }
 
+.search_input_group input::placeholder {
+  color: #999;
+}
+
+/* NÚT SEARCH KHI ĐÃ HIỆN INPUT */
 .search_btn {
   align-self: center;
   background: none;
@@ -32,6 +50,7 @@
   transition: all 0.2s ease;
   user-select: none;
   font-family: 'Poppins', sans-serif;
+  color: #000;
 }
 
 .search_btn:hover {
@@ -43,14 +62,40 @@
   transform: translateY(1px);
 }
 
+/* NÚT SEARCH BAN ĐẦU (toggle) */
+.search_toggle_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+}
+
+.search_toggle_btn:hover {
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.search_toggle_btn:active {
+  transform: translateY(1px);
+}
+
+/* THÔNG BÁO LỖI */
 .search_error {
   display: block;
   font-family: "Cardo", serif;
   font-size: 14px;
   min-height: 20px;
   text-align: right;
+  color: #db5a5a;
 }
 
+/* THEME: HOME (nền sáng) */
 body.home .search_input_group input {
   background-color: #EEEEEE;
   color: #000;
@@ -60,7 +105,8 @@ body.home .search_input_group input::placeholder {
   color: #999;
 }
 
-body.home .search_btn {
+body.home .search_btn,
+body.home .search_toggle_btn {
   color: #000;
 }
 
@@ -68,6 +114,7 @@ body.home .search_error {
   color: #db5a5a;
 }
 
+/* THEME: LIBRARY (nền tối) */
 body.library .search_input_group input {
   background: rgba(255, 255, 255, 0.1);
   color: #FFF;
@@ -77,10 +124,13 @@ body.library .search_input_group input::placeholder {
   color: #828282;
 }
 
-body.library .search_btn {
+body.library .search_btn,
+body.library .search_toggle_btn {
   color: #FFF;
 }
 
 body.library .search_error {
   color: #f48771;
 }
+
+/* Có thể thêm theme khác nếu muốn (perspective, themes, ...) */

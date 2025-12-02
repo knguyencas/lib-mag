@@ -17,9 +17,11 @@ import CreateVisualPostPage from './pages/CreateVisualPostPage';
 import CreatePerspectivePostPage from './pages/CreatePerspectivePostPage';
 import MyPostsPage from './pages/MyPostsPage';
 import AdminAddBookPage from './pages/AdminAddBookPage';
+import EditBookPage from './pages/EditBookPage';
 import ManageAdminsPage from './pages/ManageAdminsPage';
 import ManageBooksPage from './pages/ManageBooksPage';
 import ManagePostsPage from './pages/ManagePostsPage';
+import AboutPage from './pages/AboutPage';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
@@ -44,7 +46,6 @@ function App() {
 
         <Route path="/themes" element={<ThemesPage />} />
 
-        {/* Perspective Posts */}
         <Route path="/perspective" element={<PerspectivePage />} />
         <Route
           path="/perspective-post/:id"
@@ -57,7 +58,6 @@ function App() {
           element={<VisualPostDetailPage />}
         />
 
-        {/* User Posts */}
         <Route
           path="/my-posts"
           element={
@@ -76,7 +76,6 @@ function App() {
           }
         />
 
-        <Route path="/about" element={<PlaceholderPage title="About" />} />
         <Route path="/contact" element={<PlaceholderPage title="Contact" />} />
 
         <Route
@@ -125,6 +124,15 @@ function App() {
         />
 
         <Route 
+          path="/admin/edit-book/:bookId" 
+          element={
+            <ProtectedRoute>
+              <EditBookPage />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route 
           path="/admin/manage-posts" 
           element={
             <ProtectedRoute>
@@ -132,6 +140,8 @@ function App() {
             </ProtectedRoute>
           } 
         />
+
+        <Route path="/about" element={<AboutPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
