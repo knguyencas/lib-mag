@@ -75,3 +75,27 @@ body.book-detail {
 .comments-column {
   min-height: 300px;
 }
+
+.rating-section {
+  padding: 0 52px;
+  margin-bottom: 40px;
+}
+
+.rating-section .section-wrapper {
+  max-width: 800px;
+}
+
+.bottom-section {
+  padding: 0 52px 60px;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  align-items: start;
+}
+
+.comments-column {
+  min-width: 0;
+}

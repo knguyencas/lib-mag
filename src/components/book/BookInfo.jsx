@@ -1,85 +1,59 @@
+import { useState } from 'react';
+import InlineRating from './InlineRating';
 import './BookInfo.css';
-import { useNavigate } from 'react-router-dom';
 
 function BookInfo({ book }) {
-    const navigate = useNavigate(); 
-    const renderRating = (rating) => {
-        const stars = [];
-        const rounded = Math.round(rating || 0);
-        
-        for (let i = 1; i <= 5; i++) {
-        stars.push(
-            <span key={i} className={`star ${i <= rounded ? 'filled' : ''}`}>
-            ★
-            </span>
-        );
-        }
-        
-        return stars;
-    };
+  const [currentRating, setCurrentRating] = useState(book?.rating || 0);
+  const [currentRatingCount, setCurrentRatingCount] = useState(book?.rating_count || 0);
 
-    const handleStartReading = () => {
-        navigate(`/reader?id=${book.book_id}&chapter=1`);
-    };
+  const handleRatingChange = (ratingData) => {
+    if (ratingData.rating !== undefined) {
+      setCurrentRating(ratingData.rating);
+    }
+    if (ratingData.count !== undefined) {
+      setCurrentRatingCount(ratingData.count);
+    }
+  };
 
-    const handleContinueReading = () => {
-    const lastChapter = 1; // Placeholder
-    navigate(`/reader?id=${book.book_id}&chapter=${lastChapter}`);
-    };
+  if (!book) {
+    return <div className="book-info">Loading...</div>;
+  }
 
-    return (
-        <div className="book-info-column">
-        <div className="categories">
-            {book.primary_genre && (
-            <span className="primary-genre">{book.primary_genre}</span>
-            )}
-            {Array.isArray(book.categories) &&
-            book.categories.map((cat, idx) => (
-                <span key={idx} className="category-tag">
-                {cat}
-                </span>
-            ))}
+  return (
+    <div className="book-info">
+      <h1 className="book-title">{book.title}</h1>
+      
+      <div className="book-author">
+        <span className="by-text">by</span>{' '}
+        <span className="author-name">{book.author}</span>
+      </div>
+
+      {/* Inline Rating - ngay dưới author */}
+      <InlineRating 
+        bookId={book.book_id}
+        initialRating={currentRating}
+        ratingCount={currentRatingCount}
+        onRatingChange={handleRatingChange}
+      />
+
+      {book.punchline && (
+        <p className="book-punchline">{book.punchline}</p>
+      )}
+
+      {book.blurb && (
+        <div className="book-blurb">
+          <p>{book.blurb}</p>
         </div>
+      )}
 
-        <h2 className="book-title">{book.title || 'Untitled'}</h2>
-        <p className="book-author">
-            {book.author ? `by ${book.author}` : ''}
-        </p>
-
-        <button className="bookmark-btn" aria-label="Bookmark">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-                d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z"
-                stroke="black"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            </svg>
+      <div className="book-action-buttons">
+        <button className="btn-start-reading">
+          {book.userProgress && book.userProgress > 0 ? 'Continue Reading' : 'Start Reading'}
         </button>
-
-        <div className="star-rating">
-            {renderRating(book.rating)}
-            <span style={{ marginLeft: '8px', fontSize: '14px' }}>
-            {book.rating ? `${book.rating.toFixed(1)} / 5.0` : ''}
-            </span>
-        </div>
-
-        <div className="book-description">
-            {book.punchline && <p className="quote">{book.punchline}</p>}
-            {book.blurb && <p>{book.blurb}</p>}
-        </div>
-
-        <div className="action-buttons">
-            <button className="btn-primary" onClick={handleStartReading}>
-            Start Reading
-            </button>
-            <button className="btn-secondary" onClick={handleContinueReading}>
-            Continue reading
-            </button>
-        </div>
-        </div>
-    );
+        <button className="btn-save">Save</button>
+      </div>
+    </div>
+  );
 }
 
 export default BookInfo;

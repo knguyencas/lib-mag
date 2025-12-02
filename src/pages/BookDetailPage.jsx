@@ -6,6 +6,7 @@ import BookCover from '@/components/book/BookCover';
 import BookInfo from '@/components/book/BookInfo';
 import ContentsSection from '@/components/book/ContentsSection';
 import RelatedBooks from '@/components/book/RelatedBooks';
+import BookComments from '@/components/book/BookComments';
 import { bookDetailService } from '@/services/bookDetailService';
 import '../styles/book-detail.css';
 
@@ -123,10 +124,7 @@ function BookDetailPage() {
         <section className="bottom-section">
           <div className="two-column-layout">
             <div className="comments-column">
-              <h3 className="section-title">Comments</h3>
-              <p style={{ color: '#999', textAlign: 'center', padding: '40px' }}>
-                Comments feature coming soon...
-              </p>
+              <BookComments bookId={bookId} />
             </div>
 
             <RelatedBooks books={relatedBooks} />

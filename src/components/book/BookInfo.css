@@ -1,152 +1,129 @@
-.book-info-column {
-  position: relative;
-}
+/* BookInfo.css - Matching original design */
 
-.categories {
+.book-info {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
+  flex-direction: column;
+  gap: 0;
 }
 
-.category-tag {
-  display: inline-block;
-  padding: 6px 16px;
-  background: #E5E5E5;
-  border-radius: 4px;
-  color: #000;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.26px;
-  text-transform: capitalize;
-  transition: background-color 0.3s ease;
-}
-
-.category-tag:hover {
-  background-color: #d0d0d0;
-}
-
-.primary-genre {
-  display: inline-block;
-  padding: 6px 16px;
-  background: #000;
-  color: #FFF;
-  border-radius: 4px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.26px;
-  text-transform: capitalize;
-  margin-right: 4px;
-}
-
+/* Title */
 .book-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 8px;
-  color: #000;
-}
-
-.book-author {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
   line-height: 1.2;
+  color: #000;
+  margin: 0 0 12px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Author */
+.book-author {
+  font-size: 16px;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.by-text {
   color: #666;
-  margin-bottom: 24px;
-}
-
-.bookmark-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  transition: opacity 0.3s ease;
-}
-
-.bookmark-btn:hover {
-  opacity: 0.6;
-}
-
-.star-rating {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 32px;
-  align-items: center;
-}
-
-.star {
-  font-size: 20px;
-  color: #DDD;
-}
-
-.star.filled {
-  color: #000;
-}
-
-.book-description {
-  margin-bottom: 40px;
-}
-
-.book-description p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.6;
-  letter-spacing: -0.28px;
-  margin-bottom: 16px;
-  color: #333;
-}
-
-.book-description .quote {
-  font-style: italic;
   font-weight: 400;
+}
+
+.author-name {
   color: #000;
-  margin-bottom: 20px;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: flex-end;
-}
-
-.btn-primary,
-.btn-secondary {
-  padding: 12px 24px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
   font-weight: 500;
-  border: none;
+}
+
+/* Rating is handled by InlineRating.css */
+
+/* Punchline */
+.book-punchline {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  font-style: italic;
+  margin: 24px 0 16px 0;
+  font-weight: 400;
+}
+
+/* Blurb/Description */
+.book-blurb {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.book-blurb p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+  text-align: justify;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* Action Buttons */
+.book-action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-start-reading,
+.btn-save {
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.btn-primary {
+.btn-start-reading {
   background: #000;
-  color: #FFF;
+  color: #fff;
+  flex: 1;
 }
 
-.btn-primary:hover {
+.btn-start-reading:hover {
   background: #333;
 }
 
-.btn-secondary {
-  background: transparent;
+.btn-save {
+  background: #fff;
   color: #000;
-  border: 1px solid #000;
+  border: 2px solid #000;
+  padding: 10px 32px; /* Adjust for border */
 }
 
-.btn-secondary:hover {
-  background: #000;
-  color: #FFF;
+.btn-save:hover {
+  background: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .book-title {
+    font-size: 28px;
+  }
+
+  .book-author {
+    font-size: 14px;
+  }
+
+  .book-punchline {
+    font-size: 16px;
+  }
+
+  .book-blurb p {
+    font-size: 14px;
+  }
+
+  .book-action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-start-reading,
+  .btn-save {
+    width: 100%;
+  }
 }
