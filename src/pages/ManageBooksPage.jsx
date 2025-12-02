@@ -34,20 +34,24 @@ function ManageBooksPage() {
   }, [navigate]);
 
   useEffect(() => {
-    loadBooks();
-  }, [filter, pagination.page]);
+    if (user) {
+      loadBooks();
+    }
+  }, [filter, pagination.page, user]);
 
   const loadBooks = async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams({
-        page: pagination.page,
-        limit: pagination.limit,
+        page: pagination.page.toString(),
+        limit: pagination.limit.toString(),
         sortBy: filter.sortBy,
         sortOrder: filter.sortOrder,
         ...(filter.status && { status: filter.status }),
         ...(filter.search && { search: filter.search })
       });
+
+      console.log('Fetching books:', `http://localhost:3000/api/admin/books/manage?${params}`);
 
       const response = await fetch(`http://localhost:3000/api/admin/books/manage?${params}`, {
         headers: {
@@ -55,13 +59,28 @@ function ManageBooksPage() {
         }
       });
 
+      console.log('Response status:', response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
       const result = await response.json();
+      console.log('Books data:', result);
+      
       if (result.success) {
-        setBooks(result.data);
-        setPagination(result.pagination);
+        setBooks(result.data || []);
+        if (result.pagination) {
+          setPagination(result.pagination);
+        }
+      } else {
+        console.error('API returned success: false');
+        setBooks([]);
       }
     } catch (error) {
       console.error('Error loading books:', error);
+      setBooks([]);
+      alert('Failed to load books. Check console for details.');
     } finally {
       setLoading(false);
     }
@@ -93,16 +112,17 @@ function ManageBooksPage() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setPagination({...pagination, page: 1});
+    setPagination(prev => ({...prev, page: 1}));
+    loadBooks();
   };
 
   const handleSort = (sortBy) => {
-    setFilter({
-      ...filter,
+    setFilter(prev => ({
+      ...prev,
       sortBy,
-      sortOrder: filter.sortBy === sortBy && filter.sortOrder === 'desc' ? 'asc' : 'desc'
-    });
-    setPagination({...pagination, page: 1});
+      sortOrder: prev.sortBy === sortBy && prev.sortOrder === 'desc' ? 'asc' : 'desc'
+    }));
+    setPagination(prev => ({...prev, page: 1}));
   };
 
   const getSortIcon = (column) => {
@@ -127,11 +147,11 @@ function ManageBooksPage() {
               type="text"
               placeholder="Search by title, author, book_id..."
               value={filter.search}
-              onChange={(e) => setFilter({...filter, search: e.target.value})}
+              onChange={(e) => setFilter(prev => ({...prev, search: e.target.value}))}
             />
             <select 
               value={filter.status}
-              onChange={(e) => setFilter({...filter, status: e.target.value})}
+              onChange={(e) => setFilter(prev => ({...prev, status: e.target.value}))}
             >
               <option value="">All Status</option>
               <option value="draft">Draft</option>
@@ -143,7 +163,14 @@ function ManageBooksPage() {
         </div>
 
         {loading ? (
-          <p>Loading...</p>
+          <div className="loading-state">
+            <p>Loading books...</p>
+          </div>
+        ) : books.length === 0 ? (
+          <div className="empty-state">
+            <h3>No books found</h3>
+            <p>Try adjusting your filters or add a new book</p>
+          </div>
         ) : (
           <>
             <div className="books-list">
@@ -198,7 +225,7 @@ function ManageBooksPage() {
                           {book.status}
                         </span>
                       </td>
-                      <td>⭐ {book.rating.toFixed(1)}</td>
+                      <td>{(book.rating || 0).toFixed(1)}</td>
                       <td>{new Date(book.createdAt).toLocaleDateString()}</td>
                       <td>
                         <button 
@@ -220,21 +247,23 @@ function ManageBooksPage() {
               </table>
             </div>
 
-            <div className="pagination">
-              <button 
-                disabled={pagination.page === 1}
-                onClick={() => setPagination({...pagination, page: pagination.page - 1})}
-              >
-                Previous
-              </button>
-              <span>Page {pagination.page} of {pagination.pages}</span>
-              <button 
-                disabled={pagination.page === pagination.pages}
-                onClick={() => setPagination({...pagination, page: pagination.page + 1})}
-              >
-                Next
-              </button>
-            </div>
+            {pagination.pages > 1 && (
+              <div className="pagination">
+                <button 
+                  disabled={pagination.page === 1}
+                  onClick={() => setPagination(prev => ({...prev, page: prev.page - 1}))}
+                >
+                  Previous
+                </button>
+                <span>Page {pagination.page} of {pagination.pages}</span>
+                <button 
+                  disabled={pagination.page === pagination.pages}
+                  onClick={() => setPagination(prev => ({...prev, page: prev.page + 1}))}
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </>
         )}
       </main>
