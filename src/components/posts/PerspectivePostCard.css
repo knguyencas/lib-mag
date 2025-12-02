@@ -182,29 +182,3 @@
 .vote-button.downvote.active svg {
   color: #fff;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .perspective-post-card {
-    padding: 16px;
-  }
-
-  .post-title {
-    font-size: 18px;
-  }
-
-  .post-content-preview {
-    font-size: 13px;
-  }
-
-  .post-footer {
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .post-actions {
-    width: 100%;
-    justify-content: flex-start;
-  }
-}

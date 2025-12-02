@@ -3,7 +3,9 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import { authService } from '@/services/authService';
 import { perspectiveService } from '@/services/perspectiveService';
+
 import '@/styles/perspective-post.css';
+import '@/components/posts/PerspectivePostCard.css';
 
 function PerspectivePostDetailPage() {
   const { id } = useParams();
@@ -18,22 +20,20 @@ function PerspectivePostDetailPage() {
   const [submitting, setSubmitting] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
 
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
+
+  const [upvoted, setUpvoted] = useState(false);
+  const [downvoted, setDownvoted] = useState(false);
+  const [upvoteCount, setUpvoteCount] = useState(0);
+  const [downvoteCount, setDownvoteCount] = useState(0);
 
   useEffect(() => {
     document.title = 'Psyche Journey – Perspective Post';
 
     const currentUser = authService.getUser();
-    if (currentUser) {
-      setIsLoggedIn(true);
-      setUser(currentUser);
-    } else {
-      setIsLoggedIn(false);
-      setUser(null);
-    }
+    setIsLoggedIn(!!currentUser);
 
     if (id) {
       loadPost(id);
@@ -44,26 +44,16 @@ function PerspectivePostDetailPage() {
   const loadPost = async (postId) => {
     try {
       setLoadingPost(true);
-      console.log('🔍 Loading perspective post:', postId);
-      
       const postData = await perspectiveService.getPostById(postId);
-      console.log('Mapped post data:', postData);
-      
+
       if (!postData) {
-        console.error('No post data returned');
         setPost(null);
         return;
       }
 
-      console.log('📝 Setting post state with:', {
-        title: postData.title,
-        content: postData.content,
-        contentLength: postData.content?.length,
-        author: postData.authorUsername
-      });
-
       setPost(postData);
-      
+      setUpvoteCount(postData.upvotes || 0);
+      setDownvoteCount(postData.downvotes || 0);
     } catch (err) {
       console.error('Error loading post detail:', err);
       setPost(null);
@@ -76,7 +66,6 @@ function PerspectivePostDetailPage() {
     try {
       setLoadingComments(true);
       const commentsData = await perspectiveService.getComments(postId);
-      console.log('Comments loaded:', commentsData);
       setComments(commentsData || []);
     } catch (err) {
       console.error('Error loading comments:', err);
@@ -118,13 +107,9 @@ function PerspectivePostDetailPage() {
 
     try {
       setSubmitting(true);
-      
       const newComment = await perspectiveService.addComment(id, text);
-      console.log('Comment added:', newComment);
-      
-      setComments(prev => [newComment, ...prev]);
+      setComments((prev) => [newComment, ...prev]);
       setCommentText('');
-      
     } catch (err) {
       console.error('Error submitting comment:', err);
       alert('Failed to add comment. Please try again.');
@@ -140,14 +125,40 @@ function PerspectivePostDetailPage() {
     }
   };
 
+  const handleUpvote = () => {
+    if (upvoted) {
+      setUpvoted(false);
+      setUpvoteCount((prev) => Math.max(0, prev - 1));
+    } else {
+      setUpvoted(true);
+      setUpvoteCount((prev) => prev + 1);
+      if (downvoted) {
+        setDownvoted(false);
+        setDownvoteCount((prev) => Math.max(0, prev - 1));
+      }
+    }
+  };
+
+  const handleDownvote = () => {
+    if (downvoted) {
+      setDownvoted(false);
+      setDownvoteCount((prev) => Math.max(0, prev - 1));
+    } else {
+      setDownvoted(true);
+      setDownvoteCount((prev) => prev + 1);
+      if (upvoted) {
+        setUpvoted(false);
+        setUpvoteCount((prev) => Math.max(0, prev - 1));
+      }
+    }
+  };
+
   if (loadingPost && !post) {
     return (
       <div className="perspective-post-page">
         <Header />
-        <main className="post-page">
-          <div className="loading-state" style={{ color: '#000', padding: '60px 20px' }}>
-            Loading post...
-          </div>
+        <main className="perspective-detail-main">
+          <div className="loading-state">Loading post...</div>
         </main>
       </div>
     );
@@ -157,8 +168,8 @@ function PerspectivePostDetailPage() {
     return (
       <div className="perspective-post-page">
         <Header />
-        <main className="post-page">
-          <div className="loading-state" style={{ color: '#c33', padding: '60px 20px' }}>
+        <main className="perspective-detail-main">
+          <div className="loading-state" style={{ color: '#c33' }}>
             Post not found.
           </div>
         </main>
@@ -170,27 +181,10 @@ function PerspectivePostDetailPage() {
     .split(/\n\s*\n/)
     .filter((p) => p.trim().length > 0);
 
-  console.log('Content paragraphs:', paragraphs);
-  console.log('First paragraph:', paragraphs[0]);
-  
-  const MAX_PARAGRAPHS = 3;
-  const MAX_CHARS = 500;
-  
-  let displayParagraphs = paragraphs.slice(0, MAX_PARAGRAPHS);
-  let fullText = displayParagraphs.join('\n\n');
-  
-  if (fullText.length > MAX_CHARS) {
-    fullText = fullText.substring(0, MAX_CHARS) + '...';
-    displayParagraphs = [fullText];
-  } else if (paragraphs.length > MAX_PARAGRAPHS) {
-    displayParagraphs[displayParagraphs.length - 1] += '...';
-  }
-
-  console.log('Display paragraphs:', displayParagraphs);
-
   return (
-    <div className="perspective-post-page" style={{ backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
+    <div className="perspective-post-page">
       <Header />
+
       <div className="sub_nav">
         <div className="search_bar">
           {!searchVisible && (
@@ -222,425 +216,165 @@ function PerspectivePostDetailPage() {
         </div>
       </div>
 
-      <main className="post-page" style={{ padding: '60px 0 80px' }}>
-        <div
-          style={{
-            maxWidth: '1174px',
-            margin: '0 auto 16px',
-            padding: '0 30px',
-          }}
-        >
-          <Link 
-            to="/perspective" 
-            className="nav-link-inline"
-            style={{
-              color: '#000',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontFamily: 'Poppins, sans-serif'
-            }}
-          >
-            &larr; Back to Perspective
-          </Link>
-        </div>
+      <main className="perspective-detail-main">
+        <div className="perspective-detail-inner">
+          <div className="detail-top-row">
+            <Link to="/perspective" className="nav-link-inline">
+              &larr; Back to Perspective
+            </Link>
+          </div>
 
-        <section className="post-wrapper" style={{ display: 'flex', justifyContent: 'center' }}>
-          <article 
-            className="post-card" 
-            style={{
-              background: '#D9D9D9',
-              width: '1174px',
-              minHeight: '303px',
-              padding: '24px 30px',
-              position: 'relative',
-              marginBottom: '40px'
-            }}
-          >
-            <div 
-              className="post-date" 
-              style={{
-                position: 'absolute',
-                right: '32px',
-                top: '26px',
-                color: '#828282',
-                fontFamily: 'Consolas, monospace',
-                fontSize: '12px'
-              }}
-            >
-              {formatDate(post.updatedAt)}
-            </div>
-
-            <div className="post-header" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-              <div 
-                className="post-avatar" 
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '50%',
-                  background: '#915656',
-                  flexShrink: 0
-                }}
-              ></div>
-              <div className="post-title-wrapper">
-                <div className="post-topic-line" style={{ display: 'flex', gap: '7px', alignItems: 'baseline' }}>
-                  <span 
-                    className="post-topic"
-                    style={{
-                      color: '#2A2A2A',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontSize: '20px',
-                      fontWeight: 400,
-                      textDecoration: 'underline'
-                    }}
-                  >
-                    {post.title}
-                  </span>
-                  <span 
-                    className="post-by"
-                    style={{
-                      color: '#2A2A2A',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontSize: '20px',
-                      fontWeight: 300
-                    }}
-                  >
-                    By @{post.authorUsername}
-                  </span>
+          <article className="perspective-post-card perspective-post-card--detail">
+            <div className="post-main-content">
+              <div className="post-header">
+                <div className="post-author-info">
+                  <div className="post-avatar">
+                    {post.authorUsername?.[0]?.toUpperCase() ||
+                      post.author?.username?.[0]?.toUpperCase() ||
+                      'P'}
+                  </div>
+                  <div className="post-author-details">
+                    <div className="post-author-name">
+                      @{post.authorUsername || post.author?.username || 'anonymous'}
+                    </div>
+                    <div className="post-date">
+                      {formatDate(post.updatedAt || post.created_at)}
+                    </div>
+                  </div>
                 </div>
-                {post.tags && post.tags.length > 0 && (
-                  <div 
-                    className="post-tag"
-                    style={{
-                      marginTop: '2px',
-                      fontSize: '13px',
-                      color: '#666',
-                      fontFamily: 'Poppins, sans-serif'
-                    }}
-                  >
-                    {Array.isArray(post.tags)
-                      ? post.tags.join(', ')
-                      : post.tags}
+
+                {post.primary_genre && (
+                  <div className="post-genre-badge">
+                    {post.primary_genre}
                   </div>
                 )}
               </div>
-            </div>
 
-            <div 
-              className="post-content" 
-              style={{
-                marginTop: '10px',
-                width: '100%',
-                color: '#000',
-                fontFamily: 'Cardo, serif',
-                fontSize: '20px',
-                fontWeight: 400,
-                lineHeight: '110%',
-                letterSpacing: '-0.6px'
-              }}
-            >
-              {displayParagraphs.length === 0 ? (
-                <p style={{ color: '#000', margin: 0 }}>
-                  {post.content || 'No content available for this post.'}
-                </p>
-              ) : (
-                displayParagraphs.map((p, idx) => (
-                  <p key={idx} style={{ color: '#000', marginTop: idx > 0 ? '4px' : 0 }}>
-                    {p}
-                  </p>
-                ))
+              <h3 className="post-title">{post.topic || post.title}</h3>
+
+              <div className="post-content-full">
+                {paragraphs.length === 0 ? (
+                  <p>{post.content || 'No content available for this post.'}</p>
+                ) : (
+                  paragraphs.map((p, idx) => <p key={idx}>{p}</p>)
+                )}
+              </div>
+
+              {Array.isArray(post.tags) && post.tags.length > 0 && (
+                <div className="post-tags">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               )}
             </div>
 
-            <div 
-              className="post-footer" 
-              style={{
-                marginTop: 'auto',
-                display: 'flex',
-                justifyContent: 'flex-end',
-                gap: '60px',
-                paddingRight: '32px',
-                paddingTop: '20px'
-              }}
-            >
-              <span 
-                className="vote-link"
-                style={{
-                  color: '#000',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: '14px',
-                  fontStyle: 'italic',
-                  cursor: 'pointer'
-                }}
-              >
-                Upvote
-              </span>
-              <span 
-                className="vote-link"
-                style={{
-                  color: '#000',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: '14px',
-                  fontStyle: 'italic',
-                  cursor: 'pointer'
-                }}
-              >
-                Downvote
-              </span>
+            <div className="post-footer">
+              <div className="vote-section">
+                <button
+                  className={`vote-button upvote ${upvoted ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleUpvote();
+                  }}
+                >
+                  ▲ {upvoteCount}
+                </button>
+                <button
+                  className={`vote-button downvote ${downvoted ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDownvote();
+                  }}
+                >
+                  ▼ {downvoteCount}
+                </button>
+              </div>
+
+              <div className="post-stats detail-stats">
+                <span className="stat-item">
+                  {comments.length} comments
+                </span>
+              </div>
             </div>
           </article>
-        </section>
 
-        <section 
-          className="comment-title-wrapper" 
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '40px'
-          }}
-        >
-          <h2 
-            className="comment-title"
-            style={{
-              width: '1174px',
-              fontFamily: 'Poppins, sans-serif',
-              fontSize: '22px',
-              fontWeight: 600,
-              color: '#000'
-            }}
-          >
-            Comment
-          </h2>
-        </section>
+          <section className="comment-title-wrapper">
+            <h2 className="comment-title">Comment</h2>
+          </section>
 
-        <section 
-          className="comments-wrapper"
-          style={{
-            marginTop: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '25px'
-          }}
-        >
-          {loadingComments ? (
-            <div className="loading-state" style={{ color: '#666', padding: '40px 20px' }}>
-              Loading comments...
-            </div>
-          ) : comments.length === 0 ? (
-            <div className="no-comments" style={{ color: '#666', padding: '40px 20px' }}>
-              No comments yet.
-            </div>
-          ) : (
-            comments.map((comment) => (
-              <article
-                key={comment.id || comment._id}
-                className="comment-card comment-root"
-                style={{
-                  background: '#D9D9D9',
-                  width: '1174px',
-                  minHeight: '150px',
-                  padding: '24px 30px',
-                  position: 'relative'
-                }}
-              >
-                <div 
-                  className="comment-date"
-                  style={{
-                    position: 'absolute',
-                    right: '32px',
-                    top: '26px',
-                    color: '#828282',
-                    fontFamily: 'Consolas, monospace',
-                    fontSize: '12px'
-                  }}
+          <section className="comments-wrapper">
+            {loadingComments ? (
+              <div className="loading-state">Loading comments...</div>
+            ) : comments.length === 0 ? (
+              <div className="no-comments">No comments yet.</div>
+            ) : (
+              comments.map((comment) => (
+                <article
+                  key={comment.id || comment._id}
+                  className="comment-card comment-root"
                 >
-                  {formatDate(comment.createdAt)}
-                </div>
-                <div className="comment-header" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
-                  <div 
-                    className="comment-avatar"
-                    style={{
-                      width: '64px',
-                      height: '64px',
-                      borderRadius: '50%',
-                      background: '#915656'
-                    }}
-                  ></div>
-                  <div className="comment-meta">
-                    <span 
-                      className="comment-user"
-                      style={{
-                        fontFamily: 'Poppins, sans-serif',
-                        fontSize: '16px',
-                        fontWeight: 400,
-                        color: '#000'
-                      }}
-                    >
-                      @{comment.user?.username || comment.username || 'User'}
-                    </span>
+                  <div className="comment-date">
+                    {formatDate(comment.createdAt)}
                   </div>
-                </div>
-                <div 
-                  className="comment-body"
-                  style={{
-                    marginTop: '4px',
-                    fontFamily: 'Cardo, serif',
-                    fontSize: '16px',
-                    lineHeight: 1.4,
-                    color: '#000'
-                  }}
-                >
-                  {comment.content || comment.text || ''}
-                </div>
-                <div 
-                  className="comment-footer"
-                  style={{
-                    marginTop: 'auto',
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    gap: '40px',
-                    paddingRight: '32px',
-                    paddingTop: '12px'
-                  }}
-                >
-                  <span 
-                    className="comment-action"
-                    style={{
-                      color: '#000',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontSize: '13px',
-                      fontStyle: 'italic',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Reply
-                  </span>
-                  <span 
-                    className="comment-action"
-                    style={{
-                      color: '#000',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontSize: '13px',
-                      fontStyle: 'italic',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Upvote
-                  </span>
-                  <span 
-                    className="comment-action"
-                    style={{
-                      color: '#000',
-                      fontFamily: 'Poppins, sans-serif',
-                      fontSize: '13px',
-                      fontStyle: 'italic',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Downvote
-                  </span>
-                </div>
-              </article>
-            ))
-          )}
-        </section>
+                  <div className="comment-header">
+                    <div className="comment-avatar" />
+                    <div className="comment-meta">
+                      <span className="comment-user">
+                        @{comment.user?.username || comment.username || 'User'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="comment-body">
+                    {comment.content || comment.text || ''}
+                  </div>
+                  <div className="comment-footer">
+                    <span className="comment-action">Reply</span>
+                    <span className="comment-action">Upvote</span>
+                    <span className="comment-action">Downvote</span>
+                  </div>
+                </article>
+              ))
+            )}
+          </section>
 
-        <section 
-          className="comment-form-wrapper"
-          style={{
-            marginTop: '40px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '10px'
-          }}
-        >
-          <div 
-            className="comment-form-card"
-            style={{
-              width: '1174px',
-              background: '#FFFFFF',
-              padding: '18px 18px 40px 18px',
-              cursor: 'text',
-              border: '1px solid #D0D0D0'
-            }}
-          >
-            <form onSubmit={handleSubmitComment}>
-              <textarea
-                className="comment-input"
-                placeholder={
-                  isLoggedIn
-                    ? 'Comment...'
-                    : 'Please log in to comment'
-                }
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                onKeyDown={handleCommentKeyDown}
-                disabled={!isLoggedIn || submitting}
-                style={{
-                  width: '100%',
-                  minHeight: '120px',
-                  border: 'none',
-                  outline: 'none',
-                  resize: 'vertical',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: '14px',
-                  background: '#FFFFFF',
-                  cursor: 'text',
-                  color: '#000'
-                }}
-              />
-              <button
-                type="submit"
-                className="comment-submit-btn"
-                disabled={submitting || !isLoggedIn}
-                style={{
-                  marginTop: '18px',
-                  float: 'right',
-                  padding: '6px 24px',
-                  border: 'none',
-                  background: '#D9D9D9',
-                  fontFamily: 'Poppins, sans-serif',
-                  fontSize: '13px',
-                  cursor: 'pointer',
-                  color: '#000'
-                }}
-              >
-                {submitting ? 'Submitting…' : 'Enter'}
-              </button>
-            </form>
-          </div>
-
-          {!isLoggedIn && (
-            <div 
-              className="comment-login-hint"
-              style={{
-                width: '1174px',
-                fontSize: '13px',
-                fontFamily: 'Poppins, sans-serif',
-                color: '#666',
-                marginTop: '4px'
-              }}
-            >
-              You can still type your thoughts here. When you submit,
-              you'll be asked to log in so your comment can be posted
-              under your account.
+          <section className="comment-form-wrapper">
+            <div className="comment-form-card">
+              <form onSubmit={handleSubmitComment}>
+                <textarea
+                  className="comment-input"
+                  placeholder={
+                    isLoggedIn ? 'Comment...' : 'Please log in to comment'
+                  }
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                  onKeyDown={handleCommentKeyDown}
+                  disabled={!isLoggedIn || submitting}
+                />
+                <button
+                  type="submit"
+                  className="comment-submit-btn"
+                  disabled={submitting || !isLoggedIn}
+                >
+                  {submitting ? 'Submitting…' : 'Enter'}
+                </button>
+              </form>
             </div>
-          )}
-        </section>
+
+            {!isLoggedIn && (
+              <div className="comment-login-hint">
+                You can still type your thoughts here. When you submit,
+                you'll be asked to log in so your comment can be posted
+                under your account.
+              </div>
+            )}
+          </section>
+        </div>
       </main>
 
-      <footer 
-        className="footer"
-        style={{
-          borderTop: '1px solid #E0E0E0',
-          padding: '24px 52px 40px',
-          fontSize: '12px',
-          color: '#666',
-          background: '#F3F3F3',
-          textAlign: 'left'
-        }}
-      >
+      <footer className="footer">
         <p>
           © 2025 Psyche Journey. A quiet place for thoughts,
           perspectives, and conversations.

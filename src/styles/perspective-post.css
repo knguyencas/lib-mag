@@ -1,9 +1,11 @@
+/* ===== PAGE WRAPPER ===== */
 .perspective-post-page {
   background-color: #F3F3F3;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
 
+/* ===== SUB NAV SEARCH ===== */
 .sub_nav {
   background: #F3F3F3;
   padding: 16px 52px;
@@ -55,139 +57,156 @@
   color: #000;
 }
 
-.post-page {
-  padding: 60px 0 80px;
+/* ===== MAIN CONTAINER ===== */
+.perspective-detail-main {
+  padding: 60px 52px 80px;
   background: #F3F3F3;
 }
 
+.perspective-detail-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.detail-top-row {
+  margin-bottom: 16px;
+}
+
+/* back link */
 .nav-link-inline {
-  color: #000 !important;
+  color: #000;
   text-decoration: none;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
-  display: inline-block;
-  margin-bottom: 16px;
 }
 
 .nav-link-inline:hover {
   text-decoration: underline;
 }
 
-.post-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
+/* ===== CARD DETAIL – OVERRIDE CARD BASE ===== */
+.perspective-post-page .perspective-post-card--detail {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 22px 24px 16px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  border: 1px solid #E3E3E3;
+  margin-bottom: 32px;
+  cursor: default;
 }
 
-.post-card {
-  background: #D9D9D9;
-  width: 1174px;
-  min-height: 303px;
-  padding: 24px 30px;
-  position: relative;
-  box-sizing: border-box;
+.perspective-post-page .perspective-post-card--detail:hover {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  transform: none;
 }
 
-.post-date {
-  position: absolute;
-  right: 32px;
-  top: 26px;
-  color: #828282 !important;
-  font-family: 'Consolas', monospace;
+/* header trong card detail */
+.perspective-post-page .perspective-post-card--detail .post-main-content {
+  gap: 10px;
+}
+
+.perspective-post-page .perspective-post-card--detail .post-header {
+  margin-bottom: 4px;
+}
+
+.perspective-post-page .perspective-post-card--detail .post-avatar {
+  background: #000;
+}
+
+.perspective-post-page .perspective-post-card--detail .post-author-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.perspective-post-page .perspective-post-card--detail .post-date {
   font-size: 12px;
+  color: #999;
 }
 
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.post-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: #915656;
-  flex-shrink: 0;
-}
-
-.post-title-wrapper {
-  flex: 1;
-}
-
-.post-topic-line {
-  display: flex;
-  gap: 7px;
-  align-items: baseline;
-  flex-wrap: wrap;
-}
-
-.post-topic {
-  color: #2A2A2A !important;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  text-decoration: underline;
-}
-
-.post-by {
-  color: #2A2A2A !important;
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 300;
-}
-
-.post-tag {
-  margin-top: 2px;
-  font-size: 13px;
-  color: #666 !important;
-  font-family: 'Poppins', sans-serif;
-}
-
-.post-content {
-  margin-top: 10px;
-  width: 100%;
-  color: #000 !important;
-  font-family: 'Cardo', serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 110%;
-  letter-spacing: -0.6px;
-}
-
-.post-content p {
-  color: #000 !important;
-  margin: 0;
+.perspective-post-page .perspective-post-card--detail .post-title {
+  font-size: 22px;
+  font-weight: 700;
   margin-top: 4px;
 }
 
-.post-content p:first-child {
-  margin-top: 0;
+.perspective-post-page .perspective-post-card--detail .post-genre-badge {
+  background: #f0f0f0;
+  color: #555;
 }
 
-.post-footer {
-  margin-top: 20px;
+/* nội dung full */
+.perspective-post-page .perspective-post-card--detail .post-content-full {
+  margin-top: 8px;
+  font-family: 'Cardo', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #222;
+}
+
+.perspective-post-page .perspective-post-card--detail .post-content-full p + p {
+  margin-top: 10px;
+}
+
+/* ===== FOOTER CARD DETAIL: vote + comments ===== */
+.perspective-post-page .perspective-post-card--detail .post-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #F0F0F0;
   display: flex;
   justify-content: flex-end;
-  gap: 60px;
-  padding-right: 32px;
-  padding-top: 20px;
+  align-items: center;
+  gap: 24px; /* khoảng cách vote <-> comments */
 }
 
-.vote-link {
-  color: #000 !important;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-style: italic;
+.perspective-post-page .perspective-post-card--detail .vote-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* override vote-button base cho card detail */
+.perspective-post-page .perspective-post-card--detail .vote-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #DDDDDD;
+  background: #F7F7F7;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
   cursor: pointer;
-  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
-.vote-link:hover {
-  text-decoration: underline;
+.perspective-post-page .perspective-post-card--detail .vote-button:hover {
+  background: #EDEDED;
+  color: #111;
+  transform: translateY(-1px);
 }
 
+.perspective-post-page .perspective-post-card--detail .vote-button.active.upvote {
+  background: #2E7D32;
+  border-color: #2E7D32;
+  color: #fff;
+}
+
+.perspective-post-page .perspective-post-card--detail .vote-button.active.downvote {
+  background: #C62828;
+  border-color: #C62828;
+  color: #fff;
+}
+
+/* comments text bên phải vote */
+.perspective-post-page .perspective-post-card--detail .post-stats.detail-stats {
+  font-size: 12px;
+  color: #777;
+}
+
+/* ===== COMMENTS SECTION ===== */
 .comment-title-wrapper {
   display: flex;
   justify-content: center;
@@ -196,11 +215,12 @@
 }
 
 .comment-title {
-  width: 1174px;
+  width: 100%;
+  max-width: 960px;
   font-family: 'Poppins', sans-serif;
   font-size: 22px;
   font-weight: 600;
-  color: #000 !important;
+  color: #000;
   margin: 0;
 }
 
@@ -213,8 +233,9 @@
 }
 
 .comment-card {
+  width: 100%;
+  max-width: 960px;
   background: #D9D9D9;
-  width: 1174px;
   min-height: 150px;
   padding: 24px 30px;
   position: relative;
@@ -225,7 +246,7 @@
   position: absolute;
   right: 32px;
   top: 26px;
-  color: #828282 !important;
+  color: #828282;
   font-family: 'Consolas', monospace;
   font-size: 12px;
 }
@@ -238,8 +259,8 @@
 }
 
 .comment-avatar {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #915656;
   flex-shrink: 0;
@@ -247,30 +268,30 @@
 
 .comment-user {
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #000 !important;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
 }
 
 .comment-body {
   margin-top: 4px;
   font-family: 'Cardo', serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.4;
-  color: #000 !important;
+  color: #000;
 }
 
 .comment-footer {
   margin-top: 12px;
   display: flex;
   justify-content: flex-end;
-  gap: 40px;
+  gap: 32px;
   padding-right: 32px;
   padding-top: 12px;
 }
 
 .comment-action {
-  color: #000 !important;
+  color: #000;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-style: italic;
@@ -282,6 +303,7 @@
   text-decoration: underline;
 }
 
+/* ===== COMMENT FORM ===== */
 .comment-form-wrapper {
   margin-top: 40px;
   display: flex;
@@ -292,7 +314,8 @@
 }
 
 .comment-form-card {
-  width: 1174px;
+  width: 100%;
+  max-width: 960px;
   background: #FFFFFF;
   padding: 18px 18px 40px 18px;
   cursor: text;
@@ -309,7 +332,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   background: #FFFFFF;
-  color: #000 !important;
+  color: #000;
   box-sizing: border-box;
 }
 
@@ -331,7 +354,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   cursor: pointer;
-  color: #000 !important;
+  color: #000;
 }
 
 .comment-submit-btn:hover:not(:disabled) {
@@ -344,27 +367,28 @@
 }
 
 .comment-login-hint {
-  width: 1174px;
+  width: 100%;
+  max-width: 960px;
   font-size: 13px;
   font-family: 'Poppins', sans-serif;
-  color: #666 !important;
+  color: #666;
   margin-top: 4px;
 }
 
+/* ===== STATES & FOOTER ===== */
 .loading-state,
 .no-comments {
-  color: #666 !important;
+  color: #666;
   padding: 40px 20px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Footer */
 .footer {
   border-top: 1px solid #E0E0E0;
   padding: 24px 52px 40px;
   font-size: 12px;
-  color: #666 !important;
+  color: #666;
   background: #F3F3F3;
   text-align: left;
   font-family: 'Poppins', sans-serif;
@@ -372,5 +396,23 @@
 
 .footer p {
   margin: 0;
-  color: #666 !important;
+}
+
+/* small tweak on mobile */
+@media (max-width: 768px) {
+  .perspective-detail-main {
+    padding: 40px 20px 60px;
+  }
+
+  .perspective-detail-inner {
+    max-width: 100%;
+  }
+
+  .comment-title-wrapper {
+    padding: 0;
+  }
+
+  .comment-form-wrapper {
+    padding: 0;
+  }
 }

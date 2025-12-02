@@ -4,88 +4,246 @@
   box-sizing: border-box;
 }
 
+/* BODY CHO TRANG THEMES */
 body.themes {
-  background: #000;
-  color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+  background: #000000;
+  color: #e0e0e0;
+  min-height: 100vh;
 }
 
+/* WRAPPER CHO REACT PAGE */
 .themes-page {
   min-height: 100vh;
-  background: #000;
-  color: #f5f5f5;
+  background: #000000;
+  color: #e0e0e0;
 }
 
-/* HEADER STYLING - MATCH BACKGROUND */
+/* HEADER – GIỮ LOGO & NAV GIỐNG CÁC PAGE KHÁC, NHƯNG NỀN ĐEN */
 .themes-page .header {
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #000;
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
 }
 
 .themes-page .logo,
 .themes-page .first_header a,
 .themes-page .nav_bar a {
-  color: #f5f5f5;
+  color: #999999;
 }
 
-.themes-page .search_input_group input {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f5f5f5;
+.themes-page .nav_bar a.active,
+.themes-page .nav_bar a:hover {
+  color: #ffffff;
 }
 
-.themes-page .search_input_group input::placeholder {
-  color: #828282;
-}
-
-.themes-page .search_btn {
-  color: #f5f5f5;
-}
-
-.themes-page .search_error {
-  color: #f48771;
-}
-
-.themes-page .user-avatar {
-  background: #f5f5f5;
-  color: #000;
-}
-
-/* MAIN CONTENT */
+/* MAIN CONTENT: RỘNG RA GIỐNG BẢN VANILLA */
 .themes-page-main {
-  max-width: 1200px;
-  margin: 80px auto 60px;
-  padding: 0 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 48px 32px 60px;
+  min-height: calc(100vh - 200px);
 }
 
-.themes-grid-wrapper {
-  width: 100%;
+/* LOADING STATE */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
 }
 
-/* GRID WITH BORDERS - FRAMED LAYOUT */
+.loading-spinner .spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ffffff;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner p {
+  margin-top: 1rem;
+  color: #999999;
+  font-size: 0.9rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* NO RESULTS */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-results h3 {
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.no-results p {
+  color: #999999;
+}
+
+/* GRID 2 CỘT – Ô RỘNG HƠN */
 .visual-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 0;
-  border: 1px solid #3b3b3b;
+  animation: fadeIn 0.5s ease;
 }
 
-.visual-grid > * {
-  border-right: 1px solid #3b3b3b;
-  border-bottom: 1px solid #3b3b3b;
-  padding: 20px;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.visual-grid > *:nth-child(2n) {
-  border-right: none;
+/* CARD VISUAL */
+.visual-card {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0a0a0a;
+  overflow: hidden;
 }
 
-.visual-grid > *:nth-last-child(-n+2) {
-  border-bottom: none;
+.visual-card:hover {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 }
 
-/* PAGINATION - MATCH PERSPECTIVE STYLE */
+/* ẢNH TO, CARD RỘNG – GẦN GIỐNG FILE HTML CŨ */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 380px; /* tăng để ô trông đầy hơn */
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card-image.placeholder {
+  background: #333333;
+}
+
+.visual-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+/* INFO DƯỚI ẢNH */
+.card-info {
+  padding: 1.5rem;
+  background: #0a0a0a;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.card-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.card-author {
+  color: #666666;
+}
+
+/* CHỈ CÒN TIM + SỐ TIM */
+.card-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+
+.heart-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #555555;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+/* ICON TRÁI TIM */
+.heart-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: #999999;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* BẮT BUỘC PATH DÙNG MÀU HIỆN TẠI */
+.heart-icon path {
+  fill: currentColor;
+}
+
+/* LÚC ĐƯỢC LIKE – ĐỎ + XOAY */
+.heart-button.liked {
+  border-color: #ff7b7b;
+  background: rgba(255, 123, 123, 0.1);
+}
+
+.heart-button.liked .heart-icon {
+  color: #ff5a5a;
+  animation: heart-spin 0.4s ease;
+}
+
+@keyframes heart-spin {
+  from {
+    transform: scale(0.9) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(180deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.heart-button:hover:not(.liked) .heart-icon {
+  color: #ffffff;
+}
+
+.heart-count {
+  color: #dddddd;
+  font-size: 0.9rem;
+}
+
+/* PAGINATION – GIỮ BẢN PILL TRÒN ĐANG DÙNG */
 .themes-pagination {
   display: flex;
   justify-content: center;
@@ -155,63 +313,35 @@ body.themes {
 /* FLOATING CREATE BUTTON */
 .floating-create-btn {
   position: fixed;
-  right: 40px;
-  bottom: 40px;
+  bottom: 3rem;
+  right: 3rem;
   width: 60px;
   height: 60px;
+  background: #ffffff;
+  color: #000000;
   border-radius: 50%;
-  border: none;
-  background: #f5f5f5;
-  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+  z-index: 999;
+  text-decoration: none;
 }
 
 .floating-create-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
-}
-
-/* LOADING STATE */
-.loading-spinner {
-  min-height: calc(100vh - 160px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-spinner .spinner {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 3px solid #444;
-  border-top-color: #f5f5f5;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 8px;
-}
-
-.loading-spinner p {
-  font-size: 13px;
-  color: #ccc;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.5);
 }
 
 /* FOOTER */
 .footer {
-  padding: 20px 40px 30px;
   text-align: center;
-  font-size: 11px;
-  color: #777;
-  background: #000;
-  border-top: 1px solid #3b3b3b;
+  padding: 2rem;
+  color: #666666;
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 3rem;
+  font-size: 0.9rem;
 }
