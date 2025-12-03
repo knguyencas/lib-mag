@@ -4,6 +4,7 @@ import ReaderHeader from '../components/reader/ReaderHeader';
 import ReaderContent from '../components/reader/ReaderContent';
 import ChapterNavigation from '../components/reader/ChapterNavigation';
 import ChapterSidebar from '../components/reader/ChapterSidebar';
+import ChatbotWidget from '../components/reader/ChatbotWidget';
 import { readerService } from '../services/readerService';
 import '../styles/reader.css';
 
@@ -162,6 +163,13 @@ function ReaderPage() {
           />
         </main>
       </div>
+      {book && (
+        <ChatbotWidget
+          bookTitle={book.title}
+          currentChapter={getCurrentChapterInfo()}
+          chapterContent={chapterContent}
+        />
+      )}
     </div>
   );
 }
