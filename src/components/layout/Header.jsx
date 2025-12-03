@@ -101,12 +101,33 @@ function Header() {
                   onClick={() => handleMenuItemClick('/settings')} 
                   className="dropdown-item"
                 >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m-6-6h6m6 0h6m-6-6h6m-6 12h6"></path>
+                  </svg>
                   Settings
                 </button>
+
+                <button 
+                  onClick={() => handleMenuItemClick('/favorites')} 
+                  className="dropdown-item favorites-item"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  My Favorites
+                </button>
+
                 <button 
                   onClick={() => handleMenuItemClick('/my-posts')} 
                   className="dropdown-item"
                 >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
                   My Posts
                 </button>
 
@@ -172,6 +193,11 @@ function Header() {
 
                 <div className="dropdown-divider"></div>
                 <button onClick={handleLogout} className="dropdown-item logout">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                  </svg>
                   Logout
                 </button>
               </div>

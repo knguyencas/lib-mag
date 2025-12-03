@@ -21,6 +21,8 @@ import EditBookPage from './pages/EditBookPage';
 import ManageAdminsPage from './pages/ManageAdminsPage';
 import ManageBooksPage from './pages/ManageBooksPage';
 import ManagePostsPage from './pages/ManagePostsPage';
+import FavoriteBooksPage from './pages/FavoriteBooksPage';
+
 import AboutPage from './pages/AboutPage';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -140,6 +142,8 @@ function App() {
             </ProtectedRoute>
           } 
         />
+
+        <Route path="/favorites" element={<FavoriteBooksPage />} />
 
         <Route path="/about" element={<AboutPage />} />
 

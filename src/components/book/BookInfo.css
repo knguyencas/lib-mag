@@ -1,129 +1,122 @@
-/* BookInfo.css - Matching original design */
-
+/* ===== Book Info Container ===== */
 .book-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  position: relative;
+  padding: 20px;
 }
 
-/* Title */
-.book-title {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.2;
+/* ✅ Bookmark button - góc phải trên */
+.btn-bookmark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   color: #000;
-  margin: 0 0 12px 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: all 0.2s ease;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Author */
+.btn-bookmark:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.btn-bookmark.bookmarked {
+  color: #000;
+}
+
+.btn-bookmark:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Title & Author ===== */
+.book-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #000;
+  line-height: 1.2;
+}
+
 .book-author {
-  font-size: 16px;
-  margin-bottom: 4px;
-  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #000;
 }
 
 .by-text {
-  color: #666;
   font-weight: 400;
 }
 
 .author-name {
-  color: #000;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* Rating is handled by InlineRating.css */
-
-/* Punchline */
+/* ===== Punchline & Blurb ===== */
 .book-punchline {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #333;
+  font-family: 'Cardo', serif;
+  font-size: 16px;
   font-style: italic;
-  margin: 24px 0 16px 0;
-  font-weight: 400;
+  color: #333;
+  margin: 20px 0;
+  line-height: 1.6;
 }
 
-/* Blurb/Description */
 .book-blurb {
-  margin-top: 16px;
-  margin-bottom: 32px;
+  font-family: 'Cardo', serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin: 20px 0 32px 0;
 }
 
 .book-blurb p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #333;
   margin: 0;
-  text-align: justify;
-  font-family: Georgia, 'Times New Roman', serif;
 }
 
-/* Action Buttons */
+/* ===== Action Buttons ===== */
 .book-action-buttons {
   display: flex;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 16px;
+  margin-top: 32px;
 }
 
 .btn-start-reading,
-.btn-save {
-  padding: 12px 32px;
-  font-size: 15px;
-  font-weight: 600;
+.btn-continue-reading {
+  flex: 1;
+  padding: 14px 24px;
+  border: none;
   border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: none;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .btn-start-reading {
   background: #000;
   color: #fff;
-  flex: 1;
 }
 
 .btn-start-reading:hover {
   background: #333;
 }
 
-.btn-save {
+.btn-continue-reading {
   background: #fff;
   color: #000;
   border: 2px solid #000;
-  padding: 10px 32px; /* Adjust for border */
 }
 
-.btn-save:hover {
+.btn-continue-reading:hover {
   background: #f5f5f5;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .book-title {
-    font-size: 28px;
-  }
-
-  .book-author {
-    font-size: 14px;
-  }
-
-  .book-punchline {
-    font-size: 16px;
-  }
-
-  .book-blurb p {
-    font-size: 14px;
-  }
-
-  .book-action-buttons {
-    flex-direction: column;
-  }
-
-  .btn-start-reading,
-  .btn-save {
-    width: 100%;
-  }
 }

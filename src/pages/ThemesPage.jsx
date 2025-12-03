@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import SearchBar from '../components/layout/SearchBar';
 import { authService } from '../services/authService';
+import { voteService } from '@/services/voteService';
 import '../styles/themes.css';
 
 const API_BASE = 'http://localhost:3000/api';
-const POSTS_PER_PAGE = 12; // như bản vanilla
+const POSTS_PER_PAGE = 12;
 
 function ThemesPage() {
   const navigate = useNavigate();
@@ -21,8 +22,7 @@ function ThemesPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [sortBy, setSortBy] = useState('newest');
 
-  // state cho tim: { [postId]: { liked, likes } }
-  const [likesState, setLikesState] = useState({});
+  const [votesState, setVotesState] = useState({});
 
   useEffect(() => {
     document.title = 'Psyche Journey – Themes';
@@ -39,6 +39,30 @@ function ThemesPage() {
   useEffect(() => {
     loadVisualPosts(sortBy);
   }, [sortBy]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && allPosts.length > 0 && authService.isLoggedIn()) {
+        console.log('🔄 Page visible, reloading votes...');
+        loadUserVotes(allPosts);
+      }
+    };
+
+    const handleFocus = () => {
+      if (allPosts.length > 0 && authService.isLoggedIn()) {
+        console.log('🔄 Window focused, reloading votes...');
+        loadUserVotes(allPosts);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [allPosts]);
 
   useEffect(() => {
     if (allPosts.length === 0) {
@@ -87,25 +111,75 @@ function ThemesPage() {
       setAllPosts(posts);
       setCurrentPage(1);
 
-      // khởi tạo state tim
-      const initialLikes = {};
-      posts.forEach((p) => {
-        const id = p.post_id || p.id;
-        if (!id) return;
-        initialLikes[id] = {
-          liked: false,
-          likes: p.likes || 0,
-        };
-      });
-      setLikesState(initialLikes);
+      if (authService.isLoggedIn()) {
+        await loadUserVotes(posts);
+      } else {
+        const initialVotes = {};
+        posts.forEach((p) => {
+          const id = p.post_id || p.id;
+          if (!id) return;
+          initialVotes[id] = {
+            liked: false,
+            likes: p.likes || 0,
+          };
+        });
+        setVotesState(initialVotes);
+      }
     } catch (err) {
       console.error('Error loading posts:', err);
       setError(err.message || 'Failed to load themes. Please try again later.');
       setAllPosts([]);
       setVisualPosts([]);
-      setLikesState({});
+      setVotesState({});
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadUserVotes = async (posts) => {
+    try {
+      const postIds = posts.map(p => p.post_id || p.id).filter(Boolean);
+      
+      if (postIds.length === 0) return;
+
+      console.log('Loading user votes for', postIds.length, 'posts');
+
+      const votesWithUserData = {};
+      
+      for (const post of posts) {
+        const id = post.post_id || post.id;
+        if (!id) continue;
+        
+        try {
+          const vote = await voteService.getMyVote('visual_post', id);
+          votesWithUserData[id] = {
+            liked: vote?.voteType === 'like',
+            likes: post.likes || 0,
+          };
+        } catch (err) {
+          votesWithUserData[id] = {
+            liked: false,
+            likes: post.likes || 0,
+          };
+        }
+      }
+
+      console.log('User votes loaded:', votesWithUserData);
+      setVotesState(votesWithUserData);
+
+    } catch (err) {
+      console.error('Error loading user votes:', err);
+      
+      const initialVotes = {};
+      posts.forEach((p) => {
+        const id = p.post_id || p.id;
+        if (!id) return;
+        initialVotes[id] = {
+          liked: false,
+          likes: p.likes || 0,
+        };
+      });
+      setVotesState(initialVotes);
     }
   };
 
@@ -128,23 +202,50 @@ function ThemesPage() {
     navigate(`/visual-post/${id}`);
   };
 
-  const handleToggleLike = (post, e) => {
-    e.stopPropagation(); // không bị click vào card
+  const handleToggleLike = async (post, e) => {
+    e.stopPropagation();
+    
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
     const id = post.post_id || post.id;
     if (!id) return;
 
-    setLikesState((prev) => {
-      const current = prev[id] || { liked: false, likes: post.likes || 0 };
-      const nextLiked = !current.liked;
-      const nextLikes = Math.max(0, current.likes + (nextLiked ? 1 : -1));
-      return {
+    const currentState = votesState[id] || { liked: false, likes: post.likes || 0 };
+
+    setVotesState((prev) => ({
+      ...prev,
+      [id]: {
+        liked: !currentState.liked,
+        likes: currentState.liked ? currentState.likes - 1 : currentState.likes + 1,
+      },
+    }));
+
+    try {
+      const result = await voteService.likeVisualPost(id);
+      console.log('Like toggled:', result);
+      
+      if (result.success) {
+        setVotesState((prev) => ({
+          ...prev,
+          [id]: {
+            liked: result.data.action !== 'removed',
+            likes: result.data.counts.likes,
+          },
+        }));
+      }
+    } catch (err) {
+      console.error('Error toggling like:', err);
+      
+      setVotesState((prev) => ({
         ...prev,
-        [id]: {
-          liked: nextLiked,
-          likes: nextLikes,
-        },
-      };
-    });
+        [id]: currentState,
+      }));
+      
+      alert('Failed to update like');
+    }
   };
 
   if (loading) {
@@ -242,11 +343,10 @@ function ThemesPage() {
                 post.imageUrl ||
                 '';
 
-              const likeInfo =
-                (id && likesState[id]) || {
-                  liked: false,
-                  likes: post.likes || 0,
-                };
+              const likeInfo = votesState[id] || {
+                liked: false,
+                likes: post.likes || 0,
+              };
 
               return (
                 <div

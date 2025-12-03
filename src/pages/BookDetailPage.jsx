@@ -8,6 +8,9 @@ import ContentsSection from '@/components/book/ContentsSection';
 import RelatedBooks from '@/components/book/RelatedBooks';
 import BookComments from '@/components/book/BookComments';
 import { bookDetailService } from '@/services/bookDetailService';
+import { favoriteService } from '@/services/favoriteService';
+import { readingProgressService } from '@/services/readingProgressService';
+import { authService } from '@/services/authService';
 import '../styles/book-detail.css';
 
 function BookDetailPage() {
@@ -20,6 +23,12 @@ function BookDetailPage() {
   const [relatedBooks, setRelatedBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(null);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
+
+  const isLoggedIn = authService.isLoggedIn();
 
   useEffect(() => {
     document.body.classList.add('book-detail');
@@ -38,7 +47,12 @@ function BookDetailPage() {
     }
 
     loadBookDetails();
-  }, [bookId]);
+    
+    if (isLoggedIn) {
+      loadFavoriteStatus();
+      loadReadingProgress();
+    }
+  }, [bookId, isLoggedIn]);
 
   const loadBookDetails = async () => {
     try {
@@ -62,6 +76,73 @@ function BookDetailPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const loadFavoriteStatus = async () => {
+    try {
+      const result = await favoriteService.isFavorited(bookId);
+      console.log('Favorite status:', result);
+      setIsFavorited(result.isFavorited);
+    } catch (err) {
+      console.error('Error loading favorite status:', err);
+    }
+  };
+
+  const loadReadingProgress = async () => {
+    try {
+      const progress = await readingProgressService.getProgress(bookId);
+      console.log('Reading progress:', progress);
+      setReadingProgress(progress);
+    } catch (err) {
+      console.error('Error loading progress:', err);
+    }
+  };
+
+  const handleToggleFavorite = async () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    console.log('Toggling favorite for bookId:', bookId);
+    
+    setFavoriteLoading(true);
+    try {
+      const result = await favoriteService.toggleFavorite(bookId);
+      console.log('Toggle result:', result);
+      
+      setIsFavorited(result.data.action === 'added');
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+      alert('Failed to update favorite: ' + err.message);
+    } finally {
+      setFavoriteLoading(false);
+    }
+  };
+
+  const handleStartReading = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    readingProgressService.updateProgress(bookId, {
+      chapter_index: 0,
+      scroll_position: 0,
+      progress_percentage: 0
+    });
+
+    navigate(`/reader?id=${bookId}&chapter=0`);
+  };
+
+  const handleContinueReading = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    const chapterIndex = readingProgress?.chapter_index || 0;
+    navigate(`/reader?id=${bookId}&chapter=${chapterIndex}`);
   };
 
   if (loading) {
@@ -105,6 +186,7 @@ function BookDetailPage() {
   }
 
   const coverUrl = book.coverImage_cloud?.url || book.coverImage || '';
+  const hasProgress = readingProgress && readingProgress.progress_percentage > 0;
 
   return (
     <div className="book-detail-page">
@@ -115,7 +197,18 @@ function BookDetailPage() {
         <div className="book-detail-wrapper">
           <div className="book-detail-grid">
             <BookCover image={coverUrl} title={book.title} author={book.author} />
-            <BookInfo book={book} />
+            
+            <BookInfo 
+              book={book}
+              isFavorited={isFavorited}
+              onToggleFavorite={handleToggleFavorite}
+              favoriteLoading={favoriteLoading}
+              hasProgress={hasProgress}
+              progressPercentage={readingProgress?.progress_percentage || 0}
+              onStartReading={handleStartReading}
+              onContinueReading={handleContinueReading}
+              isLoggedIn={isLoggedIn}
+            />
           </div>
         </div>
 

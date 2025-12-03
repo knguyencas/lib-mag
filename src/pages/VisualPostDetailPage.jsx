@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import { authService } from '../services/authService';
 import { visualService } from '../services/visualService';
-import VisualPostLikeButton from '@/components/posts/VisualPostLikeButton';
+import { voteService } from '@/services/voteService';
 import '../styles/visual-post.css';
 
 function VisualPostDetailPage() {
@@ -12,10 +12,8 @@ function VisualPostDetailPage() {
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
-
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -43,6 +41,7 @@ function VisualPostDetailPage() {
     try {
       setLoading(true);
       console.log('Loading visual post with ID:', postId);
+      
       const postData = await visualService.getPostById(postId);
       console.log('Visual post data received:', postData);
       
@@ -53,23 +52,27 @@ function VisualPostDetailPage() {
       }
       
       setPost(postData);
+      setLikeCount(postData.likes || 0);
       
-      const likes = postData.likes || postData.likesCount || postData.like_count || 0;
-      console.log('💗 Likes count:', likes);
-      setLikeCount(likes);
-      
-      if (user && postData.user_likes) {
-        setLiked(postData.user_likes.includes(user.id || user._id));
-      } else if (user && postData.likedBy) {
-        setLiked(postData.likedBy.includes(user.id || user._id));
+      if (authService.isLoggedIn()) {
+        loadUserVote(postId);
       }
       
     } catch (err) {
       console.error('Error loading visual post:', err);
-      console.error('Error details:', err.response?.data || err.message);
       setPost(null);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadUserVote = async (postId) => {
+    try {
+      const vote = await voteService.getMyVote('visual_post', postId);
+      console.log('User vote:', vote);
+      setLiked(vote?.voteType === 'like');
+    } catch (err) {
+      console.error('Error loading user vote:', err);
     }
   };
 
@@ -99,18 +102,24 @@ function VisualPostDetailPage() {
       return;
     }
 
+    const newLiked = !liked;
+    setLiked(newLiked);
+    setLikeCount(prev => newLiked ? prev + 1 : Math.max(0, prev - 1));
+
     try {
-      if (liked) {
-        await visualService.unlikePost(id);
-        setLiked(false);
-        setLikeCount(prev => Math.max(0, prev - 1));
-      } else {
-        await visualService.likePost(id);
-        setLiked(true);
-        setLikeCount(prev => prev + 1);
+      const result = await voteService.likeVisualPost(id);
+      console.log('Like result:', result);
+      
+      if (result.success) {
+        setLiked(result.data.action !== 'removed');
+        setLikeCount(result.data.counts.likes);
       }
     } catch (err) {
       console.error('Error toggling like:', err);
+      
+      setLiked(!newLiked);
+      setLikeCount(prev => newLiked ? Math.max(0, prev - 1) : prev + 1);
+      
       alert('Failed to update like. Please try again.');
     }
   };
@@ -237,12 +246,15 @@ function VisualPostDetailPage() {
             </div>
 
             <div className="visual-post-footer">
-              <div className="visual-post-footer">
-                <VisualPostLikeButton 
-                  postId={post.post_id} 
-                  initialLikes={post.likes || 0}
-                />
-              </div>
+              <button 
+                className={`like-btn ${liked ? 'liked' : ''}`}
+                onClick={handleLike}
+                disabled={!isLoggedIn}
+                title={isLoggedIn ? (liked ? 'Unlike' : 'Like') : 'Please log in to like'}
+              >
+                <span className="heart-icon">{liked ? '❤️' : '🤍'}</span>
+                <span className="like-count">{likeCount}</span>
+              </button>
             </div>
           </article>
         </section>
