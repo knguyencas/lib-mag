@@ -31,7 +31,7 @@ export const perspectiveService = {
         return mappedPosts;
       }
       
-      console.warn('⚠️ No data in response or invalid format');
+      console.warn('No data in response or invalid format');
       return [];
     } catch (error) {
       console.error('Error fetching published posts:', error);
@@ -45,7 +45,7 @@ export const perspectiveService = {
 
   async getPostById(postId) {
     try {
-      console.log('🔍 Fetching post:', postId);
+      console.log('Fetching post:', postId);
       const response = await api.get(`/perspectivepost/${postId}`);
       console.log('Raw API response:', response.data);
       

@@ -11,9 +11,8 @@ export const authService = {
 
       const { token, user } = response.data.data;
       
-      // Fix: Normalize user object - backend sends 'id', we need '_id'
       const normalizedUser = {
-        _id: user.id || user._id,  // Support both formats
+        _id: user.id || user._id,
         id: user.id || user._id,
         username: user.username,
         email: user.email,
@@ -27,7 +26,7 @@ export const authService = {
       localStorage.setItem('pj_user', JSON.stringify(normalizedUser));
       localStorage.setItem('pj_user_id', normalizedUser._id);
 
-      console.log('✅ Registered user:', normalizedUser);
+      console.log('Registered user:', normalizedUser);
 
       return response.data;
     } catch (error) {
@@ -50,17 +49,16 @@ export const authService = {
         requestBody[key] === undefined && delete requestBody[key]
       );
 
-      console.log('🔐 Login attempt with:', requestBody);
+      console.log('Login attempt with:', requestBody);
 
       const response = await api.post('/auth/login', requestBody);
 
-      console.log('✅ Login response:', response.data);
+      console.log('Login response:', response.data);
 
       const { token, user } = response.data.data;
       
-      // Fix: Normalize user object - backend sends 'id', we need '_id'
       const normalizedUser = {
-        _id: user.id || user._id,  // Support both formats
+        _id: user.id || user._id,
         id: user.id || user._id,
         username: user.username,
         email: user.email,
@@ -74,11 +72,11 @@ export const authService = {
       localStorage.setItem('pj_user', JSON.stringify(normalizedUser));
       localStorage.setItem('pj_user_id', normalizedUser._id);
 
-      console.log('✅ Logged in user:', normalizedUser);
+      console.log('Logged in user:', normalizedUser);
 
       return response.data;
     } catch (error) {
-      console.error('❌ Login error:', error);
+      console.error('Login error:', error);
       throw error.response?.data || error;
     }
   },
@@ -104,7 +102,6 @@ export const authService = {
       const response = await api.get('/auth/profile');
       const user = response.data.data;
 
-      // Normalize user object
       const normalizedUser = {
         _id: user._id || user.id,
         id: user._id || user.id,
@@ -133,8 +130,7 @@ export const authService = {
     
     const user = JSON.parse(userStr);
     
-    // Debug log
-    console.log('🔍 getUser():', user);
+    console.log('getUser():', user);
     
     return user;
   },

@@ -56,33 +56,3 @@
 .chapter-indicator .separator {
   color: #CCC;
 }
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .chapter-navigation {
-    padding: 24px 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .chapter-navigation {
-    padding: 20px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .nav-btn {
-    padding: 10px 16px;
-    font-size: 13px;
-  }
-
-  .nav-btn span {
-    display: none;
-  }
-
-  .chapter-indicator {
-    width: 100%;
-    justify-content: center;
-    order: -1;
-  }
-}

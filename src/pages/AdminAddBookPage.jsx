@@ -363,8 +363,8 @@ function AdminAddBookPage() {
     fd.append('categories', JSON.stringify(form.categories));
     fd.append('tags', JSON.stringify(form.tags));
 
-    console.log('🔍 [FormData] coverFile:', coverFile);
-    console.log('🔍 [FormData] epubFile:', epubFile);
+    console.log('[FormData] coverFile:', coverFile);
+    console.log('[FormData] epubFile:', epubFile);
 
     if (coverFile) {
       fd.append('cover', coverFile);
@@ -420,7 +420,7 @@ function AdminAddBookPage() {
         const details = errJson?.details || errJson?.errors || null;
         
         if (details) {
-          console.error('📋 [Validation Details]:', details);
+          console.error('[Validation Details]:', details);
         }
 
         throw new Error(msg);

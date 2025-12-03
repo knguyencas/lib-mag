@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InlineRating from './InlineRating';
 import './BookInfo.css';
 
@@ -7,14 +7,17 @@ function BookInfo({
   isFavorited, 
   onToggleFavorite, 
   favoriteLoading,
-  hasProgress,
-  progressPercentage,
   onStartReading,
   onContinueReading,
   isLoggedIn
 }) {
   const [currentRating, setCurrentRating] = useState(book?.rating || 0);
   const [currentRatingCount, setCurrentRatingCount] = useState(book?.rating_count || 0);
+
+  useEffect(() => {
+    setCurrentRating(book?.rating || 0);
+    setCurrentRatingCount(book?.rating_count || 0);
+  }, [book]);
 
   const handleRatingChange = (ratingData) => {
     if (ratingData.rating !== undefined) {
@@ -29,9 +32,14 @@ function BookInfo({
     return <div className="book-info">Loading...</div>;
   }
 
+  const categories = Array.isArray(book.categories)
+    ? book.categories
+        .map((c) => (typeof c === 'string' ? c : (c.name || c.slug || '')))
+        .filter(Boolean)
+    : [];
+
   return (
     <div className="book-info">
-      {/* ✅ Bookmark button - góc phải */}
       {isLoggedIn && (
         <button 
           className={`btn-bookmark ${isFavorited ? 'bookmarked' : ''}`}
@@ -52,20 +60,33 @@ function BookInfo({
         </button>
       )}
 
-      <h1 className="book-title">{book.title}</h1>
-      
-      <div className="book-author">
-        <span className="by-text">by</span>{' '}
-        <span className="author-name">{book.author}</span>
-      </div>
+      {(book.primary_genre || categories.length > 0) && (
+        <div className="categories">
+          {book.primary_genre && (
+            <span className="primary-genre">{book.primary_genre}</span>
+          )}
 
-      {/* Inline Rating */}
-      <InlineRating 
-        bookId={book.book_id}
-        initialRating={currentRating}
-        ratingCount={currentRatingCount}
-        onRatingChange={handleRatingChange}
-      />
+          {categories.map((cat) => (
+            <span key={cat} className="category-tag">
+              {cat}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <h2 className="book-title">{book.title || 'Untitled'}</h2>
+      <p className="book-author">
+        {book.author ? `by ${book.author}` : ''}
+      </p>
+
+      <div className="star-rating">
+        <InlineRating 
+          bookId={book.book_id}
+          initialRating={currentRating}
+          ratingCount={currentRatingCount}
+          onRatingChange={handleRatingChange}
+        />
+      </div>
 
       {book.punchline && (
         <p className="book-punchline">{book.punchline}</p>
@@ -77,7 +98,6 @@ function BookInfo({
         </div>
       )}
 
-      {/* ✅ Reading buttons - ALWAYS show both buttons */}
       <div className="book-action-buttons">
         <button 
           className="btn-start-reading"

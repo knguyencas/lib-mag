@@ -40,11 +40,11 @@ function MyPostsPage() {
       setLoadingPerspective(true);
       setErrorPerspective('');
       
-      console.log('🔍 Loading user perspective posts...');
+      console.log('Loading user perspective posts...');
       
       const posts = await perspectiveService.getUserPosts();
       
-      console.log('✅ Perspective posts loaded:', posts.length);
+      console.log('Perspective posts loaded:', posts.length);
       
       const sortedPosts = posts.sort((a, b) => {
         if (a.status === 'pending' && b.status !== 'pending') return -1;
@@ -55,7 +55,7 @@ function MyPostsPage() {
       setPerspectivePosts(sortedPosts);
       
     } catch (err) {
-      console.error('❌ Error loading perspective posts:', err);
+      console.error('Error loading perspective posts:', err);
       setErrorPerspective('Failed to load perspective posts.');
     } finally {
       setLoadingPerspective(false);
@@ -67,16 +67,16 @@ function MyPostsPage() {
       setLoadingVisual(true);
       setErrorVisual('');
       
-      console.log('🔍 Loading user visual posts...');
+      console.log('Loading user visual posts...');
       
       
       const posts = [];
       
-      console.log('✅ Visual posts loaded:', posts.length);
+      console.log('Visual posts loaded:', posts.length);
       setVisualPosts(posts);
       
     } catch (err) {
-      console.error('❌ Error loading visual posts:', err);
+      console.error('Error loading visual posts:', err);
       setErrorVisual('Failed to load visual posts.');
     } finally {
       setLoadingVisual(false);
@@ -121,13 +121,13 @@ function MyPostsPage() {
   const getStatusLabel = (status) => {
     switch (status) {
       case 'pending':
-        return '⏳ Pending Review';
+        return 'Pending Review';
       case 'published':
-        return '✅ Published';
+        return 'Published';
       case 'rejected':
-        return '❌ Rejected';
+        return 'Rejected';
       case 'archived':
-        return '📦 Archived';
+        return 'Archived';
       default:
         return status;
     }

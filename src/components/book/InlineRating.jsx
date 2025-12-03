@@ -63,7 +63,6 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
         body: JSON.stringify({ rating })
       });
 
-      // Check if response is JSON
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
         throw new Error('Backend endpoint not configured. Please check if userBooks.route.js is registered in app.js');
@@ -93,20 +92,17 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
         }
       }
     } catch (error) {
-      console.error('❌ Rating error:', error);
+      console.error('Rating error:', error);
       alert(`Error: ${error.message}\n\nPlease ensure:\n1. Backend is running\n2. userBooks.route.js is in backend/routes/\n3. Route is registered in app.js`);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Calculate which stars should be filled - hover từ trái sang phải
   const getStarFilled = (starNumber) => {
     if (hoverRating > 0) {
-      // Khi hover: fill tất cả stars từ 1 đến hoverRating
       return starNumber <= hoverRating;
     }
-    // Khi không hover: fill theo average rating (rounded)
     return starNumber <= Math.round(averageRating);
   };
 
@@ -139,16 +135,13 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
       </div>
       
       <div className="rating-text">
-        <span className="rating-value">{averageRating.toFixed(1)}</span>
-        <span className="rating-separator">•</span>
-        <span className="rating-count">
-          {totalRatings} {totalRatings === 1 ? 'rating' : 'ratings'}
+        <span className="rating-value">
+          {averageRating.toFixed(1)} / 5.0
         </span>
-        {hasRated && (
-          <>
-            <span className="rating-separator">•</span>
-            <span className="user-rating">You: {userRating}★</span>
-          </>
+        {totalRatings > 0 && (
+          <span className="rating-count">
+            ({totalRatings} {totalRatings === 1 ? 'rating' : 'ratings'})
+          </span>
         )}
       </div>
     </div>

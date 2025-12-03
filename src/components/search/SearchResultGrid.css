@@ -68,10 +68,3 @@
   font-size: 14px;
   color: #666;
 }
-
-@media (max-width: 768px) {
-  .search-results-grid {
-    padding: 20px;
-    gap: 12px;
-  }
-}

@@ -26,7 +26,7 @@ function PerspectivePage() {
       setLoading(true);
       setError('');
       
-      console.log('🔍 Loading published posts...');
+      console.log('Loading published posts...');
       
       const postsData = await perspectiveService.getPublishedPosts({
         page: 1,

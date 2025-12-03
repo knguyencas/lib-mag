@@ -120,7 +120,7 @@ function ChatbotWidget({ bookTitle, currentChapter, chapterContent }) {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: `❌ ${error.message}` }
+        { role: 'assistant', content: `${error.message}` }
       ]);
     } finally {
       setLoading(false);

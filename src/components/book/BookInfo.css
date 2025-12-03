@@ -1,14 +1,54 @@
-/* ===== Book Info Container ===== */
 .book-info {
   position: relative;
-  padding: 20px;
+  padding: 0;
+  text-align: left;
 }
 
-/* ✅ Bookmark button - góc phải trên */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.primary-genre {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #000;
+  color: #FFF;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.26px;
+  text-transform: capitalize;
+  margin-right: 4px;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #E5E5E5;
+  border-radius: 4px;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.26px;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease;
+}
+
+.category-tag:hover {
+  background-color: #d0d0d0;
+}
+
 .btn-bookmark {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  right: 0;
   width: 40px;
   height: 40px;
   background: transparent;
@@ -35,76 +75,74 @@
   cursor: not-allowed;
 }
 
-/* ===== Title & Author ===== */
 .book-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin: 0 0 8px 0;
   color: #000;
-  line-height: 1.2;
 }
 
 .book-author {
   font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  margin-bottom: 16px;
-  color: #000;
-}
-
-.by-text {
+  font-size: 20px;
   font-weight: 400;
+  line-height: 1.2;
+  color: #666;
+  margin: 0 0 24px 0;
 }
 
-.author-name {
-  font-weight: 600;
+.star-rating {
+  margin-bottom: 32px;
 }
 
-/* ===== Punchline & Blurb ===== */
 .book-punchline {
   font-family: 'Cardo', serif;
   font-size: 16px;
   font-style: italic;
-  color: #333;
+  color: #000;
   margin: 20px 0;
   line-height: 1.6;
 }
 
 .book-blurb {
-  font-family: 'Cardo', serif;
-  font-size: 15px;
-  line-height: 1.8;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
   color: #333;
-  margin: 20px 0 32px 0;
+  margin: 0 0 40px 0;
 }
 
 .book-blurb p {
   margin: 0;
 }
 
-/* ===== Action Buttons ===== */
 .book-action-buttons {
   display: flex;
   gap: 16px;
-  margin-top: 32px;
+  justify-content: flex-end;
+  margin-top: 0;
 }
 
 .btn-start-reading,
 .btn-continue-reading {
-  flex: 1;
-  padding: 14px 24px;
-  border: none;
+  padding: 12px 24px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 150px;
 }
 
 .btn-start-reading {
   background: #000;
-  color: #fff;
+  color: #FFF;
+  border: 2px solid #000;
 }
 
 .btn-start-reading:hover {
@@ -112,7 +150,7 @@
 }
 
 .btn-continue-reading {
-  background: #fff;
+  background: #FFF;
   color: #000;
   border: 2px solid #000;
 }

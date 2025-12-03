@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* BODY CHO TRANG THEMES */
 body.themes {
   font-family: 'Poppins', sans-serif;
   background: #000000;
@@ -12,14 +11,12 @@ body.themes {
   min-height: 100vh;
 }
 
-/* WRAPPER CHO REACT PAGE */
 .themes-page {
   min-height: 100vh;
   background: #000000;
   color: #e0e0e0;
 }
 
-/* HEADER – GIỮ LOGO & NAV GIỐNG CÁC PAGE KHÁC, NHƯNG NỀN ĐEN */
 .themes-page .header {
   background: #000000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -39,7 +36,6 @@ body.themes {
   color: #ffffff;
 }
 
-/* MAIN CONTENT: RỘNG RA GIỐNG BẢN VANILLA */
 .themes-page-main {
   max-width: 1400px;
   margin: 0 auto;
@@ -47,7 +43,6 @@ body.themes {
   min-height: calc(100vh - 200px);
 }
 
-/* LOADING STATE */
 .loading-spinner {
   display: flex;
   flex-direction: column;
@@ -77,7 +72,6 @@ body.themes {
   }
 }
 
-/* NO RESULTS */
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
@@ -92,7 +86,6 @@ body.themes {
   color: #999999;
 }
 
-/* GRID 2 CỘT – Ô RỘNG HƠN */
 .visual-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -109,7 +102,6 @@ body.themes {
   }
 }
 
-/* CARD VISUAL */
 .visual-card {
   position: relative;
   cursor: pointer;
@@ -125,11 +117,10 @@ body.themes {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
 }
 
-/* ẢNH TO, CARD RỘNG – GẦN GIỐNG FILE HTML CŨ */
 .card-image-container {
   position: relative;
   width: 100%;
-  height: 380px; /* tăng để ô trông đầy hơn */
+  height: 380px;
   overflow: hidden;
   background: #1a1a1a;
 }
@@ -149,7 +140,6 @@ body.themes {
   transform: scale(1.05);
 }
 
-/* INFO DƯỚI ẢNH */
 .card-info {
   padding: 1.5rem;
   background: #0a0a0a;
@@ -174,7 +164,6 @@ body.themes {
   color: #666666;
 }
 
-/* CHỈ CÒN TIM + SỐ TIM */
 .card-stats {
   display: flex;
   align-items: center;
@@ -197,7 +186,6 @@ body.themes {
   padding: 0;
 }
 
-/* ICON TRÁI TIM */
 .heart-icon {
   width: 18px;
   height: 18px;
@@ -206,12 +194,10 @@ body.themes {
   transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* BẮT BUỘC PATH DÙNG MÀU HIỆN TẠI */
 .heart-icon path {
   fill: currentColor;
 }
 
-/* LÚC ĐƯỢC LIKE – ĐỎ + XOAY */
 .heart-button.liked {
   border-color: #ff7b7b;
   background: rgba(255, 123, 123, 0.1);
@@ -243,7 +229,6 @@ body.themes {
   font-size: 0.9rem;
 }
 
-/* PAGINATION – GIỮ BẢN PILL TRÒN ĐANG DÙNG */
 .themes-pagination {
   display: flex;
   justify-content: center;
@@ -310,7 +295,6 @@ body.themes {
   cursor: not-allowed;
 }
 
-/* FLOATING CREATE BUTTON */
 .floating-create-btn {
   position: fixed;
   bottom: 3rem;
@@ -335,7 +319,6 @@ body.themes {
   box-shadow: 0 6px 30px rgba(255, 255, 255, 0.5);
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
   padding: 2rem;

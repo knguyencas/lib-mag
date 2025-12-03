@@ -50,7 +50,7 @@ function ThemesPage() {
 
     const handleFocus = () => {
       if (allPosts.length > 0 && authService.isLoggedIn()) {
-        console.log('🔄 Window focused, reloading votes...');
+        console.log('Window focused, reloading votes...');
         loadUserVotes(allPosts);
       }
     };
