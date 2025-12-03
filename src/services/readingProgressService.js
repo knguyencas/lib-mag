@@ -3,49 +3,58 @@ import api from './api';
 export const readingProgressService = {
   async updateProgress(bookId, progressData) {
     try {
-      const response = await api.post(`/reading-progress/${bookId}`, progressData);
-      console.log('📡 Update progress response:', response.data);
-      return response.data.data;
+      const response = await api.post(`/books/${bookId}/progress`, progressData);
+      return response.data;
     } catch (error) {
-      console.error('Update progress error:', error);
+      console.error('Failed to update progress:', error);
       throw error;
     }
   },
 
   async getProgress(bookId) {
     try {
-      const response = await api.get(`/reading-progress/${bookId}`);
-      console.log('Get progress response:', response.data);
-      return response.data.data;
+      const response = await api.get(`/books/${bookId}/progress`);
+      
+      if (response.data && response.data.data) {
+        return response.data.data;
+      }
+      
+      return null;
     } catch (error) {
-      console.error('Get progress error:', error);
-      return {
-        chapter_index: 0,
-        scroll_position: 0,
-        progress_percentage: 0,
-        last_read_at: null
-      };
+      console.error('Failed to get progress:', error);
+      
+      if (error.response && error.response.status === 404) {
+        return null;
+      }
+      
+      return null;
     }
   },
 
   async getRecentlyRead(limit = 10) {
     try {
-      const response = await api.get('/reading-progress/recently-read/list', {
+      const response = await api.get('/reading/recently-read', {
         params: { limit }
       });
-      return response.data.data;
+      
+      if (response.data && response.data.data) {
+        return response.data.data;
+      }
+      
+      return [];
     } catch (error) {
-      console.error('Get recently read error:', error);
+      console.error('Failed to get recently read:', error);
       return [];
     }
   },
 
+
   async deleteProgress(bookId) {
     try {
-      const response = await api.delete(`/reading-progress/${bookId}`);
+      const response = await api.delete(`/books/${bookId}/progress`);
       return response.data;
     } catch (error) {
-      console.error('Delete progress error:', error);
+      console.error('Failed to delete progress:', error);
       throw error;
     }
   }

@@ -6,6 +6,8 @@ import ChapterNavigation from '../components/reader/ChapterNavigation';
 import ChapterSidebar from '../components/reader/ChapterSidebar';
 import ChatbotWidget from '../components/reader/ChatbotWidget';
 import { readerService } from '../services/readerService';
+import { readingProgressService } from '../services/readingProgressService';
+import { authService } from '../services/authService';
 import '../styles/reader.css';
 
 function ReaderPage() {
@@ -69,7 +71,23 @@ function ReaderPage() {
 
         setSearchParams({ id: bookId, chapter: currentChapter });
 
-        readerService.updateProgress(bookId, currentChapter, 0);
+        if (authService.isLoggedIn()) {
+          try {
+            const progressPercentage = totalChapters > 0 
+              ? Math.round((currentChapter / totalChapters) * 100) 
+              : 0;
+
+            await readingProgressService.updateProgress(bookId, {
+              chapter_index: currentChapter,
+              scroll_position: 0,
+              progress_percentage: progressPercentage
+            });
+            
+            console.log(`Progress saved: Chapter ${currentChapter} (${progressPercentage}%)`);
+          } catch (err) {
+            console.warn('Failed to update progress:', err);
+          }
+        }
 
       } catch (err) {
         console.error('Error loading chapter:', err);
@@ -80,7 +98,7 @@ function ReaderPage() {
     };
 
     loadChapter();
-  }, [bookId, currentChapter]);
+  }, [bookId, currentChapter, totalChapters, setSearchParams]);
 
   useEffect(() => {
     document.body.classList.add('reader');

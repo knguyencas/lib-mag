@@ -95,6 +95,7 @@ function BookDetailPage() {
       setReadingProgress(progress);
     } catch (err) {
       console.error('Error loading progress:', err);
+      setReadingProgress(null);
     }
   };
 
@@ -120,19 +121,26 @@ function BookDetailPage() {
     }
   };
 
-  const handleStartReading = () => {
+  const handleStartReading = async () => {
     if (!isLoggedIn) {
       navigate('/login');
       return;
     }
 
-    readingProgressService.updateProgress(bookId, {
-      chapter_index: 0,
-      scroll_position: 0,
-      progress_percentage: 0
-    });
+    try {
+      await readingProgressService.updateProgress(bookId, {
+        chapter_index: 1,
+        scroll_position: 0,
+        progress_percentage: 0
+      });
 
-    navigate(`/reader?id=${bookId}&chapter=0`);
+      console.log('Started reading from Chapter 1');
+      
+      navigate(`/reader?id=${bookId}&chapter=1`);
+    } catch (err) {
+      console.error('Failed to start reading:', err);
+      navigate(`/reader?id=${bookId}&chapter=1`);
+    }
   };
 
   const handleContinueReading = () => {
@@ -141,8 +149,11 @@ function BookDetailPage() {
       return;
     }
 
-    const chapterIndex = readingProgress?.chapter_index || 0;
-    navigate(`/reader?id=${bookId}&chapter=${chapterIndex}`);
+    const lastChapter = readingProgress?.chapter_index || 1;
+    
+    console.log(`Continuing from chapter ${lastChapter}`);
+    
+    navigate(`/reader?id=${bookId}&chapter=${lastChapter}`);
   };
 
   if (loading) {
@@ -186,7 +197,10 @@ function BookDetailPage() {
   }
 
   const coverUrl = book.coverImage_cloud?.url || book.coverImage || '';
-  const hasProgress = readingProgress && readingProgress.progress_percentage > 0;
+  
+  const hasProgress = readingProgress && 
+                      readingProgress.chapter_index > 0 && 
+                      readingProgress.progress_percentage > 0;
 
   return (
     <div className="book-detail-page">
