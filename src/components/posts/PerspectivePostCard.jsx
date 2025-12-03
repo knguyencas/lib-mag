@@ -1,13 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { voteService } from '@/services/voteService';
+import { authService } from '@/services/authService';
 import './PerspectivePostCard.css';
 
 function PerspectivePostCard({ post }) {
   const navigate = useNavigate();
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
-  const [upvoteCount, setUpvoteCount] = useState(post.upvotes || 0);
-  const [downvoteCount, setDownvoteCount] = useState(post.downvotes || 0);
+  const [upvotes, setUpvotes] = useState(post.upvotes || 0);
+  const [downvotes, setDownvotes] = useState(post.downvotes || 0);
+  const [loading, setLoading] = useState(false);
+
+  const isLoggedIn = authService.isLoggedIn();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      loadMyVote();
+    }
+  }, [post.post_id, isLoggedIn]);
+
+  const loadMyVote = async () => {
+    const vote = await voteService.getMyVote('perspective_post', post.post_id);
+    if (vote) {
+      setUpvoted(vote.voteType === 'upvote');
+      setDownvoted(vote.voteType === 'downvote');
+    }
+  };
+
+  const handleVote = async (voteType, e) => {
+    e.stopPropagation();
+    
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const result = await voteService.votePerspectivePost(post.post_id, voteType);
+      
+      if (result.success) {
+        const { action, counts } = result.data;
+
+        if (voteType === 'upvote') {
+          setUpvoted(action !== 'removed');
+          if (action !== 'removed' && downvoted) setDownvoted(false);
+        } else {
+          setDownvoted(action !== 'removed');
+          if (action !== 'removed' && upvoted) setUpvoted(false);
+        }
+
+        setUpvotes(counts.upvotes);
+        setDownvotes(counts.downvotes);
+      }
+    } catch (error) {
+      console.error('Vote error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -19,42 +71,8 @@ function PerspectivePostCard({ post }) {
   };
 
   const handleCardClick = (e) => {
-    if (e.target.closest('.vote-button')) {
-      return;
-    }
-    const postId = post.post_id || post.perspective_id || post.id || post._id || post.slug;
-    if (!postId) return;
-    navigate(`/perspective-post/${postId}`);
-  };
-
-  const handleUpvote = async () => {
-    if (upvoted) {
-      setUpvoted(false);
-      setUpvoteCount(prev => prev - 1);
-    } else {
-      setUpvoted(true);
-      setUpvoteCount(prev => prev + 1);
-
-      if (downvoted) {
-        setDownvoted(false);
-        setDownvoteCount(prev => prev - 1);
-      }
-    }
-  };
-
-  const handleDownvote = async () => {
-    if (downvoted) {
-      setDownvoted(false);
-      setDownvoteCount(prev => prev - 1);
-    } else {
-      setDownvoted(true);
-      setDownvoteCount(prev => prev + 1);
-
-      if (upvoted) {
-        setUpvoted(false);
-        setUpvoteCount(prev => prev - 1);
-      }
-    }
+    if (e.target.closest('.vote-button')) return;
+    navigate(`/perspective-post/${post.post_id}`);
   };
 
   return (
@@ -63,7 +81,7 @@ function PerspectivePostCard({ post }) {
         <div className="post-meta">
           <span className="post-type">Perspective</span>
           <span className="post-date">
-            {post.created_at ? formatDate(post.created_at) : 'Unknown date'}
+            {formatDate(post.createdAt || post.created_at)}
           </span>
         </div>
         <h3 className="post-title">{post.title}</h3>
@@ -79,29 +97,23 @@ function PerspectivePostCard({ post }) {
         <div className="vote-section">
           <button 
             className={`vote-button upvote ${upvoted ? 'active' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleUpvote();
-            }}
+            onClick={(e) => handleVote('upvote', e)}
+            disabled={loading}
           >
-            ▲
-            <span className="vote-count">{upvoteCount}</span>
+            ▲ {upvotes}
           </button>
           <button 
             className={`vote-button downvote ${downvoted ? 'active' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleDownvote();
-            }}
+            onClick={(e) => handleVote('downvote', e)}
+            disabled={loading}
           >
-            ▼
-            <span className="vote-count">{downvoteCount}</span>
+            ▼ {downvotes}
           </button>
         </div>
 
         <div className="post-stats">
           <span className="comments-count">
-            {post.commentsCount || 0} comments
+            💬 {post.commentsCount || post.comment_count || 0}
           </span>
         </div>
       </div>

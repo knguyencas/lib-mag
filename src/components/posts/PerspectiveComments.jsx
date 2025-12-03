@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { authService } from '@/services/authService';
 import { perspectiveService } from '@/services/perspectiveService';
+import CommentVoteButtons from '@/components/posts/CommentVoteButtons';
 import './PerspectiveComments.css';
 
-function PerspectiveComments({ postId }) {
+function PerspectiveComments({ postId, onCommentChange }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newComment, setNewComment] = useState('');
@@ -41,6 +42,8 @@ function PerspectiveComments({ postId }) {
       await perspectiveService.addComment(postId, newComment.trim());
       setNewComment('');
       await loadComments();
+      
+      if (onCommentChange) onCommentChange();
     } catch (error) {
       alert('Failed to post comment');
     } finally {
@@ -58,6 +61,8 @@ function PerspectiveComments({ postId }) {
       setReplyContent('');
       setReplyTo(null);
       await loadComments();
+      
+      if (onCommentChange) onCommentChange();
     } catch (error) {
       alert('Failed to post reply');
     } finally {
@@ -71,6 +76,8 @@ function PerspectiveComments({ postId }) {
     try {
       await perspectiveService.deleteComment(commentId);
       await loadComments();
+      
+      if (onCommentChange) onCommentChange();
     } catch (error) {
       alert('Failed to delete comment');
     }
@@ -101,7 +108,7 @@ function PerspectiveComments({ postId }) {
 
   return (
     <div className="perspective-comments">
-      <h3>Comment</h3>
+      <h3>Comment ({totalComments})</h3>
 
       {isLoggedIn && (
         <form onSubmit={handleSubmitComment} className="comment-form">
@@ -134,17 +141,30 @@ function PerspectiveComments({ postId }) {
                 <p className="comment-text">{comment.content}</p>
                 <div className="comment-actions">
                   {isLoggedIn && (
-                    <button onClick={() => setReplyTo({ 
-                      comment_id: comment.comment_id, 
-                      username: getUsername(comment) 
-                    })}>
+                    <button 
+                      className="btn-action"
+                      onClick={() => setReplyTo({ 
+                        comment_id: comment.comment_id, 
+                        username: getUsername(comment) 
+                      })}
+                    >
                       Reply
                     </button>
                   )}
-                  <button>Upvote</button>
-                  <button>Downvote</button>
+                  
+                  <CommentVoteButtons commentId={comment.comment_id} />
+                  
+                  {comment.replies && comment.replies.length > 0 && (
+                    <span className="replies-count">
+                      {comment.replies.length} {comment.replies.length === 1 ? 'reply' : 'replies'}
+                    </span>
+                  )}
+                  
                   {isCommentOwner(comment) && (
-                    <button onClick={() => handleDeleteComment(comment.comment_id)} className="delete">
+                    <button 
+                      className="btn-action delete"
+                      onClick={() => handleDeleteComment(comment.comment_id)}
+                    >
                       Delete
                     </button>
                   )}
@@ -163,7 +183,13 @@ function PerspectiveComments({ postId }) {
                     autoFocus
                   />
                   <div className="form-actions">
-                    <button type="button" onClick={() => { setReplyTo(null); setReplyContent(''); }}>
+                    <button 
+                      type="button" 
+                      onClick={() => { 
+                        setReplyTo(null); 
+                        setReplyContent(''); 
+                      }}
+                    >
                       Cancel
                     </button>
                     <button type="submit" disabled={isSubmitting}>
@@ -174,6 +200,7 @@ function PerspectiveComments({ postId }) {
               </div>
             )}
 
+            {/* Replies */}
             {comment.replies && comment.replies.length > 0 && (
               <div className="replies-list">
                 {comment.replies.map((reply, ridx) => (
@@ -187,13 +214,18 @@ function PerspectiveComments({ postId }) {
                         <span className="date">{formatDate(reply.createdAt)}</span>
                       </div>
                       <p className="comment-text">{reply.content}</p>
-                      {isCommentOwner(reply) && (
-                        <div className="comment-actions">
-                          <button onClick={() => handleDeleteComment(reply.comment_id)} className="delete">
+                      <div className="comment-actions">
+                        <CommentVoteButtons commentId={reply.comment_id} />
+                        
+                        {isCommentOwner(reply) && (
+                          <button 
+                            className="btn-action delete"
+                            onClick={() => handleDeleteComment(reply.comment_id)}
+                          >
                             Delete
                           </button>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}

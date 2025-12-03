@@ -1,11 +1,9 @@
-/* ===== PAGE WRAPPER ===== */
 .perspective-post-page {
   background-color: #F3F3F3;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
 
-/* ===== SUB NAV SEARCH ===== */
 .sub_nav {
   background: #F3F3F3;
   padding: 16px 52px;
@@ -57,7 +55,6 @@
   color: #000;
 }
 
-/* ===== MAIN CONTAINER ===== */
 .perspective-detail-main {
   padding: 60px 52px 80px;
   background: #F3F3F3;
@@ -72,7 +69,6 @@
   margin-bottom: 16px;
 }
 
-/* back link */
 .nav-link-inline {
   color: #000;
   text-decoration: none;
@@ -84,7 +80,6 @@
   text-decoration: underline;
 }
 
-/* ===== CARD DETAIL – OVERRIDE CARD BASE ===== */
 .perspective-post-page .perspective-post-card--detail {
   background: #FFFFFF;
   border-radius: 16px;
@@ -100,7 +95,6 @@
   transform: none;
 }
 
-/* header trong card detail */
 .perspective-post-page .perspective-post-card--detail .post-main-content {
   gap: 10px;
 }
@@ -135,7 +129,6 @@
   color: #555;
 }
 
-/* nội dung full */
 .perspective-post-page .perspective-post-card--detail .post-content-full {
   margin-top: 8px;
   font-family: 'Cardo', serif;
@@ -148,25 +141,37 @@
   margin-top: 10px;
 }
 
-/* ===== FOOTER CARD DETAIL: vote + comments ===== */
 .perspective-post-page .perspective-post-card--detail .post-footer {
   margin-top: 18px;
   padding-top: 12px;
+  padding-bottom: 8px;
   border-top: 1px solid #F0F0F0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 24px; /* khoảng cách vote <-> comments */
+  gap: 16px;
 }
 
-.perspective-post-page .perspective-post-card--detail .vote-section {
+.perspective-post-page .perspective-post-card--detail .footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.perspective-post-page .perspective-post-card--detail .comment-count-footer {
+  font-size: 14px;
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.perspective-post-page .perspective-post-card--detail .perspective-vote-buttons {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* override vote-button base cho card detail */
-.perspective-post-page .perspective-post-card--detail .vote-button {
+.perspective-post-page .perspective-post-card--detail .vote-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -175,38 +180,36 @@
   border-radius: 999px;
   border: 1px solid #DDDDDD;
   background: #F7F7F7;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #555;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
 }
 
-.perspective-post-page .perspective-post-card--detail .vote-button:hover {
+.perspective-post-page .perspective-post-card--detail .vote-btn:hover:not(:disabled) {
   background: #EDEDED;
   color: #111;
   transform: translateY(-1px);
 }
 
-.perspective-post-page .perspective-post-card--detail .vote-button.active.upvote {
-  background: #2E7D32;
-  border-color: #2E7D32;
-  color: #fff;
+.perspective-post-page .perspective-post-card--detail .vote-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.perspective-post-page .perspective-post-card--detail .vote-button.active.downvote {
-  background: #C62828;
-  border-color: #C62828;
-  color: #fff;
+.perspective-post-page .perspective-post-card--detail .vote-btn.upvote.active {
+  background: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
 }
 
-/* comments text bên phải vote */
-.perspective-post-page .perspective-post-card--detail .post-stats.detail-stats {
-  font-size: 12px;
-  color: #777;
+.perspective-post-page .perspective-post-card--detail .vote-btn.downvote.active {
+  background: #f44336;
+  border-color: #f44336;
+  color: white;
 }
 
-/* ===== COMMENTS SECTION ===== */
 .comment-title-wrapper {
   display: flex;
   justify-content: center;
@@ -303,7 +306,6 @@
   text-decoration: underline;
 }
 
-/* ===== COMMENT FORM ===== */
 .comment-form-wrapper {
   margin-top: 40px;
   display: flex;
@@ -375,7 +377,6 @@
   margin-top: 4px;
 }
 
-/* ===== STATES & FOOTER ===== */
 .loading-state,
 .no-comments {
   color: #666;
@@ -396,23 +397,4 @@
 
 .footer p {
   margin: 0;
-}
-
-/* small tweak on mobile */
-@media (max-width: 768px) {
-  .perspective-detail-main {
-    padding: 40px 20px 60px;
-  }
-
-  .perspective-detail-inner {
-    max-width: 100%;
-  }
-
-  .comment-title-wrapper {
-    padding: 0;
-  }
-
-  .comment-form-wrapper {
-    padding: 0;
-  }
 }

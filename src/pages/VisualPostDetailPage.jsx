@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import { authService } from '../services/authService';
 import { visualService } from '../services/visualService';
+import VisualPostLikeButton from '@/components/posts/VisualPostLikeButton';
 import '../styles/visual-post.css';
 
 function VisualPostDetailPage() {
@@ -41,12 +42,12 @@ function VisualPostDetailPage() {
   const loadPost = async (postId) => {
     try {
       setLoading(true);
-      console.log('🔍 Loading visual post with ID:', postId);
+      console.log('Loading visual post with ID:', postId);
       const postData = await visualService.getPostById(postId);
       console.log('Visual post data received:', postData);
       
       if (!postData) {
-        console.error('❌ No post data returned from API');
+        console.error('No post data returned from API');
         setPost(null);
         return;
       }
@@ -64,8 +65,8 @@ function VisualPostDetailPage() {
       }
       
     } catch (err) {
-      console.error('❌ Error loading visual post:', err);
-      console.error('❌ Error details:', err.response?.data || err.message);
+      console.error('Error loading visual post:', err);
+      console.error('Error details:', err.response?.data || err.message);
       setPost(null);
     } finally {
       setLoading(false);
@@ -109,7 +110,7 @@ function VisualPostDetailPage() {
         setLikeCount(prev => prev + 1);
       }
     } catch (err) {
-      console.error('❌ Error toggling like:', err);
+      console.error('Error toggling like:', err);
       alert('Failed to update like. Please try again.');
     }
   };
@@ -236,15 +237,12 @@ function VisualPostDetailPage() {
             </div>
 
             <div className="visual-post-footer">
-              <button 
-                className={`like-btn ${liked ? 'liked' : ''}`}
-                onClick={handleLike}
-                disabled={!isLoggedIn}
-                title={isLoggedIn ? (liked ? 'Unlike' : 'Like') : 'Please log in to like'}
-              >
-                <span className="heart-icon">{liked ? '❤️' : '🤍'}</span>
-                <span className="like-count">{likeCount}</span>
-              </button>
+              <div className="visual-post-footer">
+                <VisualPostLikeButton 
+                  postId={post.post_id} 
+                  initialLikes={post.likes || 0}
+                />
+              </div>
             </div>
           </article>
         </section>

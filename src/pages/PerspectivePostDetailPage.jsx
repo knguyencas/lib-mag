@@ -3,10 +3,11 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import { authService } from '@/services/authService';
 import { perspectiveService } from '@/services/perspectiveService';
+import PerspectiveVoteButtons from '@/components/posts/PerspectivePostVoteButtons';
+import PerspectiveComments from '@/components/posts/PerspectiveComments';
 
 import '@/styles/perspective-post.css';
 import '@/components/posts/PerspectivePostCard.css';
-import PerspectiveComments from '@/components/posts/PerspectiveComments';
 
 function PerspectivePostDetailPage() {
   const { id } = useParams();
@@ -14,16 +15,9 @@ function PerspectivePostDetailPage() {
 
   const [post, setPost] = useState(null);
   const [loadingPost, setLoadingPost] = useState(true);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchText, setSearchText] = useState('');
-
-  const [upvoted, setUpvoted] = useState(false);
-  const [downvoted, setDownvoted] = useState(false);
-  const [upvoteCount, setUpvoteCount] = useState(0);
-  const [downvoteCount, setDownvoteCount] = useState(0);
 
   useEffect(() => {
     document.title = 'Psyche Journey – Perspective Post';
@@ -47,8 +41,6 @@ function PerspectivePostDetailPage() {
       }
 
       setPost(postData);
-      setUpvoteCount(postData.upvotes || 0);
-      setDownvoteCount(postData.downvotes || 0);
     } catch (err) {
       console.error('Error loading post detail:', err);
       setPost(null);
@@ -75,34 +67,6 @@ function PerspectivePostDetailPage() {
     const q = searchText.trim();
     if (!q) return;
     navigate(`/search-results?q=${encodeURIComponent(q)}`);
-  };
-
-  const handleUpvote = () => {
-    if (upvoted) {
-      setUpvoted(false);
-      setUpvoteCount((prev) => Math.max(0, prev - 1));
-    } else {
-      setUpvoted(true);
-      setUpvoteCount((prev) => prev + 1);
-      if (downvoted) {
-        setDownvoted(false);
-        setDownvoteCount((prev) => Math.max(0, prev - 1));
-      }
-    }
-  };
-
-  const handleDownvote = () => {
-    if (downvoted) {
-      setDownvoted(false);
-      setDownvoteCount((prev) => Math.max(0, prev - 1));
-    } else {
-      setDownvoted(true);
-      setDownvoteCount((prev) => prev + 1);
-      if (upvoted) {
-        setUpvoted(false);
-        setUpvoteCount((prev) => Math.max(0, prev - 1));
-      }
-    }
   };
 
   if (loadingPost && !post) {
@@ -224,30 +188,23 @@ function PerspectivePostDetailPage() {
             </div>
 
             <div className="post-footer">
-              <div className="vote-section">
-                <button
-                  className={`vote-button upvote ${upvoted ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleUpvote();
-                  }}
-                >
-                  ▲ {upvoteCount}
-                </button>
-                <button
-                  className={`vote-button downvote ${downvoted ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDownvote();
-                  }}
-                >
-                  ▼ {downvoteCount}
-                </button>
+              <div className="footer-left">
+                <PerspectiveVoteButtons 
+                  postId={post.post_id} 
+                  initialUpvotes={post.upvotes || 0}
+                  initialDownvotes={post.downvotes || 0}
+                />
+                <span className="comment-count-footer">
+                  💬 {post.commentsCount || 0}
+                </span>
               </div>
             </div>
           </article>
 
-          <PerspectiveComments postId={post.post_id} />
+          <PerspectiveComments 
+            postId={post.post_id} 
+            onCommentChange={() => loadPost(id)}
+          />
         </div>
       </main>
 

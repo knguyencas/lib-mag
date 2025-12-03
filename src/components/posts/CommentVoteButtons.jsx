@@ -5,7 +5,8 @@ import { authService } from '@/services/authService';
 function CommentVoteButtons({ commentId }) {
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
-  const [score, setScore] = useState(0);
+  const [upvotes, setUpvotes] = useState(0);  // ✅ Separate counts
+  const [downvotes, setDownvotes] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const isLoggedIn = authService.isLoggedIn();
@@ -18,7 +19,8 @@ function CommentVoteButtons({ commentId }) {
     // Get counts
     const counts = await voteService.getVoteCounts('comment', commentId);
     if (counts) {
-      setScore(counts.score || 0);
+      setUpvotes(counts.upvotes || 0);  // ✅ Set both
+      setDownvotes(counts.downvotes || 0);
     }
 
     // Get user's vote if logged in
@@ -52,7 +54,8 @@ function CommentVoteButtons({ commentId }) {
           if (action !== 'removed' && upvoted) setUpvoted(false);
         }
 
-        setScore(counts.score);
+        setUpvotes(counts.upvotes);  // ✅ Update both
+        setDownvotes(counts.downvotes);
       }
     } catch (error) {
       alert('Failed to vote');
@@ -68,15 +71,14 @@ function CommentVoteButtons({ commentId }) {
         onClick={() => handleVote('upvote')}
         disabled={loading}
       >
-        ▲
+        ▲ {upvotes}
       </button>
-      <span className="vote-score">{score}</span>
       <button
         className={`vote-btn-small ${downvoted ? 'active' : ''}`}
         onClick={() => handleVote('downvote')}
         disabled={loading}
       >
-        ▼
+        ▼ {downvotes}
       </button>
     </div>
   );

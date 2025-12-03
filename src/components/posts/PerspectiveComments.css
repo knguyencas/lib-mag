@@ -153,3 +153,49 @@
   background: #000;
   color: white;
 }
+
+.comment-vote-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.vote-btn-small {
+  padding: 2px 8px;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vote-btn-small:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+.vote-btn-small.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.vote-btn-small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vote-score {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  min-width: 20px;
+  text-align: center;
+}
+
+.replies-count {
+  font-size: 13px;
+  color: #666;
+  margin-left: 8px;
+}
