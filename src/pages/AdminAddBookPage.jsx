@@ -64,7 +64,8 @@ function AdminAddBookPage() {
     document.title = 'Admin - Add New Book | Psyche Journey';
 
     const currentUser = authService.getUser();
-    if (!currentUser || currentUser.role !== 'admin') {
+    const allowedRoles = ['admin', 'super_admin'];
+    if (!currentUser || !allowedRoles.includes(currentUser.role)) {
       navigate('/');
       return;
     }
@@ -465,7 +466,7 @@ function AdminAddBookPage() {
     }
   };
 
-  if (!user || user.role !== 'admin') return null;
+  if (!user || (user.role !== 'admin' && user.role !== 'super_admin')) return null;
 
   return (
     <div className="admin-add-book-page">
