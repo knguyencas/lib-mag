@@ -1,0 +1,155 @@
+.perspective-comments {
+  padding: 24px;
+}
+
+.perspective-comments h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.comment-form {
+  margin-bottom: 32px;
+  padding: 24px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 100px;
+  margin-bottom: 12px;
+  font-family: inherit;
+}
+
+.comment-form button {
+  padding: 10px 24px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  float: right;
+}
+
+.comment-thread {
+  margin-bottom: 24px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.comment-avatar.small {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.date {
+  color: #666;
+  font-size: 14px;
+}
+
+.comment-text {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.comment-actions button {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-actions button.delete {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.replies-list {
+  margin-left: 52px;
+  padding-left: 20px;
+  border-left: 2px solid #ddd;
+}
+
+.reply-form {
+  margin-left: 52px;
+  margin-top: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.reply-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 60px;
+  margin-bottom: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.form-actions button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button[type="button"] {
+  background: #f0f0f0;
+}
+
+.form-actions button[type="submit"] {
+  background: #000;
+  color: white;
+}

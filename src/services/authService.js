@@ -11,9 +11,23 @@ export const authService = {
 
       const { token, user } = response.data.data;
       
+      // Fix: Normalize user object - backend sends 'id', we need '_id'
+      const normalizedUser = {
+        _id: user.id || user._id,  // Support both formats
+        id: user.id || user._id,
+        username: user.username,
+        email: user.email,
+        displayName: user.displayName,
+        avatar: user.avatar,
+        role: user.role,
+        createdAt: user.createdAt
+      };
+      
       localStorage.setItem('pj_token', token);
-      localStorage.setItem('pj_user', JSON.stringify(user));
-      localStorage.setItem('pj_user_id', user.id);
+      localStorage.setItem('pj_user', JSON.stringify(normalizedUser));
+      localStorage.setItem('pj_user_id', normalizedUser._id);
+
+      console.log('✅ Registered user:', normalizedUser);
 
       return response.data;
     } catch (error) {
@@ -23,18 +37,15 @@ export const authService = {
 
   login: async (identifier, password) => {
     try {
-      // Detect if it's email or username
       const isEmail = identifier.includes('@');
       
-      // SEND ALL POSSIBLE FIELDS - backend will use what it needs
       const requestBody = {
-        identifier: identifier,  // Some backends use this
-        email: isEmail ? identifier : undefined,  // Some use email
-        username: !isEmail ? identifier : undefined,  // Some use username
+        identifier: identifier,
+        email: isEmail ? identifier : undefined,
+        username: !isEmail ? identifier : undefined,
         password: password
       };
 
-      // Remove undefined fields
       Object.keys(requestBody).forEach(key => 
         requestBody[key] === undefined && delete requestBody[key]
       );
@@ -47,20 +58,27 @@ export const authService = {
 
       const { token, user } = response.data.data;
       
+      // Fix: Normalize user object - backend sends 'id', we need '_id'
+      const normalizedUser = {
+        _id: user.id || user._id,  // Support both formats
+        id: user.id || user._id,
+        username: user.username,
+        email: user.email,
+        displayName: user.displayName,
+        avatar: user.avatar,
+        role: user.role,
+        lastLogin: user.lastLogin
+      };
+      
       localStorage.setItem('pj_token', token);
-      localStorage.setItem('pj_user', JSON.stringify(user));
-      localStorage.setItem('pj_user_id', user.id);
+      localStorage.setItem('pj_user', JSON.stringify(normalizedUser));
+      localStorage.setItem('pj_user_id', normalizedUser._id);
+
+      console.log('✅ Logged in user:', normalizedUser);
 
       return response.data;
     } catch (error) {
       console.error('❌ Login error:', error);
-      console.error('Error details:', {
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data,
-        message: error.message
-      });
-      
       throw error.response?.data || error;
     }
   },
@@ -86,9 +104,20 @@ export const authService = {
       const response = await api.get('/auth/profile');
       const user = response.data.data;
 
-      localStorage.setItem('pj_user', JSON.stringify(user));
+      // Normalize user object
+      const normalizedUser = {
+        _id: user._id || user.id,
+        id: user._id || user.id,
+        username: user.username,
+        email: user.email,
+        displayName: user.displayName,
+        avatar: user.avatar,
+        role: user.role
+      };
 
-      return user;
+      localStorage.setItem('pj_user', JSON.stringify(normalizedUser));
+
+      return normalizedUser;
     } catch (error) {
       throw error.response?.data || error;
     }
@@ -100,7 +129,14 @@ export const authService = {
 
   getUser: () => {
     const userStr = localStorage.getItem('pj_user');
-    return userStr ? JSON.parse(userStr) : null;
+    if (!userStr) return null;
+    
+    const user = JSON.parse(userStr);
+    
+    // Debug log
+    console.log('🔍 getUser():', user);
+    
+    return user;
   },
 
   isLoggedIn: () => {

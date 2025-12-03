@@ -212,7 +212,7 @@ export const perspectiveService = {
 
   async getComments(postId) {
     try {
-      const response = await api.get(`/comments/perspective/${postId}`);
+      const response = await api.get(`/perspective-posts/${postId}/comments`);
       console.log('Comments response:', response.data);
       
       if (response.data.success) {
@@ -226,10 +226,11 @@ export const perspectiveService = {
     }
   },
 
-  async addComment(postId, content) {
+  async addComment(postId, content, parentCommentId = null) {
     try {
-      const response = await api.post(`/comments/perspective/${postId}`, {
-        content
+      const response = await api.post(`/perspective-posts/${postId}/comments`, {
+        content,
+        parent_comment_id: parentCommentId
       });
       console.log('Add comment response:', response.data);
       
@@ -240,6 +241,40 @@ export const perspectiveService = {
       return null;
     } catch (error) {
       console.error('Error adding comment:', error);
+      throw error;
+    }
+  },
+
+  async updateComment(commentId, content) {
+    try {
+      const response = await api.put(`/perspective-posts/comments/${commentId}`, {
+        content
+      });
+      console.log('Update comment response:', response.data);
+      
+      if (response.data.success) {
+        return response.data.data;
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Error updating comment:', error);
+      throw error;
+    }
+  },
+
+  async deleteComment(commentId) {
+    try {
+      const response = await api.delete(`/perspective-posts/comments/${commentId}`);
+      console.log('Delete comment response:', response.data);
+      
+      if (response.data.success) {
+        return true;
+      }
+      
+      return false;
+    } catch (error) {
+      console.error('Error deleting comment:', error);
       throw error;
     }
   }

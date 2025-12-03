@@ -89,7 +89,6 @@ function BookComments({ bookId }) {
         const result = await response.json();
         if (result.success) {
           setNewComment('');
-          // Reload comments to show new comment
           await loadComments();
         }
       } else {
@@ -121,7 +120,6 @@ function BookComments({ bookId }) {
       );
 
       if (response.ok) {
-        // Remove comment from list
         setComments(prev => prev.filter(c => c.comment_id !== commentId));
       } else {
         const error = await response.json();
@@ -160,26 +158,20 @@ function BookComments({ bookId }) {
     }
   };
 
-  // Helper to check if current user owns the comment
   const isCommentOwner = (comment) => {
     if (!currentUser || !comment.user_id) return false;
     
-    // Handle both ObjectId and string comparison
     const userId = typeof comment.user_id === 'object' ? comment.user_id._id : comment.user_id;
     return currentUser._id === userId || currentUser._id === userId.toString();
   };
 
-  // Helper to get username from comment
   const getUsername = (comment) => {
-    // Check if user_id is populated (object with username)
     if (comment.user_id && typeof comment.user_id === 'object') {
       return comment.user_id.username || 'Anonymous';
     }
-    // Fallback to Anonymous if not populated
     return 'Anonymous';
   };
 
-  // Helper to get user initial
   const getUserInitial = (comment) => {
     const username = getUsername(comment);
     return username.charAt(0).toUpperCase();
@@ -189,7 +181,6 @@ function BookComments({ bookId }) {
     <div className="book-comments-container">
       <h2 className="comments-title">Comments ({pagination.total})</h2>
 
-      {/* Comment Form */}
       {isLoggedIn ? (
         <form className="comment-form" onSubmit={handleSubmitComment}>
           <div className="comment-input-wrapper">
@@ -224,15 +215,14 @@ function BookComments({ bookId }) {
         </div>
       )}
 
-      {/* Comments List */}
       <div className="comments-list">
         {loading ? (
           <p className="loading-text">Loading comments...</p>
         ) : comments.length === 0 ? (
           <p className="no-comments">No comments yet. Be the first to comment!</p>
         ) : (
-          comments.map((comment) => (
-            <div key={comment.comment_id || comment._id} className="comment-item">
+          comments.map((comment, index) => (
+            <div key={`comment-${comment._id || comment.comment_id}-${index}`} className="comment-item">
               <div className="comment-avatar">
                 {getUserInitial(comment)}
               </div>
@@ -250,7 +240,6 @@ function BookComments({ bookId }) {
                     )}
                   </div>
                   
-                  {/* Delete button - only show for comment owner */}
                   {isCommentOwner(comment) && (
                     <button
                       className="btn-delete-comment"
@@ -268,7 +257,6 @@ function BookComments({ bookId }) {
         )}
       </div>
 
-      {/* Pagination */}
       {pagination.pages > 1 && (
         <div className="comments-pagination">
           <button
