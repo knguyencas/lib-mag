@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import '../styles/admin-add-book.css';
 import '../styles/admin-page.css';
 
 function ManagePostsPage() {
@@ -16,7 +16,7 @@ function ManagePostsPage() {
     total: 0,
     pages: 0
   });
-  const [statusFilter, setStatusFilter] = useState('pending'); // Show pending by default
+  const [statusFilter, setStatusFilter] = useState('pending');
 
   useEffect(() => {
     document.title = 'Manage Posts | Psyche Journey';
@@ -162,15 +162,26 @@ function ManagePostsPage() {
   }
 
   return (
-    <div className="admin-page">
-      <Header />
+    <div className="admin-add-book-page">
+      <header className="admin-header">
+        <div className="admin-header-left">
+          <h1 className="logo">PSYCHE JOURNEY</h1>
+        </div>
+        <nav className="top-nav">
+          <Link to="/">Home</Link>
+          <Link to="/library">Library</Link>
+          <span className="divider">|</span>
+          <span className="admin-label">Admin panel</span>
+        </nav>
+      </header>
+
       <main className="admin-content">
         <h1>Manage Posts</h1>
         <p>Approve, reject, and moderate user posts</p>
 
-        <div className="tabs">
+        <div className="admin-tabs">
           <button 
-            className={activeTab === 'visual' ? 'active' : ''}
+            className={`admin-tab ${activeTab === 'visual' ? 'active' : ''}`}
             onClick={() => {
               setActiveTab('visual');
               setPagination({...pagination, page: 1});
@@ -179,7 +190,7 @@ function ManagePostsPage() {
             Visual Posts
           </button>
           <button 
-            className={activeTab === 'perspective' ? 'active' : ''}
+            className={`admin-tab ${activeTab === 'perspective' ? 'active' : ''}`}
             onClick={() => {
               setActiveTab('perspective');
               setPagination({...pagination, page: 1});
@@ -206,7 +217,9 @@ function ManagePostsPage() {
         </div>
 
         {loading ? (
-          <p>Loading...</p>
+          <div className="loading-state">
+            <p>Loading posts...</p>
+          </div>
         ) : (
           <>
             <div className="posts-list">

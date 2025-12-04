@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import { useNavigate, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import '../styles/admin-add-book.css';
 import '../styles/admin-page.css';
 
 function ManageBooksPage() {
@@ -135,8 +135,19 @@ function ManageBooksPage() {
   }
 
   return (
-    <div className="admin-page">
-      <Header />
+    <div className="admin-add-book-page">
+      <header className="admin-header">
+        <div className="admin-header-left">
+          <h1 className="logo">PSYCHE JOURNEY</h1>
+        </div>
+        <nav className="top-nav">
+          <Link to="/">Home</Link>
+          <Link to="/library">Library</Link>
+          <span className="divider">|</span>
+          <span className="admin-label">Admin panel</span>
+        </nav>
+      </header>
+
       <main className="admin-content">
         <h1>Manage Books</h1>
         <p>View, edit, and delete books in the library</p>

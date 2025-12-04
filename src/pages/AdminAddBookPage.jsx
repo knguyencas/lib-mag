@@ -81,8 +81,6 @@ function AdminAddBookPage() {
     const timeout = setTimeout(async () => {
       try {
         const url = `${API_BASE}/meta/authors/search?q=${encodeURIComponent(authorQuery.trim())}`;
-        console.log('Calling API:', url);
-        
         const res = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
@@ -90,18 +88,12 @@ function AdminAddBookPage() {
           }
         });
         
-        console.log('Response status:', res.status);
-        
         if (!res.ok) {
-          console.error('API failed:', res.status);
           setAuthorOptions([]);
           return;
         }
         
         const data = await res.json();
-        console.log('API response:', data);
-        console.log('Authors found:', data.data);
-        
         setAuthorOptions(data.data || []);
       } catch (err) {
         console.error('Error:', err);
@@ -121,8 +113,6 @@ function AdminAddBookPage() {
     const timeout = setTimeout(async () => {
       try {
         const url = `http://localhost:3000/api/admin/meta/categories/search?q=${encodeURIComponent(categoryQuery.trim())}`;
-        console.log('[Category] Calling API:', url);
-        
         const res = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
@@ -130,18 +120,12 @@ function AdminAddBookPage() {
           }
         });
         
-        console.log('[Category] Response status:', res.status);
-        
         if (!res.ok) {
-          console.error('[Category] API failed:', res.status);
           setCategoryOptions([]);
           return;
         }
         
         const data = await res.json();
-        console.log('[Category] API response:', data);
-        console.log('[Category] Categories found:', data.data);
-        
         setCategoryOptions(data.data || []);
       } catch (err) {
         console.error('[Category] Error:', err);
@@ -161,8 +145,6 @@ function AdminAddBookPage() {
     const timeout = setTimeout(async () => {
       try {
         const url = `http://localhost:3000/api/admin/meta/tags/search?q=${encodeURIComponent(tagQuery.trim())}`;
-        console.log('[Tag] Calling API:', url);
-        
         const res = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
@@ -170,18 +152,12 @@ function AdminAddBookPage() {
           }
         });
         
-        console.log('[Tag] Response status:', res.status);
-        
         if (!res.ok) {
-          console.error('[Tag] API failed:', res.status);
           setTagOptions([]);
           return;
         }
         
         const data = await res.json();
-        console.log('[Tag] API response:', data);
-        console.log('[Tag] Tags found:', data.data);
-        
         setTagOptions(data.data || []);
       } catch (err) {
         console.error('[Tag] Error:', err);
@@ -363,25 +339,11 @@ function AdminAddBookPage() {
     fd.append('categories', JSON.stringify(form.categories));
     fd.append('tags', JSON.stringify(form.tags));
 
-    console.log('[FormData] coverFile:', coverFile);
-    console.log('[FormData] epubFile:', epubFile);
-
     if (coverFile) {
       fd.append('cover', coverFile);
-      console.log('[FormData] Appended cover file:', coverFile.name);
     }
     if (epubFile) {
       fd.append('ebook', epubFile);
-      console.log('[FormData] Appended ebook file:', epubFile.name);
-    }
-
-    console.log('[FormData] All entries:');
-    for (let [key, value] of fd.entries()) {
-      if (value instanceof File) {
-        console.log(`  ${key}:`, value.name, `(${value.size} bytes)`);
-      } else {
-        console.log(`  ${key}:`, value);
-      }
     }
 
     return fd;
@@ -409,27 +371,13 @@ function AdminAddBookPage() {
 
       if (!res.ok) {
         const errJson = await res.json().catch(() => null);
-        
-        console.error('[Backend Error]:', {
-          status: res.status,
-          statusText: res.statusText,
-          error: errJson
-        });
-
         const msg = errJson?.message || errJson?.error || 'Failed to save book.';
-        const details = errJson?.details || errJson?.errors || null;
-        
-        if (details) {
-          console.error('[Validation Details]:', details);
-        }
-
         throw new Error(msg);
       }
 
       setMessage({
         type: 'success',
-        text:
-          confirmStatus === 'draft'
+        text: confirmStatus === 'draft'
             ? 'Book saved as draft successfully.'
             : 'Book created and published successfully.'
       });
@@ -482,20 +430,8 @@ function AdminAddBookPage() {
         </nav>
       </header>
 
-      <main className="admin-page">
-        <aside className="admin-sidebar">
-          <h3 className="sidebar-title">Admin</h3>
-          <ul className="sidebar-menu">
-            <li className="sidebar-item active">Add new book</li>
-            <li className="sidebar-item disabled">Manage books</li>
-            <li className="sidebar-item disabled">Authors &amp; metadata</li>
-          </ul>
-          <div className="sidebar-note">
-            Only users with <strong>admin</strong> role can access this page.
-          </div>
-        </aside>
-
-        <section className="admin-content">
+      <main className="admin-page" style={{ display: 'block', padding: '32px 80px 40px' }}>
+        <section className="admin-content" style={{ maxWidth: '100%' }}>
           <div className="page-header">
             <div>
               <h2 className="page-title">Add new book</h2>
@@ -842,7 +778,7 @@ function AdminAddBookPage() {
                       <strong>Selected tags</strong>
                       <div className="badge-list">
                         {form.tags.map((tag) => (
-                          <span key={tag} className="badge badge-gray">
+                          <span key={tag} className="badge badge-blue">
                             {tag}
                             <button
                               type="button"
@@ -954,7 +890,7 @@ function AdminAddBookPage() {
             <section className="form-actions">
               <button
                 type="button"
-                className="btn-reset"
+                className="ghost-button"
                 onClick={handleReset}
               >
                 Reset form
@@ -963,7 +899,7 @@ function AdminAddBookPage() {
               <div className="action-buttons">
                 <button
                   type="button"
-                  className="btn-draft"
+                  className="secondary-button"
                   onClick={() => openConfirm('draft')}
                   disabled={loading}
                 >
@@ -971,7 +907,7 @@ function AdminAddBookPage() {
                 </button>
                 <button
                   type="button"
-                  className="btn-publish"
+                  className="primary-button"
                   onClick={() => openConfirm('published')}
                   disabled={loading}
                 >
@@ -984,56 +920,87 @@ function AdminAddBookPage() {
       </main>
 
       {showConfirmModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '32px',
+            borderRadius: '16px',
+            maxWidth: '500px',
+            width: '90%'
+          }}>
+            <h2 style={{ marginBottom: '16px' }}>
               {confirmStatus === 'draft'
                 ? 'Save as draft?'
                 : 'Publish this book?'}
             </h2>
-            <p>
+            <p style={{ marginBottom: '24px', color: '#6b7280' }}>
               {confirmStatus === 'draft'
                 ? 'The book will be stored as a draft. It will not appear in the public library until you publish it.'
                 : 'The book will be visible in the library once processing is completed.'}
             </p>
-            <div className="modal-actions">
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
               <button
                 type="button"
-                className="btn-cancel"
+                className="ghost-button"
                 onClick={closeConfirm}
               >
                 Cancel
               </button>
-              {confirmStatus === 'draft' ? (
-                <button
-                  type="button"
-                  className="btn-confirm-draft"
-                  onClick={handleConfirmSubmit}
-                >
-                  Save draft
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn-confirm-publish"
-                  onClick={handleConfirmSubmit}
-                >
-                  Publish
-                </button>
-              )}
+              <button
+                type="button"
+                className={confirmStatus === 'draft' ? 'secondary-button' : 'primary-button'}
+                onClick={handleConfirmSubmit}
+              >
+                {confirmStatus === 'draft' ? 'Save draft' : 'Publish'}
+              </button>
             </div>
           </div>
         </div>
       )}
 
       {loading && (
-        <div className="loading-overlay">
-          <div className="loading-spinner">
-            <div className="loading-spinner-icon" />
-            <p>Saving book, please wait…</p>
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '40px 60px',
+            borderRadius: '16px',
+            textAlign: 'center'
+          }}>
+            <div style={{
+              width: '50px',
+              height: '50px',
+              border: '4px solid #f3f4f6',
+              borderTopColor: '#111827',
+              borderRadius: '50%',
+              animation: 'spin 0.8s linear infinite',
+              margin: '0 auto 20px'
+            }} />
+            <p style={{ margin: 0, color: '#6b7280' }}>Saving book, please wait…</p>
           </div>
         </div>
       )}
+      
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
