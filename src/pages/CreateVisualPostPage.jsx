@@ -7,6 +7,8 @@ import '../styles/create-visual-post.css';
 function CreateVisualPostPage() {
   const navigate = useNavigate();
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
   useEffect(() => {
     document.title = 'Create Visual Post - Psyche Journey';
   }, []);
@@ -116,7 +118,7 @@ function CreateVisualPostPage() {
       submitData.append('tags', JSON.stringify(formData.tags));
       submitData.append('author_id', user.id || user._id);
 
-      const response = await fetch('http://localhost:3000/api/visualpost', {
+      const response = await fetch(`${API_BASE_URL}/api/visualpost`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -14,6 +14,8 @@ function BookComments({ bookId }) {
     pages: 0
   });
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
   const isLoggedIn = authService.isLoggedIn();
   const currentUser = authService.getUser();
 
@@ -33,7 +35,7 @@ function BookComments({ bookId }) {
       });
 
       const response = await fetch(
-        `http://localhost:3000/api/books/${bookId}/comments?${params}`
+        `${API_BASE_URL}/api/books/${bookId}/comments?${params}`
       );
 
       if (response.ok) {
@@ -74,7 +76,7 @@ function BookComments({ bookId }) {
       setIsSubmitting(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/books/${bookId}/comments`,
+        `${API_BASE_URL}/api/books/${bookId}/comments`,
         {
           method: 'POST',
           headers: {
@@ -110,7 +112,7 @@ function BookComments({ bookId }) {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/books/comments/${commentId}`,
+        `${API_BASE_URL}/api/books/${bookId}/comments/${commentId}`,
         {
           method: 'DELETE',
           headers: {

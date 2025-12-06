@@ -17,7 +17,8 @@ const LANG_OPTIONS = [
   { value: 'ko', label: 'Korean' }
 ];
 
-const API_BASE = 'http://localhost:3000/api/admin';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE = `${API_BASE_URL}/api/admin`;
 
 function AdminAddBookPage() {
   const navigate = useNavigate();
@@ -112,7 +113,7 @@ function AdminAddBookPage() {
     
     const timeout = setTimeout(async () => {
       try {
-        const url = `http://localhost:3000/api/admin/meta/categories/search?q=${encodeURIComponent(categoryQuery.trim())}`;
+        const url = `${API_BASE}/meta/categories/search?q=${encodeURIComponent(categoryQuery.trim())}`;
         const res = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +145,7 @@ function AdminAddBookPage() {
     
     const timeout = setTimeout(async () => {
       try {
-        const url = `http://localhost:3000/api/admin/meta/tags/search?q=${encodeURIComponent(tagQuery.trim())}`;
+        const url = `${API_BASE}/meta/tags/search?q=${encodeURIComponent(tagQuery.trim())}`;
         const res = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',

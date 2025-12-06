@@ -4,7 +4,8 @@ import Header from '../components/layout/Header';
 import { authService } from '../services/authService';
 import '../styles/admin-page.css';
 
-const API_BASE = 'http://localhost:3000/api/admin';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE = `${API_BASE_URL}/api/admin`;
 
 function EditBookPage() {
   const navigate = useNavigate();

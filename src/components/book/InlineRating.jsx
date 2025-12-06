@@ -10,6 +10,8 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
   const [hoverRating, setHoverRating] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
   const isLoggedIn = authService.isLoggedIn();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
 
   const checkUserRating = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/books/${bookId}/my-rating`, {
+      const response = await fetch(`${API_BASE_URL}/api/books/${bookId}/my-rating`, {
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
         }
@@ -54,7 +56,7 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
     try {
       setIsSubmitting(true);
 
-      const response = await fetch(`http://localhost:3000/api/books/${bookId}/rate`, {
+      const response = await fetch(`${API_BASE_URL}/api/books/${bookId}/rate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

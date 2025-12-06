@@ -22,6 +22,8 @@ function ManageBooksPage() {
     sortOrder: 'desc'
   });
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
   useEffect(() => {
     document.title = 'Manage Books | Psyche Journey';
     
@@ -51,9 +53,9 @@ function ManageBooksPage() {
         ...(filter.search && { search: filter.search })
       });
 
-      console.log('Fetching books:', `http://localhost:3000/api/admin/books/manage?${params}`);
+      console.log('Fetching books:', `${API_BASE_URL}/api/admin/books/manage?${params}`);
 
-      const response = await fetch(`http://localhost:3000/api/admin/books/manage?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/books/manage?${params}`, {
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
         }
@@ -90,7 +92,7 @@ function ManageBooksPage() {
     if (!confirm('Are you sure you want to delete this book?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/books/manage/${bookId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/books/manage/${bookId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
