@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../components/layout/Header';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { authService } from '../services/authService';
+import '../styles/admin-add-book.css';
 import '../styles/admin-page.css';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -435,9 +435,19 @@ function EditBookPage() {
 
   if (loading) {
     return (
-      <div className="admin-page">
-        <Header />
-        <main className="admin-content">
+      <div className="admin-add-book-page">
+        <header className="admin-header">
+          <div className="admin-header-left">
+            <h1 className="logo">PSYCHE JOURNEY</h1>
+          </div>
+          <nav className="top-nav">
+            <Link to="/">Home</Link>
+            <Link to="/library">Library</Link>
+            <span className="divider">|</span>
+            <span className="admin-label">Admin panel</span>
+          </nav>
+        </header>
+        <main className="admin-page" style={{ display: 'block', padding: '32px 80px 40px' }}>
           <p>Loading book...</p>
         </main>
       </div>
@@ -446,11 +456,21 @@ function EditBookPage() {
 
   if (!book) {
     return (
-      <div className="admin-page">
-        <Header />
-        <main className="admin-content">
+      <div className="admin-add-book-page">
+        <header className="admin-header">
+          <div className="admin-header-left">
+            <h1 className="logo">PSYCHE JOURNEY</h1>
+          </div>
+          <nav className="top-nav">
+            <Link to="/">Home</Link>
+            <Link to="/library">Library</Link>
+            <span className="divider">|</span>
+            <span className="admin-label">Admin panel</span>
+          </nav>
+        </header>
+        <main className="admin-page" style={{ display: 'block', padding: '32px 80px 40px' }}>
           <h1>Book Not Found</h1>
-          <button className="btn-primary" onClick={() => navigate('/admin/manage-books')}>
+          <button className="primary-button" onClick={() => navigate('/admin/manage-books')}>
             Back to Manage Books
           </button>
         </main>
@@ -459,378 +479,565 @@ function EditBookPage() {
   }
 
   return (
-    <div className="admin-page">
-      <Header />
-      
-      <main className="admin-content">
-        <div style={{ marginBottom: '24px' }}>
-          <button 
-            className="btn-secondary" 
-            onClick={() => navigate('/admin/manage-books')}
-            style={{ marginBottom: '16px' }}
-          >
-            ← Back to Manage Books
-          </button>
-          
-          <h1>Edit Book</h1>
-          <p>Update book information, metadata, and files</p>
+    <div className="admin-add-book-page">
+      <header className="admin-header">
+        <div className="admin-header-left">
+          <h1 className="logo">PSYCHE JOURNEY</h1>
         </div>
-
-        {message && (
-          <div className={`alert ${message.type}`}>
-            {message.text}
+        <nav className="top-nav">
+          <Link to="/">Home</Link>
+          <Link to="/library">Library</Link>
+          <span className="divider">|</span>
+          <span className="admin-label">Admin panel</span>
+        </nav>
+      </header>
+      
+      <main className="admin-page" style={{ display: 'block', padding: '32px 80px 40px' }}>
+        <section className="admin-content" style={{ maxWidth: '100%' }}>
+          <div style={{ marginBottom: '24px' }}>
+            <button 
+              className="ghost-button" 
+              onClick={() => navigate('/admin/manage-books')}
+              style={{ marginBottom: '16px' }}
+            >
+              ← Back to Manage Books
+            </button>
+            
+            <div className="page-header">
+              <div>
+                <h2 className="page-title">Edit Book</h2>
+                <p className="page-subtitle">Update book information, metadata, and files</p>
+              </div>
+            </div>
           </div>
-        )}
 
-        <div style={{ background: '#fff', padding: '32px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Book ID</label>
-              <input 
-                type="text" 
-                value={book.book_id} 
-                disabled 
-                style={{ background: '#f5f5f5', cursor: 'not-allowed' }}
-              />
+          {message && (
+            <div
+              className={`message ${
+                message.type === 'success' ? 'success' : 'error'
+              }`}
+            >
+              {message.text}
             </div>
+          )}
 
-            <div className="form-group">
-              <label>Title *</label>
-              <input
-                type="text"
-                value={form.title}
-                onChange={(e) => setForm({...form, title: e.target.value})}
-                required
-              />
-            </div>
+          <form className="admin-form" onSubmit={handleSubmit}>
+            <section className="form-section">
+              <h3 className="section-title">Basic information</h3>
+              <div className="form-grid">
+                <div className="form-field full-width">
+                  <label htmlFor="bookId">Book ID</label>
+                  <input 
+                    id="bookId"
+                    type="text" 
+                    value={book.book_id} 
+                    disabled 
+                    style={{ background: '#f5f5f5', cursor: 'not-allowed' }}
+                  />
+                </div>
 
-            <div className="form-group" style={{ position: 'relative' }}>
-              <label>Author *</label>
-              <div className="autocomplete-container">
-                <input
-                  className="autocomplete-input"
-                  type="text"
-                  autoComplete="off"
-                  value={authorQuery}
-                  onChange={handleAuthorInput}
-                  required
-                  placeholder="Type author name..."
-                />
-                {showAuthorDropdown && authorOptions.length > 0 && (
-                  <div className="autocomplete-dropdown">
-                    {authorOptions.map((opt) => (
-                      <div
-                        key={opt.author_id}
-                        className="autocomplete-item"
-                        onClick={() => selectAuthor(opt)}
-                      >
-                        <strong>{opt.name}</strong>
-                        <div className="item-meta">
-                          author_id: {opt.author_id}
-                        </div>
-                      </div>
-                    ))}
-                    {!authorOptions.some(
-                      (opt) =>
-                        opt.name.toLowerCase() ===
-                        authorQuery.trim().toLowerCase()
-                    ) && (
-                      <div
-                        className="autocomplete-item add-new"
-                        onClick={handleCreateNewAuthor}
-                      >
-                        Create new author &quot;{authorQuery.trim()}&quot;
-                      </div>
-                    )}
-                  </div>
-                )}
-                {showAuthorDropdown && authorOptions.length === 0 && authorQuery && (
-                  <div className="autocomplete-dropdown">
-                    <div
-                      className="autocomplete-item add-new"
-                      onClick={handleCreateNewAuthor}
-                    >
-                      Create new author &quot;{authorQuery.trim()}&quot;
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+                <div className="form-field">
+                  <label htmlFor="title">
+                    Title <span className="required">*</span>
+                  </label>
+                  <input
+                    id="title"
+                    type="text"
+                    value={form.title}
+                    onChange={(e) => setForm({...form, title: e.target.value})}
+                    required
+                  />
+                </div>
 
-            <div className="form-group">
-              <label>Publisher *</label>
-              <input
-                type="text"
-                value={form.publisher}
-                onChange={(e) => setForm({...form, publisher: e.target.value})}
-                required
-              />
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              <div className="form-group">
-                <label>Publication Year *</label>
-                <input
-                  type="number"
-                  value={form.year}
-                  onChange={(e) => setForm({...form, year: e.target.value})}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Page Count *</label>
-                <input
-                  type="number"
-                  value={form.pageCount}
-                  onChange={(e) => setForm({...form, pageCount: e.target.value})}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label>Language *</label>
-              <select value={form.language} onChange={(e) => setForm({...form, language: e.target.value})}>
-                <option value="en">English</option>
-                <option value="vi">Vietnamese</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="es">Spanish</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Punchline * ({charPunchline}/200)</label>
-              <textarea
-                value={form.punchline}
-                onChange={(e) => {
-                  setForm({...form, punchline: e.target.value});
-                  setCharPunchline(e.target.value.length);
-                }}
-                maxLength={200}
-                required
-                style={{ minHeight: '80px' }}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Blurb * ({charBlurb}/2000)</label>
-              <textarea
-                value={form.blurb}
-                onChange={(e) => {
-                  setForm({...form, blurb: e.target.value});
-                  setCharBlurb(e.target.value.length);
-                }}
-                maxLength={2000}
-                required
-                style={{ minHeight: '150px' }}
-              />
-            </div>
-
-            <div className="form-group">
-              <label>ISBN (optional)</label>
-              <input
-                type="text"
-                value={form.isbn}
-                onChange={(e) => setForm({...form, isbn: e.target.value})}
-              />
-            </div>
-
-            <div className="form-group" style={{ position: 'relative' }}>
-              <label>Categories *</label>
-              <div className="autocomplete-container">
-                <input
-                  className="autocomplete-input"
-                  type="text"
-                  autoComplete="off"
-                  value={categoryQuery}
-                  onChange={handleCategoryInput}
-                  placeholder="Type to search or create category..."
-                />
-                {showCategoryDropdown && categoryOptions.length > 0 && (
-                  <div className="autocomplete-dropdown">
-                    {categoryOptions.map((opt) => (
-                      <div
-                        key={opt.category_id || opt.name}
-                        className="autocomplete-item"
-                        onClick={() => selectCategory(opt)}
-                      >
-                        <strong>{opt.name}</strong>
-                        {opt.primary_genre && (
-                          <div className="item-meta">
-                            primary genre: {opt.primary_genre}
+                <div className="form-field">
+                  <label htmlFor="author">
+                    Author <span className="required">*</span>
+                  </label>
+                  <div className="autocomplete-container">
+                    <input
+                      id="author"
+                      className="autocomplete-input"
+                      type="text"
+                      autoComplete="off"
+                      value={authorQuery}
+                      onChange={handleAuthorInput}
+                      required
+                      placeholder="Type author name..."
+                    />
+                    {showAuthorDropdown && authorOptions.length > 0 && (
+                      <div className="autocomplete-dropdown">
+                        {authorOptions.map((opt) => (
+                          <div
+                            key={opt.author_id}
+                            className="autocomplete-item"
+                            onClick={() => selectAuthor(opt)}
+                          >
+                            <strong>{opt.name}</strong>
+                            <div className="item-meta">
+                              author_id: {opt.author_id}
+                            </div>
+                          </div>
+                        ))}
+                        {!authorOptions.some(
+                          (opt) =>
+                            opt.name.toLowerCase() ===
+                            authorQuery.trim().toLowerCase()
+                        ) && (
+                          <div
+                            className="autocomplete-item add-new"
+                            onClick={handleCreateNewAuthor}
+                          >
+                            Create new author &quot;{authorQuery.trim()}&quot;
                           </div>
                         )}
                       </div>
-                    ))}
-                    <div
-                      className="autocomplete-item add-new"
-                      onClick={() => addCategory(categoryQuery)}
-                    >
-                      Create / add category &quot;
-                      {categoryQuery.trim()}&quot;
-                    </div>
-                  </div>
-                )}
-                {showCategoryDropdown && categoryOptions.length === 0 && categoryQuery && (
-                  <div className="autocomplete-dropdown">
-                    <div
-                      className="autocomplete-item add-new"
-                      onClick={() => addCategory(categoryQuery)}
-                    >
-                      Create / add category &quot;
-                      {categoryQuery.trim()}&quot;
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {form.categories.length > 0 && (
-                <div className="selected-items">
-                  <strong>Selected categories</strong>
-                  <div className="badge-list">
-                    {form.categories.map((cat) => (
-                      <span key={cat} className="badge badge-blue">
-                        {cat}
-                        <button
-                          type="button"
-                          onClick={() => removeCategory(cat)}
+                    )}
+                    {showAuthorDropdown && authorOptions.length === 0 && authorQuery && (
+                      <div className="autocomplete-dropdown">
+                        <div
+                          className="autocomplete-item add-new"
+                          onClick={handleCreateNewAuthor}
                         >
-                          &times;
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="form-group" style={{ position: 'relative' }}>
-              <label>Tags (optional)</label>
-              <div className="autocomplete-container">
-                <input
-                  className="autocomplete-input"
-                  type="text"
-                  autoComplete="off"
-                  value={tagQuery}
-                  onChange={handleTagInput}
-                  placeholder="Type to search or create tag..."
-                />
-                {showTagDropdown && tagOptions.length > 0 && (
-                  <div className="autocomplete-dropdown">
-                    {tagOptions.map((opt) => (
-                      <div
-                        key={opt.tag_id || opt.name}
-                        className="autocomplete-item"
-                        onClick={() => selectTag(opt)}
-                      >
-                        <strong>{opt.name || opt}</strong>
+                          Create new author &quot;{authorQuery.trim()}&quot;
+                        </div>
                       </div>
-                    ))}
-                    <div
-                      className="autocomplete-item add-new"
-                      onClick={() => addTag(tagQuery)}
-                    >
-                      Create / add tag &quot;{tagQuery.trim()}&quot;
-                    </div>
-                  </div>
-                )}
-                {showTagDropdown && tagOptions.length === 0 && tagQuery && (
-                  <div className="autocomplete-dropdown">
-                    <div
-                      className="autocomplete-item add-new"
-                      onClick={() => addTag(tagQuery)}
-                    >
-                      Create / add tag &quot;{tagQuery.trim()}&quot;
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {form.tags.length > 0 && (
-                <div className="selected-items">
-                  <strong>Selected tags</strong>
-                  <div className="badge-list">
-                    {form.tags.map((tag) => (
-                      <span key={tag} className="badge badge-gray">
-                        {tag}
-                        <button
-                          type="button"
-                          onClick={() => removeTag(tag)}
-                        >
-                          &times;
-                        </button>
-                      </span>
-                    ))}
+                    )}
                   </div>
                 </div>
-              )}
-            </div>
 
-            <div className="form-group">
-              <label>Status *</label>
-              <select value={form.status} onChange={(e) => setForm({...form, status: e.target.value})}>
-                <option value="draft">Draft</option>
-                <option value="published">Published</option>
-                <option value="archived">Archived</option>
-              </select>
-            </div>
+                <div className="form-field">
+                  <label htmlFor="publisher">
+                    Publisher <span className="required">*</span>
+                  </label>
+                  <input
+                    id="publisher"
+                    type="text"
+                    value={form.publisher}
+                    onChange={(e) => setForm({...form, publisher: e.target.value})}
+                    required
+                  />
+                </div>
 
-            <div className="form-group">
-              <label>Current Cover Image</label>
-              {book.coverImage_cloud?.url && (
-                <img 
-                  src={book.coverImage_cloud.url} 
-                  alt="Current cover" 
-                  style={{ maxWidth: '200px', borderRadius: '4px', marginTop: '8px' }}
-                />
-              )}
-            </div>
+                <div className="form-field">
+                  <label htmlFor="year">
+                    Publication year <span className="required">*</span>
+                  </label>
+                  <input
+                    id="year"
+                    type="number"
+                    value={form.year}
+                    onChange={(e) => setForm({...form, year: e.target.value})}
+                    required
+                  />
+                </div>
 
-            <div className="form-group">
-              <label>Upload New Cover (optional)</label>
-              <input 
-                type="file" 
-                accept="image/*"
-                onChange={handleNewCoverChange}
-              />
-              {newCoverFile && (
-                <p className="form-hint">Selected: {newCoverFile.name}</p>
-              )}
-            </div>
+                <div className="form-field">
+                  <label htmlFor="pageCount">
+                    Page count <span className="required">*</span>
+                  </label>
+                  <input
+                    id="pageCount"
+                    type="number"
+                    value={form.pageCount}
+                    onChange={(e) => setForm({...form, pageCount: e.target.value})}
+                    required
+                  />
+                </div>
 
-            <div className="form-group">
-              <label>Upload New EPUB (optional)</label>
-              <input 
-                type="file" 
-                accept=".epub"
-                onChange={handleNewEpubChange}
-              />
-              {newEpubFile && (
-                <p className="form-hint">Selected: {newEpubFile.name}</p>
-              )}
-            </div>
+                <div className="form-field">
+                  <label htmlFor="language">
+                    Language <span className="required">*</span>
+                  </label>
+                  <select 
+                    id="language"
+                    value={form.language} 
+                    onChange={(e) => setForm({...form, language: e.target.value})}
+                  >
+                    <option value="en">English</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish</option>
+                  </select>
+                </div>
 
-            <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>
-              <button 
-                type="button" 
-                className="btn-secondary"
+                <div className="form-field">
+                  <label htmlFor="isbn">ISBN (optional)</label>
+                  <input
+                    id="isbn"
+                    type="text"
+                    value={form.isbn}
+                    onChange={(e) => setForm({...form, isbn: e.target.value})}
+                  />
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="status">
+                    Status <span className="required">*</span>
+                  </label>
+                  <select 
+                    id="status"
+                    value={form.status} 
+                    onChange={(e) => setForm({...form, status: e.target.value})}
+                  >
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h3 className="section-title">Blurb &amp; punchline</h3>
+              <div className="form-grid">
+                <div className="form-field full-width">
+                  <label htmlFor="punchline">
+                    Punchline (max. 200 chars){' '}
+                    <span className="required">*</span>
+                  </label>
+                  <textarea
+                    id="punchline"
+                    rows="2"
+                    value={form.punchline}
+                    onChange={(e) => {
+                      setForm({...form, punchline: e.target.value});
+                      setCharPunchline(e.target.value.length);
+                    }}
+                    maxLength={200}
+                    required
+                  />
+                  <div className="char-counter">
+                    {charPunchline}/200 characters
+                  </div>
+                </div>
+
+                <div className="form-field full-width">
+                  <label htmlFor="blurb">
+                    Blurb / description (max. 2000 chars){' '}
+                    <span className="required">*</span>
+                  </label>
+                  <textarea
+                    id="blurb"
+                    rows="6"
+                    value={form.blurb}
+                    onChange={(e) => {
+                      setForm({...form, blurb: e.target.value});
+                      setCharBlurb(e.target.value.length);
+                    }}
+                    maxLength={2000}
+                    required
+                  />
+                  <div className="char-counter">
+                    {charBlurb}/2000 characters
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h3 className="section-title">Categories &amp; tags</h3>
+              <div className="form-grid">
+                <div className="form-field">
+                  <label htmlFor="categories">
+                    Categories <span className="required">*</span>
+                  </label>
+                  <div className="autocomplete-container">
+                    <input
+                      id="categories"
+                      className="autocomplete-input"
+                      type="text"
+                      autoComplete="off"
+                      value={categoryQuery}
+                      onChange={handleCategoryInput}
+                      placeholder="Type to search or create category..."
+                    />
+                    {showCategoryDropdown && categoryOptions.length > 0 && (
+                      <div className="autocomplete-dropdown">
+                        {categoryOptions.map((opt) => (
+                          <div
+                            key={opt.category_id || opt.name}
+                            className="autocomplete-item"
+                            onClick={() => selectCategory(opt)}
+                          >
+                            <strong>{opt.name}</strong>
+                            {opt.primary_genre && (
+                              <div className="item-meta">
+                                primary genre: {opt.primary_genre}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        <div
+                          className="autocomplete-item add-new"
+                          onClick={() => addCategory(categoryQuery)}
+                        >
+                          Create / add category &quot;
+                          {categoryQuery.trim()}&quot;
+                        </div>
+                      </div>
+                    )}
+                    {showCategoryDropdown && categoryOptions.length === 0 && categoryQuery && (
+                      <div className="autocomplete-dropdown">
+                        <div
+                          className="autocomplete-item add-new"
+                          onClick={() => addCategory(categoryQuery)}
+                        >
+                          Create / add category &quot;
+                          {categoryQuery.trim()}&quot;
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {form.categories.length > 0 && (
+                    <div className="selected-items">
+                      <strong>Selected categories</strong>
+                      <div className="badge-list">
+                        {form.categories.map((cat) => (
+                          <span key={cat} className="badge badge-blue">
+                            {cat}
+                            <button
+                              type="button"
+                              onClick={() => removeCategory(cat)}
+                            >
+                              &times;
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="tags">Tags</label>
+                  <div className="autocomplete-container">
+                    <input
+                      id="tags"
+                      className="autocomplete-input"
+                      type="text"
+                      autoComplete="off"
+                      value={tagQuery}
+                      onChange={handleTagInput}
+                      placeholder="Type to search or create tag..."
+                    />
+                    {showTagDropdown && tagOptions.length > 0 && (
+                      <div className="autocomplete-dropdown">
+                        {tagOptions.map((opt) => (
+                          <div
+                            key={opt.tag_id || opt.name}
+                            className="autocomplete-item"
+                            onClick={() => selectTag(opt)}
+                          >
+                            <strong>{opt.name || opt}</strong>
+                          </div>
+                        ))}
+                        <div
+                          className="autocomplete-item add-new"
+                          onClick={() => addTag(tagQuery)}
+                        >
+                          Create / add tag &quot;{tagQuery.trim()}&quot;
+                        </div>
+                      </div>
+                    )}
+                    {showTagDropdown && tagOptions.length === 0 && tagQuery && (
+                      <div className="autocomplete-dropdown">
+                        <div
+                          className="autocomplete-item add-new"
+                          onClick={() => addTag(tagQuery)}
+                        >
+                          Create / add tag &quot;{tagQuery.trim()}&quot;
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {form.tags.length > 0 && (
+                    <div className="selected-items">
+                      <strong>Selected tags</strong>
+                      <div className="badge-list">
+                        {form.tags.map((tag) => (
+                          <span key={tag} className="badge badge-blue">
+                            {tag}
+                            <button
+                              type="button"
+                              onClick={() => removeTag(tag)}
+                            >
+                              &times;
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            <section className="form-section">
+              <h3 className="section-title">Files</h3>
+              <div className="form-grid">
+                <div className="form-field">
+                  <label>Current Cover Image</label>
+                  {book.coverImage_cloud?.url && (
+                    <img 
+                      src={book.coverImage_cloud.url} 
+                      alt="Current cover" 
+                      style={{ 
+                        maxWidth: '200px', 
+                        borderRadius: '8px', 
+                        marginTop: '8px',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                      }}
+                    />
+                  )}
+                </div>
+
+                <div className="form-field">
+                  <label>Upload New Cover (optional)</label>
+                  {newCoverFile && (
+                    <div className="file-preview">
+                      <div className="file-preview-icon">📘</div>
+                      <div className="file-preview-info">
+                        <div className="file-preview-name">
+                          {newCoverFile.name}
+                        </div>
+                        <div className="file-preview-size">
+                          {(newCoverFile.size / 1024).toFixed(1)} KB
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="file-preview-remove"
+                        onClick={() => setNewCoverFile(null)}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  )}
+                  <label
+                    htmlFor="newCoverUpload"
+                    className="file-upload-area"
+                  >
+                    <div className="file-upload-icon">⬆️</div>
+                    <div className="file-upload-text">
+                      Click to upload new cover image
+                    </div>
+                    <div className="file-upload-hint">
+                      JPG / PNG, recommended vertical ratio 2:3
+                    </div>
+                    <input
+                      id="newCoverUpload"
+                      type="file"
+                      accept="image/*"
+                      className="file-upload-input"
+                      onChange={handleNewCoverChange}
+                    />
+                  </label>
+                </div>
+
+                <div className="form-field">
+                  <label>Upload New EPUB (optional)</label>
+                  {newEpubFile && (
+                    <div className="file-preview">
+                      <div className="file-preview-icon">📖</div>
+                      <div className="file-preview-info">
+                        <div className="file-preview-name">
+                          {newEpubFile.name}
+                        </div>
+                        <div className="file-preview-size">
+                          {(newEpubFile.size / 1024).toFixed(1)} KB
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="file-preview-remove"
+                        onClick={() => setNewEpubFile(null)}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  )}
+                  <label htmlFor="newEpubUpload" className="file-upload-area">
+                    <div className="file-upload-icon">⬆️</div>
+                    <div className="file-upload-text">
+                      Click to upload new EPUB file
+                    </div>
+                    <div className="file-upload-hint">
+                      .epub only – will be parsed after publishing
+                    </div>
+                    <input
+                      id="newEpubUpload"
+                      type="file"
+                      accept=".epub"
+                      className="file-upload-input"
+                      onChange={handleNewEpubChange}
+                    />
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section className="form-actions">
+              <button
+                type="button"
+                className="ghost-button"
                 onClick={() => navigate('/admin/manage-books')}
                 disabled={saving}
               >
                 Cancel
               </button>
-              <button 
-                type="submit" 
-                className="btn-primary"
-                disabled={saving}
-              >
-                {saving ? 'Saving...' : 'Save Changes'}
-              </button>
-            </div>
+
+              <div className="action-buttons">
+                <button
+                  type="submit"
+                  className="primary-button"
+                  disabled={saving}
+                >
+                  {saving ? 'Saving...' : 'Save Changes'}
+                </button>
+              </div>
+            </section>
           </form>
-        </div>
+        </section>
       </main>
+
+      {saving && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '40px 60px',
+            borderRadius: '16px',
+            textAlign: 'center'
+          }}>
+            <div style={{
+              width: '50px',
+              height: '50px',
+              border: '4px solid #f3f4f6',
+              borderTopColor: '#111827',
+              borderRadius: '50%',
+              animation: 'spin 0.8s linear infinite',
+              margin: '0 auto 20px'
+            }} />
+            <p style={{ margin: 0, color: '#6b7280' }}>Updating book, please wait…</p>
+          </div>
+        </div>
+      )}
+      
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
