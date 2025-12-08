@@ -112,7 +112,7 @@ function BookComments({ bookId }) {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/books/${bookId}/comments/${commentId}`,
+        `${API_BASE_URL}/books/comments/${commentId}`,
         {
           method: 'DELETE',
           headers: {
