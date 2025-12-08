@@ -78,7 +78,7 @@ body.library .header .search_input_group input::placeholder {
 }
 
 body.library .logo {
-  font-size: 24px;
+  font-size: 24px !important;
 }
 
 .logo:hover {
@@ -282,6 +282,13 @@ body.library .user-avatar {
 
 .dropdown-item svg {
   flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .dropdown-item:hover {
@@ -294,7 +301,7 @@ body.library .user-avatar {
 }
 
 .dropdown-item.favorites-item svg {
-  color: #000;
+  stroke: #000;
 }
 
 .dropdown-item.favorites-item:hover {
@@ -307,7 +314,7 @@ body.library .user-avatar {
 }
 
 .dropdown-item.admin-item svg {
-  color: #3d3f5c;
+  stroke: #3d3f5c;
 }
 
 .dropdown-item.admin-item:hover {
@@ -317,6 +324,10 @@ body.library .user-avatar {
 .dropdown-item.logout {
   color: #c33;
   border-top: 1px solid #eee;
+}
+
+.dropdown-item.logout svg {
+  stroke: #c33;
 }
 
 .dropdown-item.logout:hover {

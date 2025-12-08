@@ -16,31 +16,23 @@ function BookCard({ book }) {
     return text.substring(0, maxLength - 3) + '...';
   };
 
+  const coverStyle = coverUrl
+    ? {
+        backgroundImage: `url('${coverUrl}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }
+    : {};
+
   return (
     <div className="book-card" onClick={handleClick}>
-      <div
-        className="book-card-cover"
-        style={
-          coverUrl
-            ? {
-                backgroundImage: `url('${coverUrl}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }
-            : {
-                background: '#666',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }
-        }
-      >
+      <div className="book-card-cover" style={coverStyle}>
         {!coverUrl && (
           <strong
             style={{
               color: '#fff',
               padding: '10px',
-              textAlign: 'center'
+              textAlign: 'center',
             }}
           >
             {truncateText(book.title, 30)}

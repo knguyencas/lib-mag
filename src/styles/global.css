@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:...');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cardo:wght@400;700&family=Square+Peg&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -27,6 +28,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-weight: 700;
   margin: 0;
+}
+
+/* ✅ Override for library page section titles */
+body.library h2.section-title {
+  font-family: Cardo, serif !important;
+  color: #FFF !important;
 }
 
 h2 {

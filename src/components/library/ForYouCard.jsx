@@ -21,15 +21,20 @@ function ForYouCard({ book }) {
 
   const renderStars = () => {
     const stars = [];
+    
+    // Full stars
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={`full-${i}`} className="star full">★</span>);
+      stars.push(<span key={`full-${i}`} className="star full"></span>);
     }
+    
     if (hasHalf) {
-      stars.push(<span key="half" className="star half">★</span>);
+      stars.push(<span key="half" className="star half"></span>);
     }
+    
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
+      stars.push(<span key={`empty-${i}`} className="star"></span>);
     }
+    
     return stars;
   };
 
@@ -68,13 +73,19 @@ function ForYouCard({ book }) {
     if (e.target.classList.contains('show-more-popup')) {
       e.stopPropagation();
     }
-    navigate(`/book/${book.book_id}`);
+    navigate(`/book-detail?id=${book.book_id}`);
   };
 
   const getTitleClass = () => {
     if (book.title.length > 60) return 'popup-title very-long-title';
     if (book.title.length > 40) return 'popup-title long-title';
     return 'popup-title';
+  };
+
+  const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength - 3) + '...';
   };
 
   return (
@@ -96,7 +107,7 @@ function ForYouCard({ book }) {
         >
           {!coverUrl && (
             <strong style={{ color: '#fff', padding: '10px', textAlign: 'center' }}>
-              {book.title.length > 30 ? book.title.substring(0, 30) + '...' : book.title}
+              {truncateText(book.title, 30)}
             </strong>
           )}
         </div>

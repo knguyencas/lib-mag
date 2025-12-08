@@ -6,6 +6,10 @@
   align-items: flex-start;
 }
 
+.for-you-section .section-title {
+  font-family: Cardo, serif;
+}
+
 .for-you-grid {
   display: flex;
   gap: 57px;

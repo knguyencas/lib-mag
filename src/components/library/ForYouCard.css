@@ -63,7 +63,7 @@
 .for-you-card-rating {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-top: 4px;
 }
 
@@ -74,32 +74,37 @@
 }
 
 .for-you-card-rating .star {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
   font-size: 16px;
   line-height: 16px;
+}
+
+.for-you-card-rating .star::before {
+  content: '☆';
   color: #FFF;
 }
 
-.for-you-card-rating .star.full {
+.for-you-card-rating .star.full::before {
+  content: '★';
   color: #FFF;
 }
 
-.for-you-card-rating .star.half {
-  position: relative;
-  color: rgba(255, 255, 255, 0.3);
+.for-you-card-rating .star.half::before {
+  content: '☆';
+  color: #FFF;
 }
 
 .for-you-card-rating .star.half::after {
   content: '★';
+  color: #FFF;
   position: absolute;
   left: 0;
   top: 0;
   width: 50%;
   overflow: hidden;
-  color: #FFF;
-}
-
-.for-you-card-rating .star.empty {
-  color: rgba(255, 255, 255, 0.3);
 }
 
 .for-you-card-rating .rating-number {

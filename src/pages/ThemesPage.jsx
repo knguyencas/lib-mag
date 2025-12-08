@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import SearchBar from '../components/layout/SearchBar';
+import Footer from '../components/layout/Footer';
 import { authService } from '../services/authService';
-import { voteService } from '@/services/voteService';
+import { voteService } from '../services/voteService';
+import api from '../services/api';
 import '../styles/themes.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-const API_BASE = `${API_BASE_URL}/api`;
 const POSTS_PER_PAGE = 12;
 
 function ThemesPage() {
@@ -92,23 +92,18 @@ function ThemesPage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(
-        `${API_BASE}/visualpost?limit=200&sort=${encodeURIComponent(sort)}`
-      );
+      const response = await api.get('/visualpost', {
+        params: {
+          limit: 200,
+          sort: sort
+        }
+      });
 
-      if (!response.ok) {
-        const text = await response.text();
-        console.error('Response not OK, raw text:', text);
-        throw new Error('Failed to load visual posts');
+      if (!response.data.success) {
+        throw new Error(response.data.message || 'Failed to load visual posts');
       }
 
-      const data = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.message || 'Failed to load visual posts');
-      }
-
-      const posts = data.data || [];
+      const posts = response.data.data || [];
       setAllPosts(posts);
       setCurrentPage(1);
 
@@ -437,9 +432,7 @@ function ThemesPage() {
         </button>
       )}
 
-      <footer className="footer">
-        <p>© 2025 Psyche Journey. Visual exploration of the mind.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -9,16 +9,17 @@
 .section-title {
   width: 148px;
   height: 46px;
-  font-family: Cardo, serif;
-  font-size: 40px;
+  font-family: Cardo, serif !important;
+  font-size: 40px !important;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700 !important;
   line-height: 57%;
   letter-spacing: -0.2px;
-  color: #FFF;
+  color: #FFF !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
   margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .section-grid {

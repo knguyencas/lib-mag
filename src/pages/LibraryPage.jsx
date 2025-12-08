@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/layout/Header';
 import SearchBar from '../components/layout/SearchBar';
+import Footer from '../components/layout/Footer';
 import ControlsBar from '../components/library/ControlsBar';
 import ForYouSection from '../components/library/ForYouSection';
 import BookGrid from '../components/library/BookGrid';
@@ -12,6 +13,7 @@ function LibraryPage() {
   useEffect(() => {
     document.body.classList.add('library');
     document.body.classList.remove('home');
+    document.title = 'Library - Psyche Journey';
     
     return () => {
       document.body.classList.remove('library');
@@ -85,9 +87,7 @@ function LibraryPage() {
         )}
       </main>
 
-      <footer className="footer">
-        <div className="footer-logo">PSYCHE JOURNEY©</div>
-      </footer>
+      <Footer />
     </div>
   );
 }
