@@ -118,7 +118,7 @@ function CreateVisualPostPage() {
       submitData.append('tags', JSON.stringify(formData.tags));
       submitData.append('author_id', user.id || user._id);
 
-      const response = await fetch(`${API_BASE_URL}/api/visualpost`, {
+      const response = await fetch(`${API_BASE_URL}/visualpost`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

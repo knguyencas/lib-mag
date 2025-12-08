@@ -33,7 +33,7 @@ function ManageAdminsPage() {
   const loadAdmins = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/api/admin/users/admins`, {
+      const response = await fetch(`${API_BASE_URL}/admin/users/admins`, {
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
         }
@@ -53,7 +53,7 @@ function ManageAdminsPage() {
   const handleCreateAdmin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/users/create-admin`, {
+      const response = await fetch(`${API_BASE_URL}/admin/users/create-admin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ function ManageAdminsPage() {
     if (!confirm('Are you sure you want to delete this admin?')) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/admin/users/admins/${adminId}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/users/admins/${adminId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`

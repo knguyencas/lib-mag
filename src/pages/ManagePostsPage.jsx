@@ -45,7 +45,7 @@ function ManagePostsPage() {
       });
 
       const endpoint = activeTab === 'visual' ? 'visual' : 'perspective';
-      const response = await fetch(`${API_BASE_URL}/api/admin/posts/${endpoint}?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/posts/${endpoint}?${params}`, {
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
         }
@@ -66,7 +66,7 @@ function ManagePostsPage() {
   const handleApprovePost = async (postId) => {
     try {
       const endpoint = activeTab === 'visual' ? 'visual' : 'perspective';
-      const response = await fetch(`${API_BASE_URL}/api/admin/posts/${endpoint}/${postId}/approve`, {
+      const response = await fetch(`${API_BASE_URL}/admin/posts/${endpoint}/${postId}/approve`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
@@ -91,7 +91,7 @@ function ManagePostsPage() {
 
     try {
       const endpoint = activeTab === 'visual' ? 'visual' : 'perspective';
-      const response = await fetch(`${API_BASE_URL}/api/admin/posts/${endpoint}/${postId}/reject`, {
+      const response = await fetch(`${API_BASE_URL}/admin/posts/${endpoint}/${postId}/reject`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
@@ -116,7 +116,7 @@ function ManagePostsPage() {
 
     try {
       const endpoint = activeTab === 'visual' ? 'visual' : 'perspective';
-      const response = await fetch(`${API_BASE_URL}/api/admin/posts/${endpoint}/${postId}`, {
+      const response = await fetch(`${API_BASE_URL}/admin/posts/${endpoint}/${postId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
@@ -139,7 +139,7 @@ function ManagePostsPage() {
   const handleArchivePost = async (postId) => {
     try {
       const endpoint = activeTab === 'visual' ? 'visual' : 'perspective';
-      const response = await fetch(`${API_BASE_URL}/api/admin/posts/${endpoint}/${postId}/archive`, {
+      const response = await fetch(`${API_BASE_URL}/admin/posts/${endpoint}/${postId}/archive`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`

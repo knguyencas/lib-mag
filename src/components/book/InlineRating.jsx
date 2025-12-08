@@ -27,7 +27,7 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
 
   const checkUserRating = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/books/${bookId}/my-rating`, {
+      const response = await fetch(`${API_BASE_URL}/books/${bookId}/my-rating`, {
         headers: {
           'Authorization': `Bearer ${authService.getToken()}`
         }
@@ -56,7 +56,7 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
     try {
       setIsSubmitting(true);
 
-      const response = await fetch(`${API_BASE_URL}/api/books/${bookId}/rate`, {
+      const response = await fetch(`${API_BASE_URL}/books/${bookId}/rate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

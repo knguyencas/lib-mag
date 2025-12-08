@@ -35,7 +35,7 @@ function BookComments({ bookId }) {
       });
 
       const response = await fetch(
-        `${API_BASE_URL}/api/books/${bookId}/comments?${params}`
+        `${API_BASE_URL}/books/${bookId}/comments?${params}`
       );
 
       if (response.ok) {
@@ -76,7 +76,7 @@ function BookComments({ bookId }) {
       setIsSubmitting(true);
 
       const response = await fetch(
-        `${API_BASE_URL}/api/books/${bookId}/comments`,
+        `${API_BASE_URL}/books/${bookId}/comments`,
         {
           method: 'POST',
           headers: {
@@ -112,7 +112,7 @@ function BookComments({ bookId }) {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/books/${bookId}/comments/${commentId}`,
+        `${API_BASE_URL}/books/${bookId}/comments/${commentId}`,
         {
           method: 'DELETE',
           headers: {
