@@ -17,7 +17,7 @@ const LANG_OPTIONS = [
   { value: 'ko', label: 'Korean' }
 ];
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const API_BASE = `${API_BASE_URL}/admin`;
 
 function AdminAddBookPage() {

@@ -127,7 +127,7 @@ function VisualPostDetailPage() {
   const getImageUrl = () => {
     if (!post) return '';
     
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    const baseUrl = import.meta.env.VITE_API_URL;
     const imageField = post.image_url || post.image || post.imageUrl || post.photo_url || '';
     
     if (!imageField) return '';

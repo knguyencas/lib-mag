@@ -14,7 +14,7 @@ function BookComments({ bookId }) {
     pages: 0
   });
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const isLoggedIn = authService.isLoggedIn();
   const currentUser = authService.getUser();

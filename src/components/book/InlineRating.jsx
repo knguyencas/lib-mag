@@ -10,7 +10,7 @@ function InlineRating({ bookId, initialRating = 0, ratingCount = 0, onRatingChan
   const [hoverRating, setHoverRating] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const isLoggedIn = authService.isLoggedIn();
 
